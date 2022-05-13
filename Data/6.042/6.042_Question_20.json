@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Propositional Logic",
+       "Original question": "Express each of the following predicates and propositions in formal logic notation. The domain of discourse is the nonnegative integers, N. In addition to the propositional operators, variables and quantifiers, you may define predicates using addition, multiplication, and equality symbols, but no constants (like 0, 1, . . .). \n For example, the proposition \u201cn is an even number\u201d could be written \u2203m. (m + m = n).\n n is the sum of three perfect squares. ",
+       "Codex input": "Same as original question",
+       "Codex code": "# n is the sum of three perfect squares.\n\n# \u2203m,n,p. (m^2 + n^2 + p^2 = n)",
+       "Codex code explanation": "1. \u2203m,n,p. (m^2 + n^2 + p^2 = n)",
+       "Program solution": "\u2203x\u2203y\u2203z. (x x \u00b7 + y \u00b7 y + z z \u00b7 = n)",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "# n is the sum of three perfect squares.\n# \u2203x,y,z. (x^2 + y^2 + z^2 = n)",
+       "GPT-3 evaluation": "Correct"
+}

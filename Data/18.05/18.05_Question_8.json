@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Discrete Random Variables, Standard Deviation",
+       "Original question": "Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. Let Z be the average of X and Y. Find the standard deviation of Z.",
+       "Codex input": "Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. Let Z be the average of X and Y. Find the standard deviation of Z after simulating 100000 times.",
+       "Codex code": "import random\n\ndef roll_die(sides):\n    return random.randint(1, sides)\n\ndef simulate_rolls(sides1, sides2, num_trials):\n    results = []\n    for _ in range(num_trials):\n        results.append((roll_die(sides1) + roll_die(sides2)) / 2)\n    return results\n\ndef standard_deviation(nums):\n    mean = sum(nums) / len(nums)\n    squared_diffs = [(num - mean) ** 2 for num in nums]\n    return (sum(squared_diffs) / len(nums)) ** 0.5\n\nprint(standard_deviation(simulate_rolls(4, 6, 100000)))",
+       "Codex code explanation": "1. def roll_die(sides):\n    return random.randint(1, sides)\n\nThis function takes in a number of sides and returns a random number between 1 and that number.\n\n2. def simulate_rolls(sides1, sides2, num_trials):\n    results = []\n    for _ in range(num_trials):\n        results.append((roll_die(sides1) + roll_die(sides2)) / 2)\n    return results\n\nThis function takes in two numbers of sides and a number of trials. It returns a list of the averages of the two dice rolls.\n\n3. def standard_deviation(nums):\n    mean = sum(nums) / len(nums)\n    squared_diffs = [(num - mean) ** 2 for num in nums]\n    return (sum(squared_diffs) / len(nums)) ** 0.5\n\nThis function takes in a list of numbers and returns the standard deviation of those numbers.\n\n4. print(standard_deviation(simulate_rolls(4, 6, 100000)))\n\nThis line prints the standard deviation of the averages of the two dice rolls.\n",
+       "Program solution": 1.021,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The standard deviation of Z is 2.5.",
+       "GPT-3 evaluation": "Incorrect"
+}

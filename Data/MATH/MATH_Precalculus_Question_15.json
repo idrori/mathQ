@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Precalculus",
+       "Original question": "In rectangle ABCD, P is a point on side BC such that BP = 16 and CP = 8. If tan <APD = 3, write a program that finds AB.",
+       "Codex input": "Write a program to solve the equation 576*x**2 = 9/10 * (256+x**2)*(64+x**2)",
+       "Codex code": "import sympy\nx = sympy.symbols('x')\nsolutions = sympy.solve(576*x**2 - 9/10 * (256+x**2)*(64+x**2), x)\nprint(solutions)",
+       "Codex code explanation": "1. sympy.symbols('x') creates a symbolic variable x.\n2. sympy.solve(576*x**2 - 9/10 * (256+x**2)*(64+x**2), x) solves the equation\n   for x.\n3. print(solutions) prints the solutions.",
+       "Program solution": 16.0,
+       "Solution type": "Manual",
+       "GPT-3 response": "AB = 24",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Probability",
+       "Original question": "Scores for a final exam are given by picking an integer uniformly at random from the set {50, 51, . . . , 97, 98}. The scores of all 128 students in the class are assigned independently in this manner. Let S1, . . . , S128 be their scores. Find Var(Si).",
+       "Codex input": "Scores for a final exam are given by picking an integer uniformly at random from the set {50, 51, . . . , 97, 98}. \nThe scores of 128 students in a class are assigned independently in this manner. Write a program to compute the variance of the score.",
+       "Codex code": "import numpy as np\n\ndef compute_variance(n):\n    scores = np.random.randint(50, 99, n)\n    return np.var(scores)\n\nprint(compute_variance(128))",
+       "Codex code explanation": "1. Generate 128 random integers between 50 and 98.\n2. Compute the variance of the 128 random integers.",
+       "Program solution": "200",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "# We can use the fact that the variance of a uniform distribution is 1/12.\n# So the variance of each student's score is 1/12.\n# So the variance of the sum of the scores is 128*1/12 = 16.",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Matrix Algebra",
+       "Original question": "Compute the trace of the following matrix:\n[3,8,-2;1,0,2;-2,-1,5]",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nmatrix = np.array([[3,8,-2],[1,0,2],[-2,-1,5]])\n\nprint(np.trace(matrix))",
+       "Codex code explanation": "1. We import the numpy library as np.\n2. We create a matrix using the np.array() function.\n3. We print the trace of the matrix using the np.trace() function.",
+       "Program solution": "8",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The trace of the matrix is 9.",
+       "GPT-3 evaluation": "Incorrect"
+}

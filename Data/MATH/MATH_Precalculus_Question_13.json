@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Precalculus",
+       "Original question": "Let l, m, and n be real numbers, and let A, B, C be points such that the midpoint of BC is (l,0,0), the midpoint of AC is (0,m,0), and the midpoint of AB is (0,0,n). Find (AB^2 + AC^2 + BC^2)/(l^2 + m^2 + n^2).",
+       "Codex input": "Let l, m, and n be real numbers, and let A, B, C be points such that the midpoint of BC is (l,0,0), the midpoint of AC is (0,m,0), and the midpoint of AB is (0,0,n). \nFind (AB^2 + AC^2 + BC^2)/(l^2 + m^2 + n^2).\nWrite a program.",
+       "Codex code": "import numpy as np\n\ndef midpoint(A, B):\n    return (A + B) / 2\n\ndef distance(A, B):\n    return np.sqrt(np.sum((A - B)**2))\n\ndef main():\n    A = np.array([0, 0, 0])\n    B = np.array([1, 0, 0])\n    C = np.array([0, 1, 0])\n    l = midpoint(B, C)[0]\n    m = midpoint(A, C)[1]\n    n = midpoint(A, B)[2]\n    AB = distance(A, B)\n    AC = distance(A, C)\n    BC = distance(B, C)\n    print((AB**2 + AC**2 + BC**2) / (l**2 + m**2 + n**2))\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We define a function called midpoint that takes two points and returns the midpoint of those two points.\n2. We define a function called distance that takes two points and returns the distance between those two points.\n3. We define the points A, B, and C.\n4. We find the midpoints of BC, AC, and AB.\n5. We find the distances AB, AC, and BC.\n6. We print the result.",
+       "Program solution": 8.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "(AB^2 + AC^2 + BC^2)/(l^2 + m^2 + n^2) = (A-B)^2 + (A-C)^2 + (B-C)^2)/(l^2 + m^2 + n^2) = 1/2",
+       "GPT-3 evaluation": "Incorrect"
+}

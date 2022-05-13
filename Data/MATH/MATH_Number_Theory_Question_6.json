@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Number Theory",
+       "Original question": "Natasha has more than $1 but less than $10 worth of dimes. When she puts her dimes in stacks of 3, she has 1 left over. When she puts them in stacks of 4, she has 1 left over. When she puts them in stacks of 5, she also has 1 left over. How many dimes does Natasha have?",
+       "Codex input": "Natasha has n dimes which is more than 10 but less than 100 dimes. When she puts her dimes in stacks of 3, she has 1 left over. (n % 3 = 1) When she puts them in stacks of 4, she has 1 left over. (n % 4 = 1) When she puts them in stacks of 5, she also has 1 left over. (n % 5 = 1) Write a program that determines n. Start with n > 10.",
+       "Codex code": "def dimes(n):\n    if n % 3 == 1 and n % 4 == 1 and n % 5 == 1:\n        return n\n    else:\n        return dimes(n + 1)\n\nprint(dimes(11))",
+       "Codex code explanation": "1. It's checking if n is divisible by 3, 4, and 5.\n2. If it is, it returns n.\n3. If it isn't, it calls the function again, but this time with n + 1.\n4. It keeps doing this until it finds a number that is divisible by 3, 4, and 5.",
+       "Program solution": 61.0,
+       "Solution type": "Automatic Few-shot",
+       "GPT-3 response": "Natasha has 8 dimes.",
+       "GPT-3 evaluation": "Incorrect"
+}

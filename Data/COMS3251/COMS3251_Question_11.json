@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Least Squares Approximation",
+       "Original question": "Find the least squares solution to the following matrix equation.\n[0,1;1,1;2,1]*x=[6;0;0]",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA = np.array([[0,1],[1,1],[2,1]])\nb = np.array([6,0,0])\n\nx = np.linalg.lstsq(A,b)[0]\n\nprint(x)",
+       "Codex code explanation": "1. We create a matrix A and a vector b.\n2. We use the lstsq function to find the least squares solution to the matrix equation Ax=b.\n3. We print the solution.",
+       "Program solution": "[-3;5]",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "x = [6;-3;2]",
+       "GPT-3 evaluation": "Incorrect"
+}

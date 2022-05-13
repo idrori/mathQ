@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Further Applications of Integration",
+       "Original question": "If revenue flows into a company at a rate of f(t) = 9000*sqrt(1+2t), where t is measured in years and f(t) is measured in dollars per year, find the total revenue obtained in the first four years.",
+       "Codex input": "Using sympy if revenue flows into a company at a rate of f(t) = 9000*sqrt(1+2t), where t is measured in years and f(t) is measured in dollars per year, find the total revenue obtained in the first four years.",
+       "Codex code": "from sympy import *\n\nt = symbols('t')\n\nf = 9000*sqrt(1+2*t)\n\nprint(integrate(f, (t, 0, 4)))",
+       "Codex code explanation": "1. We import the sympy library.\n2. We define the variable t as a symbol.\n3. We define the function f(t) = 9000*sqrt(1+2t).\n4. We integrate f(t) from t=0 to t=4.\n5. We print the result.",
+       "Program solution": "78000",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The total revenue obtained in the first four years is f(4) = 9000*sqrt(1+2*4) = 9000*sqrt(9) = 9000*3 = 27000.",
+       "GPT-3 evaluation": "Incorrect"
+}

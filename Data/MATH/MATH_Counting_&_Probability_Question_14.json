@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Counting & Probability",
+       "Original question": "Compute \\dbinom{8}{6}.",
+       "Codex input": "Write a program. Compute $dbinom{8}{6}$.",
+       "Codex code": "from scipy.special import comb\n\nprint(comb(8, 6))",
+       "Codex code explanation": "1. Import the comb function from the scipy.special module.\n2. Call the comb function with the arguments 8 and 6.\n3. Print the result.",
+       "Program solution": 28.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "$\\\\dbinom{8}{6} = \\frac{8!}{6!2!} = \\frac{8 \\cdot 7 \\cdot 6!}{6 \\cdot 5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1} = \\frac{8 \\cdot 7 \\cdot 6}{6 \\cdot 5 \\cdot 4} = \\frac{336}{60} = \\frac{28}{5}$",
+       "GPT-3 evaluation": "Incorrect"
+}

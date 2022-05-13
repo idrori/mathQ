@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Techniques of Integration",
+       "Original question": "Evaluate the integral. ln(1+x**2)",
+       "Codex input": "Evaluate the integral of ln(1+x**2). Cast to a string and add \" +C\".",
+       "Codex code": "from sympy import *\n\nx = Symbol('x')\n\nintegral = integrate(log(1+x**2), x)\n\nprint(integral)",
+       "Codex code explanation": "1. We import the sympy module.\n2. We create a symbol x.\n3. We create a variable integral and assign it the value of the integral of ln(1+x**2) with respect to x.\n4. We print the value of the integral.",
+       "Program solution": "x\\log (x^2+1) - 2x + 2\\arctan{x} + C",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The integral of ln(1+x**2) is x*ln(1+x**2)-x",
+       "GPT-3 evaluation": "Incorrect"
+}

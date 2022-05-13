@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Partial Derivatives",
+       "Original question": "Compute the first-order partial derivatives of each function. f(x,y,z) = x^2*y^3*z^4",
+       "Codex input": "Write a program that Compute the first-order partial derivatives of each function. f(x,y,z) = x^2*y^3*z^4",
+       "Codex code": "import numpy as np\n\ndef f(x,y,z):\n    return x**2*y**3*z**4\n\ndef dfdx(x,y,z):\n    return 2*x*y**3*z**4\n\ndef dfdy(x,y,z):\n    return x**2*3*y**2*z**4\n\ndef dfdz(x,y,z):\n    return x**2*y**3*4*z**3",
+       "Codex code explanation": "1. Define a function f(x,y,z)\n2. Define the first-order partial derivative of f with respect to x, y, and z\n3. Evaluate the partial derivative at the point (x,y,z)",
+       "Program solution": "df/dx = 2*x*y**3*z**4; df/dy = x**2*3*y**2*z**4; df/dz = x**2*y**3*4*z**3",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "f'x(x,y,z) = 2*x*y^3*z^4\nf'y(x,y,z) = 3*x^2*y^2*z^4\nf'z(x,y,z) = 4*x^2*y^3*z^3",
+       "GPT-3 evaluation": "Correct"
+}

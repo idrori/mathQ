@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Counting & Probability",
+       "Original question": "Find the largest prime divisor of 11! + 12!",
+       "Codex input": "Same as original question",
+       "Codex code": "from math import factorial\n\ndef is_prime(n):\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef largest_prime_divisor(n):\n    for i in range(int(n**0.5), 1, -1):\n        if n % i == 0 and is_prime(i):\n            return i\n\nprint(largest_prime_divisor(factorial(11) + factorial(12)))",
+       "Codex code explanation": "1. We first find the largest prime divisor of the sum of 11! and 12!\n",
+       "Program solution": 13.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "11! + 12! = 13,545,903,758 + 32,768,000,000 = 32,822,871,758\n\nThe largest prime divisor of 32,822,871,758 is 17.",
+       "GPT-3 evaluation": "Incorrect"
+}

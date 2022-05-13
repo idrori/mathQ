@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Orthogonality and Projections",
+       "Original question": "For what value of a makes the following matrix orthogonal:\n[0,0,1;-1,0,0;0,a,0]",
+       "Codex input": "Write a program to try different values of a and see which value of a makes the matrix orthogonal: [0,0,1;-1,0,0;0,a,0]\n",
+       "Codex code": "import numpy as np\n\ndef is_orthogonal(matrix):\n    return np.allclose(np.dot(matrix, matrix.T), np.eye(matrix.shape[0]))\n\ndef main():\n    for a in range(-10, 10):\n        matrix = np.array([[0,0,1],[-1,0,0],[0,a,0]])\n        print(f\"a = {a}\")\n        print(f\"is_orthogonal = {is_orthogonal(matrix)}\")\n\nif __name__ == \"__main__\":\n    main()",
+       "Codex code explanation": "1. We define a function is_orthogonal that takes a matrix as input and returns True if the matrix is orthogonal and False otherwise.\n2. We define a function main that loops over all values of a from -10 to 10 and prints out the value of a and whether the matrix is orthogonal.\n3. We call the main function.",
+       "Program solution": "a=-1\n",
+       "Solution type": "Manual",
+       "GPT-3 response": "a = 1",
+       "GPT-3 evaluation": "Incorrect"
+}

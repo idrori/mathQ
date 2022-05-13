@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Integrals",
+       "Original question": "Evaluate the integral from 1 to 1 of sqrt(1 + x^4) dx.",
+       "Codex input": "Same as original question",
+       "Codex code": "from sympy import Symbol, sqrt, Integral, pprint\n\nx = Symbol('x')\nk = Symbol('k')\n\np = sqrt(1 + x**4)\n\npprint(Integral(p, (x, 1, 1)).doit())",
+       "Codex code explanation": "1. We create a Symbol object called x.\n2. We create a Symbol object called k.\n3. We create a symbolic expression called p.\n4. We create an Integral object called p_integral.\n5. We call the doit() method on the Integral object.",
+       "Program solution": "0",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The integral from 1 to 1 of sqrt(1 + x^4) dx is equal to 2.",
+       "GPT-3 evaluation": "Incorrect"
+}

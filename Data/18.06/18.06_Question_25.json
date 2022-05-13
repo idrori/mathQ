@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Linear Algebra in Probability and Statistics (12.1, Q8)",
+       "Original question": "If all 24 samples from a population produce the same age x = 20, what are the sample mean \u00b5 and the sample variance S^2?",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport scipy.stats as stats\nimport math\nget_ipython().run_line_magic('matplotlib', 'inline')\n\n\n# In[2]:\n\n\n#Sample mean\nx = 20\nn = 24\nmean = x\nprint(\"Sample mean is:\",mean)\n\n\n# In[3]:\n\n\n#Sample variance\nvariance = 0\nprint(\"Sample variance is:\",variance)\n",
+       "Codex code explanation": "1. The class is called \"Sample\"\n2. The class has a constructor that takes two arguments: x and n\n3. The constructor computes the sample mean and sample variance\n4. The constructor prints the sample mean and sample variance",
+       "Program solution": "\u00b5 = 20, S^2 = 0",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The sample mean is 20 and the sample variance is 0.",
+       "GPT-3 evaluation": "Correct"
+}

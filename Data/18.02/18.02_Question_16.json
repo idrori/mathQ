@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Power Series Computations",
+       "Original question": "Use power series to approximate the values of the given integrals accurate to four decimal places. $\\int_{0}^{1} sin(x)/x dx.",
+       "Codex input": "Write a program using scipy to compute the values of the given integral $\\int_{0}^{1} sin(x)/x dx.\n",
+       "Codex code": "from scipy import integrate\n\ndef f(x):\n    return np.sin(x)/x\n\nintegrate.quad(f, 0, 1)",
+       "Codex code explanation": "1. Importing the integrate module from scipy\n2. Defining a function f(x)\n3. Calling the integrate.quad function, which performs the integral\n4. Printing the result",
+       "Program solution": "0.9461",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "$\\int_{0}^{1} sin(x)/x dx \\approx \\sum_{n=0}^{\\infty} (-1)^n \\frac{x^{2n+1}}{(2n+1)!}$\n\n$\\int_{0}^{1} sin(x)/x dx \\approx \\sum_{n=0}^{3} (-1)^n \\frac{x^{2n+1}}{(2n+1)!}$\n\n$\\int_{0}^{1} sin(x)/x dx \\approx \\frac{x}{1!} - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\frac{x^7}{7!}$\n\n$\\int_{0}^{1} sin(x)/x dx \\approx \\frac{1}{1} - \\frac{1}{6} + \\frac{1}{120} - \\frac{1}{5040}$\n\n$\\int_{0}^{1} sin(x)/x dx \\approx 0.8415$",
+       "GPT-3 evaluation": "Incorrect"
+}

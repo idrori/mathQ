@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Special Matrices",
+       "Original question": "Find the real numbers a, b and c so that the following matrix is symmetric.\n[0,a+b,c+2;a,2,c;4,a+b,4]",
+       "Codex input": "Same as original question",
+       "Codex code": "from sympy import *\n\na, b, c = symbols('a b c')\n\nM = Matrix([[0, a+b, c+2], [a, 2, c], [4, a+b, 4]])\n\nprint(M)\n\nprint(M.is_symmetric())\n\nprint(solve([M[0, 1] - M[1, 0], M[0, 2] - M[2, 0], M[1, 2] - M[2, 1]], [a, b, c]))",
+       "Codex code explanation": "1. Define the matrix M.\n2. Print the matrix M.\n3. Check if M is symmetric.\n4. Solve the system of equations M[0, 1] - M[1, 0] = 0, M[0, 2] - M[2, 0] = 0, M[1, 2] - M[2, 1] = 0 for a, b and c.",
+       "Program solution": "a=2,b=0,c=2",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "a = 0\nb = 0\nc = 0",
+       "GPT-3 evaluation": "Incorrect"
+}

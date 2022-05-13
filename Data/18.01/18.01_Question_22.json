@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Parametric Equations and Polar Coordinates",
+       "Original question": "Find the distance between the points with polar coordinates (4, 4pi/3) and (6, 5pi/3).",
+       "Codex input": "Using sympy find the distance between the points with polar coordinates (4, 4pi/3) and (6, 5pi/3).",
+       "Codex code": "from sympy import *\n\nr1, r2, theta1, theta2 = symbols('r1 r2 theta1 theta2')\n\nx1 = r1 * cos(theta1)\ny1 = r1 * sin(theta1)\n\nx2 = r2 * cos(theta2)\ny2 = r2 * sin(theta2)\n\nd = sqrt((x2 - x1)**2 + (y2 - y1)**2)\n\nprint(d.subs({r1: 4, theta1: 4*pi/3, r2: 6, theta2: 5*pi/3}))",
+       "Codex code explanation": "1. We define the variables r1, r2, theta1, theta2 as symbols.\n2. We define x1, y1, x2, y2 as the cartesian coordinates of the points.\n3. We define d as the distance between the points.\n4. We substitute the values of r1, theta1, r2, theta2 and print the result.",
+       "Program solution": "2*sqrt(7)",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The distance between the points is 2.",
+       "GPT-3 evaluation": "Incorrect"
+}

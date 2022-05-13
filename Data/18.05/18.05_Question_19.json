@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Null Hypothesis Significance Testing, Type I Error",
+       "Original question": "One generates a number x from a uniform distribution on the interval [0, \u03b8]. One decides to test H0 : \u03b8 = 2 against HA : \u03b8 = 2 by rejecting H0 if x \u2264 0.1 or x \u2265 1.9. Compute the probability of a type I error.",
+       "Codex input": "One generates a number x from a uniform distribution on the interval [0, \u03b8]. One decides to test H0 : \u03b8 = 2 against HA : \u03b8 = 2 by rejecting H0 if x \u2264 0.1 or x \u2265 1.9. Simulate the probability of a type I error.",
+       "Codex code": "import numpy as np\n\ndef generate_x(theta):\n    return np.random.uniform(0, theta)\n\ndef test_hypothesis(x):\n    if x <= 0.1 or x >= 1.9:\n        return True\n    else:\n        return False\n\ndef simulate_type_I_error(theta, n):\n    count = 0\n    for i in range(n):\n        x = generate_x(theta)\n        if test_hypothesis(x):\n            count += 1\n    return count / n\n\nprint(simulate_type_I_error(2, 10000))",
+       "Codex code explanation": "1. Generate a random number x from a uniform distribution on the interval [0, \u03b8]\n2. Test the hypothesis that \u03b8 = 2 by rejecting H0 if x \u2264 0.1 or x \u2265 1.9\n3. Simulate the probability of a type I error",
+       "Program solution": 0.1,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The probability of a type I error is 0.2.",
+       "GPT-3 evaluation": "Incorrect"
+}

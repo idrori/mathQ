@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Solving Linear System of Equations",
+       "Original question": "Find a solution to the following system of four equations:\n     4x - 2y  +  8z   +   w  =  3\n    -8x + 10y +          3w  = -2\n     3x - 1y  +  10z  +  5w  = -1\n     2x + 2y  +  9z   -  2w  =  8",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA = np.array([[4, -2, 8, 1], [-8, 10, 0, 3], [3, -1, 10, 5], [2, 2, 9, -2]])\nb = np.array([3, -2, -1, 8])\n\nx = np.linalg.solve(A, b)\n\nprint(x)",
+       "Codex code explanation": "1. We create a matrix A and a vector b.\n2. We use the solve function to find the solution to the system of equations.\n3. We print the solution.",
+       "Program solution": "x=11/4, y=97/44, z=-4/11, w=-15/22",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "x = 1, y = 2, z = -1, w = 3",
+       "GPT-3 evaluation": "Incorrect"
+}

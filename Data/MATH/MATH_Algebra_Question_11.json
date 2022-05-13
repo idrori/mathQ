@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Algebra",
+       "Original question": "If 27^8=9^q, what is q?",
+       "Codex input": "If 27^8=9^q, write a program to find q?",
+       "Codex code": "import math\n\ndef main():\n    print(math.log(27**8, 9))\n\nif __name__ == \"__main__\":\n    main()",
+       "Codex code explanation": "1. We are importing the math module.\n2. We are defining a function called main.\n3. We are printing the result of the logarithm of 27^8 with base 9.\n4. We are calling the main function.",
+       "Program solution": 12.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "q=27",
+       "GPT-3 evaluation": "Incorrect"
+}

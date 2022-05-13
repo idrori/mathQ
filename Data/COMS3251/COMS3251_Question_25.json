@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Matrix Algebra",
+       "Original question": "If A = [1, 2; -2, -3], compute A^4.",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA = np.array([[1, 2], [-2, -3]])\n\nprint(np.linalg.matrix_power(A, 4))",
+       "Codex code explanation": "1. np.linalg.matrix_power(A, 4) is the same as A^4.",
+       "Program solution": "[[-7 -8]\n [ 8  9]]",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "A = [1, 2; -2, -3]\n\nA^4 = [1, 2; -2, -3] * [1, 2; -2, -3] * [1, 2; -2, -3] * [1, 2; -2, -3]",
+       "GPT-3 evaluation": "Incorrect"
+}

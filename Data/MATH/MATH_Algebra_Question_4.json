@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Algebra",
+       "Original question": "What is the distance between (-2,4) and (3,-8)?",
+       "Codex input": "Write a program that finds the distance between (-2,4) and (3,-8).\nPlot the points and the line between them",
+       "Codex code": "import math\n\ndef distance(x1, y1, x2, y2):\n    return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)\n\nprint(distance(-2, 4, 3, -8))",
+       "Codex code explanation": "1. We define a function called distance that takes four parameters: x1, y1, x2, and y2.\n2. We return the distance between the two points using the distance formula.\n3. We call the function with the coordinates of two points and print the result.",
+       "Program solution": 13.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The distance between (-2,4) and (3,-8) is 13.",
+       "GPT-3 evaluation": "Incorrect"
+}

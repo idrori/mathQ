@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Counting & Probability",
+       "Original question": "A standard six-sided fair die is rolled four times. The probability that the product of all four numbers rolled is a perfect square is m/n, where m and n are relatively prime positive integers. Find m+n.",
+       "Codex input": "A standard six-sided fair die is rolled four times. Write the probability that the product of all four numbers rolled is a perfect square as a fraction m/n. n is the number of possible outcomes and m is incremented whenever a perfect square is found. \nWrite a program that computes the sum of m/gcd(m,n) and n/gcd(m,n).",
+       "Codex code": "from math import sqrt\n\ndef gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\ndef is_square(n):\n    return int(sqrt(n)) ** 2 == n\n\ndef main():\n    m = 0\n    n = 6 ** 4\n    for i in range(1, 7):\n        for j in range(1, 7):\n            for k in range(1, 7):\n                for l in range(1, 7):\n                    if is_square(i * j * k * l):\n                        m += 1\n    print(m / gcd(m, n) + n / gcd(m, n))\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We define a function gcd that takes two numbers and returns their greatest common divisor.\n2. We define a function is_square that takes a number and returns True if it is a perfect square and False otherwise.\n3. We define a function main that does the following:\n    a. Initializes m to 0 and n to 6^4.\n    b. Loops through all possible outcomes of rolling a die four times.\n    c. If the product of the four numbers rolled is a perfect square, we increment m by 1.\n    d. We print the sum of m/gcd(m, n) and n/gcd(m, n).",
+       "Program solution": 187.0,
+       "Solution type": "Manual",
+       "GPT-3 response": "m+n=21",
+       "GPT-3 evaluation": "Incorrect"
+}

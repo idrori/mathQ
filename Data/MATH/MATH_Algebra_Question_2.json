@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Algebra",
+       "Original question": "Evaluate log base sqrt(6) of 216*sqrt(6).",
+       "Codex input": "Write a program that evaluates log base sqrt(6) of 216*sqrt(6).",
+       "Codex code": "import math\n\nprint(math.log(216*math.sqrt(6), math.sqrt(6)))",
+       "Codex code explanation": "1. We import the math module.\n2. We print the result of the logarithm of 216 times the square root of 6,\n   with the base of the logarithm being the square root of 6.",
+       "Program solution": 7.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "log base sqrt(6) of 216*sqrt(6) = log base sqrt(6) of (6*6*6)*sqrt(6) = 3*log base sqrt(6) of 6 + log base sqrt(6) of sqrt(6) = 3*log base sqrt(6) of 6 + (1/2)*log base sqrt(6) of 6 = 9/2",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Intermediate Algebra",
+       "Original question": "Find the number of permutations (a_1, a_2, a_3, a_4, a_5, a_6) of (1,2,3,4,5,6) that satisfy (a_1 + 1)/2 * (a_2 + 2)/2 * (a_3 + 3)/2 * (a_4 + 4)/2 * (a_5 + 5)/2 * (a_6 + 6)/2 > 6!.",
+       "Codex input": "Write a program to find the number of permutations (a_1, a_2, a_3, a_4, a_5, a_6) of (1,2,3,4,5,6) that satisfy (a_1 + 1)/2 * (a_2 + 2)/2 * (a_3 + 3)/2 * (a_4 + 4)/2 * (a_5 + 5)/2 * (a_6 + 6)/2 > 6!.",
+       "Codex code": "from itertools import permutations\n\ndef main():\n    count = 0\n    for perm in permutations(range(1,7)):\n        if (perm[0] + 1)/2 * (perm[1] + 2)/2 * (perm[2] + 3)/2 * (perm[3] + 4)/2 * (perm[4] + 5)/2 * (perm[5] + 6)/2 > 720:\n            count += 1\n    print(count)\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We create a variable called count and set it to 0.\n2. We create a for loop that iterates through all permutations of (1,2,3,4,5,6).\n3. We create a condition that checks if the product of the permutation is greater than 720.\n4. If the condition is true, we add 1 to count.\n5. We print count.",
+       "Program solution": 719.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There are no such permutations.",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Number Theory",
+       "Original question": "What is the base-ten number represented by the base-eight number 31?",
+       "Codex input": "Write a program to finds what is the base-ten number represented by the base-eight number 31?",
+       "Codex code": "def base_ten(n):\n    return int(n, 8)\n\n\nprint(base_ten('31'))",
+       "Codex code explanation": "1. int(n, 8) is a built-in function that converts a number in base-8 to base-10.\n2. The second argument to int() is the base of the number.\n3. The first argument to int() is the number to be converted.",
+       "Program solution": 25.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The base-ten number represented by the base-eight number 31 is 25.",
+       "GPT-3 evaluation": "Correct"
+}

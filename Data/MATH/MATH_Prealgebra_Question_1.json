@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Prealgebra",
+       "Original question": "At Frank's Fruit Market, 3 bananas cost as much as 2 apples, and 6 apples cost as much as 4 oranges. How many oranges cost as much as 18 bananas?",
+       "Codex input": "We have 18 bananas.\napples to bananas rate: 2/3. \noranges to apples rate: 4/6.\nWrite a program to exchange bananas for apples.\nThen use that answer to create a program to exchange apples for oranges.",
+       "Codex code": "bananas = 18\napples = bananas * 2/3\noranges = apples * 4/6\n\nprint(\"We have\", bananas, \"bananas.\")\nprint(\"We have\", apples, \"apples.\")\nprint(\"We have\", oranges, \"oranges.\")\n\nprint(\"We can exchange\", bananas, \"bananas for\", apples, \"apples.\")\nprint(\"We can exchange\", apples, \"apples for\", oranges, \"oranges.\")",
+       "Codex code explanation": "1. We have 18 bananas.\n2. We can exchange 18 bananas for 12 apples.\n3. We can exchange 12 apples for 8 oranges.",
+       "Program solution": 8.0,
+       "Solution type": "Manual",
+       "GPT-3 response": "36 oranges",
+       "GPT-3 evaluation": "Incorrect"
+}

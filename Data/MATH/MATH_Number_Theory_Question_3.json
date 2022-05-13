@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Number Theory",
+       "Original question": "The product of the positive integer divisors of a positive integer n is 729. Find n.",
+       "Codex input": "The product of the positive integer divisors of a positive integer $n$ is 729. Find $n$.",
+       "Codex code": "def main():\n    \"\"\"Solve problem.\"\"\"\n    print 'Project Euler, Problem 523'\n    n = 1\n    while True:\n        if n % 100000 == 0:\n            print n\n        if product_divisors(n) == 729:\n            print n\n            break\n        n += 1\n\ndef product_divisors(n):\n    \"\"\"Return the product of the positive integer divisors of n.\"\"\"\n    product = 1\n    for i in range(1, n + 1):\n        if n % i == 0:\n            product *= i\n    return product\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. It's iterating through all the numbers from 1 to n.\n2. For each number, it's checking if it's a divisor of n.\n3. If it is, it's multiplying it by the product of the other divisors.\n4. If the product is 729, it prints n and breaks out of the loop.",
+       "Program solution": 27.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "$n$ is 9.",
+       "GPT-3 evaluation": "Incorrect"
+}

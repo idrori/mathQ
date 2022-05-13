@@ -1,0 +1,12 @@
+{
+       "Course": "Differential Equations",
+       "Topic": "Differential Equations and Mathematical Models",
+       "Original question": "Verify by substitution that each given function is a solution of the given differential equation. Throughout these problems, primes denote derivatives with respect to x. Show that the derivative of x**3+7 is 3*x**2",
+       "Codex input": "Same as original question",
+       "Codex code": "from sympy import *\n\nx = Symbol('x')\n\nf = x**3 + 7\n\nf_prime = diff(f, x)\n\nprint(f_prime)",
+       "Codex code explanation": "1. We import the sympy library.\n2. We create a symbol x.\n3. We create a function f.\n4. We take the derivative of f with respect to x.\n5. We print the derivative.",
+       "Program solution": "y' = 3x**2",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "y = x2 + 1; y\u2032 = 2x + 0 = 2x\n\ny\u2032 = 2x",
+       "GPT-3 evaluation": "Incorrect"
+}

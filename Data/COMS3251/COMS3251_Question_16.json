@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Matrix Decomposition",
+       "Original question": "Find an LU decomposition of the following matrix:\n[-1,-1,2;2,0,3;-3,2,-1]",
+       "Codex input": "Using scipy find the LU decomposition of the following matrix:\n[-1,-1,2;2,0,3;-3,2,-1]",
+       "Codex code": "import numpy as np\nfrom scipy.linalg import lu\n\nA = np.array([[-1,-1,2],[2,0,3],[-3,2,-1]])\n\nP, L, U = lu(A)\n\nprint(\"P = \\n\", P)\nprint(\"L = \\n\", L)\nprint(\"U = \\n\", U)\n\nprint(\"P*L*U = \\n\", P.dot(L).dot(U))",
+       "Codex code explanation": "1. The function lu() returns a tuple (P, L, U) where P is a permutation matrix, L is a lower triangular matrix, and U is an upper triangular matrix.\n2. The matrix A is decomposed into the product of P, L, and U.\n3. The matrix P is a permutation matrix. It is a square matrix with exactly one entry of 1 in each row and each column, and all other entries are 0.\n4. The matrix L is a lower triangular matrix. It is a square matrix with all entries above the main diagonal equal to 0.\n5. The matrix U is an upper triangular matrix. It is a square matrix with all entries below the main diagonal equal to 0.",
+       "Program solution": "P = \n [[0. 1. 0.]\n [0. 0. 1.]\n [1. 0. 0.]]\nL = \n [[ 1.          0.          0.        ]\n [ 0.33333333  1.          0.        ]\n [-0.66666667 -0.8         1.        ]]\nU = \n [[-3.          2.         -1.        ]\n [ 0.         -1.66666667  2.33333333]\n [ 0.          0.          4.2       ]]\nP*L*U = \n [[-1.00000000e+00 -1.00000000e+00  2.00000000e+00]\n [ 2.00000000e+00  2.96059473e-17  3.00000000e+00]\n [-3.00000000e+00  2.00000000e+00 -1.00000000e+00]]",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "[-1,-1,2;2,0,3;-3,2,-1] = [-1,1,0;2,0,3;-3,2,-1]",
+       "GPT-3 evaluation": "Incorrect"
+}

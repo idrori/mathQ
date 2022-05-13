@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Principal Component Analysis (7.3,Q1)",
+       "Original question": "Suppose A0 holds these 2 measurements of 5 samples: A0 = [5,4,3,2,1;-1,1,0,1,-1]. Find the average of each row and subtract it to produce the centered matrix A. Compute the sample covariance matrix S=AA'/(n-1) and find its eigenvalues. What line through the origin is closest to the 5 samples in the columns of A?",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA0 = np.array([[5,4,3,2,1],[-1,1,0,1,-1]])\n\nA = A0 - np.mean(A0, axis=1).reshape(2,1)\n\nS = np.dot(A, A.T)/(A.shape[1]-1)\n\neigvals, eigvecs = np.linalg.eig(S)\n\nprint(eigvals)\nprint(eigvecs)\n",
+       "Codex code explanation": "1. A0 is a 2x5 matrix.\n2. A is a 2x5 matrix.\n3. S is a 2x2 matrix.\n4. eigvals is a 2x1 matrix.\n5. eigvecs is a 2x2 matrix.\n",
+       "Program solution": "The row averages of A0 are 3 and 0. Therefore\nA =[2, 1, 0, \u22121, \u22122;\u22121, 1, 0, 1, \u22121]\nand S =(AA^T)/4=\n1/4*[10, 0;0, 4]\nThe eigenvalues of S are \u03bb1 =10/4\nand \u03bb2 =4/4= 1. The top eigenvector of S is [1,0]\nI think this means that a vertical line is closer to the five points (2, \u22121), . . . ,(\u22122, \u22121)\nin the columns of A than any other line through the origin (0, 0).",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "A = [5,4,3,2,1;-1,1,0,1,-1];\n\nA0 = [5,4,3,2,1;-1,1,0,1,-1];\n\nA = A0 - mean(A0);\n\nS = A*A'/(n-1);\n\n[V,D] = eig(S);\n\nD = diag(D);\n\n[~,ind] = min(D);\n\nv = V(:,ind);\n\nline = v'*A;",
+       "GPT-3 evaluation": "Incorrect"
+}

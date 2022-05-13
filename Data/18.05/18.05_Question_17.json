@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Uniform Random Variables, Maximum Likelihood Estimator",
+       "Original question": "Suppose we have data 1.2, 2.1, 1.3, 10.5, 5 which we know is drawn independently from a uniform (a, b) distribution. Give the maximum likelihood estimate for the parameter a.",
+       "Codex input": "Suppose we have data 1.2, 2.1, 1.3, 10.5, 5 which we know is drawn independently from a uniform (a, b) distribution. Print the maximum likelihood estimate for the parameter a.",
+       "Codex code": "import numpy as np\n\ndata = np.array([1.2, 2.1, 1.3, 10.5, 5])\n\nprint(np.min(data))",
+       "Codex code explanation": "1. It's creating a class called UniformDistribution.\n2. It's creating a method called __init__ which is a special method that is called when you create an instance of the class.\n3. It's creating a method called pdf which is a probability density function.\n4. It's creating a method called cdf which is a cumulative density function.\n5. It's creating a method called ppf which is a percent point function.\n6. It's creating a method called rvs which is a random variate function.\n",
+       "Program solution": 1.2,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The maximum likelihood estimate for the parameter a is 1.2.",
+       "GPT-3 evaluation": "Correct"
+}

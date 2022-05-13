@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Four Fundamental Subspaces of a Matrix",
+       "Original question": "Find the nullity of the following matrix: [3,-2,-1,0,2;1,-2,1,-2,4;-4,4,0,2,-6]",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA = np.array([[3,-2,-1,0,2],[1,-2,1,-2,4],[-4,4,0,2,-6]])\n\nprint(np.linalg.matrix_rank(A))\nprint(A.shape[1] - np.linalg.matrix_rank(A))",
+       "Codex code explanation": "1. We import the numpy library as np.\n2. We create a matrix A using the numpy array function.\n3. We print the rank of A using the matrix_rank function.\n4. We print the number of columns of A minus the rank of A.",
+       "Program solution": "3",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The nullity of the matrix is 3.",
+       "GPT-3 evaluation": "Correct"
+}

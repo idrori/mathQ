@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Discrete Random Variables, Expectation",
+       "Original question": "Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. You win 2X dollars if X>Y and lose 1 dollar otherwise. After playing this game 60 times, what is your expected total gain?",
+       "Codex input": "Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. You win 2X dollars if X>Y and lose 1 dollar otherwise. After playing this game 60 times, what is your expected total gain?\nSimulate 100000 times",
+       "Codex code": "import random\n\ndef roll_die(sides):\n    return random.randint(1, sides)\n\ndef play_game(sides1, sides2):\n    x = roll_die(sides1)\n    y = roll_die(sides2)\n    if x > y:\n        return 2 * x\n    else:\n        return -1\n\ndef play_game_n_times(sides1, sides2, n):\n    total = 0\n    for i in range(n):\n        total += play_game(sides1, sides2)\n    return total\n\ndef play_game_n_times_simulation(sides1, sides2, n, simulations):\n    total = 0\n    for i in range(simulations):\n        total += play_game_n_times(sides1, sides2, n)\n    return total / simulations\n\nprint(play_game_n_times_simulation(4, 6, 60, 100000))",
+       "Codex code explanation": "1. It's creating a class called Die.\n2. It's defining a constructor for the class.\n3. It's defining a method called roll.\n4. It's defining a method called get_num_sides.\n5. It's defining a method called set_num_sides.",
+       "Program solution": 55.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "Your expected total gain is 30 dollars.",
+       "GPT-3 evaluation": "Incorrect"
+}

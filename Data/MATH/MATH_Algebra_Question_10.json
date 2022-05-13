@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Algebra",
+       "Original question": "If f(x)=(5x+1)/(x-1), find the value of f(7).",
+       "Codex input": "Same as original question",
+       "Codex code": "def f(x):\n    return (5*x+1)/(x-1)\n\nprint(f(7))",
+       "Codex code explanation": "1. Define a function f(x) that takes in a single argument x.\n2. Return the value of (5x+1)/(x-1)\n3. Print the value of f(7)",
+       "Program solution": 6.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The value of f(7) is 12.",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Probability, Continuous Variables",
+       "Original question": "Boxes of Raisin Bran cereal are 30cm tall. Due to settling, boxes have a higher density of raisins at the bottom (h = 0) than at the top (h = 30). Suppose the density (in raisins per cm of height) is given by f(h) = 40 \u2212 h. What is the probability that a random raisin is in the bottom third of the box?",
+       "Codex input": "Same as original question",
+       "Codex code": "def f(h):\r\n    return 40 - h\r\n\r\ndef F(h):\r\n    return 40*h - h**2/2\r\n\r\nprint((F(10) - F(0))/(F(30) - F(0)))",
+       "Codex code explanation": "1. f(h) is the density function. It gives the probability of a raisin being at height h.\n2. F(h) is the cumulative distribution function. It gives the probability of a raisin being at height h or below.\n3. The probability of a raisin being in the bottom third of the box is the probability of it being at height 10 or below, minus the probability of it being at height 0 or below.\n4. The probability of a raisin being at height 0 or below is 0.\n5. The probability of a raisin being at height 10 or below is F(10).\n6. The probability of a raisin being at height 30 or below is 1.\n7. The probability of a raisin being at height 30 or below is F(30).\n8. The probability of a raisin being at height 10 or below, minus the probability of it being at height 0 or below, is (F(10) - F(0))/(F(30) - F(0)).",
+       "Program solution": 0.466666667,
+       "Solution type": "Automatic Few-shot (1)",
+       "GPT-3 response": "The probability that a random raisin is in the bottom third of the box is 0.75.",
+       "GPT-3 evaluation": "Incorrect"
+}

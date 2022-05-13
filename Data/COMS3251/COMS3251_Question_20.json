@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Four Fundamental Subspaces of a Matrix",
+       "Original question": "Which of the vectors v=[3;-3;1], u=[1;-2;1] is an element of the nullspace of the following matrix:\n[1,2,-3;-1,-1,0;-2,-3,3]",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA = np.array([[1,2,-3],[-1,-1,0],[-2,-3,3]])\nv = np.array([3,-3,1])\nu = np.array([1,-2,1])\n\nprint(np.linalg.matrix_rank(A))\nprint(np.linalg.matrix_rank(np.array([A,v])))\nprint(np.linalg.matrix_rank(np.array([A,u])))\n\n\"\"\"\nThe rank of A is 3, so the nullspace of A is empty.\nThe rank of [A,v] is 3, so v is not an element of the nullspace of A.\nThe rank of [A,u] is 2, so u is an element of the nullspace of A.\n\"\"\"",
+       "Codex code explanation": "1. It is finding the rank of the matrix A.\n2. It is finding the rank of the matrix A with the vector v appended to it.\n3. It is finding the rank of the matrix A with the vector u appended to it.\n\nIf the rank of the matrix A is the same as the rank of the matrix A with the vector appended to it, then the vector is not an element of the nullspace of the matrix.",
+       "Program solution": "u=[1;-2,1]\n",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The vector v=[3;-3;1] is an element of the nullspace of the matrix.",
+       "GPT-3 evaluation": "Incorrect"
+}

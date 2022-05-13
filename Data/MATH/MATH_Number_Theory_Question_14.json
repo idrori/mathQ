@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Number Theory",
+       "Original question": "Let n be a natural number with exactly 2 positive prime divisors.  If n^2 has 27 divisors, how many does n have?",
+       "Codex input": "(x_n)^2 = (2a+1)(2b+1). \nFind a and b when (x_n)^2 = 27. Then, plug a and b to (a+1)(b+1).",
+       "Codex code": "def find_a_b(n):\n    for a in range(1, n):\n        for b in range(1, n):\n            if (2*a+1)*(2*b+1) == n:\n                return a, b\n\na, b = find_a_b(27)\nprint(a, b)\nprint((a+1)*(b+1))",
+       "Codex code explanation": "1. We define a function that takes in a number n.\n2. We loop through all possible values of a and b.\n3. We check if (2a+1)(2b+1) = n.\n4. If it is, we return a and b.\n5. We call the function with n = 27.\n6. We print a and b.\n7. We print (a+1)(b+1).",
+       "Program solution": 10.0,
+       "Solution type": "Manual",
+       "GPT-3 response": "$n$ has 6 divisors.",
+       "GPT-3 evaluation": "Incorrect"
+}

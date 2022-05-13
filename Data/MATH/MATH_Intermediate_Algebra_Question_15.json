@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Intermediate Algebra",
+       "Original question": "If z^2 - 8z + 37 = 0, how many possible values are there for |z|?",
+       "Codex input": "Write a program to solve: z^2 - 8z + 37 = 0. Then, determine how many possible solutions there are for |z|.",
+       "Codex code": "import cmath\n\na = 1\nb = -8\nc = 37\n\nd = (b**2) - (4*a*c)\n\nsol1 = (-b-cmath.sqrt(d))/(2*a)\nsol2 = (-b+cmath.sqrt(d))/(2*a)\n\nprint('The solution are {0} and {1}'.format(sol1,sol2))\n\n# |z| = sqrt(x^2 + y^2)\n\nprint('|z| = {0}'.format(abs(sol1)))\nprint('|z| = {0}'.format(abs(sol2)))",
+       "Codex code explanation": "1. We import the cmath module to use the sqrt() function.\n2. We define the variables a, b, and c.\n3. We calculate the discriminant, d.\n4. We calculate the two solutions, sol1 and sol2.\n5. We print the solutions.\n6. We calculate the absolute value of the solutions.\n7. We print the absolute value of the solutions.",
+       "Program solution": 1.0,
+       "Solution type": "Manual",
+       "GPT-3 response": "There are two possible values for |z|.",
+       "GPT-3 evaluation": "Incorrect"
+}

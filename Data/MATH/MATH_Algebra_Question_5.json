@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Algebra",
+       "Original question": "Find the distance between the points (0,4) and (3,0).",
+       "Codex input": "Write a program that finds the distance between the points (0,4) and (3,0).",
+       "Codex code": "import math\n\nx1 = 0\ny1 = 4\nx2 = 3\ny2 = 0\n\ndistance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)\n\nprint(distance)",
+       "Codex code explanation": "1. We import the math module.\n2. We define the coordinates of the two points.\n3. We calculate the distance between the two points using the distance formula.\n4. We print the distance.",
+       "Program solution": 5.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The distance between the points (0,4) and (3,0) is 5.",
+       "GPT-3 evaluation": "Correct"
+}

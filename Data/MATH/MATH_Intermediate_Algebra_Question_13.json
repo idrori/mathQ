@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Intermediate Algebra",
+       "Original question": "Two reals a and b are such that a+b=7 and a^3+b^3=91. Compute ab.",
+       "Codex input": "Same as original question",
+       "Codex code": "def main():\n    for a in range(1, 8):\n        b = 7 - a\n        if a**3 + b**3 == 91:\n            print(a * b)\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We know that a + b = 7, so we can iterate through all possible values of a,\n   and then compute b = 7 - a.\n2. We know that a^3 + b^3 = 91, so we can check if a^3 + b^3 = 91.\n3. If a^3 + b^3 = 91, then we have found the correct values of a and b, so we\n   can compute a * b.",
+       "Program solution": 12.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "ab=21",
+       "GPT-3 evaluation": "Incorrect"
+}

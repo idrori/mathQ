@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Combinatorics",
+       "Original question": "In how many different ways can the letters in the name of the popular 1980\u2019s band BANANARAMA be arranged?",
+       "Codex input": "Write a program to compute the number of arrangements of characters in the word BANANARAMA. Remember to discount arrangements of repeated letters.",
+       "Codex code": "def factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)\n\ndef permutations(word):\n    if len(word) == 1:\n        return [word]\n    else:\n        result = []\n        for i in range(len(word)):\n            for p in permutations(word[:i] + word[i+1:]):\n                result.append(word[i] + p)\n        return result\n\ndef arrangements(word):\n    return len(set(permutations(word)))\n\ndef main():\n    print(arrangements('BANANARAMA'))\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. The permutations function is a recursive function that takes a word as input and returns a list of all the permutations of that word.\n2. The arrangements function takes a word as input and returns the number of arrangements of that word.\n3. The arrangements function calls the permutations function to get a list of all the permutations of the word.\n4. The arrangements function then converts the list of permutations into a set, which removes all the duplicates.\n5. The arrangements function then returns the length of the set, which is the number of arrangements of the word.",
+       "Program solution": "10!/(5!2!1!1!1!) = 15120",
+       "Solution type": "Automatic Few-shot",
+       "GPT-3 response": "import math\n\ndef factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)\n\ndef permutation(n, r):\n    return factorial(n) / factorial(n-r)\n\ndef combination(n, r):\n    return permutation(n, r) / factorial(r)\n\ndef main():\n    print(permutation(8, 8))\n\nif __name__ == \"__main__\":\n    main()",
+       "GPT-3 evaluation": "Incorrect"
+}

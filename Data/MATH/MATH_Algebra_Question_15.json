@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Algebra",
+       "Original question": "If (x,y) = (3,9), what is y^2 - 3xy + 8?",
+       "Codex input": "Original problem",
+       "Codex code": "x = 3\ny = 9\n\nprint(y**2 - 3*x*y + 8)",
+       "Codex code explanation": "1. Assigning the value 3 to the variable x\n2. Assigning the value 9 to the variable y\n3. Printing the value of the expression y**2 - 3*x*y + 8",
+       "Program solution": 8.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The absolute value of the difference of the two numbers is 3.",
+       "GPT-3 evaluation": "Incorrect"
+}

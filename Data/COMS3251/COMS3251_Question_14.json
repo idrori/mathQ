@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Determinants",
+       "Original question": "Compute the determinant of the following matrix:\n[3,-4,5;0,-1,-5;5,-4,3]",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA = np.array([[3,-4,5],[0,-1,-5],[5,-4,3]])\n\nprint(np.linalg.det(A))",
+       "Codex code explanation": "1. We import the numpy library as np.\n2. We create a 3x3 matrix called A.\n3. We print the determinant of A using the numpy function linalg.det.",
+       "Program solution": "56",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The determinant of the matrix is -64.",
+       "GPT-3 evaluation": "Incorrect"
+}
