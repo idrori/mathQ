@@ -47,7 +47,7 @@ def reduce_via_umap(embeddings, num_dims=2):
     reduced = reducer.fit_transform(embeddings) #500x2
     return reduced
 
-def plot_clusters(points, questions_per_course=20):
+def plot_clusters(points, questions_per_course=20, question_labels=False):
     """
     plots clusters of points.
     """
@@ -60,6 +60,9 @@ def plot_clusters(points, questions_per_course=20):
     figure.set_size_inches(9.5,6.5)
     for i in range(len(courses)):
         plt.scatter(x[i*questions_per_course:(i+1)*questions_per_course], y[i*questions_per_course:(i+1)*questions_per_course], c=labels[courses[i]][0], label=courses[i], marker = labels[courses[i]][1])
+        if question_labels:
+            for j in range(questions_per_course):
+                plt.annotate(j+1, (x[questions_per_course*i+j],y[questions_per_course*i+j]), fontsize='xx-small')
     plt.legend(bbox_to_anchor=(1, 1.01))
     plt.savefig("UMAP.png", dpi=100)
     plt.show()
@@ -68,4 +71,4 @@ if not os.path.exists('embeddings.json'):
     make_embeddings()
 embeddings = get_embeddings('embeddings.json')
 reduced_points = reduce_via_umap(embeddings)
-plot_clusters(reduced_points)
+plot_clusters(reduced_points, question_labels=True)
