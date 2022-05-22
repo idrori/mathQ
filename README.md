@@ -1,8 +1,8 @@
-A Neural Network Solves, Explains, and Generates University Math Problems by Program Synthesis and Few-Shot Learning at Human Level
+# A Neural Network Solves, Explains, and Generates University Math Problems by Program Synthesis and Few-Shot Learning at Human Level
 
 To run use this code, do the following:
 
-1.In your terminal, type the following:
+## 1.In your terminal, type the following:
 
 **python3 embedding.py**
 
