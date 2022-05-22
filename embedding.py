@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os.path
 
-openai.api_key = "" #given by OpenAI
+openai.api_key = "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" #given by OpenAI
 
 courses = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 labels = {'18.01':'r.', '18.02':'g.', '18.03':'b.', '18.05':'mx', '18.06':'k+', '6.042':'cx', 'COMS3251':'y+'}
@@ -17,7 +17,7 @@ def make_embeddings(questions_per_course=20):
     """
     list_of_embeddings = []
     for course in courses:
-        print(f"Currently embedding: {course}")
+        print("Currently embedding: " + course)
         for num in [i for i in range(1, questions_per_course+1)]:
             with open(f'./Data/{course}/{course}_Question_{num}.json', 'r') as f:
                 data = json.load(f)
@@ -29,7 +29,6 @@ def make_embeddings(questions_per_course=20):
     location = 'embeddings.json'
     with open(location, 'w') as f:
         f.write(json.dumps(embeddings))
-        # json.dump(embeddings, f)
     return location
 
 def get_embeddings(embeddings_file):
