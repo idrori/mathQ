@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os.path
 
-openai.api_key = "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" #given by OpenAI
+openai.api_key = "" #given by OpenAI
 
 courses = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 labels = {'18.01':'r.', '18.02':'g.', '18.03':'b.', '18.05':'mx', '18.06':'k+', '6.042':'cx', 'COMS3251':'y+'}
