@@ -1,4 +1,4 @@
-How to use this code(make sure to have an OpenAI API key):
+To run this code make sure you have an OpenAI API key:
 
 1. In your terminal, run: **python3 embedding.py**
 
