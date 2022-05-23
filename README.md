@@ -1,6 +1,6 @@
 # A Neural Network Solves, Explains, and Generates University Math Problems by Program Synthesis and Few-Shot Learning at Human Level
 
-## How to use this code:
+## How to use this code(make sure to have an OpenAI API key):
 
 ## 1. In your terminal, type: **python3 embedding.py**
 
