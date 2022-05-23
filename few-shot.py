@@ -6,6 +6,9 @@ openai.api_key = "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" #given by
 courses = ['18.01']#, '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 questions_per_course = 3
 
+
+
+
 for course in courses:
     results = pd.read_csv(course+'.csv')
     for i in range(questions_per_course):
