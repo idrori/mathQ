@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Linear Algebra in Probability and Statistics (12.1, Q4)",
+       "Original question": "Sample again from 1 to 1000 but look at the last digit of the sample squared. That square could end with x = 0, 1, 4, 5, 6, or 9. What are the probabilities p0, p1, p4, p5, p6, p9? ",
+       "Codex input": "Sample again from 1 to 1000 but look at the last digit of the sample squared. That square could end with x = 0, 1, 4, 5, 6, or 9. Write a program to find what are the probabilities p0, p1, p4, p5, p6, p9? ",
+       "Codex code": "def last_digit_squared(N):\n    \"\"\"Return the last digit of N squared\"\"\"\n    return (N**2)%10\n\ndef last_digit_squared_probabilities(N):\n    \"\"\"Return the probabilities of the last digit of N squared\"\"\"\n    last_digits = [last_digit_squared(i) for i in range(1, N+1)]\n    return {i: last_digits.count(i)/N for i in range(10)}\n\nprint(last_digit_squared_probabilities(1000))",
+       "Codex code explanation": "1. We define a function last_digit_squared that takes in a number N and returns the last digit of N squared.\n2. We define a function last_digit_squared_probabilities that takes in a number N and returns a dictionary of the probabilities of the last digit of N squared.\n3. We print the probabilities of the last digit of N squared for N from 1 to 1000.",
+       "Program solution": "For numbers ending in 0, 1, 2, . . . , 9 the squares end in x = 0, 1, 4, 9, 6, 5, 6, 9, 4, 1. So\nthe probabilities of x = 0 and 5 are p = 1/10 and the probabilities of x = 1, 4, 6, 9 are p = 1/5\nThe mean is m = \u03a3pi xi =0/0+5/10+(1/5)*(1 + 4 + 6 + 9) = 4.5 = same as before",
+       "Solution type": "Automatic Few-shot (1)",
+       "GPT-3 response": "p0 = 1/6 p1 = 1/6 p4 = 1/6 p5 = 1/6 p6 = 1/6 p9 = 1/6",
+       "GPT-3 evaluation": "Incorrect"
+}

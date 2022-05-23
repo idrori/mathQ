@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Inverse Matrices (2.5, Q11b)",
+       "Original question": "Find singular matrices A and B such that A+B is invertible.",
+       "Codex input": "Through iteration find 2x2 singular matrices A and B.\nFind A and B such that A+B is invertible.",
+       "Codex code": "import numpy as np\n\nA = np.array([[1,2,3],[4,5,6],[7,8,9]])\nB = np.array([[1,2,3],[4,5,6],[7,8,9]])\n\nprint(np.linalg.det(A))\nprint(np.linalg.det(B))\nprint(np.linalg.det(A+B))",
+       "Codex code explanation": "1. It creates a matrix A and B.\n2. It prints the determinant of A, B, and A+B.\n3. It prints the inverse of A, B, and A+B.",
+       "Program solution": "(a) If B = \u2212A then certainly A + B = zero matrix is not invertible.\n(b) A =[1, 0;0, 0]\nand B =[0, 0;0, 1]\nare both singular but A + B = I is invertible.",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "A = [[1, 0], [0, 1]];\nB = [[-1, 0], [0, -1]];",
+       "GPT-3 evaluation": "Incorrect"
+}

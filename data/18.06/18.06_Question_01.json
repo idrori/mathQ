@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Vectors and Linear Combinations (1.1, Q3)",
+       "Original question": "If v+w = (5,1) and v-w=(1,5), compute and draw the vectors v and w",
+       "Codex input": "Given v+w = (5,1) and v-w=(1,5).\nWrite a program to compute v and w.",
+       "Codex code": "import numpy as np\n\nv_plus_w = np.array([5,1])\nv_minus_w = np.array([1,5])\n\nv = (v_plus_w + v_minus_w)/2\nw = (v_plus_w - v_minus_w)/2\n\nprint(\"v = \", v)\nprint(\"w = \", w)",
+       "Codex code explanation": "1. We define a function called main()\n2. We define two tuples called v and w\n3. We define two more tuples called v_plus_w and v_minus_w\n4. We print the values of v_plus_w and v_minus_w\n5. We call the main() function",
+       "Program solution": "This problem gives the diagonals v + w and v \u2212 w of the parallelogram and asks for\nthe sides: The opposite of Problem 2. In this example v = (3, 3) and w = (2, \u22122).",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The vectors v and w can be drawn as follows:",
+       "GPT-3 evaluation": "Incorrect"
+}

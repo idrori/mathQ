@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Symmetric Matrices (6.4, Q9a)",
+       "Original question": "Find a symmetric matrix [1,b;b,1] that has a negative eigenvalue.",
+       "Codex input": "Find a 2x2 symmetric matrix [1,b;b,1] that has a negative eigenvalue.",
+       "Codex code": "b = -1\n    while True:\n        b += 0.01\n        A = np.array([[1, b], [b, 1]])\n        eigvals = np.linalg.eigvals(A)\n        if np.any(eigvals < 0):\n            return b",
+       "Codex code explanation": "1. It starts with b = -1.\n2. It creates a matrix A = [1,b;b,1].\n3. It computes the eigenvalues of A.\n4. If any of the eigenvalues are negative, it returns b.\n5. If none of the eigenvalues are negative, it adds 0.01 to b and goes back to step 2.",
+       "Program solution": "[1, 2;2, 1] has \u03bb = \u22121 and 3",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "[1,-1;-1,1]",
+       "GPT-3 evaluation": "Incorrect"
+}
