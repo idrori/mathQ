@@ -30,8 +30,8 @@ for course in courses:
         entries[i].append(entries[i][3]+"\n\n'''\nHere's what the above class is doing:\n1.")
         entries[i].append(openai.Completion.create(engine = "code-davinci-002", prompt = entries[i][3]+"\n\n'''\nHere's what the above class is doing:\n1.", max_tokens = 200, temperature = 0, top_p = 1)['choices'][0]['text'])
         entries[i].append(openai.Completion.create(engine= "text-davinci-002", prompt = entries[i][1], max_tokens = 200, temperature = 0, top_p = 1)['choices'][0]['text'])
-        entries[i].append('')
-        entries[i].append('')
+        entries[i].append('')  #actual solution, will do this later
+        entries[i].append('')  #this column is filled in by the person
         print(f'time:{time.time()-start}')
     info = pd.DataFrame(entries, columns=['Question', 'Original Question', 'Codex Input', 'Codex Output', 'Codex Explanation Input', 'Codex Explanation', 'GPT-3 Output', 'Actual Solution', 'Codex: Correct or Incorrect?'])
     info.to_csv(course+'.csv', index=False)
