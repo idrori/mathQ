@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Matrix Algebra",
+       "Original question": "For what matrix R, the following matrix equation is satisfied?\nR*[1,0,0,0,0;1,1,0,0,0;1,2,1,0,0;1,3,3,1,0;1,4,6,4,1]=[1,0,0,0,0;0,1,0,0,0;0,1,1,0,0;0,1,2,1,0;0,1,3,3,1]",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA = np.array([[1,0,0,0,0],[1,1,0,0,0],[1,2,1,0,0],[1,3,3,1,0],[1,4,6,4,1]])\nB = np.array([[1,0,0,0,0],[0,1,0,0,0],[0,1,1,0,0],[0,1,2,1,0],[0,1,3,3,1]])\n\nR = np.linalg.inv(A) @ B\n\nprint(R)",
+       "Codex code explanation": "1. We create two matrices A and B.\n2. We calculate the inverse of A and multiply it with B.\n3. We print the result.",
+       "Program solution": "[1,0,0,0,0;-1,1,0,0,0;0,-1,1,0,0;0,0,-1,1,0;0,0,0,-1,1]",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "R = [1,0,0,0,0;0,1,0,0,0;0,0,1,0,0;0,0,0,1,0;0,0,0,0,1]",
+       "GPT-3 evaluation": "Incorrect"
+}

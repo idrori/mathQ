@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Solving Linear System of Equations",
+       "Original question": "Compute the reduced row echelon form of the following matrix:\n[-1,2,1,0;2,1,0,-1;5,0,-2,6]",
+       "Codex input": "Same as original question",
+       "Codex code": "def rref(matrix):\n    if not matrix: return\n    num_rows = len(matrix)\n    num_cols = len(matrix[0])\n\n    # Start at the last column and work backwards.\n    for col in range(num_cols - 1, -1, -1):\n\n        # Find the row with the leading non-zero entry in this column.\n        for row in range(num_rows):\n            if matrix[row][col] != 0: break\n\n        # If there is no leading non-zero entry, then all entries are zero.\n        if row == num_rows: continue\n\n        # Swap the current row with the one that has the leading non-zero entry.\n        matrix[row], matrix[num_rows - 1] = matrix[num_rows - 1], matrix[row]\n\n        # Eliminate all other entries in this column.\n        for r in range(num_rows):\n            if r == num_rows - 1: continue  # skip pivot row; already done above\n\n            # Eliminate current row of all other entries in this column.\n            multiplier = matrix[r][col] / matrix[num_rows - 1][col]  # get multiplier to eliminate value at [r][c] from rest of row (except pivot)\n            for c in range(col, num_cols):\n                matrix[r][c] -= multiplier * matrix[num_rows - 1][c]\n\n    return matrix\n\nif __name__ == \"__main__\":\n    print(rref([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))\n\n\"\"\"\nCompute the rref of the matrix [-1,2,1,0;2,1,0,-1;5,0,-2,6]\n\"\"\"\n\nif __name__ == \"__main__\":\n    print(rref([[-1, 2, 1, 0], [2, 1, 0, -1], [5, 0, -2, 6]]))",
+       "Codex code explanation": "1. Find the last column with a non-zero entry.\n2. Find the row with the leading non-zero entry in this column.\n3. Swap the current row with the one that has the leading non-zero entry.\n4. Eliminate all other entries in this column.\n5. Repeat steps 1-4 until all columns have been processed.",
+       "Program solution": "[1,0,0,-2;0,1,0,3;0,0,1,-8]",
+       "Solution type": "Manual",
+       "GPT-3 response": "[1,0,-1/2,1;0,1,1/2,-1;0,0,0,0]",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Eigenvectors and Eigenvalues",
+       "Original question": "Compute the eigenvalue associated with the eigenvector [-684/721;228/721] of the matrix [-6,3;4,5].",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nA = np.array([[-6,3],[4,5]])\n\neigenvalues, eigenvectors = np.linalg.eig(A)\n\nprint(eigenvalues)\nprint(eigenvectors)",
+       "Codex code explanation": "1. We create a matrix A.\n2. We use the numpy.linalg.eig function to compute the eigenvalues and eigenvectors of A.\n3. We print the eigenvalues and eigenvectors.",
+       "Program solution": "-7",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The eigenvalue is -2.",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Vectors, Lengths and Dot products",
+       "Original question": "Compute the squared L2 norm of the vector [1;-4;2;8;-1]",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\nx = np.array([1, -4, 2, 8, -1])\n\nprint(np.linalg.norm(x)**2)",
+       "Codex code explanation": "1. Create a numpy array x with the values [1, -4, 2, 8, -1]\n2. Use the numpy.linalg.norm function to compute the L2 norm of x\n3. Square the result",
+       "Program solution": "86",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The squared L2 norm of the vector [1;-4;2;8;-1] is 85.",
+       "GPT-3 evaluation": "Incorrect"
+}
