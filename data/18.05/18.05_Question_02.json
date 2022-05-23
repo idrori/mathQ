@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Probability",
+       "Original question": "In class we worked with non-transitive dice: Red: 3 3 3 3 3 6; Green: 1 4 4 4 4 4; White: 2 2 2 5 5 5. Find the probability that white beats green.",
+       "Codex input": "Given non-transitive dice: Red: 3 3 3 3 3 6; Green: 1 4 4 4 4 4; White: 2 2 2 5 5 5, write a program that computes the probability that white beats green.",
+       "Codex code": "import random\n\ndef roll(die):\n    return random.choice(die)\n\ndef simulate(n):\n    red = [3, 3, 3, 3, 3, 6]\n    green = [1, 4, 4, 4, 4, 4]\n    white = [2, 2, 2, 5, 5, 5]\n    wins = 0\n    for i in range(n):\n        if roll(white) > roll(green):\n            wins += 1\n    return wins / n\n\nprint(simulate(10000))",
+       "Codex code explanation": "1. Define a function roll that takes a die as an argument and returns a random roll of that die.\n2. Define a function simulate that takes a number of trials as an argument and returns the fraction of trials that white beats green.\n3. Print the result of calling simulate with 10000 as the argument.",
+       "Program solution": 0.583333333,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The probability that white beats green is 3/5.",
+       "GPT-3 evaluation": "Incorrect"
+}

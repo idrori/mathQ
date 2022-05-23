@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Exponential Random Variables",
+       "Original question": "Suppose we are testing 3 different brands of light bulbs B1, B2, and B3 whose lifetimes are exponential random variables with mean 1/2, 1/3, and 1/5 years, respectively. Assuming that all of the bulbs are independent, what is the expected time before one of the bulb fails.",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\n\n# Expected time before one of the bulbs fails\n# E[T] = 1/lambda\n# E[T] = 1/lambda1 + 1/lambda2 + 1/lambda3\n# E[T] = 1/0.5 + 1/0.333 + 1/0.2\n# E[T] = 2 + 3 + 5\n# E[T] = 10\n\n# Simulate the time until one of the bulbs fails\n# T = min(T1, T2, T3)\n# T1 ~ Exp(lambda1)\n# T2 ~ Exp(lambda2)\n# T3 ~ Exp(lambda3)\n\n# Simulate T1\nT1 = np.random.exponential(0.5, size=10000)\n# Simulate T2\nT2 = np.random.exponential(1/3, size=10000)\n# Simulate T3\nT3 = np.random.exponential(1/5, size=10000)\n\n# Simulate T\nT = np.minimum(T1, np.minimum(T2, T3))\n\n# Estimate E[T]\nnp.mean(T)",
+       "Codex code explanation": "1. Simulate T1, T2, and T3\n2. Simulate T = min(T1, T2, T3)\n3. Estimate E[T]",
+       "Program solution": 0.1,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The expected time before one of the bulbs fails is 1.67 years.",
+       "GPT-3 evaluation": "Incorrect"
+}

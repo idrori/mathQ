@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Uniform Random Variables, Probability",
+       "Original question": "Alice and Bob are trying to meet for lunch and both will arrive, independently of each other, uniformly and at random between noon and 1pm. Let A and B be the number of minutes after noon at which Alice and Bob arrive, respectively. Then A and B are independent uniformly distributed random variables on [0, 60]. Now suppose that Alice and Bob are both rather impatient and will leave if they have to wait more than 15 minutes for the other to arrive. What is the probability that Alice and Bob will have lunch together?",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\n\ndef simulate_lunch(n):\n    A = np.random.uniform(0, 60, n)\n    B = np.random.uniform(0, 60, n)\n    return np.sum(np.abs(A - B) <= 15) / n\n\nprint(simulate_lunch(100000))",
+       "Codex code explanation": "1. Generate n random numbers between 0 and 60 for A and B\n2. Calculate the absolute difference between A and B\n3. Count the number of times the absolute difference is less than or equal to 15\n4. Divide the number of times the absolute difference is less than or equal to 15 by n",
+       "Program solution": 0.4375,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The probability that Alice and Bob will have lunch together is 0.25.",
+       "GPT-3 evaluation": "Incorrect"
+}

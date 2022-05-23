@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Counting, Continuous Variables",
+       "Original question": "Boxes of Raisin Bran cereal are 30cm tall. Due to settling, boxes have a higher density of raisins at the bottom (h = 0) than at the top (h = 30). Suppose the density (in raisins per cm of height) is given by f(h) = 40 \u2212 h. How many raisins are in a box?",
+       "Codex input": "Boxes of Raisin Bran cereal are 30cm tall. Due to settling, boxes have a higher density of raisins at the bottom (h = 0) than at the top (h = 30). Suppose the density (in raisins per cm of height) is given by f(h) = 40 \u2212 h. Integrate from 0 to 30 to find how many raisins are in the box.",
+       "Codex code": "def f(h):\n    return 40 - h\n\ndef F(h):\n    return 40*h - h**2/2\n\nprint(F(30) - F(0))",
+       "Codex code explanation": "1. Define a function f(h) that returns the density of raisins at height h.\n2. Define a function F(h) that returns the number of raisins between 0 and h.\n3. Print the number of raisins between 0 and 30.",
+       "Program solution": 750.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There are 1200 raisins in a box.",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Prior Odds",
+       "Original question": "You have a drawer that contains 50 coins. 10 coins have probability p = 0.3 of heads, 30 coins have probability p = 0.5 and 10 coins have probability p = 0.7. You pick one coin at random from the drawer and flip it. What are the (prior) odds you chose a 0.3 coin?",
+       "Codex input": "You have a drawer that contains 50 coins. 10 coins have probability p = 0.3 of heads, 30 coins have probability p = 0.5 and 10 coins have probability p = 0.7. You pick one coin at random from the drawer and flip it. Print the odds you chose a 0.3 coin?",
+       "Codex code": "# Probability of choosing a 0.3 coin\np_0_3 = 10/50",
+       "Codex code explanation": "1. We have a class called Coin.\n2. We have a method called __init__ which is the constructor.\n3. We have a method called flip which returns a random number between 0 and 1.\n4. We have a method called get_probability which returns the probability of the coin.\n5. We have a method called get_side which returns the side of the coin.",
+       "Program solution": 0.2,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There are 50 coins in the drawer. 10 of those coins have probability p = 0.3 of heads, 30 coins have probability p = 0.5 and 10 coins have probability p = 0.7. This means that the probability of choosing a 0.3 coin is 10/50 = 0.2. The odds of choosing a 0.3 coin are 0.2 : 0.8.",
+       "GPT-3 evaluation": "Correct"
+}
