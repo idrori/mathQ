@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Applications of Differentiation",
+       "Original question": "If a resistor of R ohms is connected across a battery of E volts with internal resistance r ohms, then the power (in watts) in the external resistor is P = E^2R/(R+r)^2. If E and r are fixed but R varies, what is the maximum value of the power?",
+       "Codex input": "Same as original question",
+       "Codex code": "import sympy as sym\nfrom sympy import Symbol\nfrom sympy import pprint\n\nR = Symbol('R')\nE = Symbol('E')\nr = Symbol('r')\n\nP = E**2*R/(R+r)**2\n\nprint(P)\n\ndP = P.diff(R)\n\nprint(dP)\n\nR_sol = sym.solve(dP,R)\n\nprint(R_sol)\n\nR_max = R_sol[0].evalf()\n\nprint(R_max)\n\nP_max = P.subs({R:R_max})\n\nprint(P_max)",
+       "Codex code explanation": "1. Define the variables\n2. Define the function\n3. Take the derivative of the function\n4. Solve the derivative for R\n5. Evaluate the solution\n6. Substitute the solution into the original function",
+       "Program solution": "E^2/(4r)",
+       "Solution type": "Automatic Few Shot (5)",
+       "GPT-3 response": "The maximum value of the power is P = E^2R/(R+r)^2 when R = r.",
+       "GPT-3 evaluation": "Incorrect"
+}

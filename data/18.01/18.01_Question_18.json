@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Techniques of Integration",
+       "Original question": "Evaluate the integral. 0 to 0.5 of x*sqrt(1-4x^2) dx.",
+       "Codex input": "Using sympy evaluate the integral. 0 to 0.5 of x*sqrt(1-4x^2) dx.",
+       "Codex code": "from sympy import *\n\nx = Symbol('x')\n\nintegral = integrate(x*sqrt(1-4*x**2), (x, 0, 0.5))\n\nprint(integral)",
+       "Codex code explanation": "1. We import the sympy module.\n2. We create a symbol x.\n3. We create an integral object.\n4. We print the integral object.",
+       "Program solution": "12-Jan",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The integral is 0.",
+       "GPT-3 evaluation": "Incorrect"
+}
