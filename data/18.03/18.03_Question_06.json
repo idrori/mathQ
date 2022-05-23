@@ -1,0 +1,12 @@
+{
+       "Course": "Differential Equations",
+       "Topic": "Homogeneous Equations with Constant Coefficients",
+       "Original question": "The problem pertains to the solution of differential equations with complex coefficients. Find a general solution of y'' \u2212 2iy' + 3y = 0.",
+       "Codex input": "Using Sympy, find a general solution of f''(x) \u2212 2*i*f'(x) + 3*f(x) = 0",
+       "Codex code": "from sympy import *\n\nx = symbols('x')\n\nf = Function('f')\n\neq = Eq(f(x).diff(x, x) - 2*I*f(x).diff(x) + 3*f(x), 0)\n\nsol = dsolve(eq)\n\npprint(sol)",
+       "Codex code explanation": "1. Declare symbols\n2. Create a function f(x)\n3. Create an equation f''(x) \u2212 2*i*f'(x) + 3*f(x) = 0\n4. Solve the equation\n5. Print the solution",
+       "Program solution": "y(x) = c_1 * e ^{-ix} + c_2 * e^{3ix}",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "y = c_1e^{3t} + c_2e^{-it}",
+       "GPT-3 evaluation": "Correct"
+}

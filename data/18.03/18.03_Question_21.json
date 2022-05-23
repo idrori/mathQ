@@ -1,0 +1,12 @@
+{
+       "Course": "Differential Equations",
+       "Topic": "Transformation of Initial Value Problems",
+       "Original question": "Find the inverse Laplace transform of 1/(s*(s-3))",
+       "Codex input": "Same as original question",
+       "Codex code": "from sympy import inverse_laplace_transform, symbols, simplify\nfrom sympy.abc import s, t\n\nF = inverse_laplace_transform(1/(s*(s-3)), s, t)\nprint(F)",
+       "Codex code explanation": "1. We are importing the inverse_laplace_transform function from the sympy module.\n2. We are importing the symbols function from the sympy module.\n3. We are importing the simplify function from the sympy module.\n4. We are importing the abc module from the sympy module.\n5. We are creating a variable called F and assigning it the value of the inverse_laplace_transform function.\n6. We are passing the following arguments to the inverse_laplace_transform function:\n    1. 1/(s*(s-3))\n    2. s\n    3. t\n7. We are printing the value of F.",
+       "Program solution": "(exp(3*t) - 1)*Heaviside(t)/3",
+       "Solution type": "Automatic Few-Shot (1)",
+       "GPT-3 response": "The inverse Laplace transform of 1/(s*(s-3)) is e^(3t)-e^(st).",
+       "GPT-3 evaluation": "Incorrect"
+}
