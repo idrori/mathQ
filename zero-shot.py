@@ -7,7 +7,7 @@ from embedding import get_embeddings
 
 openai.api_key = "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" #given by OpenAI
 courses = ['18.01']#, '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
-questions_per_course = 3
+questions_per_course = 10
 
 def get_most_similar(embeddings, i):
     """returns most similar questions to the target, index i, via cosine similarity"""
@@ -22,18 +22,16 @@ def get_most_similar(embeddings, i):
     closest_qs = []
     for val in ordered:
         closest_qs.append(cos_to_num[val]+1)
-    print("Here are the next closest questions to "+str(i+1)+" :"+str(closest_qs[1:]))
+    # print("Here are the next closest questions to "+str(i+1)+" :"+str(closest_qs[1:]))
     return closest_qs[1:]
 
 all_embeddings = get_embeddings("embeddings.json")
-
 
 #makes input for each prompt
 front_piece = '''"""\n''' #these two lines add triple quotes to the prompt like a doc string
 back_piece = '''\n"""\n'''
 context = 'Write a program, using numpy, sympy and other python libraries, that answers the following question: '
  
-
 #makes CSV's for each course:
 for course_index, course in enumerate(courses):
     course_embeddings = all_embeddings[course_index*questions_per_course:(course_index+1)*questions_per_course]
