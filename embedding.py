@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os.path
 
-openai.api_key = "" #given by OpenAI
+openai.api_key = "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" #given by OpenAI
 
 courses = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 labels = {'18.01':'r.', '18.02':'g.', '18.03':'b.', '18.05':'mx', '18.06':'k+', '6.042':'cx', 'COMS3251':'y+'}
@@ -67,8 +67,9 @@ def plot_clusters(points, questions_per_course=20, question_labels=False):
     plt.savefig("UMAP.png", dpi=100)
     plt.show()
 
-if not os.path.exists('embeddings.json'):
-    make_embeddings()
-embeddings = get_embeddings('embeddings.json')
-reduced_points = reduce_via_umap(embeddings)
-plot_clusters(reduced_points, question_labels=True)
+if __name__ == "__main__":
+    if not os.path.exists('embeddings.json'):
+        make_embeddings()
+    embeddings = get_embeddings('embeddings.json')
+    reduced_points = reduce_via_umap(embeddings)
+    plot_clusters(reduced_points, question_labels=True)
