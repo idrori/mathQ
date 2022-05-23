@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Increments and Differentials",
+       "Original question": "Find the differential dw. w = ln(x^2 + y^2 + z^2)",
+       "Codex input": "Same as original question",
+       "Codex code": "from sympy import *\n\nx, y, z = symbols('x y z')\nw = log(x**2 + y**2 + z**2)\n\ndw = diff(w, x)\nprint(dw)\n\ndw = diff(w, y)\nprint(dw)\n\ndw = diff(w, z)\nprint(dw)",
+       "Codex code explanation": "1. Importing sympy as sp\n2. Creating symbols x, y, and z\n3. Creating a function w = ln(x^2 + y^2 + z^2)\n4. Printing the differential of w with respect to x\n5. Printing the differential of w with respect to y\n6. Printing the differential of w with respect to z",
+       "Program solution": "Data/Images/18.02-q20-codex-output-plot.png",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "dw = (2x dx + 2y dy + 2z dz)/(x^2 + y^2 + z^2)",
+       "GPT-3 evaluation": "Correct"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Analytical Geometry & Polar Coordinates",
+       "Original question": "Find the center and radius of the circle described in the given equation. x^2 + 2x + y^2 = 4",
+       "Codex input": "Using Sympy Find the center and radius of the circle described in the given equation. x^2 + 2x + y^2 = 4",
+       "Codex code": "import sympy as sp\n\nx, y = sp.symbols('x y')\n\n# Equation of the circle\neq = x**2 + 2*x + y**2 - 4\n\n# Solving the equation\nsol = sp.solve(eq, y)\n\n# Printing the solution\nprint(sol)\n\n# Finding the center\ncenter = sp.solve(eq, x)\nprint(center)\n\n# Finding the radius\nradius = sp.sqrt(center[0]**2 + sol[0]**2)\nprint(radius)",
+       "Codex code explanation": "1. We import the sympy library and the symbols function.\n2. We define the equation we want to find the radius and center of.\n3. We create a Circle object from the equation.\n4. We print the radius and center of the circle.",
+       "Program solution": "Center (-1,0), radius sqrt(5)",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The center of the circle is at (1, 0) and the radius is \u221a3.",
+       "GPT-3 evaluation": "Incorrect"
+}
