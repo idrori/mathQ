@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Intermediate Algebra",
+       "Original question": "Find the positive value of x which satisfies log_5 (x - 2) + log_\u221a5 (x^3 - 2) + log_(1/5) (x - 2) = 4.",
+       "Codex input": "Write a function using math to compute x which rounds (\\log_5 (x - 2) + \\log_(math.sqrt(5)) (x^3 - 2) + \\log_(1/5) (x - 2)) to 4. \\log_5(x-2) is equivalent to math.log(x-2,5) in Python. x > 2.",
+       "Codex code": "import math\n\ndef compute(x):\n    return round((math.log(x-2,5) + math.log(x**3-2,math.sqrt(5)) + math.log(x-2,1/5)),4)\n\nprint(compute(3))\nprint(compute(4))\nprint(compute(5))\nprint(compute(6))\nprint(compute(7))\nprint(compute(8))\nprint(compute(9))\nprint(compute(10))",
+       "Codex code explanation": "1. The function is using math to compute x which rounds (\\log_5 (x - 2) + \\log_(math.sqrt(5)) (x^3 - 2) + \\log_(1/5) (x - 2)) to 4.\n2. \\log_5(x-2) is equivalent to math.log(x-2,5) in Python.\n3. x > 2.",
+       "Program solution": 3.0,
+       "Solution type": "Manual",
+       "GPT-3 response": "x = 10",
+       "GPT-3 evaluation": "Incorrect"
+}

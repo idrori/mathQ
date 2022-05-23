@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Number Theory",
+       "Original question": "What is the remainder when 5^207 is divided by 7?",
+       "Codex input": "Same as original question",
+       "Codex code": "def main():\n    \"\"\"\n    \"\"\"\n    print(5**207 % 7)\n\nif __name__ == \"__main__\":\n    main()",
+       "Codex code explanation": "1. It's taking the number 5 and raising it to the 207th power.\n2. It's then taking that number and dividing it by 7.\n3. It's then taking the remainder of that division.\n",
+       "Program solution": 6.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The remainder when 5^207 is divided by 7 is 6.",
+       "GPT-3 evaluation": "Correct"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Prealgebra",
+       "Original question": "Robin bought a four-scoop ice cream cone having a scoop each of vanilla, chocolate, strawberry and cherry. In how many orders can the four scoops be stacked on the cone if they are stacked one on top of the other?",
+       "Codex input": "Same as original question",
+       "Codex code": "import itertools\n\ndef main():\n    scoops = ['vanilla', 'chocolate', 'strawberry', 'cherry']\n    orders = list(itertools.permutations(scoops))\n    print(len(orders))\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We create a list of scoops.\n2. We create a list of all possible permutations of the scoops.\n3. We print the length of the list of orders.\n\nThe output of the above code is 24.",
+       "Program solution": 24.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There are 24 possible ways to stack the four scoops on the cone.",
+       "GPT-3 evaluation": "Correct"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Counting & Probability",
+       "Original question": "How many odd numbers between 100 and 999 have distinct digits?",
+       "Codex input": "Same as original question",
+       "Codex code": "def is_distinct(n):\n    \"\"\"\n    Returns True if the digits of n are distinct, False otherwise.\n    \"\"\"\n    digits = []\n    while n > 0:\n        digits.append(n % 10)\n        n //= 10\n    return len(digits) == len(set(digits))\n\ndef main():\n    count = 0\n    for n in range(100, 1000):\n        if n % 2 == 1 and is_distinct(n):\n            count += 1\n    print(count)\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. It's creating a variable called count and setting it to 0.\n2. It's creating a for loop that iterates over the numbers from 100 to 999.\n3. It's checking if the number is odd and if the digits of the number are distinct.\n4. If the number is odd and the digits are distinct, it increments the count variable by 1.\n5. It prints the value of the count variable.",
+       "Program solution": 320.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There are 72 odd numbers between 100 and 999 with distinct digits.",
+       "GPT-3 evaluation": "Incorrect"
+}

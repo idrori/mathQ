@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Algebra",
+       "Original question": "Evaluate x^((x+1)^x) when x = 2",
+       "Codex input": "Original problem",
+       "Codex code": "import math\n\nx = 2\n\nprint(math.pow(x, math.pow(x+1, x)))",
+       "Codex code explanation": "1. math.pow(x, y) is the same as x^y\n2. math.pow(x+1, x) is the same as (x+1)^x\n3. math.pow(x, math.pow(x+1, x)) is the same as x^((x+1)^x)",
+       "Program solution": 512.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "S^2 = 9",
+       "GPT-3 evaluation": "Incorrect"
+}

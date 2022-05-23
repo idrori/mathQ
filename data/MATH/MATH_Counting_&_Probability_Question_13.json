@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Counting & Probability",
+       "Original question": "A Senate committee has 5 Democrats and 5 Republicans.  In how many distinguishable ways can they sit around a circular table if all the members of each party all sit next to each other?  (If the table is rotated, it should be counted as the same seating.)",
+       "Codex input": "Write a program using sympy. A Senate committee has 5 Democrats and 5 Republicans.  In how many distinguishable ways can they sit around a circular table if all the members of each party all sit next to each other?  (If the table is rotated, it should be counted as the same seating.)",
+       "Codex code": "from sympy import factorial\n\nprint(factorial(5) * factorial(5))",
+       "Codex code explanation": "1. The first 5 people can be arranged in 5! ways.\n2. The next 5 people can be arranged in 5! ways.\n3. The two groups can be arranged in 2! ways.\n4. The total number of arrangements is 5! * 5! * 2!",
+       "Program solution": 14400.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There are 10! ways to sit around a circular table.  However, if the members of each party all sit next to each other, then there are only 2 ways to do so.",
+       "GPT-3 evaluation": "Incorrect"
+}

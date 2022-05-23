@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Precalculus",
+       "Original question": "Simplify (1 + tan 20)(1 + tan 25). All angles are in degrees.",
+       "Codex input": "Write a program that simplifies (1 + tan 20)(1 + tan 25). All angles are in degrees.",
+       "Codex code": "import math\n\ndef main():\n    print(\"This program simplifies (1 + tan 20)(1 + tan 25).\")\n    print(\"(1 + tan 20)(1 + tan 25) =\", (1 + math.tan(math.radians(20))) * (1 + math.tan(math.radians(25))))\n\nmain()",
+       "Codex code explanation": "1. It's printing the string \"This program simplifies (1 + tan 20)(1 + tan 25).\"\n2. It's printing the string \"(1 + tan 20)(1 + tan 25) =\" and the result of the expression (1 + math.tan(math.radians(20))) * (1 + math.tan(math.radians(25)))\n3. It's calling the main() function",
+       "Program solution": 2.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "1 + tan 20)(1 + tan 25) = 1 + tan 20 + tan 25 + tan 20 tan 25\n\n= 1 + tan 20 + tan 25 + tan 45\n\n= 1 + tan 20 + tan 25 + 1\n\n= 2 + tan 20 + tan 25",
+       "GPT-3 evaluation": "Incorrect"
+}

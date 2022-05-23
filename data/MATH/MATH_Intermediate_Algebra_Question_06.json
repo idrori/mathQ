@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Intermediate Algebra",
+       "Original question": "Let r and s denote the two real roots of x^2 - x \\sqrt{5} + 1 = 0. Then determine r^8 + s^8.",
+       "Codex input": "Let $r$ and $s$ denote the two real roots of $x^2 - x \\sqrt{5} + 1 = 0.$ Then determine $r^8 + s^8.$",
+       "Codex code": "import numpy as np\n\ndef main():\n    r = (1 + np.sqrt(5)) / 2\n    s = (1 - np.sqrt(5)) / 2\n    print(r**8 + s**8)\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We define the two roots of the equation as r and s.\n2. We print the sum of the 8th powers of r and s.",
+       "Program solution": 47.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "$r^8 + s^8 = (r^4 + s^4)(r^4 - s^4) = (r^2 + s^2)^2 - (rs)^2 = 5 - 1 = 4.$",
+       "GPT-3 evaluation": "Incorrect"
+}

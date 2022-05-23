@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Precalculus",
+       "Original question": "Let S be a region in the plane with area 10.  When we apply the matrix [2, 1; 7, -3] to S, we obtain S'. Find the area of S'.",
+       "Codex input": "Let S be a region in the plane with area 10.  When we apply the matrix [2, 1; 7, -3] to S, we obtain S'. Write a program that finds the area of S'.",
+       "Codex code": "import numpy as np\n\nS = 10\n\nmatrix = np.array([[2, 1], [7, -3]])\n\nS_prime = np.linalg.det(matrix) * S\n\nprint(S_prime)",
+       "Codex code explanation": "1. We create a matrix called matrix.\n2. We calculate the determinant of matrix.\n3. We multiply the determinant by S.\n4. We print the result.",
+       "Program solution": 130.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The area of S' is 4.",
+       "GPT-3 evaluation": "Incorrect"
+}

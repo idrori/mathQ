@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Precalculus",
+       "Original question": "The projection of [0; 3; z] onto [-3; 5; -1] is 12/35 * [-3; 5; -1]. Find z.",
+       "Codex input": "Write a function to compute x: 12/35 * [-3; 5; -1].\nThen, write a function to compute the projection of a vector onto another.\nUsing sympy, search for values of z using the projection function to compute [0; 3; z] onto [-3; 5; -1] equals x.",
+       "Codex code": "import sympy\n\ndef compute_x():\n    x = 12/35 * sympy.Matrix([-3, 5, -1])\n    return x\n\ndef compute_projection(v, u):\n    return (v.dot(u) / u.dot(u)) * u\n\ndef compute_z(x):\n    v = sympy.Matrix([0, 3, sympy.symbols('z')])\n    u = sympy.Matrix([-3, 5, -1])\n    return sympy.solve(compute_projection(v, u) - x, sympy.symbols('z'))\n\nif __name__ == '__main__':\n    x = compute_x()\n    print(x)\n    print(compute_z(x))",
+       "Codex code explanation": "1. Compute x: 12/35 * [-3; 5; -1]\n2. Compute the projection of a vector onto another\n3. Search for values of z using the projection function to compute [0; 3; z] onto [-3; 5; -1] equals x.",
+       "Program solution": 3.0,
+       "Solution type": "Manual",
+       "GPT-3 response": "z = -1",
+       "GPT-3 evaluation": "Incorrect"
+}

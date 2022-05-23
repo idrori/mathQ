@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Counting & Probability",
+       "Original question": "Compute \\dbinom{8}{4}.",
+       "Codex input": "Same as original question",
+       "Codex code": "from math import factorial\n\ndef binomial(n, k):\n    return factorial(n) / (factorial(k) * factorial(n - k))\n\nprint(binomial(8, 4))",
+       "Codex code explanation": "1. We import the factorial function from the math module.\n2. We define a function called binomial that takes two parameters, n and k.\n3. We return the factorial of n divided by the product of the factorial of k and the factorial of n - k.\n4. We call the binomial function with the arguments 8 and 4.\n5. We print the result.",
+       "Program solution": 70.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "\\dbinom{8}{4} = \\frac{8!}{4!(8-4)!} = \\frac{8!}{4!4!} = \\frac{8 \\cdot 7 \\cdot 6 \\cdot 5}{4 \\cdot 3 \\cdot 2 \\cdot 1} = \\frac{1680}{24} = 70",
+       "GPT-3 evaluation": "Correct"
+}
