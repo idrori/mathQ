@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Number Theory",
+       "Original question": "Find the multiplicative inverse of 17 modulo 72 in the range {0, 1, . . . , 71}.",
+       "Codex input": "Find the multiplicative inverse of 17 mod 72.",
+       "Codex code": "def multiplicative_inverse(a, b):\n    \"\"\"\n    Find the multiplicative inverse of a mod b.\n    \"\"\"\n    for i in range(1, b):\n        if (a * i) % b == 1:\n            return i\n    return None\n\nprint(multiplicative_inverse(17, 72))",
+       "Codex code explanation": "1. It's iterating through the range of 1 to b.\n2. It's checking if a * i % b == 1.\n3. If it is, it returns i.\n4. If it isn't, it returns None.",
+       "Program solution": "17",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "for i in range(72):\n    if (17 * I) % 72 == 1:\n        print(I)\n        break",
+       "GPT-3 evaluation": "Incorrect"
+}

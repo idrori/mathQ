@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Polar Coordinates",
+       "Original question": "Sketch the graph of the polar equation. Indicate any symmetries around either coordinate axis or the origin. r = 3*theta (spiral of Archimedes)",
+       "Codex input": "Write a function using matplotlib to plot the graph of the polar equation r = 3*theta (spiral of Archimedes).",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\n\ntheta = np.arange(0, 2*np.pi, 0.01)\nr = 3*theta\n\nplt.polar(theta, r)\nplt.show()",
+       "Codex code explanation": "1. Importing the numpy and matplotlib.pyplot modules.\n2. Creating a range of values for theta from 0 to 2\u03c0 with an increment of 0.01.\n3. Creating a range of values for r from 0 to 30 with an increment of 0.01.\n4. Creating a polar plot using the polar() function.\n5. Showing the plot using the show() function.",
+       "Program solution": "Data/Images/18.02-q3-codex-output-plot.png",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The graph of the polar equation is a spiral of Archimedes. There is no symmetry around either coordinate axis or the origin.",
+       "GPT-3 evaluation": "Incorrect"
+}

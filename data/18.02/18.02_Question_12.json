@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Taylor Series and Taylor Polynomials",
+       "Original question": "Find the Maclaurin series of the given function f by substitution. f(x) = sin2x",
+       "Codex input": "Same as original question",
+       "Codex code": "from sympy import *\n\nx = Symbol('x')\n\nf = sin(2*x)\n\nseries(f, x, 0, 10)",
+       "Codex code explanation": "1. Define the variable x as a symbol\n2. Define the function f(x) = sin(2x)\n3. Print the expression f(x)\n4. Print the series expansion of f(x) about x=0 up to 10 terms",
+       "Program solution": "2x - 4x^3/3 + 4x^5/15 + 8x^7/315 + ...",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "sin2x = 2sinxcosx\n\nsin2x = 2(x - x^3/3! + x^5/5! - ...)(cosx + x^2/2! - x^4/4! + ...)\n\nsin2x = 2xcosx - 2x^3/3!cosx + 2x^5/5!cosx - ... + 2x^3/3! - 2x^5/5! + ...\n\nsin2x = 2xcosx - 2x^3/3!(cosx + x^2/2!) + 2x^5/5!(cosx + x^2/2! - x^4/4!) - ...",
+       "GPT-3 evaluation": "Incorrect"
+}

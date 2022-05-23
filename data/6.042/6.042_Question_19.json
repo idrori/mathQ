@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Combinatorics",
+       "Original question": "How many different paths are there from point (0, 0, 0) to point (12, 24, 36) if every step increments one coordinate and leaves the other two unchanged?",
+       "Codex input": "How many different paths are there from point (0, 0, 0) to point (12, 24, 36) if every step increments one coordinate and leaves the other two unchanged?\nUse math.factorial",
+       "Codex code": "import math\n\ndef main():\n    print(math.factorial(12+24+36) // (math.factorial(12) * math.factorial(24) * math.factorial(36)))\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. The code is calculating the number of ways to arrange 12 red, 24 green, and 36 blue balls in a row.",
+       "Program solution": "72!/12!24!36!",
+       "Solution type": "Manual",
+       "GPT-3 response": "def count_paths(x, y, z):\n    if x == 12 and y == 24 and z == 36:\n        return 1\n    if x > 12 or y > 24 or z > 36:\n        return 0\n    return count_paths(x + 1, y, z) + count_paths(x, y + 1, z) + count_paths(x, y, z + 1)\n\nprint(count_paths(0, 0, 0))",
+       "GPT-3 evaluation": "Incorrect"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Differential Equations",
+       "Topic": "Euler's Method",
+       "Original question": "Apply the improved Euler method to approximate this solution on the interval [0,0.5] with step size h = 0.1 to approximate the solution y'=\u2212y for initial conditions y(0)=2 and y(x)=2e**(\u2212x)",
+       "Codex input": "Use the improved Euler's method on interval [0, 0.5] with step size h = 0.1. \nApproximate the solution y'=\u2212y with the initial conditions y(0)=2 and y(x)=2*e**(\u2212x).\nDo not cast n to an int when implementing improved Euler's method.\nGraph the approximated and actual values of y.",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\n\ndef improved_euler(f, x0, y0, h, xn):\n    x = np.arange(x0, xn+h, h)\n    y = np.zeros(len(x))\n    y[0] = y0\n    for i in range(1, len(x)):\n        y[i] = y[i-1] + h*f(x[i-1], y[i-1])\n        y[i] = y[i-1] + h*(f(x[i-1], y[i-1]) + f(x[i], y[i]))/2\n    return x, y\n\ndef f(x, y):\n    return -y\n\nx0 = 0\ny0 = 2\nh = 0.1\nxn = 0.5\n\nx, y = improved_euler(f, x0, y0, h, xn)\n\nplt.plot(x, y, label='Improved Euler')\nplt.plot(x, 2*np.exp(-x), label='Actual')\nplt.legend()\nplt.show()",
+       "Codex code explanation": "1. Create an array of x values from x0 to xn with step size h.\n2. Create an array of y values from y0 to yn with step size h.\n3. Set the first value of y to y0.\n4. Loop through the x values.\n5. At each x value, calculate the next y value using the improved Euler's method.\n6. Add the calculated y value to the y array.\n7. Return the x and y arrays.",
+       "Program solution": "Data/Images/18.03-q14-codex-output-plot.png",
+       "Solution type": "manual",
+       "GPT-3 response": "Not an image",
+       "GPT-3 evaluation": "Incorrect"
+}

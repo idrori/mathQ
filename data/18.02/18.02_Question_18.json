@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Curves and Motion in Space",
+       "Original question": "Show that the graph of the curve with parametric equations x = t*(sin6t). y = t*(cos6t), z = t lies on the cone z = $\\sqrt[2]{x^2 + y^2}$ with its vertex at the origin and opening upward.",
+       "Codex input": "Plot the graph of the curve with parametric equations: x = t*(sin6t). y = t*(cos6t), z = t.\nThen plot the cone z = $\\sqrt[2]{x^2 + y^2}$ with its vertex at the origin and opening upward.",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom mpl_toolkits.mplot3d import Axes3D\n\nt = np.linspace(-10, 10, 100)\nx = t*(np.sin(6*t))\ny = t*(np.cos(6*t))\nz = t\n\nfig = plt.figure()\nax = fig.add_subplot(111, projection='3d')\nax.plot(x, y, z)\n\nr = np.sqrt(x**2 + y**2)\n\nax.plot(x, y, r, 'r')\n\nplt.show()",
+       "Codex code explanation": "1. Generate 100 points between -10 and 10 using the linspace function from numpy.\n2. Calculate x, y, and z using the parametric equations.\n3. Plot the graph of the curve with parametric equations.\n4. Plot the cone z = $\\sqrt[2]{x^2 + y^2}$ with its vertex at the origin and opening upward.",
+       "Program solution": "Graph",
+       "Solution type": "Automatic Few Shot (5)",
+       "GPT-3 response": "The graph of the curve with parametric equations x = t*(sin6t). y = t*(cos6t), z = t lies on the cone z = $\\sqrt[2]{x^2 + y^2}$ with its vertex at the origin and opening upward.",
+       "GPT-3 evaluation": "Incorrect"
+}

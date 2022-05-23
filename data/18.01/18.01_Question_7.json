@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Differentiation Rules",
+       "Original question": "Find the limit. limit_x_0 csc(x)*sin(sin(x))",
+       "Codex input": "Same as original question",
+       "Codex code": "from sympy import limit, csc, sin, Symbol\n\nx = Symbol('x')\n\nprint(limit(csc(x)*sin(sin(x)), x, 0))",
+       "Codex code explanation": "1. We are finding the limit of csc(x)*sin(sin(x)) as x approaches 0.\n2. We are using the limit function from the sympy library.\n3. We are passing in the function csc(x)*sin(sin(x)) as the first argument.\n4. We are passing in the variable x as the second argument.\n5. We are passing in the number 0 as the third argument.",
+       "Program solution": "1",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The limit does not exist.",
+       "GPT-3 evaluation": "Incorrect"
+}

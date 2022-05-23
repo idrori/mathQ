@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Limits and Derivatives",
+       "Original question": "Find the derivative of the function using the definition of a derivative. f(x)=(x**2-1)/(2*x-3)",
+       "Codex input": "Using Sympy find the derivative of the function using the definition of a derivative. f(x)=(x**2-1)/(2*x-3)",
+       "Codex code": "import sympy as sp\n\nx = sp.Symbol('x')\n\nf = (x**2-1)/(2*x-3)\n\nprint(sp.diff(f,x))",
+       "Codex code explanation": "1. We import sympy as sp\n2. We create a symbol x\n3. We create a function f\n4. We print the derivative of f with respect to x",
+       "Program solution": "2*(x**2 - 3*x+1)/(2*x-3)**2",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "(2*x**2-1)/(2*x-3)**2",
+       "GPT-3 evaluation": "Correct"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Functions of Several Variables",
+       "Original question": "Describe the graph of the function f. f(x,y) = $10 - \\sqrt[2]{x^2+y^2}$",
+       "Codex input": "Same as original question",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom mpl_toolkits.mplot3d import Axes3D\n\nfig = plt.figure()\nax = fig.add_subplot(111, projection='3d')\n\nx = np.linspace(-5, 5, 100)\ny = np.linspace(-5, 5, 100)\n\nX, Y = np.meshgrid(x, y)\nZ = 10 - np.sqrt(X**2 + Y**2)\n\nax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='hot')\n\nplt.show()",
+       "Codex code explanation": "1. Create a figure object\n2. Add a subplot to the figure object\n3. Create a meshgrid of x and y values\n4. Calculate the z values for the meshgrid\n5. Plot the graph",
+       "Program solution": "Data/Images/18.02-q9-codex-output-plot.png",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The graph of the function f is a parabola.",
+       "GPT-3 evaluation": "Incorrect"
+}

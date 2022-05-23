@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Integrals",
+       "Original question": "A bacteria population is 4000 at time t = 0 and its rate of growth is 1000 * 2^t bacteria per hour after t hours. What is the population after one hour?",
+       "Codex input": "A bacteria population is 4000 at time t = 0 and its rate of growth is y = 1000 * 2^x bacteria per hour after t hours. Write a function to calculate the population after one hour. Use sympy to integrate the symbol x from 0 to 1. Then add the initial population to the result.",
+       "Codex code": "import sympy as sp\n\nx = sp.Symbol('x')\n\ndef bacteria_population(x):\n    return 1000 * 2**x\n\nprint(sp.integrate(bacteria_population(x), (x, 0, 1)) + 4000)",
+       "Codex code explanation": "1. We import sympy as sp.\n2. We define x as a symbol.\n3. We define a function bacteria_population(x) that returns the population of bacteria after x hours.\n4. We print the result of integrating the function bacteria_population(x) from 0 to 1 and adding the initial population of 4000.",
+       "Program solution": "4000 + 1000/log(2)",
+       "Solution type": "Manual",
+       "GPT-3 response": "5000",
+       "GPT-3 evaluation": "Incorrect"
+}

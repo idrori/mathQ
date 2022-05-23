@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Parametric Curves",
+       "Original question": "Eliminate the parameter and then sketch the curve. x = e^t, y = 4e^2t",
+       "Codex input": "Plot the parametric curve. x = e^t, y = 4e^2t",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\n\nt = np.linspace(-2, 2, 100)\nx = np.exp(t)\ny = 4 * np.exp(2 * t)\n\nplt.plot(x, y)\nplt.show()",
+       "Codex code explanation": "1. Importing the numpy and matplotlib.pyplot modules.\n2. Defining the t array.\n3. Defining the x and y arrays.\n4. Plotting the curve.",
+       "Program solution": "Data/Images/18.02-q5-codex-output-plot.png",
+       "Solution type": "Manual",
+       "GPT-3 response": "y = 4e^2t",
+       "GPT-3 evaluation": "Incorrect"
+}

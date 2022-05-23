@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Infinite Series and Convergence",
+       "Original question": "Determine whether the given infinite series converges or diverges. If it converges, find its sum. 1 + 3 + 5 + 7 + ... + (2n-1) + ....",
+       "Codex input": "Using sympy, determine if the sequence s_n = 2n-1 diverges by showing the value of the limit as n goes to infinity. If the limit is infinity, then print diverges. Otherwise print converges.",
+       "Codex code": "from sympy import limit, oo\n\ndef sequence_diverges(sequence):\n    \"\"\"\n    Determine if the sequence s_n = 2n-1 diverges by showing the value of the limit as n goes to infinity.\n    If the limit is infinity, then print diverges. Otherwise print converges.\n    \"\"\"\n    limit_value = limit(sequence, n, oo)\n    if limit_value == oo:\n        print(\"diverges\")\n    else:\n        print(\"converges\")\n\nsequence_diverges(2*n-1)",
+       "Codex code explanation": "1. The limit function takes a sequence and a value of n and returns the value of the limit as n goes to infinity.\n2. The limit function returns oo if the sequence diverges.\n3. If the limit is oo, then the sequence diverges.\n4. If the limit is not oo, then the sequence converges.",
+       "Program solution": "diverges",
+       "Solution type": "Manual",
+       "GPT-3 response": "The series diverges.",
+       "GPT-3 evaluation": "Incorrect"
+}

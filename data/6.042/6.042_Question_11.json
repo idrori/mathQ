@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Probability",
+       "Original question": "Scores for a final exam are given by picking an integer uniformly at random from the set {50, 51, . . . , 97, 98}. The scores of all 128 students in the class are assigned independently in this manner. Let S be the average of their scores. Find Var(S).",
+       "Codex input": "Write a function that uniformly samples 128 scores from {50,52 ... 98} and finds the mean of that sample. \nThen write a function that loops 100000 times and finds np.var of the samples.",
+       "Codex code": "def sample_mean(n):\n    return np.mean(np.random.choice(range(50,99), n))\n\ndef sample_var(n):\n    return np.var([sample_mean(n) for i in range(100000)])\n\nprint(sample_var(128))",
+       "Codex code explanation": "1. sample_mean(n) returns the mean of n random integers between 50 and 98.\n2. sample_var(n) returns the variance of 100000 sample means of n random integers between 50 and 98.",
+       "Program solution": "25/16",
+       "Solution type": "Automatic Few-shot",
+       "GPT-3 response": "# Var(S) = E(S^2) - E(S)^2\n# E(S^2) = sum(i^2*P(i))\n# E(S) = sum(i*P(i))I\n# P(i)I = 1/49\n\nE_S = sum([i*1/49 for i in range(50, 99)])\nE_S2 = sum([i**2*1/49 for i in range(50, 99)])\n\nVar_S = E_S2 - E_S**2\nprint(Var_S)",
+       "GPT-3 evaluation": "Incorrect"
+}
