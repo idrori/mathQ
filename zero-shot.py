@@ -26,6 +26,9 @@ for course in courses:
         questions.append(raw_question)
     # entries = [[i+1,questions[i],front_piece+context+questions[i]+back_piece] for i in range(questions_per_course)]
     entries = [[i+1,questions[i],'''"""\n'''+context+questions[i]+'''\n"""\n'''] for i in range(questions_per_course)]
-
-    info = pd.DataFrame(entries, columns=['Question', 'Original Question', 'Codex Input'])
+    for i in range(questions_per_course):
+        entries[i].append([i['text'] for i in openai.Completion.create(engine = "code-cushman-001", prompt = entries[i][2], max_tokens = 200, temperature = 0, top_p = 1)['choices']][0])
+        # entries[i].append(openai.Completion.create(engine = "code-davinci-002", prompt = entries[i][3]+"\n\n'''\nHere's what the above class is doing:\n1.", max_tokens = 200, temperature = 0, top_p = 1))
+        # entries[i].append(openai.Completion.create(engine= "text-davinci-002", prompt = entries[i][1], max_tokens = 200, temperature = 0, top_p = 1))
+    info = pd.DataFrame(entries, columns=['Question', 'Original Question', 'Codex Input', 'Codex Output'])#, 'Codex Explanation', 'GPT-3 Output'])
     info.to_csv(course+'.csv', index=False)
