@@ -1,0 +1,413 @@
+Id,Course,Topic,Original Problem,Codex Input,Solution,Codex Code,Codex Code Explanation,Output Evaluation,Solution Type,GPT-3 Response,GPT-3 Evaluation,Nearest Questions
+1,Linear Algebra,Matrix Algebra,"Notation: ' means transpose, * means matrix product, . means inner product
+Compute the following expression: ([-1,0,2; 0,1,4]'*[-2;1]).([3,1;0,0;-2,-1]*([5,-3]+[-4,2])')","Notation: ' means transpose, * means matrix product, . means inner product
+Compute the following expression: ([-1,0,2; 0,1,4]'*[-2;1]).([3,1;0,0;-2,-1]*([5,-3]+[-4,2])')",4,"import numpy as np
+
+a = np.array([[-1,0,2],[0,1,4]])
+b = np.array([[-2],[1]])
+c = np.array([[3,1],[0,0],[-2,-1]])
+d = np.array([[5],[-3]])
+e = np.array([[-4],[2]])
+
+print(np.dot(np.transpose(a),b))
+print(np.dot(c,(d+e)))","1. np.transpose(a) is the transpose of a
+2. np.dot(np.transpose(a),b) is the dot product of the transpose of a and b
+3. np.dot(c,(d+e)) is the dot product of c and the sum of d and e
+4. np.dot(np.transpose(a),b).np.dot(c,(d+e)) is the dot product of the dot product of the transpose of a and b and the dot product of c and the sum of d and e",Correct,Manual,"([-1,0,2; 0,1,4]'*[-2;1]).([3,1;0,0;-2,-1]*([5,-3]+[-4,2])')
+= ([-1,0,2; 0,1,4]'*[-2;1]).([3,1;0,0;-2,-1]*[1, -1; -1, 1])
+= ([-1,0,2; 0,1,4]'*[-2;1]).([3,1;0,0;-2,-1]*[0;0])
+= ([-1,0,2; 0,1,4]'*[-2;1]).([0;0;0])
+= ([-1,0,2; 0,1,4]'*[-2;1]).([0;0])
+= [0;0]",Incorrect,"[22, 7, 14, 19, 8, 18, 20, 11, 16, 17, 21, 6, 23, 15, 9, 24, 10, 12, 13, 3, 2, 27, 26, 25, 28, 29, 5, 30, 4]"
+2,Linear Algebra,"Vectors, Lengths and Dot products",Compute the squared L2 norm of the vector [1;-4;2;8;-1],Compute the squared L2 norm of the vector [1;-4;2;8;-1],86,"import numpy as np
+
+x = np.array([1, -4, 2, 8, -1])
+
+print(np.linalg.norm(x)**2)","1. Create a numpy array x with the values [1, -4, 2, 8, -1]
+2. Use the numpy.linalg.norm function to compute the L2 norm of x
+3. Square the result",Correct,Automatic Zero-shot,The squared L2 norm of the vector [1;-4;2;8;-1] is 85.,Incorrect,"[13, 25, 8, 10, 18, 19, 29, 14, 21, 12, 16, 17, 24, 22, 27, 9, 23, 28, 11, 7, 15, 26, 20, 30, 1, 3, 6, 5, 4]"
+3,Linear Algebra,Solving Linear System of Equations,"Find a solution to the following system of four equations:
+     4x - 2y  +  8z   +   w  =  3
+    -8x + 10y +          3w  = -2
+     3x - 1y  +  10z  +  5w  = -1
+     2x + 2y  +  9z   -  2w  =  8","Find a solution to the following system of four equations:
+     4x - 2y  +  8z   +   w  =  3
+    -8x + 10y +          3w  = -2
+     3x - 1y  +  10z  +  5w  = -1
+     2x + 2y  +  9z   -  2w  =  8","x=11/4, y=97/44, z=-4/11, w=-15/22","import numpy as np
+
+A = np.array([[4, -2, 8, 1], [-8, 10, 0, 3], [3, -1, 10, 5], [2, 2, 9, -2]])
+b = np.array([3, -2, -1, 8])
+
+x = np.linalg.solve(A, b)
+
+print(x)","1. We create a matrix A and a vector b.
+2. We use the solve function to find the solution to the system of equations.
+3. We print the solution.",Correct,Automatic Zero-shot,"x = 1, y = 2, z = -1, w = 3",Incorrect,"[15, 11, 16, 17, 22, 21, 14, 19, 23, 18, 6, 8, 20, 24, 28, 9, 1, 12, 27, 13, 26, 10, 2, 7, 4, 29, 25, 5, 30]"
+4,Linear Algebra,Solving Linear System of Equations,"A mining company has two mines. One day's operation at mine A produces ore that contains 10 metric tons of copper and 120 kilograms of silver, while one day's operation at mine B produces ore containing 6 metric tons of copper and 140 kilograms of silver. Let a=[10;120] and b=[6;140]. Then a and b represent the daily output of mines A and B, respectively. Suppose that the mining company operates mine A for x days and mine B for y days.
+Calculate how many number of days each mine should operate in order to produce 72 tons of copper and 1340 kilograms of silver.","A mining company has two mines. One day's operation at mine A produces ore that contains 10 metric tons of copper and 120 kilograms of silver, while one day's operation at mine B produces ore containing 6 metric tons of copper and 140 kilograms of silver. Let a=[10;120] and b=[6;140]. Then a and b represent the daily output of mines A and B, respectively. Suppose that the mining company operates mine A for x days and mine B for y days.
+Calculate how many number of days each mine should operate in order to produce 72 tons of copper and 1340 kilograms of silver.","x=3, y=7","from sympy import *
+
+x, y = symbols('x y')
+
+a = Matrix([10, 120])
+b = Matrix([6, 140])
+
+c = Matrix([72, 1340])
+
+print(solve([a[0]*x + b[0]*y - c[0], a[1]*x + b[1]*y - c[1]], [x, y]))","1. We're creating two variables, x and y, and assigning them to the symbols 'x' and 'y'
+2. We're creating three matrices, a, b, and c, and assigning them to the values [10, 120], [6, 140], and [72, 1340]
+3. We're using the solve function to solve the system of equations a[0]*x + b[0]*y - c[0] and a[1]*x + b[1]*y - c[1] for x and y
+4. We're printing the solution to the system of equations",Correct,Automatic Few-shot(1),"Let x be the number of days mine A operates and y be the number of days mine B operates.
+
+We want to find x and y such that:
+10x+6y=72
+120x+140y=1340
+
+This can be rewritten as:
+10x+6y-72=0
+120x+140y-1340=0
+
+This is a system of linear equations that can be solved using substitution or elimination.
+
+Using substitution, we can solve for y in the first equation and substitute this into the second equation.
+
+10x+6y-72=0
+10x=-6y+72
+y=(10/6)x-(72/6)
+y=(5/3)x-12
+
+120x+140(5/3)x-12(140)-1340=0
+120x+700x/3-1680-1340=0
+120x+700x/3-3020=0
+700x/3+120x-3020=0
+700x/3+120x-3020=0
+700x/3=3020-120x
+700x/3=2800
+x=4000/21
+
+y=(5/3)(4000/21)-12
+y=1666.667-12
+y=1654.667
+
+Therefore, mine A should operate for 4000/21 days and mine B should operate for 1654.667 days.",Incorrect,"[15, 3, 11, 17, 22, 16, 14, 6, 24, 19, 23, 20, 9, 18, 8, 12, 7, 21, 26, 1, 28, 5, 27, 29, 10, 13, 2, 30, 25]"
+5,Linear Algebra,"Vectors, Lengths and Dot products","At noon, the minute and the hour hands of an analog clock coincide. What is the angle (in degrees) subtended by the minute and hour hands of an analog clock at 1:15?","At noon, the minute and the hour hands of an analog clock coincide. What is the angle (in degrees) subtended by the minute and hour hands of an analog clock at 1:15?",52.5,"def angle(h, m):
+    h_angle = (h * 30) + (m * 0.5)
+    m_angle = m * 6
+    return abs(h_angle - m_angle)
+
+print(angle(1, 15))","1. The hour hand moves 30 degrees every hour.
+2. The minute hand moves 6 degrees every minute.
+3. The hour hand moves 0.5 degrees every minute.",Correct,Automatic Zero-shot,The angle between the minute and hour hands at 1:15 is 90 degrees.,Incorrect,"[26, 9, 12, 28, 8, 24, 21, 10, 23, 14, 27, 15, 7, 29, 17, 19, 16, 22, 18, 20, 13, 2, 11, 6, 30, 25, 3, 1, 4]"
+6,Linear Algebra,Matrix Algebra,"For what matrix R, the following matrix equation is satisfied?
+R*[1,0,0,0,0;1,1,0,0,0;1,2,1,0,0;1,3,3,1,0;1,4,6,4,1]=[1,0,0,0,0;0,1,0,0,0;0,1,1,0,0;0,1,2,1,0;0,1,3,3,1]","For what matrix R, the following matrix equation is satisfied?
+R*[1,0,0,0,0;1,1,0,0,0;1,2,1,0,0;1,3,3,1,0;1,4,6,4,1]=[1,0,0,0,0;0,1,0,0,0;0,1,1,0,0;0,1,2,1,0;0,1,3,3,1]","[1,0,0,0,0;-1,1,0,0,0;0,-1,1,0,0;0,0,-1,1,0;0,0,0,-1,1]","import numpy as np
+
+A = np.array([[1,0,0,0,0],[1,1,0,0,0],[1,2,1,0,0],[1,3,3,1,0],[1,4,6,4,1]])
+B = np.array([[1,0,0,0,0],[0,1,0,0,0],[0,1,1,0,0],[0,1,2,1,0],[0,1,3,3,1]])
+
+R = np.linalg.inv(A) @ B
+
+print(R)","1. We create two matrices A and B.
+2. We calculate the inverse of A and multiply it with B.
+3. We print the result.",Correct,Automatic Zero-shot,"R = [1,0,0,0,0;0,1,0,0,0;0,0,1,0,0;0,0,0,1,0;0,0,0,0,1]",Incorrect,"[23, 15, 20, 11, 22, 17, 16, 8, 14, 21, 18, 24, 19, 1, 3, 9, 7, 12, 28, 27, 26, 13, 10, 2, 25, 5, 29, 30, 4]"
+7,Linear Algebra,"Rank, Basis and Dimension","Notation: ' means transpose, * means matrix product
+Given a d-dimensional non-zero vector v, compute the rank of the matrix v*v'","Notation: ' means transpose, * means matrix product
+Given a d-dimensional non-zero vector v, write a program that computes the rank of the matrix v*v'",1,"import numpy as np
+
+def rank(v):
+    """"""
+    Computes the rank of the matrix v*v'
+    :param v: a d-dimensional non-zero vector
+    :return: the rank of the matrix v*v'
+    """"""
+    return np.linalg.matrix_rank(np.outer(v, v))
+
+if __name__ == ""__main__"":
+    v = np.array([1, 2, 3])
+    print(rank(v))","1. It defines a function called rank that takes a vector v as input and returns the rank of the matrix v*v'
+2. It defines a vector v = [1, 2, 3]
+3. It prints the rank of the matrix v*v'",Correct,Automatic Zero-shot,The rank of the matrix v*v' is 1.,Correct,"[8, 14, 18, 1, 17, 22, 19, 23, 16, 12, 10, 21, 15, 11, 24, 27, 9, 13, 2, 20, 26, 6, 25, 29, 28, 30, 5, 3, 4]"
+8,Linear Algebra,Four Fundamental Subspaces of a Matrix,"Compute the dimension of the null space of the following matrix. [1,2,0,-1;-2,-3,4,5;2,4,0,-2]","Compute the dimension of the null space of the following matrix. [1,2,0,-1;-2,-3,4,5;2,4,0,-2]",2,"import numpy as np
+
+A = np.array([[1,2,0,-1],[-2,-3,4,5],[2,4,0,-2]])
+
+print(np.linalg.matrix_rank(A))","1. We import the numpy library as np.
+2. We create a numpy array called A.
+3. We print the rank of the matrix A.",Correct,Automatic Zero-shot,The dimension of the null space of the matrix is 2.,Correct,"[21, 14, 22, 16, 19, 13, 12, 18, 17, 24, 23, 2, 20, 11, 10, 9, 15, 28, 27, 29, 26, 7, 1, 6, 25, 3, 30, 5, 4]"
+9,Linear Algebra,"Vectors, Basis","What are the coordinates of the vector [2;1] in the following basis?
+[2,-1/2],[1,1]","What are the coordinates of the vector [2,1] in the basis [2,-1/2],[1,1]
+Use sympy to solve:
+2*x + y = 2
+-0.5*x + y = 1","[0.4, 1.2]","from sympy import *
+
+x, y = symbols('x y')
+
+eq1 = Eq(2*x + y, 2)
+eq2 = Eq(-0.5*x + y, 1)
+
+solve([eq1, eq2], [x, y])","1. We are creating two symbols, x and y
+2. We are creating two equations, eq1 and eq2
+3. We are solving the system of equations for x and y",Correct,Manual,"The coordinates of the vector [2;1] in the basis [2,-1/2],[1,1] are [1;2].",Incorrect,"[24, 18, 16, 17, 19, 8, 14, 22, 23, 11, 20, 21, 15, 12, 13, 26, 10, 29, 2, 7, 28, 27, 6, 25, 1, 5, 3, 30, 4]"
+10,Linear Algebra,Orthogonality and Projections,Compute the orthogonal projection of the vector [-6;4] onto the line spanned by the vector [3;2],Compute the orthogonal projection of the vector [-6;4] onto the line spanned by the vector [3;2],[-30/13;-20/13],"import numpy as np
+
+# Define the vector
+v = np.array([-6, 4])
+
+# Define the line
+l = np.array([3, 2])
+
+# Compute the projection
+proj = (np.dot(v, l) / np.dot(l, l)) * l
+
+# Print the result
+print(proj)","1. We define the vector v and the line l.
+2. We compute the projection of v onto l by taking the dot product of v and l, dividing by the dot product of l and l, and then multiplying by l.
+3. We print the result.",Correct,Automatic Zero-shot,The orthogonal projection of the vector [-6;4] onto the line spanned by the vector [3;2] is [-2;1].,Incorrect,"[12, 27, 2, 21, 13, 8, 14, 26, 19, 18, 29, 16, 24, 9, 22, 28, 17, 23, 11, 25, 7, 20, 15, 1, 30, 5, 3, 6, 4]"
+11,Linear Algebra,Least Squares Approximation,"Find the least squares solution to the following matrix equation.
+[0,1;1,1;2,1]*x=[6;0;0]","Find the least squares solution to the following matrix equation.
+[0,1;1,1;2,1]*x=[6;0;0]",[-3;5],"import numpy as np
+
+A = np.array([[0,1],[1,1],[2,1]])
+b = np.array([6,0,0])
+
+x = np.linalg.lstsq(A,b)[0]
+
+print(x)","1. We create a matrix A and a vector b.
+2. We use the lstsq function to find the least squares solution to the matrix equation Ax=b.
+3. We print the solution.",Correct,Automatic Zero-shot,x = [6;-3;2],Incorrect,"[22, 17, 16, 18, 23, 15, 14, 19, 8, 21, 24, 20, 9, 6, 13, 12, 3, 27, 10, 2, 1, 7, 28, 26, 29, 25, 5, 30, 4]"
+12,Linear Algebra,Eigenvectors and Eigenvalues,"Compute the eigenvalue associated with the eigenvector [-684/721;228/721] of the matrix [-6,3;4,5].","Compute the eigenvalue associated with the eigenvector [-684/721;228/721] of the matrix [-6,3;4,5].",-7,"import numpy as np
+
+A = np.array([[-6,3],[4,5]])
+
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+print(eigenvalues)
+print(eigenvectors)","1. We create a matrix A.
+2. We use the numpy.linalg.eig function to compute the eigenvalues and eigenvectors of A.
+3. We print the eigenvalues and eigenvectors.",Correct,Automatic Zero-shot,The eigenvalue is -2.,Incorrect,"[21, 10, 8, 29, 14, 13, 19, 16, 2, 27, 18, 22, 24, 17, 26, 28, 9, 23, 11, 15, 7, 20, 25, 30, 1, 5, 6, 3, 4]"
+13,Linear Algebra,Matrix Algebra,"Compute the inverse of the following matrix: [-1,-2;-2,0]","Compute the inverse of the following matrix: [-1,-2;-2,0]","[0,-1/2;-1/2,1/4]
+","import numpy as np
+
+A = np.array([[-1,-2],[-2,0]])
+
+print(np.linalg.inv(A))","1. We import the numpy library as np.
+2. We create a 2x2 matrix A.
+3. We print the inverse of A.",Correct,Automatic Zero-shot,"[1/3, 2/3; 2/3, -1]",Incorrect,"[2, 18, 21, 8, 29, 14, 16, 19, 12, 17, 10, 22, 23, 25, 9, 11, 24, 27, 28, 15, 7, 20, 30, 26, 1, 6, 3, 5, 4]"
+14,Linear Algebra,Determinants,"Compute the determinant of the following matrix:
+[3,-4,5;0,-1,-5;5,-4,3]","Compute the determinant of the following matrix:
+[3,-4,5;0,-1,-5;5,-4,3]",56,"import numpy as np
+
+A = np.array([[3,-4,5],[0,-1,-5],[5,-4,3]])
+
+print(np.linalg.det(A))","1. We import the numpy library as np.
+2. We create a 3x3 matrix called A.
+3. We print the determinant of A using the numpy function linalg.det.",Correct,Automatic Zero-shot,The determinant of the matrix is -64.,Incorrect,"[19, 18, 22, 16, 17, 21, 8, 23, 24, 11, 13, 15, 12, 2, 9, 10, 20, 27, 7, 29, 1, 28, 25, 26, 6, 3, 30, 5, 4]"
+15,Linear Algebra,Special Matrices,"Find the real numbers a, b and c so that the following matrix is symmetric.
+[0,a+b,c+2;a,2,c;4,a+b,4]","Find the real numbers a, b and c so that the following matrix is symmetric.
+[0,a+b,c+2;a,2,c;4,a+b,4]","a=2,b=0,c=2","from sympy import *
+
+a, b, c = symbols('a b c')
+
+M = Matrix([[0, a+b, c+2], [a, 2, c], [4, a+b, 4]])
+
+print(M)
+
+print(M.is_symmetric())
+
+print(solve([M[0, 1] - M[1, 0], M[0, 2] - M[2, 0], M[1, 2] - M[2, 1]], [a, b, c]))","1. Define the matrix M.
+2. Print the matrix M.
+3. Check if M is symmetric.
+4. Solve the system of equations M[0, 1] - M[1, 0] = 0, M[0, 2] - M[2, 0] = 0, M[1, 2] - M[2, 1] = 0 for a, b and c.",Correct,Automatic Zero-shot,"a = 0
+b = 0
+c = 0",Incorrect,"[16, 17, 23, 11, 22, 14, 18, 19, 21, 24, 8, 20, 9, 3, 6, 28, 27, 12, 13, 7, 2, 26, 29, 10, 1, 25, 5, 30, 4]"
+16,Linear Algebra,Matrix Decomposition,"Find an LU decomposition of the following matrix:
+[-1,-1,2;2,0,3;-3,2,-1]","Using scipy find the LU decomposition of the following matrix:
+[-1,-1,2;2,0,3;-3,2,-1]","P = 
+ [[0. 1. 0.]
+ [0. 0. 1.]
+ [1. 0. 0.]]
+L = 
+ [[ 1.          0.          0.        ]
+ [ 0.33333333  1.          0.        ]
+ [-0.66666667 -0.8         1.        ]]
+U = 
+ [[-3.          2.         -1.        ]
+ [ 0.         -1.66666667  2.33333333]
+ [ 0.          0.          4.2       ]]
+P*L*U = 
+ [[-1.00000000e+00 -1.00000000e+00  2.00000000e+00]
+ [ 2.00000000e+00  2.96059473e-17  3.00000000e+00]
+ [-3.00000000e+00  2.00000000e+00 -1.00000000e+00]]","import numpy as np
+from scipy.linalg import lu
+
+A = np.array([[-1,-1,2],[2,0,3],[-3,2,-1]])
+
+P, L, U = lu(A)
+
+print(""P = \n"", P)
+print(""L = \n"", L)
+print(""U = \n"", U)
+
+print(""P*L*U = \n"", P.dot(L).dot(U))","1. The function lu() returns a tuple (P, L, U) where P is a permutation matrix, L is a lower triangular matrix, and U is an upper triangular matrix.
+2. The matrix A is decomposed into the product of P, L, and U.
+3. The matrix P is a permutation matrix. It is a square matrix with exactly one entry of 1 in each row and each column, and all other entries are 0.
+4. The matrix L is a lower triangular matrix. It is a square matrix with all entries above the main diagonal equal to 0.
+5. The matrix U is an upper triangular matrix. It is a square matrix with all entries below the main diagonal equal to 0.",Correct,Automatic Zero-shot,"[-1,-1,2;2,0,3;-3,2,-1] = [-1,1,0;2,0,3;-3,2,-1]",Incorrect,"[17, 18, 14, 19, 22, 21, 23, 15, 8, 11, 24, 13, 12, 9, 2, 20, 29, 27, 10, 28, 7, 3, 6, 25, 1, 26, 30, 5, 4]"
+17,Linear Algebra,Matrix Decomposition,"Find an QR decomposition of the following matrix:
+[1,0,2;0,2,0;0,-1,1]","Find an QR decomposition of the following matrix:
+[1,0,2;0,2,0;0,-1,1]","[[ 1.          0.          0.        ]
+ [ 0.         -0.89442719  0.4472136 ]
+ [ 0.          0.4472136   0.89442719]]
+[[ 1.          0.          2.        ]
+ [ 0.         -2.23606798  0.4472136 ]
+ [ 0.          0.          0.89442719]]
+[[ 1.00000000e+00  0.00000000e+00  2.00000000e+00]
+ [ 0.00000000e+00  2.00000000e+00  6.81060746e-17]
+ [ 0.00000000e+00 -1.00000000e+00  1.00000000e+00]]","import numpy as np
+
+A = np.array([[1,0,2],[0,2,0],[0,-1,1]])
+
+Q,R = np.linalg.qr(A)
+
+print(Q)
+print(R)
+
+print(np.dot(Q,R))","1. We import the numpy library as np.
+2. We create a 3x3 matrix A.
+3. We use the qr() function to find the QR decomposition of A.
+4. We print the Q and R matrices.
+5. We print the product of Q and R.",Correct,Automatic Zero-shot,"[1,0,2;0,2,0;0,-1,1] = [1,0,0;0,1,0;0,0,1]*[1,0,2;0,2,0;0,-1,1]*[1,0,0;0,1,0;0,0,1]",Incorrect,"[16, 18, 19, 22, 14, 23, 11, 15, 21, 8, 24, 13, 9, 12, 2, 20, 27, 10, 29, 7, 28, 6, 3, 1, 25, 26, 30, 5, 4]"
+18,Linear Algebra,Diagonalization and Eigenvectors/Eigenvalues,"Diagonalize the following matrix:
+[2,-3,0;0,-1,0;1,3,1]","Diagonalize the following matrix:
+[2,-3,0;0,-1,0;1,3,1]","[-1,0,1;-1,0,0;2,1,1]*[-1,0,0;0,1,0;0,0,2]*[0,-1,0;-1,3,1;1,-1,0] ","import numpy as np
+
+A = np.array([[2,-3,0],[0,-1,0],[1,3,1]])
+
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+print(""Eigenvalues:"")
+print(eigenvalues)
+print(""Eigenvectors:"")
+print(eigenvectors)","1. We create a 3x3 matrix A.
+2. We use the numpy.linalg.eig function to find the eigenvalues and eigenvectors of A.
+3. We print the eigenvalues and eigenvectors.",Correct,Automatic Zero-shot,"The eigenvalues of the matrix are -2, -1, and 4. The eigenvectors are [-3, 1, 0], [0, 0, 1], and [1, 3, 1].",Incorrect,"[16, 14, 19, 17, 22, 23, 21, 13, 11, 24, 8, 15, 9, 2, 12, 10, 29, 27, 20, 7, 25, 28, 1, 26, 6, 3, 30, 5, 4]"
+19,Linear Algebra,Matrix Algebra,"Compute the trace of the following matrix:
+[3,8,-2;1,0,2;-2,-1,5]","Compute the trace of the following matrix:
+[3,8,-2;1,0,2;-2,-1,5]",8,"import numpy as np
+
+matrix = np.array([[3,8,-2],[1,0,2],[-2,-1,5]])
+
+print(np.trace(matrix))","1. We import the numpy library as np.
+2. We create a matrix using the np.array() function.
+3. We print the trace of the matrix using the np.trace() function.",Correct,Automatic Zero-shot,The trace of the matrix is 9.,Incorrect,"[14, 18, 16, 22, 17, 21, 8, 24, 11, 15, 13, 23, 2, 12, 9, 10, 27, 20, 29, 7, 28, 25, 1, 26, 3, 6, 30, 5, 4]"
+20,Linear Algebra,Four Fundamental Subspaces of a Matrix,"Which of the vectors v=[3;-3;1], u=[1;-2;1] is an element of the nullspace of the following matrix:
+[1,2,-3;-1,-1,0;-2,-3,3]","Which of the vectors v=[3;-3;1], u=[1;-2;1] is an element of the nullspace of the following matrix:
+[1,2,-3;-1,-1,0;-2,-3,3]","u=[1;-2,1]
+","import numpy as np
+
+A = np.array([[1,2,-3],[-1,-1,0],[-2,-3,3]])
+v = np.array([3,-3,1])
+u = np.array([1,-2,1])
+
+print(np.linalg.matrix_rank(A))
+print(np.linalg.matrix_rank(np.array([A,v])))
+print(np.linalg.matrix_rank(np.array([A,u])))
+
+""""""
+The rank of A is 3, so the nullspace of A is empty.
+The rank of [A,v] is 3, so v is not an element of the nullspace of A.
+The rank of [A,u] is 2, so u is an element of the nullspace of A.
+""""""","1. It is finding the rank of the matrix A.
+2. It is finding the rank of the matrix A with the vector v appended to it.
+3. It is finding the rank of the matrix A with the vector u appended to it.
+
+If the rank of the matrix A is the same as the rank of the matrix A with the vector appended to it, then the vector is not an element of the nullspace of the matrix.",Correct,Automatic Zero-shot,The vector v=[3;-3;1] is an element of the nullspace of the matrix.,Incorrect,"[8, 23, 21, 22, 24, 14, 16, 11, 15, 9, 17, 19, 6, 18, 12, 1, 10, 28, 13, 26, 3, 7, 27, 2, 29, 5, 25, 30, 4]"
+21,Linear Algebra,Four Fundamental Subspaces of a Matrix,"Find the nullity of the following matrix: [3,-2,-1,0,2;1,-2,1,-2,4;-4,4,0,2,-6]","Find the nullity of the following matrix: [3,-2,-1,0,2;1,-2,1,-2,4;-4,4,0,2,-6]",3,"import numpy as np
+
+A = np.array([[3,-2,-1,0,2],[1,-2,1,-2,4],[-4,4,0,2,-6]])
+
+print(np.linalg.matrix_rank(A))
+print(A.shape[1] - np.linalg.matrix_rank(A))","1. We import the numpy library as np.
+2. We create a matrix A using the numpy array function.
+3. We print the rank of A using the matrix_rank function.
+4. We print the number of columns of A minus the rank of A.",Correct,Automatic Zero-shot,The nullity of the matrix is 3.,Correct,"[8, 16, 14, 19, 18, 12, 13, 22, 17, 23, 10, 15, 11, 2, 24, 28, 27, 20, 29, 9, 26, 25, 7, 1, 6, 3, 30, 5, 4]"
+22,Linear Algebra,Solving Linear System of Equations,"Compute the reduced row echelon form of the following matrix:
+[-1,2,1,0;2,1,0,-1;5,0,-2,6]","Compute the reduced row echelon form of the following matrix:
+[-1,2,1,0;2,1,0,-1;5,0,-2,6]","[1,0,0,-2;0,1,0,3;0,0,1,-8]","def rref(matrix):
+    if not matrix: return
+    num_rows = len(matrix)
+    num_cols = len(matrix[0])
+
+    # Start at the last column and work backwards.
+    for col in range(num_cols - 1, -1, -1):
+
+        # Find the row with the leading non-zero entry in this column.
+        for row in range(num_rows):
+            if matrix[row][col] != 0: break
+
+        # If there is no leading non-zero entry, then all entries are zero.
+        if row == num_rows: continue
+
+        # Swap the current row with the one that has the leading non-zero entry.
+        matrix[row], matrix[num_rows - 1] = matrix[num_rows - 1], matrix[row]
+
+        # Eliminate all other entries in this column.
+        for r in range(num_rows):
+            if r == num_rows - 1: continue  # skip pivot row; already done above
+
+            # Eliminate current row of all other entries in this column.
+            multiplier = matrix[r][col] / matrix[num_rows - 1][col]  # get multiplier to eliminate value at [r][c] from rest of row (except pivot)
+            for c in range(col, num_cols):
+                matrix[r][c] -= multiplier * matrix[num_rows - 1][c]
+
+    return matrix
+
+if __name__ == ""__main__"":
+    print(rref([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+
+""""""
+Compute the rref of the matrix [-1,2,1,0;2,1,0,-1;5,0,-2,6]
+""""""
+
+if __name__ == ""__main__"":
+    print(rref([[-1, 2, 1, 0], [2, 1, 0, -1], [5, 0, -2, 6]]))","1. Find the last column with a non-zero entry.
+2. Find the row with the leading non-zero entry in this column.
+3. Swap the current row with the one that has the leading non-zero entry.
+4. Eliminate all other entries in this column.
+5. Repeat steps 1-4 until all columns have been processed.",Correct,Manual,"[1,0,-1/2,1;0,1,1/2,-1;0,0,0,0]",Incorrect,"[14, 16, 19, 17, 18, 8, 11, 21, 15, 23, 24, 13, 9, 20, 12, 2, 1, 10, 7, 6, 27, 3, 28, 29, 26, 25, 30, 5, 4]"
+23,Linear Algebra,Orthogonality and Projections,"For what value of a makes the following matrix orthogonal:
+[0,0,1;-1,0,0;0,a,0]","Write a program to try different values of a and see which value of a makes the matrix orthogonal: [0,0,1;-1,0,0;0,a,0]
+","a=-1
+","import numpy as np
+
+def is_orthogonal(matrix):
+    return np.allclose(np.dot(matrix, matrix.T), np.eye(matrix.shape[0]))
+
+def main():
+    for a in range(-10, 10):
+        matrix = np.array([[0,0,1],[-1,0,0],[0,a,0]])
+        print(f""a = {a}"")
+        print(f""is_orthogonal = {is_orthogonal(matrix)}"")
+
+if __name__ == ""__main__"":
+    main()","1. We define a function is_orthogonal that takes a matrix as input and returns True if the matrix is orthogonal and False otherwise.
+2. We define a function main that loops over all values of a from -10 to 10 and prints out the value of a and whether the matrix is orthogonal.
+3. We call the main function.",Correct,Manual,a = 1,Incorrect,"[17, 16, 18, 15, 11, 14, 22, 21, 8, 19, 24, 20, 13, 9, 6, 12, 2, 7, 10, 27, 28, 29, 3, 1, 26, 25, 30, 5, 4]"
+24,Linear Algebra,"Vectors, Basis","What is the dimension of the subspace spanned by the following vectors?
+[2,-1/2],[1,1],[4,4]","What is the dimension of the subspace spanned by the following vectors?
+[2,-1/2],[1,1],[4,4]",2,"import numpy as np
+
+A = np.array([[2,-1/2],[1,1],[4,4]])
+
+print(np.linalg.matrix_rank(A))","1. We create a matrix A with the given vectors as rows.
+2. We use the matrix_rank function from the numpy library to find the rank of A.
+3. The rank of A is the dimension of the subspace spanned by the given vectors.",Correct,Automatic Zero-shot,The dimension of the subspace spanned by the vectors is 2.,Correct,"[9, 18, 8, 16, 14, 19, 17, 23, 22, 15, 21, 20, 11, 12, 2, 10, 13, 26, 29, 27, 28, 7, 6, 25, 3, 1, 5, 30, 4]"
+25,Linear Algebra,Matrix Algebra,"If A = [1, 2; -2, -3], compute A^4.","If A = [1, 2; -2, -3], compute A^4.","[[-7 -8]
+ [ 8  9]]","import numpy as np
+
+A = np.array([[1, 2], [-2, -3]])
+
+print(np.linalg.matrix_power(A, 4))","1. np.linalg.matrix_power(A, 4) is the same as A^4.",Correct,Automatic Zero-shot,"A = [1, 2; -2, -3]
+
+A^4 = [1, 2; -2, -3] * [1, 2; -2, -3] * [1, 2; -2, -3] * [1, 2; -2, -3]",Incorrect,"[2, 29, 13, 27, 18, 19, 14, 10, 21, 16, 12, 8, 28, 17, 24, 23, 9, 22, 15, 30, 7, 11, 26, 20, 3, 1, 6, 5, 4]"

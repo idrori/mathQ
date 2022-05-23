@@ -1,0 +1,585 @@
+Id,Course,Topic,Original Problem,Solution,Codex Input,Codex Code,Codex Code Explanation,Output Evaluation,Solution Type,GPT-3 Response,GPT-3 Evaluation,Nearest Questions
+1,Linear Algebra,"Vectors and Linear Combinations (1.1, Q3)","If v+w = (5,1) and v-w=(1,5), compute and draw the vectors v and w","This problem gives the diagonals v + w and v − w of the parallelogram and asks for
+the sides: The opposite of Problem 2. In this example v = (3, 3) and w = (2, −2).","Given v+w = (5,1) and v-w=(1,5).
+Write a program to compute v and w.","import numpy as np
+
+v_plus_w = np.array([5,1])
+v_minus_w = np.array([1,5])
+
+v = (v_plus_w + v_minus_w)/2
+w = (v_plus_w - v_minus_w)/2
+
+print(""v = "", v)
+print(""w = "", w)","1. We define a function called main()
+2. We define two tuples called v and w
+3. We define two more tuples called v_plus_w and v_minus_w
+4. We print the values of v_plus_w and v_minus_w
+5. We call the main() function",Correct,Automatic Zero-shot,The vectors v and w can be drawn as follows:,Incorrect,"[17, 14, 30, 16, 15, 11, 13, 3, 20, 9, 19, 6, 28, 24, 18, 7, 29, 10, 21, 5, 12, 22, 25, 8, 27, 2, 23, 26, 4]"
+2,Linear Algebra,Vectors and Linear Algebra (1.2 Q28),"If v = (1,2) draw all vectors w = (x,y) in the xy plane with dot(v,w) = x+ 2*y = 5.
+Why do those w's lie along a line?
+Which is the shortest w?","The vectors w = (x, y) with (1, 2)· w = x + 2y = 5 lie on a line in the xy plane. The shortest w on that line is (1, 2). (The Schwarz inequality kwk ≥ v · w/kvk = √5 is an equality when cos θ = 0 and w = (1, 2) and kwk =√5.)","In Linear Algebra and Vectors and Linear Algebra, if v = (1,2), write a program that draw all vectors w = (x,y) in the xy plane with dot(v,w) = x+ 2*y = 5.
+Why do those w's lie along a line?
+Which is the shortest w?","import numpy as np
+import matplotlib.pyplot as plt
+
+v = np.array([1,2])
+
+# w = (x,y)
+# x + 2y = 5
+# y = 5 - x
+
+x = np.linspace(-5,5,100)
+y = 5 - x
+
+plt.plot(x,y)
+plt.show()","1. We create a vector v = (1,2)
+2. We create a vector w = (x,y)
+3. We create a vector x = (-5,5)
+4. We create a vector y = (5-x)
+5. We plot the vectors x and y
+6. We show the plot",Correct,Automatic Zero-shot,The vectors w lie along a line because they are all perpendicular to v. The shortest w is the one that is closest to the origin.,Incorrect,"[23, 7, 24, 5, 1, 19, 30, 6, 9, 17, 10, 21, 2, 18, 15, 25, 28, 29, 27, 26, 4, 16, 22, 11, 13, 14, 12, 20, 8]"
+3,Linear Algebra,Vectors and Linear Algebra (1.3 Q1),"Find the linear combination 3s1 + 4s2 + 5s3 = b. Then write b as a matrix-vector multiplication Sx, with 3, 4, 5 in x. Compute the three dot products (row of S)· x:
+s_1 = [1;1;1], s_2 = [0;1;1], s_3 = [0;0;1]","3s1 + 4s2 + 5s3 = (3, 7, 12). The same vector b comes from S times x = (3, 4, 5)","Write a function to calculate the linear combination 3*s1 + 4*s2 + 5*s3. Let s_1 = [1;1;1], s_2 = [0;1;1], s_3 = [0;0;1]","import numpy as np
+
+S = np.array([[1,0,0],[1,1,0],[1,1,1]])
+x = np.array([3,4,5])
+
+b = S.dot(x)
+print(b)
+
+print(S[0].dot(x))
+print(S[1].dot(x))
+print(S[2].dot(x))","1. Create a matrix S with three rows and three columns.
+2. Create a vector x with three elements.
+3. Compute the matrix-vector product Sx.
+4. Compute the dot product of each row of S with x.
+2. We return the linear combination of the three arguments.
+3. We create three numpy arrays: s1, s2, and s3.
+4. We print the result of calling linear_combination with s1, s2, and s3 as arguments.",Correct,Automatic Zero-shot,"3s_1 + 4s_2 + 5s_3 = b
+
+b = [3;7;5]
+
+Sx = [3,4,5]
+
+[1,1,1]·[3,4,5] = 3
+
+[0,1,1]·[3,4,5] = 7
+
+[0,0,1]·[3,4,5] = 5",Incorrect,"[5, 7, 18, 9, 10, 19, 29, 23, 3, 24, 17, 30, 21, 1, 6, 28, 2, 11, 14, 22, 13, 25, 16, 15, 12, 26, 20, 8, 27]"
+4,Linear Algebra,"Vectors and Linear Algebra (1.3, Q4)","Find a combination x_1*w_1+x_2*w_2+x_3*w_3 that gives the zero vector with x_1 = 1
+w_1 is the vector (1;2;3)
+w_2 is the vector (4;5;6)
+w_3 is the vector (7;8;9)","The combination 0w1 + 0w2 + 0w3 always gives the zero vector, but this problem
+looks for other zero combinations (then the vectors are dependent, they lie in a plane):
+w2 = (w1 + w3)/2 so one combination that gives zero is w1 − 2w2 + w3 = 0.","Write a program to find a combination y and z such that multiplying np.array([1, y, z]).T with np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) = 0. Use sympy and numpy.","def find_combination(w1, w2, w3):
+    """"""Find a combination x_1*w_1+x_2*w_2+x_3*w_3 that gives the zero vector with x_1 = 1""""""
+    for x2 in range(-10, 10):
+        for x3 in range(-10, 10):
+            if w1[0] + w2[0] * x2 + w3[0] * x3 == 0 and w1[1] + w2[1] * x2 + w3[1] * x3 == 0 and w1[2] + w2[2] * x2 + w3[2] * x3 == 0:
+                return [1, x2, x3]
+    return None","1. It's iterating over all possible values of x2 and x3.
+2. For each possible value of x2 and x3, it's checking if the combination of x1, x2, and x3 gives the zero vector.
+3. If it does, it returns the combination.
+4. If it doesn't, it returns None.",Correct,Automatic Zero-shot,"There is no combination of w_1, w_2, and w_3 that will give the zero vector when x_1 is 1.",Incorrect,"[4, 9, 29, 10, 7, 18, 3, 19, 17, 24, 28, 1, 30, 2, 23, 11, 6, 13, 21, 20, 16, 22, 14, 25, 15, 26, 8, 12, 27]"
+5,Linear Algebra,"Vectors and Linear Equations (2.1, Q21)","What 2 by 2 matrix R rotates every vector through 45 degrees? Example: the vector [1,0] goes to [sqrt(2)/2, sqrt(2)/2].","R =1/2[√2,−√2;√2,√2]
+rotates all vectors by 45◦.The columns of R are the results
+from rotating (1, 0) and (0, 1)!","What 2 by 2 matrix R rotates every vector through 45 degrees? Example: the vector [1,0] goes to [sqrt(2)/2, sqrt(2)/2].","import numpy as np
+
+def rotation_matrix(theta):
+    """"""
+    Returns a 2D rotation matrix which rotates every vector through theta degrees.
+    """"""
+    return np.array([[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]])
+
+def main():
+    theta = np.pi/4
+    print(rotation_matrix(theta))
+
+if __name__ == ""__main__"":
+    main()","1. We define a function called rotation_matrix which takes in a parameter theta.
+2. We return a 2D numpy array which is the rotation matrix.
+3. We call the function with theta = pi/4.
+4. We print the result.",Correct,Automatic Zero-shot,"The matrix R is:  R = [cos(45), -sin(45);   sin(45),  cos(45)]",Correct,"[30, 24, 15, 9, 21, 28, 10, 7, 17, 19, 18, 2, 3, 1, 22, 29, 16, 25, 14, 12, 26, 27, 20, 13, 5, 23, 11, 8, 4]"
+6,Linear Algebra,"Elimination Using Matrices (2.3, Q17)","The paraboloa y=a+bx+cx^2 goes through the points (x,y) = (1,4) and (2,8) and (3,14). Find and solve a matrix equation for the unknowns (a,b,c)","The parabola y=a+bx+cx^2 goes through the 3 given points when
+a+ b+ c = 4
+a+ 2b+ 4c = 8
+a+ 3b+ 9c = 14
+.
+Then a = 2, b = 1, and c = 1. This matrix with columns (1, 1, 1), (1, 2, 3), (1, 4, 9) is
+a “Vandermonde matrix.”","The paraboloa y = a + b*x + c*x^2 goes through the points (x1,y1) = (1,4) and (x2,y2) = (2,8) and (x3,y3) = (3,14).
+y1 = a + b*x1 + c*x1^2
+y2 = a + b*x2 + c*x2^2
+y3 = a + b*x3 + c*x3^2","import numpy as np
+
+A = np.array([[1,1,1],[1,2,4],[1,3,9]])
+b = np.array([4,8,14])
+
+x = np.linalg.solve(A,b)
+
+print(x)","1. We create a matrix A with the first column being all 1's, the second column being the x values, and the third column being the x values squared.
+2. We create a vector b with the y values.
+3. We solve the matrix equation Ax=b for x.
+4. We print the solution.",Correct,Automatic Zero-shot,"[1 1 1] [a] = [4]
+[1 2 4] [b] = [8]
+[1 3 9] [c] = [14]
+
+[a] = [4]
+[b] = [8]
+[c] = [14]
+
+a = 4
+b = 8
+c = 14",Incorrect,"[9, 18, 24, 19, 30, 17, 21, 10, 2, 5, 3, 6, 29, 28, 4, 25, 23, 22, 16, 1, 26, 15, 27, 11, 13, 14, 20, 8, 12]"
+7,Linear Algebra,"Rules for Matrix Operations (2.4, Q23b)",Find a matrix such that A^2 does not equal 0 but A^3 = 0,"A =
+[
+0 1
+0 0
+]
+has A2 = 0. Note: Any matrix A = column times row = uvT will
+have A2 = uvTuvT = 0 if v
+Tu = 0. A =
+[
+0 1 0
+0 0 1
+0 0 0
+]
+has A2 =
+[
+0 0 1
+0 0 0
+0 0 0
+]
+but A3 = 0; strictly triangular as in Problem 21","Loop through random integer matrices with 0 until matrix A is found.
+A must satisty conditions: A**2 not equals np.zeros((2,2)) and A*3 equals np.zeros((2,2)).","import numpy as np
+
+def find_matrix_A(n):
+    """"""
+    Find matrix A with nxn dimensions.
+    """"""
+    while True:
+        A = np.random.randint(0,10,(n,n))
+        if np.array_equal(A**2, np.zeros((n,n))) == False and np.array_equal(A*3, np.zeros((n,n))) == True:
+            return A
+
+def main():
+    """"""
+    Main function.
+    """"""
+    n = int(input(""Enter n: ""))
+    A = find_matrix_A(n)
+    print(A)
+
+if __name__ == ""__main__"":
+    main()","1. It takes an input n from the user.
+2. It creates a random matrix A with dimensions nxn.
+3. It checks if A^2 is not equal to 0 and A^3 is equal to 0.
+4. If the above condition is true, it returns A.
+5. If the above condition is false, it goes back to step 2.",Correct,Manual,"A = [[1, 0], [0, 1]]",Incorrect,"[11, 20, 13, 12, 16, 17, 15, 30, 9, 14, 28, 1, 6, 22, 21, 18, 29, 5, 19, 7, 24, 25, 10, 26, 3, 2, 27, 4, 23]"
+8,Linear Algebra,"Rules for Matrix Operations (2.5, Q1)","Find the inverses (directly or from the 2 by 2 formula) of A, B, C : A = [0,4;3,0], B = [2,0;4,2], and C = [3,4;5,7].","A^−1 =[0, 1/4;1/3,0]
+and B−1 =
+[1/2,0;−1,1/2]
+and C^−1 =
+[7, −4;−5, 3].","Find the inverses of the matrices A, B, C : A = [0,4;3,0], B = [2,0;4,2], and C = [3,4;5,7].","A = np.array([[0,4],[3,0]])
+B = np.array([[2,0],[4,2]])
+C = np.array([[3,4],[5,7]])
+
+print(""A inverse:"")
+print(np.linalg.inv(A))
+print(""B inverse:"")
+print(np.linalg.inv(B))
+print(""C inverse:"")
+print(np.linalg.inv(C))","1. We import the numpy library.
+2. We define the matrices A, B, and C.
+3. We print the inverse of each matrix.",Correct,Automatic Zero-shot,"A = [-1/4, 1/3; -3/4, 0]
+B = [-1/2, 1/4; -1/2, 0]
+C = [-7/12, 4/12; -5/12, 3/12]",Incorrect,"[18, 19, 7, 30, 24, 17, 10, 29, 5, 21, 16, 28, 6, 2, 22, 13, 11, 1, 25, 15, 26, 20, 3, 4, 14, 23, 27, 12, 8]"
+9,Linear Algebra,"Rules for Matrix Operations (2.5, Q3)","Solve for the first column (x, y) and second column (t, z) of A^−1: [10,20;20,50]@[x;y] = [1;0] and [10,20;20,50]@[t;z] = [0;1].","[x;y] =
+[0.5;−0.2]
+and [t;z]=[−0.2;0.1]
+so A^−1 =
+1/10*[5, −2;−2, 1]","Solve for the first column (x, y) and second column (t, z) of A^−1: [10,20;20,50]@[x;y] = [1;0] and [10,20;20,50]@[t;z] = [0;1].","import numpy as np
+
+A = np.array([[10,20],[20,50]])
+
+b = np.array([1,0])
+
+x = np.linalg.solve(A,b)
+
+print(x)
+
+b = np.array([0,1])
+
+y = np.linalg.solve(A,b)
+
+print(y)","1. Create a matrix A
+2. Create a vector b
+3. Solve the linear system Ax = b for x
+4. Print the solution x
+5. Create a new vector b
+6. Solve the linear system Ax = b for x
+7. Print the solution x",Correct,Automatic Zero-shot,"A^−1 = [1/10, -2/5; -1/10, 1/5]
+
+First column:
+
+[1/10, -2/5]@[1;0] = [1/10; -1/10]
+
+Second column:
+
+[1/10, -2/5]@[0;1] = [2/5; 1/5]",Incorrect,"[9, 18, 19, 7, 5, 29, 24, 30, 6, 22, 28, 14, 17, 4, 2, 3, 21, 16, 1, 23, 15, 26, 27, 20, 11, 25, 13, 12, 8]"
+10,Linear Algebra,"Inverse Matrices (2.5, Q11b)",Find singular matrices A and B such that A+B is invertible.,"(a) If B = −A then certainly A + B = zero matrix is not invertible.
+(b) A =[1, 0;0, 0]
+and B =[0, 0;0, 1]
+are both singular but A + B = I is invertible.","Through iteration find 2x2 singular matrices A and B.
+Find A and B such that A+B is invertible.","import numpy as np
+
+A = np.array([[1,2,3],[4,5,6],[7,8,9]])
+B = np.array([[1,2,3],[4,5,6],[7,8,9]])
+
+print(np.linalg.det(A))
+print(np.linalg.det(B))
+print(np.linalg.det(A+B))","1. It creates a matrix A and B.
+2. It prints the determinant of A, B, and A+B.
+3. It prints the inverse of A, B, and A+B.",Correct,Automatic Zero-shot,"A = [[1, 0], [0, 1]];
+B = [[-1, 0], [0, -1]];",Incorrect,"[13, 12, 8, 20, 17, 16, 1, 9, 14, 18, 15, 30, 19, 21, 28, 5, 6, 7, 10, 22, 25, 3, 24, 27, 29, 23, 2, 26, 4]"
+11,Linear Algebra,"Nullspaces (3.2, Q20)",Construct a 2 by 2 matrix whose nullspace equals its column space. This is possible.,"A = [0,1; 0 0] has N(A) = C(A).
+Notice that rref(AT) = [1, 0; 0, 0] is not A^T.",Construct a 2 by 2 matrix whose nullspace equals its column space. This is possible.,"def main():
+    """"""Main function""""""
+    print(""Construct a 2 by 2 matrix whose nullspace equals its column space."")
+    print(""Enter the elements of the matrix:"")
+    a = int(input(""a: ""))
+    b = int(input(""b: ""))
+    c = int(input(""c: ""))
+    d = int(input(""d: ""))
+    print(""The matrix is:"")
+    print(""["", a, b, ""]"")
+    print(""["", c, d, ""]"")
+    print(""The nullspace of the matrix is:"")
+    print(""["", -b, a, ""]"")
+    print(""The column space of the matrix is:"")
+    print(""["", a, b, ""]"")
+    print(""["", c, d, ""]"")
+    print(""The nullspace and column space of the matrix are equal."")
+
+
+if __name__ == ""__main__"":
+    main()","1. The main function is called.
+2. The main function prints the problem statement.
+3. The main function asks the user to enter the elements of the matrix.
+4. The main function prints the matrix.
+5. The main function prints the nullspace of the matrix.
+6. The main function prints the column space of the matrix.
+7. The main function prints that the nullspace and column space of the matrix are equal.",Correct,Automatic Zero-shot,A = [1 1; 1 -1],Incorrect,"[11, 13, 20, 8, 14, 30, 15, 17, 6, 16, 18, 1, 9, 28, 19, 10, 22, 21, 29, 5, 27, 24, 7, 25, 3, 2, 26, 23, 4]"
+12,Linear Algebra,"Orthogonality of the Four Subspaces (4.1, Q25)","Find A'A if the columns of A are unit vectors, all mutually perpendicular.","[1, 1, 1;0, 1, 1;0, 0, 1]*[c1;c2;c3] = 0 gives c3 = c2 = c1 = 0. So those 3 column vectors are
+independent. But [1 1 1 2;0 1 1 3;0 0 1 4]*c = [0;0;0] is solved by c = (1,1,-4,1) then v1 + v2 - 4v3 + v4 = 0 (dependent)
+","Find A.T A if the columns of A are unit vectors, all mutually perpendicular.","A = np.array([[1,0,0],[0,1,0],[0,0,1]])
+
+print(A.T@A)","1. We create a 3x3 matrix A, which is a matrix of unit vectors.
+2. We take the transpose of A, and multiply it by A.
+3. The result is a 3x3 matrix, where each element is 1.",Correct,Automatic Zero-shot,"A =
+
+[1 0 0]
+
+[0 1 0]
+
+[0 0 1]",Incorrect,"[11, 12, 17, 20, 8, 9, 16, 1, 30, 14, 28, 15, 19, 18, 6, 5, 21, 27, 24, 10, 29, 7, 25, 2, 22, 3, 26, 23, 4]"
+13,Linear Algebra,"Projections (4.2, Q2b)",Draw the projection of b onto a: b=[1;1] and a=[1;-1].,"The projection of b = (1, 1) onto a = (1, −1) is p = (0, 0) since a
+Tb = 0.",Draw the projection of b onto a: b=[1;1] and a=[1;-1].,"import numpy as np
+import matplotlib.pyplot as plt
+
+a = np.array([1, -1])
+b = np.array([1, 1])
+
+# Projection of b onto a
+proj = (np.dot(b, a) / np.dot(a, a)) * a
+
+# Plotting
+plt.quiver(0, 0, a[0], a[1], angles='xy', scale_units='xy', scale=1, color='r')
+plt.quiver(0, 0, b[0], b[1], angles='xy', scale_units='xy', scale=1, color='b')
+plt.quiver(0, 0, proj[0], proj[1], angles='xy', scale_units='xy', scale=1, color='g')
+plt.xlim(-2, 2)
+plt.ylim(-2, 2)
+plt.show()","1. We first define the vectors a and b.
+2. We then calculate the projection of b onto a.
+3. We then plot the vectors a, b, and the projection of b onto a.",Correct,Automatic Zero-shot,"The projection of b onto a is b proj a = (b dot a)/(a dot a)*a.
+
+b proj a = (1*1 + 1*(-1))/(1*1 + (-1)*(-1))*[1;-1]
+
+b proj a = (1 - 1)/(1 + 1)*[1;-1]
+
+b proj a = 0*[1;-1]
+
+b proj a = [0;0]",Correct,"[20, 1, 16, 17, 15, 11, 13, 12, 18, 10, 28, 9, 30, 6, 8, 22, 29, 21, 24, 19, 7, 5, 25, 3, 27, 26, 2, 4, 23]"
+14,Linear Algebra,"Projections (4.2, Q16)","What linear combination of (1,2,-1) and (1,0,1) is closest to b=(2,1,1)?",.5 1.5,"Using scipy what linear combination of ((1),(2),(-1)) and (1,0,1) is closest to b=(2,1,1)?","from scipy.optimize import minimize
+
+def f(x):
+    return np.linalg.norm(x[0]*np.array([1,2,-1]) + x[1]*np.array([1,0,1]) - np.array([2,1,1]))
+
+res = minimize(f, [0,0])
+print(res.x)","1. It's creating a random matrix A of size n by n.
+2. It's creating a random vector b of size n.
+3. It's solving the linear system Ax = b using the backslash operator.
+4. It's computing the residual r = b - Ax.
+5. It's computing the norm of the residual.
+6. It's computing the condition number of A.
+7. It's computing the norm of the solution x.
+8. It's computing the norm of the matrix A.
+9. It's computing the norm of the vector b.",Correct,Automatic Few-shot,"The linear combination of (1,2,-1) and (1,0,1) that is closest to b=(2,1,1) is (1,1,0).",Incorrect,"[16, 30, 17, 21, 6, 14, 28, 24, 1, 25, 9, 20, 11, 18, 12, 13, 3, 8, 7, 27, 19, 10, 2, 26, 22, 29, 5, 23, 4]"
+15,Linear Algebra,"Least Squares Approximations (4.3, Q22)","Find the best line C+Dt to fit b=4,3,-1,0,0 at times t=-2,-1,0,1,2.","The least squares equation is
+[5, 0;0, 10]*[C;D]=[5;−10]
+Solution: C = 1, D = −1.
+The best line is b = 1 − t. Symmetric t’s ⇒ diagonal ATA ⇒ easy solution","Find the best line C+Dt to fit b=4,3,-1,0,0 at times t=-2,-1,0,1,2.","import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.array([-2,-1,0,1,2])
+b = np.array([4,3,-1,0,0])
+
+A = np.vstack([t, np.ones(len(t))]).T
+
+m, c = np.linalg.lstsq(A, b, rcond=None)[0]
+
+print(m,c)
+
+plt.plot(t, b, 'o', label='Original data', markersize=10)
+plt.plot(t, m*t + c, 'r', label='Fitted line')
+plt.legend()
+plt.show()","1. The __init__ method is called when the object is created. It sets the initial values of the attributes.
+2. The __str__ method is called when the object is printed. It returns a string representation of the object.
+3. The __add__ method is called when the object is added to another object. It returns the result of the addition.
+4. The __len__ method is called when the len() function is called on the object. It returns the length of the object.",Correct,Automatic Few-shot,C+Dt=-1/3t+4,Incorrect,"[15, 17, 30, 9, 20, 14, 1, 28, 11, 13, 24, 21, 8, 18, 6, 7, 10, 19, 29, 12, 22, 26, 3, 25, 5, 27, 2, 23, 4]"
+16,Linear Algebra,"Cramer's Rule, Inverses and Volumes (5.3, Q16a)","Find the area of the parallelogram with edges v=(3,2) and w=(1,4).","(a) Area
+|3 2;1 4| = 10 (b) and (c) Area 10/2 = 5, these triangles are half of the
+parallelogram in (a).","Find the area of the parallelogram with edges v=(3,2) and w=(1,4).","v = (3,2)
+w = (1,4)
+
+def area(v,w):
+    return abs(v[0]*w[1]-v[1]*w[0])
+
+print(area(v,w))
+
+v = np.array([3,2])
+w = np.array([1,4])
+
+area = np.cross(v,w)
+
+print(area)","1. Define the vectors v and w.
+2. Define a function that takes two vectors as arguments and returns the area of the parallelogram with edges v and w.
+3. Print the area of the parallelogram with edges v and w.",Correct,Automatic Zero-shot,The area of the parallelogram is 6.,Incorrect,"[9, 30, 16, 18, 1, 28, 15, 7, 19, 13, 24, 21, 25, 14, 11, 6, 2, 20, 8, 22, 10, 5, 3, 29, 12, 27, 26, 4, 23]"
+17,Linear Algebra,"Introduction to Eigenvalues (6.1, Q5)","Find the eigenvalues of A and B (easy for triangular matrices) and A + B: A = [3,0;1,1], B = [1,1;0,3], A+B = [4,1;1,4].","A and B have eigenvalues 1 and 3 (their diagonal entries : triangular matrices). A + B
+has λ
+2 + 8λ + 15 = 0 and λ1 = 3, λ2 = 5. Eigenvalues of A + B are not equal to
+eigenvalues of A plus eigenvalues of B.","Find the eigenvalues of A and B (easy for triangular matrices) and A + B: A = [3,0;1,1], B = [1,1;0,3], A+B = [4,1;1,4].","import numpy as np
+
+A = np.array([[3,0],[1,1]])
+B = np.array([[1,1],[0,3]])
+
+print(np.linalg.eig(A))
+print(np.linalg.eig(B))
+print(np.linalg.eig(A+B))","1. Create a matrix A and B
+2. Find the eigenvalues of A and B
+3. Find the eigenvalues of A + B",Correct,Automatic Zero-shot,"A: 3 and 1
+B: 1 and 3
+A+B: 4 and 5",Incorrect,"[9, 19, 7, 17, 10, 30, 21, 24, 29, 22, 28, 5, 6, 11, 25, 14, 4, 16, 1, 2, 15, 3, 13, 27, 12, 26, 23, 20, 8]"
+18,Linear Algebra,"Introduction to Eigenvalues (6.1, Q10)","Find the eigenvalues and eigenvectors for both of these Markov matrices A and A∞. A = [.6, .2; .4, .8]. A∞ = [1/3, 1/3; 2/3, 2/3].","det(A − λI) = d
+2 − 1.4λ + 0.4 so A has λ1 = 1 and λ2 = 0.4 with x1 = (-.447, -.8944) and
+x2 = (-.7071, .7071). A∞ has λ1 = 1 and λ2 = 0 (same eigenvectors). A100 has λ1 = 1 and
+λ2 = (0.4)100 which is near zero. So A100 is very near A∞: same eigenvectors and
+close eigenvalues.","Find the eigenvalues and eigenvectors for both of these Markov matrices A and A∞. A = np.array([[.6, .2], [.4, .8]]). A∞ = np.array([[1/3, 1/3], [2/3, 2/3]]).","A = Matrix([[.6, .2], [.4, .8]])
+Ainf = Matrix([[1/3, 1/3], [2/3, 2/3]])
+
+A.eigenvals()
+
+A.eigenvects()
+
+Ainf.eigenvals()
+
+Ainf.eigenvects()","1. Define the two matrices A and A∞.
+2. Find the eigenvalues of A.
+3. Find the eigenvectors of A.
+4. Find the eigenvalues of A∞.
+5. Find the eigenvectors of A∞.",Correct,Automatic Zero-shot,"A:  Eigenvalues: 1, 1 Eigenvectors: [1, 1], [-1, 1]  A∞:  Eigenvalues: 1, 1 Eigenvectors: [1, 1], [1, -1]",Incorrect,"[9, 18, 30, 24, 7, 17, 10, 21, 22, 29, 28, 23, 25, 6, 5, 3, 1, 11, 2, 26, 16, 27, 13, 15, 4, 20, 14, 12, 8]"
+19,Linear Algebra,"Symmetric Matrices (6.4, Q9a)","Find a symmetric matrix [1,b;b,1] that has a negative eigenvalue.","[1, 2;2, 1] has λ = −1 and 3","Find a 2x2 symmetric matrix [1,b;b,1] that has a negative eigenvalue.","b = -1
+    while True:
+        b += 0.01
+        A = np.array([[1, b], [b, 1]])
+        eigvals = np.linalg.eigvals(A)
+        if np.any(eigvals < 0):
+            return b","1. It starts with b = -1.
+2. It creates a matrix A = [1,b;b,1].
+3. It computes the eigenvalues of A.
+4. If any of the eigenvalues are negative, it returns b.
+5. If none of the eigenvalues are negative, it adds 0.01 to b and goes back to step 2.",Correct,Automatic Zero-shot,"[1,-1;-1,1]",Incorrect,"[14, 11, 16, 12, 13, 8, 1, 17, 15, 22, 9, 30, 28, 6, 10, 5, 29, 19, 18, 21, 24, 7, 25, 26, 27, 3, 2, 23, 4]"
+20,Linear Algebra,"Image processing by Linear Algebra (7.1, Q6)","Find the eigenvalues and the singlular values of this 2 by 2 matrix A=[2,1;4,2]. The eigenvectors (1,2) and (1,-2) of A are not orthogonal.","The matrix A has trace 4 and determinant 0. So its eigenvalues are 4 and 0—not used
+in the SVD ! The matrix ATA has trace 25 and determinant 0, so λ1 = 25 = σ
+2
+1 gives
+σ1 = 5.
+The eigenvectors v1, v2 of ATA (a symmetric matrix !) are orthogonal :
+[20, 10;10, 5]*[2;1]= 25*[2;1]
+
+ and
+[20, 10;10, 5]*[1;−2]= 0*[1;−2]
+Similarly AAT has orthogonal eigenvectors u1,u2 :
+[5, 10;10, 20]*[1;2] = 25*[1;2]
+and
+[5, 10;10, 20]*[2;−1]= 0*[2;−1]","Find the eigenvalues and the singlular values of this 2 by 2 matrix A=[2,1;4,2]. The eigenvectors (1,2) and (1,-2) of A are not orthogonal.","import sympy as sp
+
+A = sp.Matrix([[2,1],[4,2]])
+
+print(""Eigenvalues:"")
+print(A.eigenvals())
+
+print(""Singular values:"")
+print(A.singular_values())
+
+print(""Eigenvectors:"")
+print(A.eigenvects())
+
+print(""Singular vectors:"")
+print(A.S())
+
+print(""Eigenvalues and eigenvectors:"")
+print(A.diagonalize())
+
+print(""Singular values and singular vectors:"")
+print(A.diagonalize())","1. It's creating a matrix A.
+2. It's finding the eigenvalues of A.
+3. It's finding the singular values of A.
+4. It's finding the eigenvectors of A.
+5. It's finding the singular vectors of A.
+6. It's finding the eigenvalues and eigenvectors of A.
+7. It's finding the singular values and singular vectors of A.",Correct,Automatic Zero-shot,The eigenvalues of A are 3 and 1. The singular values of A are 5 and 1.,Incorrect,"[19, 9, 18, 10, 30, 29, 20, 6, 17, 7, 24, 28, 16, 1, 21, 14, 5, 11, 15, 3, 8, 25, 2, 23, 13, 12, 26, 27, 4]"
+21,Linear Algebra,"Principal Component Analysis (7.3,Q1)","Suppose A0 holds these 2 measurements of 5 samples: A0 = [5,4,3,2,1;-1,1,0,1,-1]. Find the average of each row and subtract it to produce the centered matrix A. Compute the sample covariance matrix S=AA'/(n-1) and find its eigenvalues. What line through the origin is closest to the 5 samples in the columns of A?","The row averages of A0 are 3 and 0. Therefore
+A =[2, 1, 0, −1, −2;−1, 1, 0, 1, −1]
+and S =(AA^T)/4=
+1/4*[10, 0;0, 4]
+The eigenvalues of S are λ1 =10/4
+and λ2 =4/4= 1. The top eigenvector of S is [1,0]
+I think this means that a vertical line is closer to the five points (2, −1), . . . ,(−2, −1)
+in the columns of A than any other line through the origin (0, 0).","Suppose A0 holds these 2 measurements of 5 samples: A0 = [5,4,3,2,1;-1,1,0,1,-1]. Find the average of each row and subtract it to produce the centered matrix A. Compute the sample covariance matrix S=AA'/(n-1) and find its eigenvalues. What line through the origin is closest to the 5 samples in the columns of A?","import numpy as np
+
+A0 = np.array([[5,4,3,2,1],[-1,1,0,1,-1]])
+
+A = A0 - np.mean(A0, axis=1).reshape(2,1)
+
+S = np.dot(A, A.T)/(A.shape[1]-1)
+
+eigvals, eigvecs = np.linalg.eig(S)
+
+print(eigvals)
+print(eigvecs)
+","1. A0 is a 2x5 matrix.
+2. A is a 2x5 matrix.
+3. S is a 2x2 matrix.
+4. eigvals is a 2x1 matrix.
+5. eigvecs is a 2x2 matrix.
+",Correct,Automatic Zero-shot,"A = [5,4,3,2,1;-1,1,0,1,-1];
+
+A0 = [5,4,3,2,1;-1,1,0,1,-1];
+
+A = A0 - mean(A0);
+
+S = A*A'/(n-1);
+
+[V,D] = eig(S);
+
+D = diag(D);
+
+[~,ind] = min(D);
+
+v = V(:,ind);
+
+line = v'*A;",Incorrect,"[3, 19, 7, 24, 9, 10, 30, 28, 5, 2, 6, 4, 18, 1, 22, 29, 26, 21, 15, 27, 17, 25, 11, 16, 13, 20, 12, 14, 8]"
+22,Linear Algebra,"The Idea of a Linear Transformation (8.1, Q12)","Suppose a linear T transforms (1,1) to (2,2) and (2,0) to (0,0). Find T(v), when v=[2,2], v=(3,1), v=(-1,1), v=(a,b).","T(v) = (4, 4); (2, 2); (2, 2); if v = (a, b) = b(1, 1) + ((a−b)/2)*(2, 0) then T(v) = b(2, 2) + (0, 0)","Use a while True loop to find a random matrix M such that M*np.array([1,1]) = np.array([2,2]) and M*np.array([2,0]) = np.array([0,0]).
+Find M*np.array([2,2]).
+Find M*np.array([3,1]).
+Find M*np.array([-1,1]).
+Use Sympy to find Find M*np.array([a,b]).","import numpy as np
+import sympy as sp
+
+a, b = sp.symbols('a b')
+
+while True:
+    M = np.random.randint(0, 10, (2, 2))
+    if np.array_equal(M.dot(np.array([1, 1])), np.array([2, 2])) and np.array_equal(M.dot(np.array([2, 0])), np.array([0, 0])):
+        break
+
+print(M)
+print(M.dot(np.array([2, 2])))
+print(M.dot(np.array([3, 1])))
+print(M.dot(np.array([-1, 1])))
+print(M.dot(np.array([a, b])))","1. It's creating a random 2x2 matrix M.
+2. It's checking if M*np.array([1,1]) = np.array([2,2]) and M*np.array([2,0]) = np.array([0,0]).
+3. If the above is true, it breaks out of the while loop.
+4. If the above is false, it goes back to step 1.",Correct,Manual,"T(v) = (2,2) when v = (1,1)
+
+T(v) = (0,0) when v = (2,0)
+
+T(v) = (4,4) when v = (3,1)
+
+T(v) = (-2,-2) when v = (-1,1)
+
+T(v) = (2a,2b) when v = (a,b)",Incorrect,"[30, 9, 21, 19, 7, 29, 6, 18, 17, 10, 15, 16, 3, 2, 28, 26, 1, 22, 23, 5, 25, 27, 14, 4, 13, 11, 20, 12, 8]"
+23,Linear Algebra,"Linear Algebra in Probability and Statistics (12.1, Q2)",We know: 1/3 of all integers are divisible by 3 and 1/7 of integers are divisible by 7. What fraction of integers will be divisible by 3 or 7 or both ?,"If we add 1/3 to 1/7
+(fraction of integers divisible by 3 plus fraction divisible by 7) we
+have double counted the integers divisible by both 3 and 7. This is a fraction 1/21 of all
+integers (because these double counted numbers are multiples of 21). So the fraction
+divisible by 3 or 7 or both is
+1/3+1/7−1/21=7/21+3/21−1/21=9/21=3/7",We know: 1/3 of all integers are divisible by 3 and 1/7 of integers are divisible by 7. Find the fraction of integers will be divisible by 3 or 7 or both ?,"import numpy as np
+
+# Create an array of integers from 1 to 100
+numbers = np.arange(1, 101)
+
+# Find the numbers divisible by 3 or 7
+divisible_by_3_or_7 = numbers[(numbers % 3 == 0) | (numbers % 7 == 0)]
+
+# Print the number of numbers divisible by 3 or 7
+print(divisible_by_3_or_7.size)
+
+# Print the fraction of numbers divisible by 3 or 7
+print(divisible_by_3_or_7.size / numbers.size)","1. Create an array of integers from 1 to 100
+2. Find the numbers divisible by 3 or 7
+3. Print the number of numbers divisible by 3 or 7
+4. Print the fraction of numbers divisible by 3 or 7",Correct,Automatic Zero-shot,The fraction of integers divisible by 3 or 7 or both is 2/3.,Incorrect,"[17, 30, 28, 19, 15, 9, 21, 18, 7, 27, 6, 26, 24, 3, 2, 1, 16, 10, 29, 22, 13, 11, 5, 14, 20, 12, 8, 23, 4]"
+24,Linear Algebra,"Linear Algebra in Probability and Statistics (12.1, Q4)","Sample again from 1 to 1000 but look at the last digit of the sample squared. That square could end with x = 0, 1, 4, 5, 6, or 9. What are the probabilities p0, p1, p4, p5, p6, p9? ","For numbers ending in 0, 1, 2, . . . , 9 the squares end in x = 0, 1, 4, 9, 6, 5, 6, 9, 4, 1. So
+the probabilities of x = 0 and 5 are p = 1/10 and the probabilities of x = 1, 4, 6, 9 are p = 1/5
+The mean is m = Σpi xi =0/0+5/10+(1/5)*(1 + 4 + 6 + 9) = 4.5 = same as before","Sample again from 1 to 1000 but look at the last digit of the sample squared. That square could end with x = 0, 1, 4, 5, 6, or 9. Write a program to find what are the probabilities p0, p1, p4, p5, p6, p9? ","def last_digit_squared(N):
+    """"""Return the last digit of N squared""""""
+    return (N**2)%10
+
+def last_digit_squared_probabilities(N):
+    """"""Return the probabilities of the last digit of N squared""""""
+    last_digits = [last_digit_squared(i) for i in range(1, N+1)]
+    return {i: last_digits.count(i)/N for i in range(10)}
+
+print(last_digit_squared_probabilities(1000))","1. We define a function last_digit_squared that takes in a number N and returns the last digit of N squared.
+2. We define a function last_digit_squared_probabilities that takes in a number N and returns a dictionary of the probabilities of the last digit of N squared.
+3. We print the probabilities of the last digit of N squared for N from 1 to 1000.",Correct,Automatic Few-shot (1),p0 = 1/6 p1 = 1/6 p4 = 1/6 p5 = 1/6 p6 = 1/6 p9 = 1/6,Incorrect,"[30, 28, 21, 9, 24, 19, 7, 25, 6, 2, 27, 10, 3, 18, 16, 17, 29, 15, 1, 23, 5, 22, 13, 14, 20, 11, 12, 8, 4]"
+25,Linear Algebra,"Linear Algebra in Probability and Statistics (12.1, Q8)","If all 24 samples from a population produce the same age x = 20, what are the sample mean µ and the sample variance S^2?","µ = 20, S^2 = 0","If all 24 samples from a population produce the same age x = 20, what are the sample mean µ and the sample variance S^2?","import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy.stats as stats
+import math
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[2]:
+
+
+#Sample mean
+x = 20
+n = 24
+mean = x
+print(""Sample mean is:"",mean)
+
+
+# In[3]:
+
+
+#Sample variance
+variance = 0
+print(""Sample variance is:"",variance)
+","1. The class is called ""Sample""
+2. The class has a constructor that takes two arguments: x and n
+3. The constructor computes the sample mean and sample variance
+4. The constructor prints the sample mean and sample variance",Correct,Automatic Zero-shot,The sample mean is 20 and the sample variance is 0.,Correct,"[28, 30, 25, 21, 17, 19, 9, 2, 26, 6, 18, 15, 7, 3, 24, 10, 13, 1, 16, 29, 23, 11, 12, 22, 14, 5, 20, 8, 4]"

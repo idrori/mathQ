@@ -1,0 +1,627 @@
+Id,Course,Topic,Original Problem,Solution,Codex Input,Codex Code,Codex Code Explanation,Output Evaluation,Solution Type,GPT-3 Response,GPT-3 Evaluation,Nearest Questions
+1,Introduction to Probability and Statistics,Probability,Calculate the probability of getting a three-of-a-kind poker hand.,0.021128,"Create a card deck.
+For 10000 iterations creating the deck each time calculate the probability of getting 3 of a kind in a 5 card poker hand.","import random
+
+def create_deck():
+    """"""
+    Create a deck of cards.
+    """"""
+    deck = []
+    for suit in range(4):
+        for rank in range(1, 14):
+            deck.append((suit, rank))
+    return deck
+
+def deal_hand(deck):
+    """"""
+    Deal a hand of 5 cards from the deck.
+    """"""
+    hand = []
+    for i in range(5):
+        hand.append(deck.pop(random.randrange(len(deck))))
+    return hand
+
+def get_rank_counts(hand):
+    """"""
+    Get the number of cards of each rank in the hand.
+    """"""
+    rank_counts = {}
+    for card in hand:
+        rank = card[1]
+        if rank in rank_counts:
+            rank_counts[rank] += 1
+        else:
+            rank_counts[rank] = 1
+    return rank_counts
+
+def has_three_of_a_kind(hand):
+    """"""
+    Check if the hand has 3 cards of the same rank.
+    """"""
+    rank_counts = get_rank_counts(hand)
+    for rank in rank_counts:
+        if rank_counts[rank] == 3:
+            return True
+    return False
+
+def main():
+    """"""
+    Main program.
+    """"""
+    num_iterations = 10000
+    num_three_of_a_kind = 0
+    for i in range(num_iterations):
+        deck = create_deck()
+        hand = deal_hand(deck)
+        if has_three_of_a_kind(hand):
+            num_three_of_a_kind += 1
+    print(""Probability of getting 3 of a kind in a 5 card poker hand:"", num_three_of_a_kind / num_iterations)
+
+if __name__ == ""__main__"":
+    main()","1. Create a deck of cards.
+2. Deal a hand of 5 cards from the deck.
+3. Check if the hand has 3 cards of the same rank.
+4. Repeat steps 2 and 3 10000 times.
+5. Calculate the probability of getting 3 of a kind in a 5 card poker hand.",Correct,Automatic Zero-shot,"There are 13 possible values for a three-of-a-kind poker hand:
+
+2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace
+
+There are 4 suits, so there are 4 ways to choose 1 suit.
+
+There are 4*13 = 52 ways to choose 3 cards from a deck of 52 cards.
+
+There are C(52,3) = 52!/(3!*49!) = 2,598,960 ways to choose 3 cards from a deck of 52 cards.
+
+The probability of getting a three-of-a-kind poker hand is 4/52 = 1/13.",Incorrect,"[25, 5, 2, 3, 4, 8, 6, 7, 24, 21, 17, 18, 22, 9, 12, 19, 20, 14, 13, 11, 23, 10, 15, 16]"
+2,Introduction to Probability and Statistics,Probability,In class we worked with non-transitive dice: Red: 3 3 3 3 3 6; Green: 1 4 4 4 4 4; White: 2 2 2 5 5 5. Find the probability that white beats green.,0.583333333,"Given non-transitive dice: Red: 3 3 3 3 3 6; Green: 1 4 4 4 4 4; White: 2 2 2 5 5 5, write a program that computes the probability that white beats green.","import random
+
+def roll(die):
+    return random.choice(die)
+
+def simulate(n):
+    red = [3, 3, 3, 3, 3, 6]
+    green = [1, 4, 4, 4, 4, 4]
+    white = [2, 2, 2, 5, 5, 5]
+    wins = 0
+    for i in range(n):
+        if roll(white) > roll(green):
+            wins += 1
+    return wins / n
+
+print(simulate(10000))","1. Define a function roll that takes a die as an argument and returns a random roll of that die.
+2. Define a function simulate that takes a number of trials as an argument and returns the fraction of trials that white beats green.
+3. Print the result of calling simulate with 10000 as the argument.",Correct,Automatic Zero-shot,The probability that white beats green is 3/5.,Incorrect,"[3, 6, 7, 8, 9, 18, 24, 17, 21, 12, 20, 22, 19, 5, 4, 14, 1, 13, 15, 25, 11, 23, 16, 10]"
+3,Introduction to Probability and Statistics,Probability,In class we worked with non-transitive dice: Red: 3 3 3 3 3 6; Green: 1 4 4 4 4 4; White: 2 2 2 5 5 5. Find the probability that green beats red.,0.694444444,In class we worked with non-transitive dice: Red: 3 3 3 3 3 6; Green: 1 4 4 4 4 4; White: 2 2 2 5 5 5. Simulate the probability that green beats red.,"import random
+
+def roll_dice(dice):
+    return random.choice(dice)
+
+def simulate_dice(dice1, dice2, trials):
+    dice1_wins = 0
+    for i in range(trials):
+        if roll_dice(dice1) > roll_dice(dice2):
+            dice1_wins += 1
+    return dice1_wins / trials
+
+red = [3, 3, 3, 3, 3, 6]
+green = [1, 4, 4, 4, 4, 4]
+white = [2, 2, 2, 5, 5, 5]
+
+print(simulate_dice(green, red, 100000))","1. Define a function that takes a list of dice and returns a random value from that list.
+2. Define a function that takes two lists of dice and a number of trials.
+3. Run the simulation a number of times and return the probability that the first dice wins.
+",Correct,Automatic Zero-shot,The probability that green beats red is 3/5.,Incorrect,"[2, 6, 7, 8, 9, 24, 18, 21, 17, 12, 20, 22, 19, 5, 4, 14, 1, 13, 15, 25, 11, 23, 16, 10]"
+4,Introduction to Probability and Statistics,Conditional Probability,Mr. Jones has two children. The older child is a girl. What is the probability that both children are girls?,0.5,"Mr. Jones has two children. At least one of them is a girl. Using simulations, what is the probability that both children are girls?","import random
+
+def random_kid():
+    return random.choice([""boy"", ""girl""])
+
+both_girls = 0
+older_girl = 0
+either_girl = 0
+
+random.seed(0)
+for _ in range(10000):
+    younger = random_kid()
+    older = random_kid()
+    if older == ""girl"":
+        older_girl += 1
+    if older == ""girl"" and younger == ""girl"":
+        both_girls += 1
+    if older == ""girl"" or younger == ""girl"":
+        either_girl += 1
+
+print(""P(both | older):"", both_girls / older_girl)
+print(""P(both | either): "", both_girls / either_girl)","1. We start by initializing the variables both_girls, older_girl, and either_girl to 0.
+2. We then loop 10000 times, each time randomly choosing a kid to be older and another to be younger.
+3. If the older kid is a girl, we increment older_girl.
+4. If both kids are girls, we increment both_girls.
+5. If at least one of the kids is a girl, we increment either_girl.
+6. Finally, we print the probabilities of both kids being girls given that the older kid is a girl, and given that at least one kid is a girl.",Correct,Automatic Zero-shot,There is a 1/4 chance that both children are girls.,Incorrect,"[5, 24, 7, 25, 2, 3, 6, 8, 18, 17, 1, 22, 21, 19, 14, 9, 13, 20, 12, 15, 11, 16, 23, 10]"
+5,Introduction to Probability and Statistics,Conditional Probability,Mr. Smith has two children. At least one of them is a boy. What is the probability that both children are boys?,0.333333333,"Mr. Smith has two children. At least one of them is a boy. Using simulations, what is the probability that both children are boys?","import random
+
+def random_kid():
+    return random.choice([""boy"", ""girl""])
+
+both_girls = 0
+older_girl = 0
+either_girl = 0
+
+random.seed(0)
+for _ in range(10000):
+    younger = random_kid()
+    older = random_kid()
+    if older == ""girl"":
+        older_girl += 1
+    if older == ""girl"" and younger == ""girl"":
+        both_girls += 1
+    if older == ""girl"" or younger == ""girl"":
+        either_girl += 1
+
+print(""P(both | older):"", both_girls / older_girl)      # 0.514 ~ 1/2
+print(""P(both | either): "", both_girls / either_girl)   # 0.342 ~ 1/3","1. We start by initializing the variables both_girls, older_girl, and either_girl to 0.
+2. We then simulate 10,000 families, and for each family we simulate two children.
+3. If the older child is a girl, we increment older_girl.
+4. If both children are girls, we increment both_girls.
+5. If at least one of the children is a girl, we increment either_girl.
+6. Finally, we compute the probabilities we are interested in.",Correct,Automatic Zero-shot,There is a 50% chance that both children are boys.,Incorrect,"[4, 24, 7, 6, 25, 8, 2, 3, 18, 17, 1, 22, 21, 19, 9, 20, 14, 12, 13, 11, 15, 23, 10, 16]"
+6,Introduction to Probability and Statistics,"Discrete Random Variables, Standard Deviation",Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. Let Z be the average of X and Y. Find the standard deviation of X.,1.118,Let X be the result of rolling a fair 4-sided die. What is the standard deviation of X after 100000 rolls.,"import numpy as np
+
+def roll_die():
+    return np.random.randint(1, 5)
+
+def roll_die_100000_times():
+    return [roll_die() for _ in range(100000)]
+
+def standard_deviation(numbers):
+    return np.std(numbers)
+
+def main():
+    print(standard_deviation(roll_die_100000_times()))
+
+if __name__ == '__main__':
+    main()","1. It's defining a function called roll_die() that returns a random integer between 1 and 4.
+2. It's defining a function called roll_die_100000_times() that returns a list of 100000 random integers between 1 and 4.
+3. It's defining a function called standard_deviation() that returns the standard deviation of a list of numbers.
+4. It's defining a function called main() that prints the standard deviation of the list of 100000 random integers between 1 and 4.
+5. It's calling the main() function.",Correct,Automatic Zero-shot,The standard deviation of X is 1.41.,Incorrect,"[7, 8, 9, 24, 2, 3, 18, 17, 19, 20, 12, 21, 22, 5, 14, 13, 4, 1, 15, 25, 11, 23, 10, 16]"
+7,Introduction to Probability and Statistics,"Discrete Random Variables, Standard Deviation",Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. Let Z be the average of X and Y. Find the standard deviation of Y.,1.708,Let Y be the result of rolling a fair 6-sided die.Find the standard deviation of Y after simulating 100000 times.,"import numpy as np
+
+def std_dev(n):
+    return np.std(np.random.randint(1,7,n))
+
+print(std_dev(100000))","1.   def std_dev(n):
+        return np.std(np.random.randint(1,7,n))
+
+This is a function that takes in a number n and returns the standard deviation of n random integers between 1 and 6.
+
+2.   print(std_dev(100000))",Correct,Automatic Zero-shot,The standard deviation of Y is 2.,Incorrect,"[6, 8, 9, 24, 2, 3, 18, 17, 19, 20, 12, 21, 22, 5, 14, 4, 13, 1, 25, 15, 11, 23, 10, 16]"
+8,Introduction to Probability and Statistics,"Discrete Random Variables, Standard Deviation",Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. Let Z be the average of X and Y. Find the standard deviation of Z.,1.021,Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. Let Z be the average of X and Y. Find the standard deviation of Z after simulating 100000 times.,"import random
+
+def roll_die(sides):
+    return random.randint(1, sides)
+
+def simulate_rolls(sides1, sides2, num_trials):
+    results = []
+    for _ in range(num_trials):
+        results.append((roll_die(sides1) + roll_die(sides2)) / 2)
+    return results
+
+def standard_deviation(nums):
+    mean = sum(nums) / len(nums)
+    squared_diffs = [(num - mean) ** 2 for num in nums]
+    return (sum(squared_diffs) / len(nums)) ** 0.5
+
+print(standard_deviation(simulate_rolls(4, 6, 100000)))","1. def roll_die(sides):
+    return random.randint(1, sides)
+
+This function takes in a number of sides and returns a random number between 1 and that number.
+
+2. def simulate_rolls(sides1, sides2, num_trials):
+    results = []
+    for _ in range(num_trials):
+        results.append((roll_die(sides1) + roll_die(sides2)) / 2)
+    return results
+
+This function takes in two numbers of sides and a number of trials. It returns a list of the averages of the two dice rolls.
+
+3. def standard_deviation(nums):
+    mean = sum(nums) / len(nums)
+    squared_diffs = [(num - mean) ** 2 for num in nums]
+    return (sum(squared_diffs) / len(nums)) ** 0.5
+
+This function takes in a list of numbers and returns the standard deviation of those numbers.
+
+4. print(standard_deviation(simulate_rolls(4, 6, 100000)))
+
+This line prints the standard deviation of the averages of the two dice rolls.
+",Correct,Automatic Zero-shot,The standard deviation of Z is 2.5.,Incorrect,"[6, 7, 9, 2, 24, 3, 18, 17, 19, 20, 12, 21, 22, 5, 14, 13, 4, 1, 25, 11, 15, 23, 10, 16]"
+9,Introduction to Probability and Statistics,"Discrete Random Variables, Expectation","Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. You win 2X dollars if X>Y and lose 1 dollar otherwise. After playing this game 60 times, what is your expected total gain?",55,"Let X be the result of rolling a fair 4-sided die. Let Y be the result of rolling a fair 6-sided die. You win 2X dollars if X>Y and lose 1 dollar otherwise. After playing this game 60 times, what is your expected total gain?
+Simulate 100000 times","import random
+
+def roll_die(sides):
+    return random.randint(1, sides)
+
+def play_game(sides1, sides2):
+    x = roll_die(sides1)
+    y = roll_die(sides2)
+    if x > y:
+        return 2 * x
+    else:
+        return -1
+
+def play_game_n_times(sides1, sides2, n):
+    total = 0
+    for i in range(n):
+        total += play_game(sides1, sides2)
+    return total
+
+def play_game_n_times_simulation(sides1, sides2, n, simulations):
+    total = 0
+    for i in range(simulations):
+        total += play_game_n_times(sides1, sides2, n)
+    return total / simulations
+
+print(play_game_n_times_simulation(4, 6, 60, 100000))","1. It's creating a class called Die.
+2. It's defining a constructor for the class.
+3. It's defining a method called roll.
+4. It's defining a method called get_num_sides.
+5. It's defining a method called set_num_sides.",Correct,Automatic Zero-shot,Your expected total gain is 30 dollars.,Incorrect,"[6, 7, 8, 22, 21, 2, 3, 24, 19, 17, 18, 20, 12, 5, 13, 14, 4, 15, 11, 25, 10, 16, 1, 23]"
+10,Introduction to Probability and Statistics,"Counting, Continuous Variables","Boxes of Raisin Bran cereal are 30cm tall. Due to settling, boxes have a higher density of raisins at the bottom (h = 0) than at the top (h = 30). Suppose the density (in raisins per cm of height) is given by f(h) = 40 − h. How many raisins are in a box?",750,"Boxes of Raisin Bran cereal are 30cm tall. Due to settling, boxes have a higher density of raisins at the bottom (h = 0) than at the top (h = 30). Suppose the density (in raisins per cm of height) is given by f(h) = 40 − h. Integrate from 0 to 30 to find how many raisins are in the box.","def f(h):
+    return 40 - h
+
+def F(h):
+    return 40*h - h**2/2
+
+print(F(30) - F(0))","1. Define a function f(h) that returns the density of raisins at height h.
+2. Define a function F(h) that returns the number of raisins between 0 and h.
+3. Print the number of raisins between 0 and 30.",Correct,Automatic Zero-shot,There are 1200 raisins in a box.,Incorrect,"[11, 17, 18, 21, 22, 23, 12, 24, 20, 19, 7, 6, 8, 9, 2, 3, 15, 14, 13, 16, 5, 4, 1, 25]"
+11,Introduction to Probability and Statistics,"Probability, Continuous Variables","Boxes of Raisin Bran cereal are 30cm tall. Due to settling, boxes have a higher density of raisins at the bottom (h = 0) than at the top (h = 30). Suppose the density (in raisins per cm of height) is given by f(h) = 40 − h. What is the probability that a random raisin is in the bottom third of the box?",0.466666667,"Boxes of Raisin Bran cereal are 30cm tall. Due to settling, boxes have a higher density of raisins at the bottom (h = 0) than at the top (h = 30). Suppose the density (in raisins per cm of height) is given by f(h) = 40 − h. What is the probability that a random raisin is in the bottom third of the box?","def f(h):
+    return 40 - h
+
+def F(h):
+    return 40*h - h**2/2
+
+print((F(10) - F(0))/(F(30) - F(0)))","1. f(h) is the density function. It gives the probability of a raisin being at height h.
+2. F(h) is the cumulative distribution function. It gives the probability of a raisin being at height h or below.
+3. The probability of a raisin being in the bottom third of the box is the probability of it being at height 10 or below, minus the probability of it being at height 0 or below.
+4. The probability of a raisin being at height 0 or below is 0.
+5. The probability of a raisin being at height 10 or below is F(10).
+6. The probability of a raisin being at height 30 or below is 1.
+7. The probability of a raisin being at height 30 or below is F(30).
+8. The probability of a raisin being at height 10 or below, minus the probability of it being at height 0 or below, is (F(10) - F(0))/(F(30) - F(0)).",Correct,Automatic Few-shot (1),The probability that a random raisin is in the bottom third of the box is 0.75.,Incorrect,"[10, 21, 22, 20, 12, 19, 18, 17, 23, 7, 8, 6, 2, 3, 14, 15, 9, 13, 24, 16, 5, 4, 1, 25]"
+12,Introduction to Probability and Statistics,Exponential Random Variables,"Suppose we are testing 3 different brands of light bulbs B1, B2, and B3 whose lifetimes are exponential random variables with mean 1/2, 1/3, and 1/5 years, respectively. Assuming that all of the bulbs are independent, what is the expected time before one of the bulb fails.",0.1,"Suppose we are testing 3 different brands of light bulbs B1, B2, and B3 whose lifetimes are exponential random variables with mean 1/2, 1/3, and 1/5 years, respectively. Assuming that all of the bulbs are independent, what is the expected time before one of the bulb fails.","import numpy as np
+
+# Expected time before one of the bulbs fails
+# E[T] = 1/lambda
+# E[T] = 1/lambda1 + 1/lambda2 + 1/lambda3
+# E[T] = 1/0.5 + 1/0.333 + 1/0.2
+# E[T] = 2 + 3 + 5
+# E[T] = 10
+
+# Simulate the time until one of the bulbs fails
+# T = min(T1, T2, T3)
+# T1 ~ Exp(lambda1)
+# T2 ~ Exp(lambda2)
+# T3 ~ Exp(lambda3)
+
+# Simulate T1
+T1 = np.random.exponential(0.5, size=10000)
+# Simulate T2
+T2 = np.random.exponential(1/3, size=10000)
+# Simulate T3
+T3 = np.random.exponential(1/5, size=10000)
+
+# Simulate T
+T = np.minimum(T1, np.minimum(T2, T3))
+
+# Estimate E[T]
+np.mean(T)","1. Simulate T1, T2, and T3
+2. Simulate T = min(T1, T2, T3)
+3. Estimate E[T]",Correct,Automatic Zero-shot,The expected time before one of the bulbs fails is 1.67 years.,Incorrect,"[18, 17, 8, 6, 7, 19, 20, 2, 3, 21, 22, 14, 9, 24, 13, 11, 5, 15, 10, 4, 23, 16, 1, 25]"
+13,Introduction to Probability and Statistics,"Central Limit Theorem, Probability","To head the newly formed US Dept. of Statistics, suppose that 50% of the population supports Erika, 20% supports Ruthi, and the rest are split between Peter, Jon and Jerry. A poll asks 400 random people who they support. Use the central limit theorem to estimate the probability that at least 52.5% of those polled prefer Erika?",0.16,50% of the population supports Erika. A poll asks 400 random people who they support. Use the central limit theorem to estimate the probability that at least 52.5% of those polled prefer Erika?,"# The population proportion is 0.5
+p = 0.5
+
+# The sample size is 400
+n = 400
+
+# The sample proportion is 0.525
+p_hat = 0.525
+
+# The standard deviation of the sample proportion is
+sigma = np.sqrt(p * (1 - p) / n)
+
+# The z-score is
+z = (p_hat - p) / sigma
+
+# The probability is
+prob = 1 - stats.norm.cdf(z)
+
+print(prob)
+","1. The population proportion is 0.5
+2. The sample size is 400
+3. The sample proportion is 0.525
+4. The standard deviation of the sample proportion is
+5. The z-score is
+6. The probability is",Correct,Automatic Zero-shot,"The central limit theorem says that the distribution of the sample mean will be normal for large sample sizes. We can use this to find the probability that at least 52.5% of those polled prefer Erika.
+
+We know that the mean of the distribution is 0.5 and the standard deviation is 0.2. We can use the z-score formula to find the z-score corresponding to 52.5%.
+
+z = (52.5% - 0.5) / 0.2
+
+z = 2.5
+
+The probability that the poll will result in at least 52.5% of people preferring Erika is 0.9938.",Incorrect,"[14, 18, 20, 17, 6, 7, 8, 22, 19, 21, 12, 2, 3, 24, 15, 9, 23, 4, 5, 11, 16, 10, 25, 1]"
+14,Introduction to Probability and Statistics,"Central Limit Theorem, Probability","To head the newly formed US Dept. of Statistics, suppose that 50% of the population supports Erika, 20% supports Ruthi, and the rest are split between Peter, Jon and Jerry. A poll asks 400 random people who they support. Use the central limit theorem to estimate the probability that less than 25% of those polled prefer Peter, Jon or Jerry?",0.0145,"Suppose that 30% of the population supports Peter. A poll asks 400 random people who they support. 
+Write a program that uses the central limit theorem to compute the probability that less than 25% of those polled support Peter.","# The population proportion is 0.3
+p = 0.3
+
+# The sample size is 400
+n = 400
+
+# The sample proportion is 0.25
+p_hat = 0.25
+
+# The standard deviation of the sample proportion is
+sigma = np.sqrt(p * (1 - p) / n)
+
+# The z-score is
+z = (p_hat - p) / sigma
+
+# The probability is
+prob = stats.norm.cdf(z)
+
+print(prob)","1. The population proportion is 0.3
+2. The sample size is 400
+3. The sample proportion is 0.25
+4. The standard deviation of the sample proportion is
+5. The z-score is
+6. The probability is",Correct,Automatic Zero-shot,"The central limit theorem states that the distribution of the sample mean will be normal for large sample sizes. In this case, the sample size is 400, which is considered large. The mean of the distribution will be the population mean, which is 50% for Erika, 20% for Ruthi, and 30% for Peter, Jon, and Jerry combined. The standard deviation of the distribution will be the population standard deviation divided by the square root of the sample size. The population standard deviation is unknown, but can be estimated using the sample standard deviation. The sample standard deviation can be calculated using the following formula:
+
+s = √[(n-1)∑(x-μ)^2/n]
+
+where n is the sample size, x is each individual value, and μ is the mean.
+
+In this case, the mean is 30% and the sample size is 400. Plugging these values into the formula above gives us:
+
+s = √[(400-1)∑(x-30)^2/400]
+
+s = √[399∑(x-30)^2/400]
+
+s = √[399(0.3^2+0.2^2+0.1^2+0.1^2+0.1^2)/400]
+
+s = √[399(0.09+0.04+0.01+0.01+0.01)/400]
+
+s = √[399(0.16)/400]
+
+s = √[0.064]
+
+s = 0.25
+
+The standard deviation of the distribution is 0.25. The distribution will be normal with a mean of 30% and a standard deviation of 0.25.
+
+To find the probability that less than 25% of those polled prefer Peter, Jon, or Jerry, we need to find the area under the curve to the left of 25%. This can be done using a z-score. The z-score is calculated using the following formula:
+
+z = (x-μ)/σ
+
+where x is the value, μ is the mean, and σ is the standard deviation.
+
+In this case, x is 25%, μ is 30%, and σ is 0.25. Plugging these values into the formula above gives us:
+
+z = (0.25-0.3)/0.25
+
+z = -0.2/0.25
+
+z = -0.8
+
+The z-score is -0.8. To find the area under the curve to the left of 25%, we need to find the area under the curve to the left of -0.8. This can be done using a z-table. The area under the curve to the left of -0.8 is 0.22. This means that the probability that less than 25% of those polled prefer Peter, Jon, or Jerry is 0.22.",Incorrect,"[13, 20, 18, 6, 7, 8, 17, 19, 12, 22, 21, 2, 3, 23, 15, 24, 4, 9, 5, 11, 16, 10, 1, 25]"
+15,Introduction to Probability and Statistics,"Uniform Random Variables, Probability","Alice and Bob are trying to meet for lunch and both will arrive, independently of each other, uniformly and at random between noon and 1pm. Let A and B be the number of minutes after noon at which Alice and Bob arrive, respectively. Then A and B are independent uniformly distributed random variables on [0, 60]. Find the probability that Alice arrives before 12:30.",0.5,"Alice and Bob are trying to meet for lunch and both will arrive, independently of each other, uniformly and at random between noon and 1pm. Let A and B be the number of minutes after noon at which Alice and Bob arrive, respectively. Then A and B are independent uniformly distributed random variables on [0, 60]. Find the probability that Alice arrives before 12:30.","import numpy as np
+import matplotlib.pyplot as plt
+
+def arrival_time(n):
+    return np.random.uniform(0, 60, n)
+
+def before_1230(n):
+    return np.sum(arrival_time(n) < 30) / n
+
+print(before_1230(100000))","1. Generate a random number between 0 and 60
+2. If the number is less than 30, add 1 to the count
+3. Repeat this process n times
+4. Divide the count by n to get the probability",Correct,Automatic Zero-shot,The probability that Alice arrives before 12:30 is 0.5.,Correct,"[16, 20, 19, 2, 13, 3, 6, 7, 18, 17, 14, 24, 8, 12, 9, 11, 22, 21, 23, 10, 4, 5, 25, 1]"
+16,Introduction to Probability and Statistics,"Uniform Random Variables, Probability","Alice and Bob are trying to meet for lunch and both will arrive, independently of each other, uniformly and at random between noon and 1pm. Let A and B be the number of minutes after noon at which Alice and Bob arrive, respectively. Then A and B are independent uniformly distributed random variables on [0, 60]. Now suppose that Alice and Bob are both rather impatient and will leave if they have to wait more than 15 minutes for the other to arrive. What is the probability that Alice and Bob will have lunch together?",0.4375,"Alice and Bob are trying to meet for lunch and both will arrive, independently of each other, uniformly and at random between noon and 1pm. Let A and B be the number of minutes after noon at which Alice and Bob arrive, respectively. Then A and B are independent uniformly distributed random variables on [0, 60]. Now suppose that Alice and Bob are both rather impatient and will leave if they have to wait more than 15 minutes for the other to arrive. What is the probability that Alice and Bob will have lunch together?","import numpy as np
+import matplotlib.pyplot as plt
+
+def simulate_lunch(n):
+    A = np.random.uniform(0, 60, n)
+    B = np.random.uniform(0, 60, n)
+    return np.sum(np.abs(A - B) <= 15) / n
+
+print(simulate_lunch(100000))","1. Generate n random numbers between 0 and 60 for A and B
+2. Calculate the absolute difference between A and B
+3. Count the number of times the absolute difference is less than or equal to 15
+4. Divide the number of times the absolute difference is less than or equal to 15 by n",Correct,Automatic Zero-shot,The probability that Alice and Bob will have lunch together is 0.25.,Incorrect,"[15, 20, 19, 13, 14, 12, 2, 11, 3, 9, 23, 24, 7, 6, 8, 18, 17, 21, 22, 4, 10, 5, 25, 1]"
+17,Introduction to Probability and Statistics,"Uniform Random Variables, Maximum Likelihood Estimator","Suppose we have data 1.2, 2.1, 1.3, 10.5, 5 which we know is drawn independently from a uniform (a, b) distribution. Give the maximum likelihood estimate for the parameter a.",1.2,"Suppose we have data 1.2, 2.1, 1.3, 10.5, 5 which we know is drawn independently from a uniform (a, b) distribution. Print the maximum likelihood estimate for the parameter a.","import numpy as np
+
+data = np.array([1.2, 2.1, 1.3, 10.5, 5])
+
+print(np.min(data))","1. It's creating a class called UniformDistribution.
+2. It's creating a method called __init__ which is a special method that is called when you create an instance of the class.
+3. It's creating a method called pdf which is a probability density function.
+4. It's creating a method called cdf which is a cumulative density function.
+5. It's creating a method called ppf which is a percent point function.
+6. It's creating a method called rvs which is a random variate function.
+",Correct,Automatic Zero-shot,The maximum likelihood estimate for the parameter a is 1.2.,Correct,"[18, 24, 6, 7, 19, 8, 20, 12, 21, 22, 2, 3, 13, 9, 14, 5, 23, 4, 11, 15, 10, 1, 25, 16]"
+18,Introduction to Probability and Statistics,"Uniform Random Variables, Maximum Likelihood Estimator","Suppose we have data 1.2, 2.1, 1.3, 10.5, 5 which we know is drawn independently from a uniform (a, b) distribution. Give the maximum likelihood estimate for the parameter b.",10.5,"Suppose we have data 1.2, 2.1, 1.3, 10.5, 5 which we know is drawn independently from a uniform (a, b) distribution. Print the maximum likelihood estimate for the parameter b.","import numpy as np
+
+data = np.array([1.2, 2.1, 1.3, 10.5, 5])
+
+print(np.max(data))","1. It's initializing the class with a parameter a.
+2. It's defining a method called sample which takes a parameter n and returns n samples from the uniform distribution.
+3. It's defining a method called log_likelihood which takes a parameter x and returns the log likelihood of x.",Correct,Automatic Zero-shot,The maximum likelihood estimate for the parameter b is 10.5.,Correct,"[17, 24, 7, 6, 8, 19, 20, 12, 21, 2, 22, 3, 13, 9, 14, 5, 23, 4, 11, 15, 10, 1, 25, 16]"
+19,Introduction to Probability and Statistics,"Null Hypothesis Significance Testing, Type I Error","One generates a number x from a uniform distribution on the interval [0, θ]. One decides to test H0 : θ = 2 against HA : θ = 2 by rejecting H0 if x ≤ 0.1 or x ≥ 1.9. Compute the probability of a type I error.",0.1,"One generates a number x from a uniform distribution on the interval [0, θ]. One decides to test H0 : θ = 2 against HA : θ = 2 by rejecting H0 if x ≤ 0.1 or x ≥ 1.9. Simulate the probability of a type I error.","import numpy as np
+
+def generate_x(theta):
+    return np.random.uniform(0, theta)
+
+def test_hypothesis(x):
+    if x <= 0.1 or x >= 1.9:
+        return True
+    else:
+        return False
+
+def simulate_type_I_error(theta, n):
+    count = 0
+    for i in range(n):
+        x = generate_x(theta)
+        if test_hypothesis(x):
+            count += 1
+    return count / n
+
+print(simulate_type_I_error(2, 10000))","1. Generate a random number x from a uniform distribution on the interval [0, θ]
+2. Test the hypothesis that θ = 2 by rejecting H0 if x ≤ 0.1 or x ≥ 1.9
+3. Simulate the probability of a type I error",Correct,Automatic Zero-shot,The probability of a type I error is 0.2.,Incorrect,"[20, 18, 17, 6, 7, 24, 8, 21, 22, 12, 9, 2, 3, 14, 13, 23, 11, 5, 15, 4, 16, 10, 25, 1]"
+20,Introduction to Probability and Statistics,"Null Hypothesis Significance Testing, Type II Error","One generates a number x from a uniform distribution on the interval [0, θ]. One decides to test H0 : θ = 2 against HA : θ = 2 by rejecting H0 if x ≤ 0.1 or x ≥ 1.9. Compute the probability of a type II error if the true value of θ is 2.5.",0.72,"One generates a number x from a uniform distribution on the interval [0, θ]. One decides to test H0 : θ = 2 against HA : θ = 2 by rejecting H0 if x ≤ 0.1 or x ≥ 1.9. Using simulations, compute the probability of a type II error if the true value of θ is 2.5.","import numpy as np
+import matplotlib.pyplot as plt
+
+def generate_x(theta):
+    return np.random.uniform(0, theta)
+
+def test_hypothesis(x, theta):
+    if x <= 0.1 or x >= 1.9:
+        return True
+    else:
+        return False
+
+def simulate(theta):
+    x = generate_x(theta)
+    return test_hypothesis(x, theta)
+
+def main():
+    theta = 2.5
+    num_simulations = 10000
+    num_type_II_errors = 0
+    for i in range(num_simulations):
+        if not simulate(theta):
+            num_type_II_errors += 1
+    print(""Probability of type II error: {}"".format(num_type_II_errors / num_simulations))
+
+if __name__ == ""__main__"":
+    main()","1. Generate a random number x from a uniform distribution on the interval [0, θ].
+2. Test the hypothesis that θ = 2.
+3. If the hypothesis is rejected, increment the number of type II errors.
+4. Repeat steps 1-3 a large number of times.
+5. Compute the probability of a type II error by dividing the number of type II errors by the number of simulations.",Correct,Automatic Zero-shot,The probability of a type II error is 0.4.,Incorrect,"[19, 18, 17, 6, 7, 24, 8, 22, 21, 12, 2, 14, 3, 13, 23, 9, 15, 11, 5, 4, 16, 10, 25, 1]"
+21,Introduction to Probability and Statistics,Prior Odds,"You have a drawer that contains 50 coins. 10 coins have probability p = 0.3 of heads, 30 coins have probability p = 0.5 and 10 coins have probability p = 0.7. You pick one coin at random from the drawer and flip it. What are the (prior) odds you chose a 0.3 coin?",0.2,"You have a drawer that contains 50 coins. 10 coins have probability p = 0.3 of heads, 30 coins have probability p = 0.5 and 10 coins have probability p = 0.7. You pick one coin at random from the drawer and flip it. Print the odds you chose a 0.3 coin?","# Probability of choosing a 0.3 coin
+p_0_3 = 10/50","1. We have a class called Coin.
+2. We have a method called __init__ which is the constructor.
+3. We have a method called flip which returns a random number between 0 and 1.
+4. We have a method called get_probability which returns the probability of the coin.
+5. We have a method called get_side which returns the side of the coin.",Correct,Automatic Zero-shot,"There are 50 coins in the drawer. 10 of those coins have probability p = 0.3 of heads, 30 coins have probability p = 0.5 and 10 coins have probability p = 0.7. This means that the probability of choosing a 0.3 coin is 10/50 = 0.2. The odds of choosing a 0.3 coin are 0.2 : 0.8.",Correct,"[22, 9, 6, 7, 17, 8, 18, 19, 2, 3, 20, 12, 11, 14, 13, 5, 4, 24, 10, 1, 15, 23, 25, 16]"
+22,Introduction to Probability and Statistics,Prior Odds,"You have a drawer that contains 50 coins. 10 coins have probability p = 0.3 of heads, 30 coins have probability p = 0.5 and 10 coins have probability p = 0.7. You pick one coin at random from the drawer and flip it. What are the (prior) odds you chose a 0.5 coin?",0.6,"You have a drawer that contains 50 coins. 10 coins have probability p = 0.3 of heads, 30 coins have probability p = 0.5 and 10 coins have probability p = 0.7. You pick one coin at random from the drawer and flip it. Print the odds you chose a 0.5 coin?","# Solution
+
+# Probability of choosing a 0.5 coin
+p_0_5 = 30/50","1. We have a class called Coin.
+2. We have a constructor that takes in the probability of heads.
+3. We have a method called flip that returns a random number between 0 and 1. If the random number is less than the probability of heads, we return heads. Otherwise, we return tails.",Correct,Automatic Zero-shot,The odds of choosing a 0.5 coin are 3:1.,Incorrect,"[21, 9, 6, 7, 18, 8, 17, 19, 20, 2, 3, 12, 11, 14, 13, 5, 4, 24, 10, 1, 15, 23, 25, 16]"
+23,Introduction to Probability and Statistics,Confidence Intervals,"Suppose μ is the average height of a college male. You measure the heights (in inches) of twenty college men, getting data x1,...,x20, with sample mean x = 69.55 in. and sample 2 variance s = 14.26 in2. Suppose that the xi are drawn from a normal distribution with unknown mean μ and unknown variance σ2. Now suppose you are told that the height of a college male is normally distributed with standard deviation 3.77 in. How many people in total would you need to measure to bring the width of the 90% z–confidence interval down to 1 inch?",155,A gaussian distribution has mean 69.55 and variance of 14.26. Calculate the stdev. Calculate the number of samples needed to make the 90% z-confidence interval 0.5. Square and round to the next highest number.,"import math
+
+mean = 69.55
+variance = 14.26
+
+stdev = math.sqrt(variance)
+
+print(stdev)
+
+z = 1.645
+
+n = (z**2 * variance) / (0.5**2)
+
+print(math.ceil(n))","1. Import the math module
+2. Set the mean and variance
+3. Calculate the standard deviation
+4. Calculate the number of samples needed to make the 90% z-confidence interval 0.5",Correct,Automatic Zero-shot,You would need to measure a total of 90 people to bring the width of the 90% z–confidence interval down to 1 inch.,Incorrect,"[20, 19, 17, 18, 14, 11, 8, 13, 7, 6, 10, 24, 21, 12, 22, 2, 3, 15, 9, 16, 5, 4, 1, 25]"
+24,Introduction to Probability and Statistics,Joint Distributions,"Suppose X and Y have joint pdf f(x, y) = c(x^2+xy) on [0, 1] × [0, 1]. Find c.",1.714285714,"Suppose X and Y have joint pdf f(x, y) = c(x^2+xy) on [0, 1] × [0, 1]. Find c.","from sympy import integrate, symbols, simplify
+
+x, y = symbols('x y')
+
+c = 1 / integrate(x**2 + x*y, (x, 0, 1), (y, 0, 1))
+
+print(simplify(c))","1. Define the variables x and y
+2. Define the function f(x, y) = c(x^2 + xy)
+3. Integrate f(x, y) over the region [0, 1] x [0, 1]
+4. Divide 1 by the integral to find c
+5. Simplify c",Correct,Automatic Zero-shot,c = 1/3,Incorrect,"[17, 18, 7, 6, 8, 19, 20, 2, 3, 5, 9, 4, 12, 25, 13, 21, 22, 1, 14, 15, 23, 10, 11, 16]"
+25,Introduction to Probability and Statistics,Probability,Calculate the probability of getting a two-pair poker hand.,0.047539,"Using simulations, calculate the probability of getting a two-pair poker hand.","import random
+
+def create_deck():
+    """"""
+    Create a deck of cards.
+    """"""
+    deck = []
+    for suit in range(4):
+        for rank in range(1, 14):
+            deck.append((suit, rank))
+    return deck
+
+def deal_hand(deck):
+    """"""
+    Deal a hand of 5 cards from the deck.
+    """"""
+    hand = []
+    for i in range(5):
+        hand.append(deck.pop(random.randrange(len(deck))))
+    return hand
+
+def get_rank_counts(hand):
+    """"""
+    Get the number of cards of each rank in the hand.
+    """"""
+    rank_counts = {}
+    for card in hand:
+        rank = card[1]
+        if rank in rank_counts:
+            rank_counts[rank] += 1
+        else:
+            rank_counts[rank] = 1
+    return rank_counts
+
+def has_two_pair(hand):
+    """"""
+    Check if the hand has 2 pairs of cards.
+    """"""
+    rank_counts = get_rank_counts(hand)
+    num_pairs = 0
+    for rank in rank_counts:
+        if rank_counts[rank] == 2:
+            num_pairs += 1
+    return num_pairs == 2
+
+def main():
+    """"""
+    Main program.
+    """"""
+    num_iterations = 10000
+    num_two_pair = 0
+    for i in range(num_iterations):
+        deck = create_deck()
+        hand = deal_hand(deck)
+        if has_two_pair(hand):
+            num_two_pair += 1
+    print(""Probability of getting 2 pairs in a 5 card poker hand:"", num_two_pair / num_iterations)
+
+if __name__ == ""__main__"":
+    main()","1. Create a deck of cards.
+2. Deal a hand of 5 cards from the deck.
+3. Check if the hand has 2 pairs of cards.
+4. Repeat steps 2 and 3 10000 times.
+5. Calculate the probability of getting a two-pair hand.",Correct,Automatic Few-shot (1),"There are 13 possible pairs of cards: Aces-Aces, Aces-Twos, Aces-Threes, Aces-Fours, Aces-Fives, Aces-Sixes, Aces-Sevens, Aces-Eights, Aces-Nines, Aces-Tens, Aces-Jacks, Aces-Queens, Aces-Kings
+
+There are 4 possible suits for each card: Hearts, Diamonds, Spades, Clubs
+
+There are 2 possible ways to get a two-pair poker hand:
+
+1) You can have two pairs of the same card, such as two Aces and two Eights.
+
+2) You can have two pairs of different cards, such as an Ace and a King of Hearts, and an Ace and a King of Diamonds.
+
+The probability of getting a two-pair poker hand is 2/13 * 4/13 * 4/13 = 8/2197.",Incorrect,"[1, 5, 4, 24, 7, 8, 6, 2, 3, 18, 17, 9, 21, 22, 19, 20, 12, 13, 14, 11, 15, 23, 10, 16]"

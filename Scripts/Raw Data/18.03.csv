@@ -1,0 +1,586 @@
+Id,Course,Topic,Original Problem,Codex Input,Solution,Codex Code,Codex Code Explanation,Output Evaluation,Solution Type,GPT-3 Response,GPT-3 Evaluation,Nearest Questions
+1,Differential Equations,Integrals,Find a function y = f(x) satisfying the given differential equation and the prescribed initial condition. dy/dx=2x+1;y(0)=3,Find a function y = f(x) satisfying the given differential equation and the prescribed initial condition. dy/dx=2x+1;y(0)=3,y(x) = x^2 + x + 3,"import sympy as sp
+
+x = sp.Symbol('x')
+y = sp.Function('y')
+
+# dy/dx=2x+1
+eq = sp.Eq(y(x).diff(x), 2*x+1)
+
+# y(0)=3
+ics = {y(0): 3}
+
+# Solve the differential equation
+sol = sp.dsolve(eq, ics=ics)
+
+# Print the solution
+print(sol)","1. We import the sympy module and rename it as sp.
+2. We create a symbol x and a function y.
+3. We create an equation dy/dx=2x+1.
+4. We create an initial condition y(0)=3.
+5. We solve the differential equation using the dsolve() function.
+6. We print the solution.",Correct,Automatic Zero-shot,y = f(x) = 3x^2 + x + 3,Incorrect,"[7, 3, 2, 6, 22, 4, 18, 21, 12, 20, 11, 17, 8, 24, 23, 19, 5, 9, 25, 14, 10, 13, 16, 15]"
+2,Differential Equations,Logistic Equation,"Find general solutions (implicit if necessary, explicit if convenient) of the differential equations. Primes denote derivatives with respect to x. dy/dx+2xy=0","Find general solutions (implicit if necessary, explicit if convenient) of the differential equations. Primes denote derivatives with respect to x. dy/dx+2xy=0",y(x) = C * exp(-x^2),"from sympy import Function, dsolve, Eq, Derivative, sin, cos, symbols
+from sympy.abc import x
+f = Function('f')
+dsolve(Eq(Derivative(f(x), x) + 2*x*f(x), 0), f(x))","1. We define a function f(x)
+2. We use dsolve to solve the differential equation
+3. We define the differential equation using Eq
+4. We define the derivative using Derivative
+5. We define the function f(x)",Correct,Automatic Zero-shot,"dy/dx+2xy=0
+
+y(x)=c*e^(-x^2)",Correct,"[3, 1, 7, 6, 22, 18, 25, 17, 4, 24, 8, 21, 11, 12, 5, 23, 20, 19, 14, 9, 10, 13, 16, 15]"
+3,Differential Equations,Linear First-Order Equations,"Find general solutions of the differential equations. If an initial condition is given, find the corresponding particular solution. Throughout, primes denote derivatives with respect to x. y' + y = 2, y(0) = 0","Find general solutions of the differential equations. If an initial condition is given, find the corresponding particular solution. Throughout, primes denote derivatives with respect to x. y' + y = 2, y(0) = 0",y(x) = 2(1-e^-x),"from sympy import Function, dsolve, Eq, Derivative, sin, cos, symbols
+from sympy.abc import x
+
+f = Function('f')
+
+eq = Eq(f(x).diff(x) + f(x), 2)
+
+sol = dsolve(eq)
+
+print(sol)
+
+eq1 = Eq(f(x).diff(x) + f(x), 2)
+
+sol1 = dsolve(eq1, f(x), ics={f(0): 0})
+
+print(sol1)","1. We define a function f(x)
+2. We define the differential equation
+3. We solve the differential equation
+4. We define the differential equation again, but this time we also define the initial condition
+5. We solve the differential equation with the initial condition",Correct,Automatic Zero-shot,f(x)=Ce^x+1,Incorrect,"[2, 1, 7, 6, 25, 22, 4, 18, 5, 17, 11, 21, 8, 12, 20, 24, 23, 19, 14, 13, 9, 10, 16, 15]"
+4,Differential Equations,Population Models,"Separate variables and use partial fractions to solve the initial value problems. Use either the exact solution or a computer-generated slope field to sketch the graphs of several solutions of the given differential equation, and highlight the indicated particular solution. f'(x)=3*f(x)(5-f(x)), f(0)=8","Using Sympy dsolve, solve f'(x)=3*f(x)(5-f(x)).
+Find the particular solution by substituting initial condition f(0)=8 into f'(x) and solve for C1.",x(t) = 40/(8-3e^-15t),"from sympy import *
+
+x = symbols('x')
+f = Function('f')
+
+# f'(x)=3*f(x)(5-f(x))
+eq = Eq(f(x).diff(x), 3*f(x)*(5-f(x)))
+
+# f(0)=8
+ics = {f(0): 8}
+
+# solve for C1
+sol = dsolve(eq, f(x), ics=ics)
+
+# particular solution
+part_sol = sol.subs({C1: symbols('C1')})
+
+# general solution
+gen_sol = sol.rhs
+
+print(f'particular solution: {part_sol}')
+print(f'general solution: {gen_sol}')","1. Solve f'(x)=3*f(x)(5-f(x)) for f(x)
+2. Find the particular solution by substituting initial condition f(0)=8 into f'(x) and solve for C1
+3. Substitute C1 into f(x) to get the particular solution
+4. Substitute C1 into f(x) to get the general solution",Correct,manual,"f'(x)=3*f(x)(5-f(x)), f(0)=8
+
+f(x)=8
+
+The particular solution is f(x)=8.",Incorrect,"[17, 7, 1, 3, 19, 5, 18, 22, 2, 20, 12, 13, 6, 23, 11, 21, 14, 10, 15, 25, 16, 9, 8, 24]"
+5,Differential Equations,Second Order Linear Equations,"A homogeneous second-order linear differential equation, two functions y1 and y2, and a pair of initial conditions are given. First verify that y1 and y2 are solutions of the differential equation. Then find a particular solution of the form y=c1*y1+c2*y2 that satisfies the given initial conditions. Primes denote derivatives with respect to x. y''+4y=0; y1=cos2x, y2=sin2x; y(0)=3,  y'(0)=8","A differential equation is f''(x)+4*f(x)=0.
+Let y1=cos(2*x) and y2=sin(2*x).
+Using Sympy, show that f(x)=c1*y1+c2*y2 is the solution.
+Substitute initial conditions f(0)=3 and f'(0)=8 to find C1 and C2.",y(x) = 3 cos2x + 4 sin 2x ,"import sympy as sp
+
+x = sp.Symbol('x')
+y1 = sp.cos(2*x)
+y2 = sp.sin(2*x)
+
+f = sp.Function('f')
+
+eq = sp.Eq(f(x).diff(x, 2) + 4*f(x), 0)
+
+sol = sp.dsolve(eq, f(x))
+
+print(sol)
+
+ics = {f(0): 3, f(x).diff(x).subs(x, 0): 8}
+
+print(sp.dsolve(eq, f(x), ics=ics))
+","1. Define the differential equation f''(x)+4*f(x)=0.
+2. Define y1=cos(2*x) and y2=sin(2*x).
+3. Define f(x)=c1*y1+c2*y2.
+4. Find the solution to the differential equation f''(x)+4*f(x)=0.
+5. Substitute initial conditions f(0)=3 and f'(0)=8 to find C1 and C2.",Correct,Automatic Zero-shot,"y1 and y2 are solutions of the differential equation.
+
+A particular solution of the form y=c1*y1+c2*y2 that satisfies the given initial conditions is y=3*cos2x+8*sin2x.",Incorrect,"[4, 3, 13, 19, 1, 2, 7, 15, 20, 17, 18, 6, 22, 11, 25, 10, 12, 14, 23, 16, 21, 8, 9, 24]"
+6,Differential Equations,Homogeneous Equations with Constant Coefficients,The problem pertains to the solution of differential equations with complex coefficients. Find a general solution of y'' − 2iy' + 3y = 0.,"Using Sympy, find a general solution of f''(x) − 2*i*f'(x) + 3*f(x) = 0",y(x) = c_1 * e ^{-ix} + c_2 * e^{3ix},"from sympy import *
+
+x = symbols('x')
+
+f = Function('f')
+
+eq = Eq(f(x).diff(x, x) - 2*I*f(x).diff(x) + 3*f(x), 0)
+
+sol = dsolve(eq)
+
+pprint(sol)","1. Declare symbols
+2. Create a function f(x)
+3. Create an equation f''(x) − 2*i*f'(x) + 3*f(x) = 0
+4. Solve the equation
+5. Print the solution",Correct,Automatic Zero-shot,y = c_1e^{3t} + c_2e^{-it},Correct,"[7, 1, 24, 22, 2, 3, 21, 12, 8, 20, 11, 18, 9, 23, 4, 17, 25, 19, 10, 5, 14, 16, 13, 15]"
+7,Differential Equations,Nonhomogeneous Equations and Undetermined Coefficients,Use the method of variation of parameters to find a particular solution of the given differential equation. f''(x) + 4*f(x) = cos(3*x),"Using Sympy, find the solution to the differential equation f''(x) + 4*f(x) = cos(3*x).
+Find a particular solution by substituting random values of C1 and C2.",y_p(x) = -1/5 cos 3x,"import sympy as sp
+
+x = sp.symbols('x')
+f = sp.Function('f')
+
+# Solve the differential equation
+sol = sp.dsolve(sp.diff(f(x), x, 2) + 4*f(x) - sp.cos(3*x))
+
+# Find the particular solution by substituting random values of C1 and C2
+C1, C2 = sp.symbols('C1 C2')
+part_sol = sol.subs([(C1, sp.randprime(1, 10)), (C2, sp.randprime(1, 10))])
+
+# Print the solution
+print(part_sol)","1. We define a function f(x) and the differential equation f''(x) + 4*f(x) = cos(3*x).
+2. We solve the differential equation using the sympy.dsolve function.
+3. We find the particular solution by substituting random values of C1 and C2.
+4. We print the solution.",Correct,Automatic Zero-shot,f(x) = (1/4)*cos(3*x) - (1/12)*sin(3*x),Incorrect,"[1, 6, 22, 11, 3, 2, 20, 4, 21, 18, 12, 17, 23, 8, 14, 10, 25, 9, 19, 5, 24, 13, 16, 15]"
+8,Differential Equations,Power Series,Find a power series solution of the given differential equation y' = y,"Using Sympy find solution to f'(x)-f(x)=0.
+Find the power series of the solution.",y(x) = c_0 e^x; p = +inf,"import sympy as sp
+
+x = sp.Symbol('x')
+f = sp.Function('f')
+
+eq = sp.Eq(f(x).diff(x)-f(x),0)
+
+sol = sp.dsolve(eq,f(x))
+
+print(sol)
+
+# Power series solution
+
+print(sol.rhs.series(x,0,10))","1. Define the function f(x)
+2. Define the equation f'(x)-f(x)=0
+3. Solve the equation for f(x)
+4. Find the power series of the solution",Correct,manual,y = c1e^x,Correct,"[24, 6, 1, 21, 7, 3, 2, 22, 12, 25, 11, 9, 18, 20, 23, 4, 17, 10, 5, 19, 14, 13, 16, 15]"
+9,Differential Equations,Laplace Transforms and Inverse Transforms,Find the inverse Laplace transforms of the function 3/(s-4),Find the inverse Laplace transforms of the function 3/(s-4),3*e**(4t),"from sympy import *
+from sympy.abc import s, t
+from sympy.integrals import inverse_laplace_transform
+from sympy.plotting import plot
+
+f = inverse_laplace_transform(3/(s-4), s, t)
+print(f)
+
+plot(f, (t, 0, 5))","1. First, we import the inverse_laplace_transform function from sympy.integrals.transforms.
+2. Next, we define the variable s and t.
+3. Then, we define the function F as the inverse_laplace_transform of 2/s**3, with respect to s, and t.
+4. Finally, we print the result.",Correct,Automatic Few-Shot (1),The inverse Laplace transform of 3/(s-4) is 3e^(4t).,Correct,"[21, 12, 22, 11, 23, 6, 7, 1, 18, 20, 24, 8, 25, 10, 3, 2, 4, 17, 14, 19, 5, 13, 16, 15]"
+10,Differential Equations,"Translation and Partial Functions
+","Suppose that m=1, k=9, c=0, and F(t)=6cos(3t). Use the inverse transform given in Eq. (16) to derive the solution x(t) = t sin(3t). Construct a figure that illustrates the resonance that occurs.","In a spring system, m=1, k=9, c=0. Add external force 6*cos(3*x).
+Use sympy dsolve with arg ics={f(0):0,f(x).diff(x).subs(x,0):0}.
+After everything is done, plot your solution.",Image,"import sympy as sp
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = sp.Symbol('x')
+f = sp.Function('f')
+
+m = 1
+k = 9
+c = 0
+
+# external force
+w = 6*sp.cos(3*x)
+
+# differential equation
+eq = sp.Eq(f(x).diff(x, x) + c*f(x).diff(x) + k*f(x), w)
+
+# solve differential equation
+sol = sp.dsolve(eq, f(x), ics={f(0):0, f(x).diff(x).subs(x,0):0})
+
+# convert sympy expression to numpy function
+f = sp.lambdify(x, sol.rhs, 'numpy')
+
+# plot
+x = np.linspace(0, 10, 100)
+plt.plot(x, f(x))
+plt.show()","1. Define a symbol x, a function f(x), and a differential equation f(x).diff(x, x) + c*f(x).diff(x) + k*f(x) = w.
+2. Solve the differential equation using dsolve.
+3. Convert the sympy expression to a numpy function.
+4. Plot the function.",Correct,manual,Not an image,Incorrect,"[20, 12, 7, 11, 21, 23, 1, 22, 18, 4, 6, 9, 19, 14, 3, 5, 16, 17, 2, 25, 13, 8, 24, 15]"
+11,Differential Equations,"Derivatives, Integrals and Products of Transforms",Find the Laplace transform of f(t)= t^2*cos(2*t),Find the laplace transform of f(t)= t**2*cos(2*t),"(2s^3 - 24s) / (s^2 + 4)^3 , s>0","from sympy import *
+from sympy.integrals import laplace_transform
+from sympy.abc import t,s,a
+
+y = laplace_transform(t**2*cos(2*t),t,s)
+print(y)","1. Importing the laplace_transform function from the sympy.integrals module
+2. Declaring the variable t, s, and a
+3. Defining the function f(t)
+4. Calling the laplace_transform function on f(t)
+5. Printing the result",Correct,Automatic Zero-shot,"The Laplace transform of f(t) is:
+
+F(s) = (s^2 + 4) / (s^4 + 8s^2 + 16)",Incorrect,"[23, 22, 21, 7, 12, 20, 1, 9, 6, 18, 3, 2, 10, 14, 17, 4, 8, 25, 19, 24, 5, 13, 16, 15]"
+12,Differential Equations,Periodic and Piecewise Continuous Input Functions,Find the inverse Laplace transform f (t) of each function given. Then sketch the graph of f . F(s) =  e^(-3s)/s^2.,"Use the inverse_laplace_transform to find original function from e**(-3*s)/s**2.
+Graph the solution.",f(t) = u(t-3) (t-3),"from sympy import *
+from sympy.abc import s, t
+from sympy.integrals import inverse_laplace_transform
+from sympy.plotting import plot
+
+f = inverse_laplace_transform(exp(-3*s)/s**2, s, t)
+print(f)
+
+plot(f, (t, 0, 5))","1. We import the inverse_laplace_transform function from sympy.integrals.
+2. We define the function f as the inverse_laplace_transform of e**(-3*s)/s**2.
+3. We print the function f.
+4. We plot the function f.",Correct,Automatic Zero-shot,f(t) = t^2*e^(-3t),Incorrect,"[21, 9, 22, 20, 11, 23, 6, 1, 7, 18, 10, 4, 3, 25, 8, 2, 24, 17, 19, 14, 5, 13, 16, 15]"
+13,Differential Equations,Euler's Method,"An initial value problem and its exact solution y(x ) are given. Apply Euler’ s method twice to approximate to this solution on the interval [0, 1/2], first with step size h = 0.25, then with step size h = 0.1. Compare the three-decimal-place values of the two approximations at x = 1/2 with the value y(1/2) of the actual solution. y'=y+1,y(0)=1;y(x)=2e**x−1","Apply the Euler's method to y'=y+1,y(0)=1;y(x)=2e**x−1 on interval [0,0.5] with step size 0.25 and step size 0.1. Compare the three-decimal-place values of the two approximations at x = 1/2 with the value y(1/2) of the actual solution. Do not plot.",Approximate values 2.125 and 2.221; true value 2.297,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x,y):
+    return y+1
+
+def euler(x0,y0,x,h):
+    n = int((x-x0)/h)
+    x = x0
+    y = y0
+    for i in range(1,n+1):
+        y = y + h*f(x,y)
+        x = x0 + i*h
+    return y
+
+def exact(x):
+    return 2*np.exp(x)-1
+
+x0 = 0
+y0 = 1
+x = 0.5
+h1 = 0.25
+h2 = 0.1
+
+y1 = euler(x0,y0,x,h1)
+y2 = euler(x0,y0,x,h2)
+y = exact(x)
+
+print(""y1 = "",y1)
+print(""y2 = "",y2)
+print(""y = "",y)","1. Define the function euler(x0,y0,h,x)
+2. Define the function exact(x0,y0,h,x)
+3. Define the variables x0,y0,h,x
+4. Apply the euler function to x0,y0,h,x
+5. Apply the exact function to x0,y0,h,x
+6. Plot the results",Correct,Automatic Zero-shot,"Euler's method with h=0.25:
+1.25,1.56,1.95,2.44
+
+Euler's method with h=0.1:
+1.1,1.21,1.331,1.4641
+
+The actual solution at x=1/2 is 1.46.",Incorrect,"[15, 5, 14, 4, 19, 17, 3, 1, 20, 18, 7, 22, 2, 12, 23, 10, 11, 16, 6, 21, 25, 9, 8, 24]"
+14,Differential Equations,Euler's Method,"Apply the improved Euler method to approximate this solution on the interval [0,0.5] with step size h = 0.1 to approximate the solution y'=−y for initial conditions y(0)=2 and y(x)=2e**(−x)","Use the improved Euler's method on interval [0, 0.5] with step size h = 0.1. 
+Approximate the solution y'=−y with the initial conditions y(0)=2 and y(x)=2*e**(−x).
+Do not cast n to an int when implementing improved Euler's method.
+Graph the approximated and actual values of y.",Image,"import numpy as np
+import matplotlib.pyplot as plt
+
+def improved_euler(f, x0, y0, h, xn):
+    x = np.arange(x0, xn+h, h)
+    y = np.zeros(len(x))
+    y[0] = y0
+    for i in range(1, len(x)):
+        y[i] = y[i-1] + h*f(x[i-1], y[i-1])
+        y[i] = y[i-1] + h*(f(x[i-1], y[i-1]) + f(x[i], y[i]))/2
+    return x, y
+
+def f(x, y):
+    return -y
+
+x0 = 0
+y0 = 2
+h = 0.1
+xn = 0.5
+
+x, y = improved_euler(f, x0, y0, h, xn)
+
+plt.plot(x, y, label='Improved Euler')
+plt.plot(x, 2*np.exp(-x), label='Actual')
+plt.legend()
+plt.show()","1. Create an array of x values from x0 to xn with step size h.
+2. Create an array of y values from y0 to yn with step size h.
+3. Set the first value of y to y0.
+4. Loop through the x values.
+5. At each x value, calculate the next y value using the improved Euler's method.
+6. Add the calculated y value to the y array.
+7. Return the x and y arrays.",Correct,manual,Not an image,Incorrect,"[13, 7, 11, 1, 22, 4, 20, 18, 3, 23, 17, 15, 19, 12, 10, 21, 6, 2, 5, 9, 25, 16, 8, 24]"
+15,Differential Equations,Runge-Kutta Method,"A hand-held calculator will suffice, where an initial value problem and its exact solution are given. Apply the Runge–Kutta method to approximate this solution on the interval [0, 0.5] with step size h = 0.25. Construct a table showing five-decimal-place values of the approximate solution and actual solution at the points x = 0.25 and 0.5. y'=y−x−1, and initial conditions y(0)=1;y(x)=2+x−e**x","Given equation of y'=y−x−1, and initial conditions y(0)=1;y(x)=2+x−e**x, print the exact solution for y(0.25) and y(0.5) without plotting. DO NOT PLOT. 
+Apply the Runge–Kutta method to approximate y(0.25) and also y(0.5). Use the interval [0, 0.5001]. Use step size 0.25.",Approximation to y(0.5) = 0:85130; True Value = 0:85128; Solution: y = -e^x + x + 2,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x,y):
+    return y-x-1
+
+def exact(x):
+    return 2+x-np.exp(x)
+
+def rk4(x,y,h):
+    k1 = h*f(x,y)
+    k2 = h*f(x+h/2,y+k1/2)
+    k3 = h*f(x+h/2,y+k2/2)
+    k4 = h*f(x+h,y+k3)
+    return y+(k1+2*k2+2*k3+k4)/6
+
+def main():
+    x = 0
+    y = 1
+    h = 0.25
+    x_list = [x]
+    y_list = [y]
+    while x<0.5:
+        y = rk4(x,y,h)
+        x = x+h
+        x_list.append(x)
+        y_list.append(y)
+    print(""Exact solution at x=0.25 is:"",exact(0.25))
+    print(""Exact solution at x=0.5 is:"",exact(0.5))
+    print(""Approximate solution at x=0.25 is:"",y_list[1])
+    print(""Approximate solution at x=0.5 is:"",y_list[2])
+
+if __name__ == ""__main__"":
+    main()","1. We define the function f(x,y) which is the differential equation.
+2. We define the exact solution function.
+3. We define the rk4 function which takes in the x,y and h values and returns the approximate solution.
+4. We define the main function which takes in the initial values of x and y and the step size h.
+5. We create a list of x and y values.
+6. We run a while loop which runs till x<0.5 and in each iteration we calculate the approximate solution using the rk4 function and append the x and y values to the list.
+7. We print the exact and approximate solutions at x=0.25 and x=0.5.",Correct,Automatic Zero-shot,"x        y        y'        k1        k2        k3        k4        y(i+1)
+y(0)=1
+0.25        1.5        0.5        0.5        1.25        1.875        2.0625        1.8125
+0.5        2.0625        1.0625        1.0625        2.3125        3.59375        3.90625        3.28125",Incorrect,"[13, 5, 19, 4, 14, 17, 3, 20, 7, 1, 18, 22, 23, 16, 2, 12, 10, 11, 6, 21, 25, 9, 8, 24]"
+16,Differential Equations,Runge-Kutta Method,"Suppose that a crossbow bolt is shot straight upward with initial velocity 288 ft/s. If its deceleration due to air resistance is (0.04)v, then its height x(t) satisfies the initial value problem x'' = −32 − (0.04)x'; x(0) = 0, x'(0) = 288. Find the maximum height that the bolt attains and the time required for it to reach this height.","Suppose that a crossbow bolt is shot straight upward with initial velocity 288 ft/s. If its deceleration due to air resistance is (0.04)v, then its height x(t) satisfies the initial value problem x'' = −32 − (0.04)x'; x(0) = 0, x'(0) = 288. Find the maximum height that the bolt attains and the time required for it to reach this height.","Runge-Kutta, h = 0.1: About 1050 ft/in or about 7.7s","import numpy as np
+import matplotlib.pyplot as plt
+
+def f(t, y):
+    return np.array([y[1], -32 - 0.04*y[1]])
+
+def rk4(f, t0, y0, t1, n):
+    h = (t1 - t0)/n
+    t = np.zeros(n+1)
+    y = np.zeros((n+1, 2))
+    t[0] = t0
+    y[0] = y0
+    for i in range(1, n+1):
+        k1 = h*f(t[i-1], y[i-1])
+        k2 = h*f(t[i-1] + h/2, y[i-1] + k1/2)
+        k3 = h*f(t[i-1] + h/2, y[i-1] + k2/2)
+        k4 = h*f(t[i-1] + h, y[i-1] + k3)
+        t[i] = t[i-1] + h
+        y[i] = y[i-1] + (k1 + 2*k2 + 2*k3 + k4)/6
+    return t, y
+
+t0 = 0
+y0 = np.array([0, 288])
+t1 = 10
+n = 1000
+
+t, y = rk4(f, t0, y0, t1, n)
+
+plt.plot(t, y[:,0])
+plt.show()
+
+print(""Maximum height:"", max(y[:,0]))
+print(""Time to reach maximum height:"", t[np.argmax(y[:,0])])","1. Define the function f(t, y) that returns the derivative of y.
+2. Define the Runge-Kutta 4th order method.
+3. Set the initial conditions.
+4. Run the RK4 method.
+5. Plot the results.
+6. Print the maximum height and the time to reach the maximum height.",Correct,Automatic Zero-shot,The maximum height that the bolt attains is 9600 ft and it reaches this height in 60 s.,Incorrect,"[4, 19, 20, 10, 1, 7, 5, 3, 12, 13, 6, 18, 22, 14, 11, 17, 23, 2, 21, 15, 25, 9, 8, 24]"
+17,Differential Equations,Equilibrium Solutions and Stability,Use a computer system or graphing calculator to plot a slope field and/or enough solution curves to indicate the stability or instability of each critical point of the given differential equation. dx/dt=(x**2-4)**2,"Use plt.streamplot to plot (x**2-4)**2. plt.streamplot(X, Y, Z, np.ones(X.shape)).
+Use Sympy to find the roots of (k**2-4)**2.",x' = (x^2 -4)^2,"import numpy as np
+import matplotlib.pyplot as plt
+import sympy as sp
+
+x, y = sp.symbols('x y')
+
+k = sp.symbols('k')
+
+f = (k**2-4)**2
+
+roots = sp.solve(f, k)
+
+print(roots)
+
+X, Y = np.meshgrid(np.linspace(-5, 5, 100), np.linspace(-5, 5, 100))
+
+Z = (X**2-4)**2
+
+plt.streamplot(X, Y, Z, np.ones(X.shape))
+
+plt.show()","1. We create a grid of x and y values.
+2. We create a function f(x, y) = (x**2-4)**2.
+3. We find the roots of f(x, y) = 0.
+4. We plot the function f(x, y) = 0.
+5. We plot the roots of f(x, y) = 0.",Correct,manual,"The critical points are at (2,0) and (-2,0).
+
+The slope field and solution curves indicate that the critical point at (2,0) is unstable, while the critical point at (-2,0) is stable.",Incorrect,"[4, 18, 19, 7, 1, 22, 2, 3, 20, 11, 6, 23, 12, 21, 14, 13, 5, 25, 15, 10, 8, 9, 16, 24]"
+18,Differential Equations,Stability and the Phase Plane,"Find the critical point or points of the given autonomous system. dx/dt=2*x-y, dy/dt=x-3y","dx/dt=2*x-y, dy/dt=x-3y
+Use Sympy to print the critical points.
+Afterwards, plot dx/dt=2*x-y, dy/dt=x-3y using streamplot","Saddle point: (0,0)","import sympy as sp
+import matplotlib.pyplot as plt
+import numpy as np
+
+x, y = sp.symbols('x y')
+
+f1 = 2*x - y
+f2 = x - 3*y
+
+critical_points = sp.solve([f1, f2], [x, y])
+print(critical_points)
+
+x_range = np.linspace(-5, 5, 100)
+y_range = np.linspace(-5, 5, 100)
+
+x_mesh, y_mesh = np.meshgrid(x_range, y_range)
+
+dx = 2*x_mesh - y_mesh
+dy = x_mesh - 3*y_mesh
+
+plt.streamplot(x_mesh, y_mesh, dx, dy)
+plt.show()","1. We create a grid of x and y values.
+2. We create a function for dx/dt and dy/dt.
+3. We plot dx/dt and dy/dt.
+4. We find the critical points.
+5. We plot the critical points.",Correct,manual,"The critical point is (0,0).",Correct,"[19, 1, 17, 22, 7, 3, 12, 2, 4, 23, 21, 11, 20, 6, 9, 25, 10, 14, 8, 5, 24, 13, 16, 15]"
+19,Differential Equations,Linear Systems,"The problem has a single critical point (x0, y0). Classify this critical point as to type and stability. Verify your conclusion by using a computer system or graphing calculator to construct a phase portrait for the given system.  x'(x,y)=x−2y and y'(x,y)=3x−4y-2","Find the jacobian of x'(x,y)=x−2y and y'(x,y)=3x−4y-2 with sp.diff(f, x), sp.diff(f, y), sp.diff(g, x), sp.diff(g, y).
+Use all([sp.re(eigenvalue)<0 for eigenvalue in eigenvalues.keys()]).
+Use streamplot to plot x'(x,y)=x−2y and y'(x,y)=3x−4y-2.","Asymptotically stable node: (2,1)","import sympy as sp
+import numpy as np
+import matplotlib.pyplot as plt
+
+x, y = sp.symbols('x y')
+
+f = x - 2*y
+g = 3*x - 4*y - 2
+
+dfdx = sp.diff(f, x)
+dfdy = sp.diff(f, y)
+dgdx = sp.diff(g, x)
+dgdy = sp.diff(g, y)
+
+jacobian = sp.Matrix([[dfdx, dfdy], [dgdx, dgdy]])
+
+eigenvalues = jacobian.eigenvals()
+
+print(all([sp.re(eigenvalue) < 0 for eigenvalue in eigenvalues.keys()]))
+
+x_range = np.arange(-5, 5, 0.1)
+y_range = np.arange(-5, 5, 0.1)
+
+x_mesh, y_mesh = np.meshgrid(x_range, y_range)
+
+x_dot = x_mesh - 2*y_mesh
+y_dot = 3*x_mesh - 4*y_mesh - 2
+
+plt.streamplot(x_mesh, y_mesh, x_dot, y_dot)
+plt.show()","1. Define the function f(x,y) = x−2y and g(x,y) = 3x−4y−2.
+2. Find the jacobian of f(x,y) and g(x,y) with respect to x and y.
+3. Find the eigenvalues of the jacobian.
+4. Use all([sp.re(eigenvalue)<0 for eigenvalue in eigenvalues.keys()]).
+5. Use streamplot to plot x'(x,y)=x−2y and y'(x,y)=3x−4y−2.",Correct,manual,"The critical point is (0,0). By Theorem 2, this critical point is a saddle point. This can be verified by constructing a phase portrait for the given system, which is shown below.",Incorrect,"[18, 17, 4, 5, 1, 20, 13, 7, 3, 22, 6, 12, 15, 2, 11, 23, 14, 21, 10, 16, 25, 9, 8, 24]"
+20,Differential Equations,Fourier Systems,"Sketch the graph of the function f defined for all t by the given formula, and determine whether it is periodic. If so, find its smallest period. f(t)=sin(3t)",Calculate the period of f(t)=sin(3t) and plot it.,Period: 2pi/3,"import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.linspace(0, 2*np.pi, 1000)
+f = np.sin(3*t)
+
+plt.plot(t, f)
+plt.show()
+
+# Calculate the period
+period = 2*np.pi/3
+print('The period is', period)","1. We create a time array from 0 to 2π.
+2. We create a function array f(t) = sin(3t).
+3. We plot the function.
+4. We calculate the period of the function.
+5. We print the period.
+",Correct,Automatic Zero-shot,The graph of the function is periodic with a smallest period of 2π/3.,Correct,"[12, 7, 11, 1, 10, 22, 23, 6, 21, 18, 4, 19, 3, 9, 17, 14, 2, 5, 25, 8, 13, 16, 24, 15]"
+21,Differential Equations,Transformation of Initial Value Problems,Find the inverse Laplace transform of 1/(s*(s-3)),Find the inverse Laplace transform of 1/(s*(s-3)),(exp(3*t) - 1)*Heaviside(t)/3,"from sympy import inverse_laplace_transform, symbols, simplify
+from sympy.abc import s, t
+
+F = inverse_laplace_transform(1/(s*(s-3)), s, t)
+print(F)","1. We are importing the inverse_laplace_transform function from the sympy module.
+2. We are importing the symbols function from the sympy module.
+3. We are importing the simplify function from the sympy module.
+4. We are importing the abc module from the sympy module.
+5. We are creating a variable called F and assigning it the value of the inverse_laplace_transform function.
+6. We are passing the following arguments to the inverse_laplace_transform function:
+    1. 1/(s*(s-3))
+    2. s
+    3. t
+7. We are printing the value of F.",Correct,Automatic Few-Shot (1),The inverse Laplace transform of 1/(s*(s-3)) is e^(3t)-e^(st).,Incorrect,"[9, 22, 12, 11, 23, 6, 7, 1, 8, 20, 18, 24, 3, 2, 25, 10, 4, 17, 19, 14, 5, 13, 16, 15]"
+22,Differential Equations,Translation and Partial Fractions,Use partial fractions to find the inverse Laplace transforms of the function (2*s**3-s**2)/(4*s**2-4*s+5)**2,Use partial fractions to find the inverse Laplace transforms of the function (2*s**3-s**2)/(4*s**2-4*s+5)**2,1/64 e^(t/2)[(4t +8)cost +(4−3t)sint],"from sympy import inverse_laplace_transform, symbols, simplify
+from sympy.abc import s, t
+
+F = inverse_laplace_transform((2*s**3-s**2)/(4*s**2-4*s+5)**2, s, t)
+print(F)","1. We import the inverse_laplace_transform function from the sympy module.
+2. We import the symbols function from the sympy module.
+3. We import the simplify function from the sympy module.
+4. We import the s and t variables from the sympy.abc module.
+5. We define the function F to be the inverse Laplace transform of the function 1/(s*(s-3)).
+6. We print the function F.",Correct,Automatic Few-Shot (1),"(2*s**3-s**2)/(4*s**2-4*s+5)**2
+
+= (2*s**3-s**2)/((2*s-1)**2+4)
+
+= (2*s**3-s**2)/((2*s-1-2i)(2*s-1+2i))
+
+= (2*s**3-s**2)/((2*s-1)**2-4)
+
+= (2*s**3-s**2)/((2*s-1)**2-4)
+
+= (2*s**3-s**2)/((2*s-1)**2-4)
+
+= (2*s**3-s**2)/((2*s-1)**2-4)
+
+= (2*s**3-s**2)/((2*s-1)**2-4)
+
+= (2*s**3-s**2)/((2*s-1)**2-4)
+
+= (2*s**3-s**2)/",Incorrect,"[21, 11, 12, 7, 6, 23, 9, 1, 18, 3, 2, 20, 17, 4, 8, 24, 14, 10, 19, 25, 5, 13, 16, 15]"
+23,Differential Equations,"Derivatives, Integrals, and Products of Transforms",Find the Laplace transform of f(t). t**2*cos(2*t),Find the Laplace transform of f(t). t**2*cos(2*t),"6s/(s^2 +9)^2,s >0","from sympy import laplace_transform, cos, exp, symbols
+from sympy.abc import s, t
+
+f = t**2*cos(2*t)
+F = laplace_transform(f, t, s)
+print(F)","1. We import the laplace_transform function from the sympy module.
+2. We import the cos function from the sympy module.
+3. We import the exp function from the sympy module.
+4. We import the symbols function from the sympy module.
+5. We import the abc module from the sympy module.
+6. We define the function f(t) = t**2*cos(2*t).
+7. We find the Laplace transform of f(t) with respect to t.
+8. We print the Laplace transform of f(t).",Correct,Automatic Zero-shot,"15. L{t**2*cos(2*t)} = (s**2 + 4) / (s**4 + 8*s**2 + 16)
+",Incorrect,"[11, 22, 21, 12, 7, 20, 9, 18, 1, 6, 3, 25, 4, 10, 17, 2, 14, 19, 8, 5, 24, 13, 16, 15]"
+24,Differential Equations,Homogeneous Equations with Constant Coefficients,Find a general solution of y′′ − 2iy′ + 3y = 0.,Find a general solution of y′′ − 2iy′ + 3y = 0.,y(x)=c_1e^(−ix) +c_2*e^(3ix),"import sympy
+from sympy import I
+
+x = sympy.Symbol('x')
+y = sympy.Function('y')
+
+eq = y(x).diff(x, 2) - 2*I*y(x).diff(x) + 3*y(x)
+
+sol = sympy.dsolve(eq, y(x))
+
+print(sol)","1. We import the sympy module.
+2. We import the imaginary unit I from the sympy module.
+3. We create a symbolic variable x.
+4. We create a symbolic function y.
+5. We create a symbolic equation eq.
+6. We solve the equation eq for y(x).
+7. We print the solution.",Correct,Automatic Zero-shot,y = c1e3t + c2e−3t,Correct,"[6, 8, 1, 21, 2, 3, 22, 7, 9, 12, 11, 18, 20, 25, 23, 4, 17, 19, 10, 5, 14, 13, 16, 15]"
+25,Differential Equations,Differential Equations and Mathematical Models,"Verify by substitution that each given function is a solution of the given differential equation. Throughout these problems, primes denote derivatives with respect to x. Show that the derivative of x**3+7 is 3*x**2","Verify by substitution that each given function is a solution of the given differential equation. Throughout these problems, primes denote derivatives with respect to x. Show that the derivative of x**3+7 is 3*x**2",y' = 3x**2,"from sympy import *
+
+x = Symbol('x')
+
+f = x**3 + 7
+
+f_prime = diff(f, x)
+
+print(f_prime)","1. We import the sympy library.
+2. We create a symbol x.
+3. We create a function f.
+4. We take the derivative of f with respect to x.
+5. We print the derivative.",Correct,Automatic Zero-shot,"y = x2 + 1; y′ = 2x + 0 = 2x
+
+y′ = 2x",Incorrect,"[3, 2, 7, 12, 21, 1, 18, 23, 8, 6, 11, 22, 9, 20, 4, 17, 5, 19, 24, 10, 14, 13, 16, 15]"

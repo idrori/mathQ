@@ -1,0 +1,749 @@
+Id,Course,Topic,Original Problem,Codex Input,Solution,Codex Code,Codex Code Explanation,Output Evaluation,Solution Type,GPT-3 Response,GPT-3 Evaluation,Nearest Questions
+1,Mathematics for Computer Science,Number Theory,"Find the multiplicative inverse of 17 modulo 72 in the range {0, 1, . . . , 71}.",Find the multiplicative inverse of 17 mod 72.,17,"def multiplicative_inverse(a, b):
+    """"""
+    Find the multiplicative inverse of a mod b.
+    """"""
+    for i in range(1, b):
+        if (a * i) % b == 1:
+            return i
+    return None
+
+print(multiplicative_inverse(17, 72))","1. It's iterating through the range of 1 to b.
+2. It's checking if a * i % b == 1.
+3. If it is, it returns i.
+4. If it isn't, it returns None.",Correct,Automatic Zero-shot,"for i in range(72):
+    if (17 * I) % 72 == 1:
+        print(I)
+        break",Incorrect,"[2, 27, 4, 15, 20, 28, 8, 10, 11, 24, 14, 9, 16, 25, 5, 22, 7, 3, 6, 13, 17, 26, 23, 19, 18, 21, 12]"
+2,Mathematics for Computer Science,Number Theory,"Find a number x ∈ {0, 1, . . . , 112} such that 11x ≡ 1 (mod 113).","Find a number x ∈ {0, 1, . . . , 112} such that 11x ≡ 1 (mod 113).",72,"def find_x(n):
+    for x in range(n):
+        if (11*x) % n == 1:
+            return x
+    return None
+
+print(find_x(113))","1. It's iterating through all the numbers from 0 to 112.
+2. For each number, it's checking if 11x ≡ 1 (mod 113).
+3. If it finds a number that satisfies the equation, it returns that number.
+4. If it doesn't find a number that satisfies the equation, it returns None.",Correct,Automatic Zero-shot,"for i in range(113):
+    if 11 * i % 113 == 1:
+        print(i)
+        break",Correct,"[1, 27, 28, 15, 24, 4, 20, 8, 10, 11, 14, 25, 9, 16, 22, 5, 6, 7, 3, 17, 13, 26, 19, 23, 18, 21, 12]"
+3,Mathematics for Computer Science,Probability,"Finalphobia is a rare disease in which the victim has the delusion that he or she is being subjected to an intense mathematical examination. A person selected uniformly at random has finalphobia with probability 1/100. A person with finalphobia has shaky hands with probability 9/10. A person without finalphobia has shaky hands with probability 1/20. What is the probablility that a person selected uniformly at random has finalphobia, given that he or she has shaky hands? ","Finalphobia is a rare disease in which the victim has the delusion that he or she is being subjected to an intense mathematical examination. A person selected uniformly at random has finalphobia with probability 1/100. A person with finalphobia has shaky hands with probability 9/10. A person without finalphobia has shaky hands with probability 1/20. What is the probablility that a person selected uniformly at random has finalphobia, given that he or she has shaky hands?",18/117,"def find_solution():
+  """"""
+  Finalphobia is a rare disease in which the victim has the delusion that he or she is being subjected to an intense mathematical examination. A person selected uniformly at random has finalphobia with probability 1/100. A person with finalphobia has shaky hands with probability 9/10. A person without finalphobia has shaky hands with probability 1/20. What is the probablility that a person selected uniformly at random has finalphobia, given that he or she has shaky hands?
+  """"""
+  p_f = 1/100
+  p_s = 9/10
+  p_n = 1/20
+  p_f_s = p_f * p_s / (p_f * p_s + p_n * (1 - p_s))
+  return p_f_s","1. We are given the probability of having finalphobia, p_f, and the probability of having shaky hands, p_s.
+2. We are also given the probability of not having finalphobia, 1 - p_f, and the probability of having shaky hands, p_n.
+3. We want to find the probability of having finalphobia, given that we have shaky hands.
+4. We can use Bayes' Theorem to find this probability.
+5. Bayes' Theorem states that P(A|B) = P(B|A) * P(A) / P(B).
+6. We can use this to find the probability of having finalphobia, given that we have shaky hands.
+7. We can find P(B) by adding the probabilities of having shaky hands, given that we have finalphobia and given that we don't have finalphobia.
+8. We can then plug these values into Bayes' Theorem to find the probability of having finalphobia, given that we have shaky hands.",Correct,Automatic Few-shot,"# P(F|S) = P(S|F)P(F)/P(S)
+# P(S) = P(S|F)P(F) + P(S|~F)P(~F)
+# P(S) = 9/10*1/100 + 1/20*(1-1/100)
+# P(S) = 9/1000 + 1/20 - 1/2000
+# P(S) = 91/5000
+# P(F|S) = 9/10*1/100/91/5000
+# P(F|S) = 10/91",Incorrect,"[11, 7, 10, 9, 23, 5, 4, 6, 16, 8, 24, 26, 22, 15, 20, 18, 19, 2, 1, 27, 14, 21, 17, 13, 12, 28, 25]"
+4,Mathematics for Computer Science,Probability,Suppose that you roll five 6-sided dice that are fair and mutually independent. What is the probability that all five dice show different values?,You roll five 6-sided fair dice and mutually independent. Write a program to compute the probability that all five dice show different values.,120/1296,"import random
+
+def roll_dice():
+    return random.randint(1, 6)
+
+def roll_all_dice():
+    return [roll_dice() for _ in range(5)]
+
+def all_different(dice):
+    return len(set(dice)) == 5
+
+def main():
+    n_trials = 100000
+    n_success = 0
+    for _ in range(n_trials):
+        if all_different(roll_all_dice()):
+            n_success += 1
+    print(n_success / n_trials)
+
+if __name__ == '__main__':
+    main()","1. We define a function roll_dice() that returns a random integer between 1 and 6.
+2. We define a function roll_all_dice() that returns a list of five random integers between 1 and 6.
+3. We define a function all_different() that takes a list of integers and returns True if all the integers are different and False otherwise.
+4. We define a function main() that does the following:
+    a. It sets n_trials to 100000.
+    b. It sets n_success to 0.
+    c. It loops n_trials times, each time doing the following:
+        i. It rolls all five dice.
+        ii. If all five dice show different values, it increments n_success by 1.
+    d. It prints the fraction of trials that were successful.
+5. We call main().",Correct,Automatic Zero-shot,# The probability of all five dice showing different values is 1/6^5.,Incorrect,"[8, 15, 20, 16, 24, 10, 11, 1, 2, 14, 9, 27, 7, 6, 3, 5, 28, 22, 26, 25, 13, 17, 19, 18, 23, 21, 12]"
+5,Mathematics for Computer Science,Probability,MIT students sometimes delay laundry for a few days. Assume all random values described below are mutually independent. A busy student must complete 3 problem sets before doing laundry. Each problem set requires 1 day with probability 2/3 and 2 days with probability 1/3. Let B be the number of days a busy student delays laundry. What is Ex (B)?  ,MIT students sometimes delay laundry for a few days. Assume all random values described below are mutually independent. Days for illness recovery is u=a*b where a and b are independent dice rolls. What's the expected value of u? ,4,"import numpy as np
+
+a = np.random.randint(1,7,size=100000)
+b = np.random.randint(1,7,size=100000)
+
+u = a*b
+
+print(np.mean(u))","1. Generate 100000 random numbers between 1 and 6.
+2. Multiply each of these numbers by another 100000 random numbers between 1 and 6.
+3. Take the mean of the resulting 100000 numbers.",Correct,Automatic Zero-shot,"# Let X be the number of days a problem set takes to complete.
+# Then, X ~ Bernoulli(2/3)
+# Let B be the number of days a busy student delays laundry.
+# Then, B = X + Y + Z, where X, Y, and Z are independent and identically distributed.
+# Therefore, B ~ Binomial(3, 2/3)
+# Ex(B) = 3(2/3) = 2",Incorrect,"[7, 6, 11, 9, 10, 3, 4, 8, 24, 26, 22, 15, 18, 16, 20, 21, 14, 2, 1, 12, 23, 19, 13, 27, 17, 28, 25]"
+6,Mathematics for Computer Science,Probability,"MIT students sometimes delay laundry for a few days. Assume all random values described below are mutually independent. A relaxed student rolls a fair, 6-sided die in the morning. If he rolls a 1, then he does his laundry immediately (with zero days of delay). Otherwise, he delays for one day and repeats the experiment the following morning. Let R be the number of days a relaxed student delays laundry. What is Ex (R)? ","Roll the 6 sided dice infinitely if you don't get a 1. Don't count the first dice roll toward days, so remember to subtract the right value from return days. return days-1. Roll infinitely until you encounter a 1. Write a program to compute the expected value for number of rolls until 1 is encountered?",5,"import random
+
+def dice_roll():
+    return random.randint(1,6)
+
+def roll_until_one():
+    days = 0
+    while True:
+        days += 1
+        if dice_roll() == 1:
+            return days-1
+
+def expected_rolls():
+    total_days = 0
+    for i in range(1000000):
+        total_days += roll_until_one()
+    return total_days/1000000
+
+print(expected_rolls())","1. We define a function that rolls a dice and returns a random number between 1 and 6.
+2. We define a function that rolls a dice until it gets a 1. It returns the number of days it took to get a 1.
+3. We define a function that rolls a dice until it gets a 1, 1,000,000 times. It returns the average number of days it took to get a 1.",Correct,Automatic Zero-shot,#Expected value of R is 6.,Incorrect,"[7, 5, 9, 11, 10, 4, 8, 3, 24, 26, 18, 15, 20, 22, 16, 21, 2, 12, 23, 14, 1, 19, 13, 17, 27, 28, 25]"
+7,Mathematics for Computer Science,Probability,"MIT students sometimes delay laundry for a few days. Assume all random values described below are mutually independent. Before doing laundry, an unlucky student must recover from illness for a number of days equal to the product of the numbers rolled on two fair, 6-sided dice. Let U be the expected number of days an unlucky student delays laundry. What is Ex (U)? ",Roll the 2 x 6-sided dice. The product of the two dice is number of days. What is the expected value for number of days?,49/4,"import random
+
+def roll_dice():
+    return random.randint(1,6), random.randint(1,6)
+
+def expected_value(n):
+    total = 0
+    for i in range(n):
+        total += roll_dice()[0] * roll_dice()[1]
+    return total / n
+
+print(expected_value(1000000))","1. It's rolling two dice and multiplying the results.
+2. It's doing this a million times.
+3. It's adding up all the results.
+4. It's dividing by a million to get the average.",Correct,Automatic Zero-shot,#Expected value of the product of two dice is 7.,Incorrect,"[5, 6, 11, 10, 3, 9, 4, 8, 26, 24, 18, 16, 22, 15, 20, 21, 23, 12, 14, 2, 1, 19, 27, 13, 17, 28, 25]"
+8,Mathematics for Computer Science,Probability,"I have twelve cards: 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6. I shuffle them and deal them in a row. What is the expected number of adjacent pairs with the same value?","I have twelve cards: 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6. 
+I shuffle them and deal them in a row. Write a program that computes the average number of adjacent pairs with the same value over 10000 runs",1,"import random
+
+def run_simulation():
+    cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
+    random.shuffle(cards)
+    count = 0
+    for i in range(len(cards) - 1):
+        if cards[i] == cards[i + 1]:
+            count += 1
+    return count
+
+def main():
+    total = 0
+    for i in range(10000):
+        total += run_simulation()
+    print(total / 10000)
+
+if __name__ == ""__main__"":
+    main()","1. We create a list of cards.
+2. We shuffle the cards.
+3. We count the number of adjacent pairs with the same value.
+4. We repeat steps 2 and 3 10000 times.
+5. We divide the total number of adjacent pairs by 10000 to get the expected value.",Correct,Automatic Zero-shot,# The expected number of adjacent pairs with the same value is 3.,Incorrect,"[20, 4, 16, 15, 24, 10, 11, 9, 2, 14, 1, 6, 5, 7, 27, 28, 3, 17, 13, 22, 26, 21, 25, 12, 18, 19, 23]"
+9,Mathematics for Computer Science,Probability,"Scores for a final exam are given by picking an integer uniformly at random from the set {50, 51, . . . , 97, 98}. The scores of all 128 students in the class are assigned in this manner. Let S1, . . . , S128 be their scores. For i ∈ {1, . . . , 128}, what is E[Si] ? ","Scores for a final exam are given by picking an integer uniformly at random from the set {50, 51, . . . , 97, 98}. 
+The scores of 128 students in a class are assigned in this manner. Write a program to compute the mean score?",74,"import random
+
+def mean(n):
+    sum = 0
+    for i in range(n):
+        sum += random.randint(50, 98)
+    return sum/n
+
+print(mean(128))","1. It's creating a function called mean that takes in a parameter n.
+2. It's creating a variable called sum and setting it equal to 0.
+3. It's creating a for loop that iterates n times.
+4. It's adding a random integer between 50 and 98 to the sum variable.
+5. It's returning the sum divided by n.
+6. It's calling the mean function with 128 as the parameter.
+7. It's printing the result.",Correct,Automatic Zero-shot,# E[Si] = (50 + 97)/2 = 73.5,Correct,"[10, 11, 8, 24, 5, 6, 4, 7, 3, 20, 15, 16, 1, 2, 22, 13, 18, 14, 27, 26, 17, 28, 23, 19, 21, 12, 25]"
+10,Mathematics for Computer Science,Probability,"Scores for a final exam are given by picking an integer uniformly at random from the set {50, 51, . . . , 97, 98}. The scores of all 128 students in the class are assigned independently in this manner. Let S1, . . . , S128 be their scores. Find Var(Si).","Scores for a final exam are given by picking an integer uniformly at random from the set {50, 51, . . . , 97, 98}. 
+The scores of 128 students in a class are assigned independently in this manner. Write a program to compute the variance of the score.",200,"import numpy as np
+
+def compute_variance(n):
+    scores = np.random.randint(50, 99, n)
+    return np.var(scores)
+
+print(compute_variance(128))","1. Generate 128 random integers between 50 and 98.
+2. Compute the variance of the 128 random integers.",Correct,Automatic Zero-shot,"# We can use the fact that the variance of a uniform distribution is 1/12.
+# So the variance of each student's score is 1/12.
+# So the variance of the sum of the scores is 128*1/12 = 16.",Incorrect,"[11, 9, 24, 8, 4, 5, 20, 7, 6, 15, 1, 3, 2, 16, 27, 18, 22, 14, 26, 13, 28, 17, 19, 23, 21, 12, 25]"
+11,Mathematics for Computer Science,Probability,"Scores for a final exam are given by picking an integer uniformly at random from the set {50, 51, . . . , 97, 98}. The scores of all 128 students in the class are assigned independently in this manner. Let S be the average of their scores. Find Var(S).","Write a function that uniformly samples 128 scores from {50,52 ... 98} and finds the mean of that sample. 
+Then write a function that loops 100000 times and finds np.var of the samples.",25/16,"def sample_mean(n):
+    return np.mean(np.random.choice(range(50,99), n))
+
+def sample_var(n):
+    return np.var([sample_mean(n) for i in range(100000)])
+
+print(sample_var(128))","1. sample_mean(n) returns the mean of n random integers between 50 and 98.
+2. sample_var(n) returns the variance of 100000 sample means of n random integers between 50 and 98.",Correct,Automatic Few-shot,"# Var(S) = E(S^2) - E(S)^2
+# E(S^2) = sum(i^2*P(i))
+# E(S) = sum(i*P(i))I
+# P(i)I = 1/49
+
+E_S = sum([i*1/49 for i in range(50, 99)])
+E_S2 = sum([i**2*1/49 for i in range(50, 99)])
+
+Var_S = E_S2 - E_S**2
+print(Var_S)",Incorrect,"[10, 9, 8, 24, 4, 5, 7, 6, 20, 3, 15, 16, 1, 2, 18, 27, 22, 26, 14, 13, 17, 28, 19, 21, 23, 12, 25]"
+12,Mathematics for Computer Science,Probability,"Three 6.042 students—Kirari, Noelle, and Cobeni—are playing a game of Tan Tan Taan!. During each round of Tan Tan Taan!, each player is dealt 4 cards of their own, and one additional card is shared among all players, so that each player has 5 cards that they can use (the 4 cards of their own along with the single shared card). Cards are uniformly distributed from a 52-card deck. If you get four of a kind (for example, four aces or four 2’s), you can continue playing in the next round. If you don’t get four of a kind, you must quit and return to doing your 6.042 homework. Cards from round to round are mutually independent. This game is so fun that even if two of the three players must quit and return to their 6.042 homework, the third player will continue playing alone as long as they are able to. What is the expected number of rounds that Kirari will play?",Calculate the probability a 5 card hand has 4 of a kind.,1/(1-624/(52!/5!/47!)),"import random
+
+def main():
+    """"""
+    Calculate the probability a 5 card hand has 4 of a kind.
+    """"""
+    deck = create_deck()
+    five_card_hands = create_five_card_hands(deck)
+    four_of_a_kind_hands = get_four_of_a_kind_hands(five_card_hands)
+    probability = get_probability(five_card_hands, four_of_a_kind_hands)
+    print(probability)
+
+def create_deck():
+    """"""
+    Create a deck of 52 cards.
+    """"""
+    deck = []
+    for rank in range(2, 15):
+        for suit in ['C', 'D', 'H', 'S']:
+            deck.append((rank, suit))
+    return deck
+
+def create_five_card_hands(deck):
+    """"""
+    Create a list of all possible 5 card hands from a deck.
+    """"""
+    five_card_hands = []
+    for i in range(len(deck)):
+        for j in range(i + 1, len(deck)):
+            for k in range(j + 1, len(deck)):
+                for l in range(k + 1, len(deck)):
+                    for m in range(l + 1, len(deck)):
+                        five_card_hands.append([deck[i], deck[j], deck[k], deck[l], deck[m]])
+    return five_card_hands
+
+def get_four_of_a_kind_hands(five_card_hands):
+    """"""
+    Get all the hands that have 4 of a kind.
+    """"""
+    four_of_a_kind_hands = []
+    for hand in five_card_hands:
+        if is_four_of_a_kind(hand):
+            four_of_a_kind_hands.append(hand)
+    return four_of_a_kind_hands
+
+def is_four_of_a_kind(hand):
+    """"""
+    Check if a hand has 4 of a kind.
+    """"""
+    ranks = [card[0] for card in hand]
+    for rank in ranks:
+        if ranks.count(rank) == 4:
+            return True
+    return False
+
+def get_probability(five_card_hands, four_of_a_kind_hands):
+    """"""
+    Get the probability a 5 card hand has 4 of a kind.
+    """"""
+    probability = len(four_of_a_kind_hands) / len(five_card_hands)
+    return probability
+
+if __name__ == '__main__':
+    main()","1. Create a deck of 52 cards.
+
+The deck is created by creating a list of 52 tuples, each tuple representing a card. The first element of the tuple is the rank of the card, and the second element is the suit of the card.
+
+2. Create a list of all possible 5 card hands from a deck.
+
+The list of all possible 5 card hands is created by iterating through the deck, and for each iteration, iterating through the rest of the deck to create a second card, then iterating through the rest of the deck to create a third card, and so on.
+
+3. Get all the hands that have 4 of a kind.
+
+The hands that have 4 of a kind are determined by iterating through the list of all possible 5 card hands, and checking if the hand has 4 of a kind.
+
+4. Get the probability a 5 card hand has 4 of a kind.
+
+The probability a 5 card hand has 4 of a kind is the number of hands that have 4 of a kind divided by the total number of possible 5 card hands.",Correct,Automatic Zero-shot,# Kirari's expected number of rounds is 1.,Incorrect,"[21, 18, 26, 5, 7, 16, 6, 8, 19, 11, 10, 22, 3, 9, 4, 23, 24, 20, 14, 15, 17, 2, 13, 1, 27, 28, 25]"
+13,Mathematics for Computer Science,Graph Theory,"What is the diameter of the following graph? graph = {'A': ['B'], B': ['A', 'C', 'H'], C': ['B', 'D', 'E'], D': ['C', 'E'], E': ['C', 'D', 'F', 'H'], F': ['E', 'G'], G': ['F'], H': ['B', 'E']}","What is the diameter of the following graph? The starting node doesn't count towards length so subtract 1 from the final answer. graph = {'A': ['B'], B': ['A', 'C', 'H'], C': ['B', 'D', 'E'], D': ['C', 'E'], E': ['C', 'D', 'F', 'H'], F': ['E', 'G'], G': ['F'], H': ['B', 'E']}. Remember to define the shortest path function. Use python3.",5,"def shortest_path(graph, start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return path
+    if not start in graph:
+        return None
+    shortest = None
+    for node in graph[start]:
+        if node not in path:
+            newpath = shortest_path(graph, node, end, path)
+            if newpath:
+                if not shortest or len(newpath) < len(shortest):
+                    shortest = newpath
+    return shortest
+
+def diameter(graph):
+    diameter = 0
+    for node in graph:
+        for node2 in graph:
+            if node != node2:
+                path = shortest_path(graph, node, node2)
+                if path:
+                    if len(path) > diameter:
+                        diameter = len(path) - 1
+    return diameter
+
+graph = {'A': ['B'], 'B': ['A', 'C', 'H'], 'C': ['B', 'D', 'E'], 'D': ['C', 'E'], 'E': ['C', 'D', 'F', 'H'], 'F': ['E', 'G'], 'G': ['F'], 'H': ['B', 'E']}
+print(diameter(graph))","1. It's creating a graph with 8 nodes and 9 edges.
+2. It's finding the shortest path between each pair of nodes.
+3. It's finding the longest shortest path.
+
+The longest shortest path is the diameter of the graph.",Correct,Automatic Few-shot,4,Incorrect,"[17, 24, 9, 10, 11, 8, 20, 4, 15, 5, 22, 6, 27, 14, 1, 2, 7, 16, 28, 3, 19, 23, 18, 25, 26, 21, 12]"
+14,Mathematics for Computer Science,Combinatorics,In how many different ways can the letters in the name of the popular 1980’s band BANANARAMA be arranged?,Write a program to compute the number of arrangements of characters in the word BANANARAMA. Remember to discount arrangements of repeated letters.,10!/(5!2!1!1!1!) = 15120,"def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+def permutations(word):
+    if len(word) == 1:
+        return [word]
+    else:
+        result = []
+        for i in range(len(word)):
+            for p in permutations(word[:i] + word[i+1:]):
+                result.append(word[i] + p)
+        return result
+
+def arrangements(word):
+    return len(set(permutations(word)))
+
+def main():
+    print(arrangements('BANANARAMA'))
+
+if __name__ == '__main__':
+    main()","1. The permutations function is a recursive function that takes a word as input and returns a list of all the permutations of that word.
+2. The arrangements function takes a word as input and returns the number of arrangements of that word.
+3. The arrangements function calls the permutations function to get a list of all the permutations of the word.
+4. The arrangements function then converts the list of permutations into a set, which removes all the duplicates.
+5. The arrangements function then returns the length of the set, which is the number of arrangements of the word.",Correct,Automatic Few-shot,"import math
+
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+def permutation(n, r):
+    return factorial(n) / factorial(n-r)
+
+def combination(n, r):
+    return permutation(n, r) / factorial(r)
+
+def main():
+    print(permutation(8, 8))
+
+if __name__ == ""__main__"":
+    main()",Incorrect,"[15, 4, 20, 24, 8, 16, 1, 2, 10, 11, 27, 9, 28, 5, 7, 6, 25, 3, 17, 22, 13, 26, 19, 23, 21, 18, 12]"
+15,Mathematics for Computer Science,Probability,"You shuffle a deck of cards and deal your friend a 5 ­card hand. Suppose your friend says, “I have the ace of spades.” What is the probablity that she has another ace?",Create a 52-card deck. Remove the spade ace. Simulate 4 card hands and compute the probability a hand has an ace.,0.2214,"import random
+
+def create_deck():
+    """"""
+    Create a 52-card deck.
+    """"""
+    deck = []
+    for suit in ['hearts', 'clubs', 'diamonds', 'spades']:
+        for value in ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king']:
+            deck.append((suit, value))
+    return deck
+
+def remove_ace(deck):
+    """"""
+    Remove the spade ace.
+    """"""
+    for i in range(len(deck)):
+        if deck[i][1] == 'ace' and deck[i][0] == 'spades':
+            deck.pop(i)
+            break
+    return deck
+
+def draw_hand(deck):
+    """"""
+    Simulate 4 card hands and compute the probability a hand has an ace.
+    """"""
+    ace_count = 0
+    for i in range(10000):
+        hand = random.sample(deck, 4)
+        for card in hand:
+            if card[1] == 'ace':
+                ace_count += 1
+                break
+    return ace_count / 10000
+
+if __name__ == '__main__':
+    deck = create_deck()
+    deck = remove_ace(deck)
+    print(draw_hand(deck))","1. Create a deck of 52 cards.
+2. Remove the spade ace.
+3. Draw 4 cards from the deck 10000 times.
+4. Count the number of times an ace is drawn.
+5. Divide the number of times an ace is drawn by the number of hands drawn.
+
+The probability of drawing an ace is 0.49.",Correct,Manual,"#There are 4 aces in a deck of 52 cards.
+#The probability of drawing another ace is 4/52.",Incorrect,"[8, 4, 15, 11, 10, 24, 20, 14, 3, 9, 1, 5, 2, 7, 26, 21, 6, 27, 12, 28, 22, 13, 23, 19, 17, 18, 25]"
+16,Mathematics for Computer Science,Graph Theory,"What is the chromatic number of the following graph? graph = {'A': ['B'], B': ['A', 'C', 'H'], C': ['B', 'D', 'E'], D': ['C', 'E'], E': ['C', 'D', 'F', 'H'], F': ['E', 'G'], G': ['F'], H': ['B', 'E']}","Find the chromatic number of a graph with adjacency matrix:
+ [[0, 1, 0, 0, 0, 0, 0, 0],
+ [1, 0, 1, 0, 0, 0, 0, 1],
+ [0, 1, 0, 1, 1, 0, 0, 0],
+ [0, 0, 1, 0, 1, 0, 0, 0],
+ [0, 0, 1, 1, 0, 1, 0, 1],
+ [0, 0, 0, 0, 1, 0, 1, 0],
+ [0, 0, 0, 0, 0, 1, 0, 0],
+ [0, 1, 0, 0, 1, 0, 0, 0]]",3,"import numpy as np
+import networkx as nx
+import matplotlib.pyplot as plt
+
+def chromatic_number(adj_matrix):
+    """"""
+    Find the chromatic number of a graph with adjacency matrix
+    :param adj_matrix: adjacency matrix of graph
+    :return: chromatic number of graph
+    """"""
+    # create graph from adjacency matrix
+    G = nx.from_numpy_matrix(adj_matrix)
+    # find chromatic number of graph
+    chromatic_number = nx.algorithms.coloring.greedy_color(G, strategy='largest_first')
+    return chromatic_number
+
+if __name__ == '__main__':
+    # adjacency matrix of graph
+    adj_matrix = np.array([[0, 1, 0, 0, 0, 0, 0, 0],
+                           [1, 0, 1, 0, 0, 0, 0, 1],
+                           [0, 1, 0, 1, 1, 0, 0, 0],
+                           [0, 0, 1, 0, 1, 0, 0, 0],
+                           [0, 0, 1, 1, 0, 1, 0, 1],
+                           [0, 0, 0, 0, 1, 0, 1, 0],
+                           [0, 0, 0, 0, 0, 1, 0, 0],
+                           [0, 1, 0, 0, 1, 0, 0, 0]])
+    # find chromatic number of graph
+    chromatic_number = chromatic_number(adj_matrix)
+    # print chromatic number
+    print(chromatic_number)
+    # create graph from adjacency matrix
+    G = nx.from_numpy_matrix(adj_matrix)
+    # draw graph
+    nx.draw(G, with_labels=True)
+    # show graph
+    plt.show()","1. Create a graph from the adjacency matrix
+2. Find the chromatic number of the graph
+3. Draw the graph",Correct,Manual,The chromatic number of the graph is 3.,Correct,"[13, 24, 8, 10, 11, 20, 9, 15, 22, 4, 5, 14, 1, 6, 2, 27, 7, 16, 19, 3, 28, 23, 18, 26, 25, 21, 12]"
+17,Mathematics for Computer Science,Probability,"Suppose the 6.042 final consists of: 36 true/false questions worth 1 point each, 1 induction problem worth 15 points, and 1 giant problem that combines everything from the semester, worth 49 points. Grading goes as follows: The TAs choose to grade the easy true/false questions. For each individual point, they flip a fair coin. If it comes up heads, the student gets the point. Marten and Brooke split the task of grading the induction problem. With 1/3 probability, Marten grades the problem. His grading policy is as follows: Either he gets exasperated by the improper use of math symbols and gives 0 points (which happens with 2/5 probability), or he finds the answer satisfactory and gives 15 points (which happens with 3/5 probability). With 2/3 probability, Brooke grades the problem. Her grading policy is as follows: She selects a random integer point value from the range from 0 to 15, inclusive, with uniform probability. Finally, Tom grades the giant problem. He rolls two fair seven-sided dice (which have values from 1 to 7, inclusive), takes their product, and subtracts it from 49 to determine the score. Assume all random choices during the grading process are mutually independent. What is the variance on the 36 true/false questions?","Using numpy, calculate c, the probability of heads, 1/2, multiplied by the number of questions 36.
+P(i_m)=1/3
+P(i_m_s)=2/5
+p_i_m_s=0
+P(i_m_f)=3/5
+p_i_m_f=15
+P(i_b)=2/3
+p_i_b=np.mean(np.array(list(range(16))))
+Let i be P(i_m)*(P(i_m_s)*p_i_m_s+P(i_m_f)*p_i_m_f) + P(i_b)*p_i_b
+
+Create a list of all of the possible products of two fair dice 7-sided dice rolls multiplied together. Let g be the 49 minus the mean of the list.
+
+Use numpy to calculate the sum of c, i, g.",59,"import numpy as np
+
+c = 0.5 * 36
+i = (1/3) * (2/5) * 0 + (1/3) * (3/5) * 15 + (2/3) * np.mean(np.array(list(range(16))))
+g = 49 - np.mean(np.array([i * j for i in range(1, 8) for j in range(1, 8)]))
+
+print(c + i + g)","1. c is the cost of the first 5 days, which is 0.5 * 36 = 18
+2. i is the cost of the next 3 days, which is (1/3) * (2/5) * 0 + (1/3) * (3/5) * 15 + (2/3) * np.mean(np.array(list(range(16))))
+3. g is the cost of the last 7 days, which is 49 - np.mean(np.array([i * j for i in range(1, 8) for j in range(1, 8)]))",Correct,Manual,"# Let X be the random variable corresponding to the number of points on the 36 true/false questions.
+# Then E[X] = 36*(1/2) = 18 and Var(X) = 36*(1/2)*(1/2) = 9.",Incorrect,"[11, 21, 10, 12, 5, 7, 6, 26, 9, 19, 3, 22, 23, 4, 8, 24, 16, 20, 17, 13, 15, 1, 14, 2, 27, 28, 25]"
+18,Mathematics for Computer Science,Probability,"Professor Plum, Mr. Green, and Miss Scarlet are all plotting to shoot Colonel
+Mustard. If one of these three has both an opportunity and the revolver, then that person
+shoots Colonel Mustard. Otherwise, Colonel Mustard escapes. Exactly one of the three
+has an opportunity with the following probabilities:
+Pr {Plum has opportunity} = 1/6
+Pr {Green has opportunity} = 2/6
+Pr {Scarlet has opportunity} = 3/6
+Exactly one has the revolver with the following probabilities, regardless of who has an
+opportuntity:
+Pr {Plum has revolver} = 4/8
+Pr {Green has revolver} = 3/8
+Pr {Scarlet has revolver} = 1/8 
+What is the probability that Colonel Mustard is shot?","Professor Plum, Mr. Green, and Miss Scarlet are all plotting to shoot Colonel Mustard. If one of these three has both an opportunity and the revolver, then that person shoots Colonel Mustard. Otherwise, Colonel Mustard escapes. Exactly one of the three has an opportunity with the following probabilities:
+Pr {Plum has opportunity} = 1/6
+Pr {Green has opportunity} = 2/6
+Pr {Scarlet has opportunity} = 3/6
+Exactly one has the revolver with the following probabilities, regardless of who has an opportuntity:
+Pr {Plum has revolver} = 4/8
+Pr {Green has revolver} = 3/8
+Pr {Scarlet has revolver} = 1/8 
+What is the probability that Colonel Mustard is shot?
+Write a program.",0.2708,"import numpy as np
+
+def colonel_mustard():
+    opportunity = np.random.choice(['Plum', 'Green', 'Scarlet'], p=[1/6, 2/6, 3/6])
+    revolver = np.random.choice(['Plum', 'Green', 'Scarlet'], p=[4/8, 3/8, 1/8])
+    if opportunity == revolver:
+        return 1
+    else:
+        return 0
+
+print(np.mean([colonel_mustard() for i in range(100000)]))","1. It's choosing a random person from the three people with the probabilities given.
+2. It's choosing a random person from the three people with the probabilities given.
+3. If the two people are the same, then Colonel Mustard is shot.
+4. It's repeating this process 100000 times and taking the mean.",Correct,Automatic Few-shot (1),"#P(Plum has opportunity and revolver) = P(Plum has opportunity) * P(Plum has revolver)
+#P(Plum has opportunity and revolver) = 1/6 * 4/8
+#P(Plum has opportunity and revolver) = 1/24
+
+#P(Green has opportunity and revolver) = P(Green has opportunity) * P(Green has revolver)
+#P(Green has opportunity and revolver) = 2/6 * 3/8
+#P(Green has opportunity and revolver) = 1/12
+
+#P(Scarlet has opportunity and revolver) = P(Scarlet has opportunity) * P(Scarlet has revolver)
+#P(Scarlet has opportunity and revolver) = 3/6 * 1/8
+#P(Scarlet has opportunity and revolver) = 1/24
+
+#P(Colonel Mustard is shot) = P(Plum has opportunity and revolver) + P(Green has opportunity and revolver) + P(Scarlet has opportunity and revolver)
+#P(Colonel Mustard is shot) = 1/24 + 1/12 + 1/24
+#P(Colonel Mustard is shot) = 1/6",Incorrect,"[21, 23, 18, 22, 11, 5, 10, 3, 26, 9, 6, 7, 4, 12, 24, 8, 16, 17, 20, 13, 2, 15, 1, 14, 27, 28, 25]"
+19,Mathematics for Computer Science,Combinatorics,"How many different paths are there from point (0, 0, 0) to point (12, 24, 36) if every step increments one coordinate and leaves the other two unchanged?","How many different paths are there from point (0, 0, 0) to point (12, 24, 36) if every step increments one coordinate and leaves the other two unchanged?
+Use math.factorial",72!/12!24!36!,"import math
+
+def main():
+    print(math.factorial(12+24+36) // (math.factorial(12) * math.factorial(24) * math.factorial(36)))
+
+if __name__ == '__main__':
+    main()","1. The code is calculating the number of ways to arrange 12 red, 24 green, and 36 blue balls in a row.",Correct,Manual,"def count_paths(x, y, z):
+    if x == 12 and y == 24 and z == 36:
+        return 1
+    if x > 12 or y > 24 or z > 36:
+        return 0
+    return count_paths(x + 1, y, z) + count_paths(x, y + 1, z) + count_paths(x, y, z + 1)
+
+print(count_paths(0, 0, 0))",Incorrect,"[8, 15, 24, 4, 1, 2, 14, 10, 11, 27, 16, 9, 28, 5, 6, 7, 17, 13, 3, 25, 22, 26, 19, 18, 21, 23, 12]"
+20,Mathematics for Computer Science,Propositional Logic,"Express each of the following predicates and propositions in formal logic notation. The domain of discourse is the nonnegative integers, N. In addition to the propositional operators, variables and quantifiers, you may define predicates using addition, multiplication, and equality symbols, but no constants (like 0, 1, . . .). 
+ For example, the proposition “n is an even number” could be written ∃m. (m + m = n).
+ n is the sum of three perfect squares. ","Express each of the following predicates and propositions in formal logic notation. The domain of discourse is the nonnegative integers, N. In addition to the propositional operators, variables and quantifiers, you may define predicates using addition, multiplication, and equality symbols, but no constants (like 0, 1, . . .). 
+ For example, the proposition “n is an even number” could be written ∃m. (m + m = n).
+ n is the sum of three perfect squares. ",∃x∃y∃z. (x x · + y · y + z z · = n),"# n is the sum of three perfect squares.
+
+# ∃m,n,p. (m^2 + n^2 + p^2 = n)","1. ∃m,n,p. (m^2 + n^2 + p^2 = n)",Correct,Automatic Zero-shot,"# n is the sum of three perfect squares.
+# ∃x,y,z. (x^2 + y^2 + z^2 = n)",Correct,"[24, 10, 5, 11, 9, 7, 6, 2, 8, 4, 3, 15, 28, 20, 17, 19, 1, 27, 13, 26, 18, 14, 16, 23, 21, 12, 25]"
+21,Mathematics for Computer Science,Probability,"Exactly 1/5th of the people in a town have Beaver Fever.  There are two tests for Beaver Fever, TEST1 and TEST2. When a person goes to a doctor to test for Beaver Fever, with probability 2/3 the doctor conducts TEST1 on him and with probability 1/3 the doctor conducts TEST2 on him. When TEST1 is done on a person, the outcome is as follows: If the person has the disease, the result is positive with probability 3/4. If the person does not have the disease, the result is positive with probability 1/4. When TEST2 is done on a person, the outcome is as follows: If the person has the disease, the result is positive with probability 1. If the person does not have the disease, the result is positive with probability 1/2. A person is picked uniformly at random from the town and is sent to a doctor to test for Beaver Fever. The result comes out positive. What is the probability that the person has the disease? ","P(TEST_1) = 2/3
+P(TPR_1) = 3/4
+P(FPR_1) = 1/4
+P(TEST_2) = 1/3
+P(TPR_2) = 1
+P(FPR_2) = 1/2
+P(P) = 1/5
+P(N) = 4/5
+Find P(TEST_1)**2*P(P)*P(TPR_1)/(P(TEST_1)*P(P)*P(TPR_1)+P(TEST_1)*P(N)*P(FPR_1)) + P(TEST_2)**2*P(P)*P(TPR_2)/(P(TEST_2)*P(P)*P(TPR_2)+P(TEST_2)*P(N)*P(FPR_2))",13-May,"def main():
+    p_test_1 = 2/3
+    p_tpr_1 = 3/4
+    p_fpr_1 = 1/4
+    p_test_2 = 1/3
+    p_tpr_2 = 1
+    p_fpr_2 = 1/2
+    p_p = 1/5
+    p_n = 4/5
+    p_tpr_1_2 = p_test_1**2*p_p*p_tpr_1/(p_test_1*p_p*p_tpr_1+p_test_1*p_n*p_fpr_1)
+    p_tpr_2_2 = p_test_2**2*p_p*p_tpr_2/(p_test_2*p_p*p_tpr_2+p_test_2*p_n*p_fpr_2)
+    print(p_tpr_1_2+p_tpr_2_2)
+
+if __name__ == ""__main__"":
+    main()","1. The code above is calculating the probability of a positive test result given that the patient has the disease.
+2. The code above is calculating the probability of a positive test result given that the patient does not have the disease.
+3. The code above is calculating the probability of a negative test result given that the patient has the disease.
+4. The code above is calculating the probability of a negative test result given that the patient does not have the disease.
+5. The code above is calculating the probability of a positive test result.
+6. The code above is calculating the probability of a negative test result.
+7. The code above is calculating the probability of a patient having the disease.
+8. The code above is calculating the probability of a patient not having the disease.
+9. The code above is calculating the probability of a patient having the disease given a positive test result.
+10. The code above is calculating the probability of a patient having the disease given a negative test result.
+11. The code above is calculating the probability of a patient not having the disease given a positive test result.
+12. The code above is calculating the probability of a patient not having the disease given a negative test result.",Correct,Manual,"# Let A be the event that the person has the disease
+# Let B be the event that the person tests positive
+
+# P(A) = 1/5
+# P(B|A) = 3/4
+# P(B|A') = 1/4
+
+# P(B) = P(B|A)P(A) + P(B|A')P(A')
+# P(B) = 3/4(1/5) + 1/4(4/5)
+# P(B) = 3/20 + 1/20
+# P(B) = 1/5
+
+# P(A|B) = P(B|A)P(A)/P(B)
+# P(A|B) = 3/4(1/5)/(1/5)
+# P(A|B) = 3/4",Incorrect,"[3, 19, 7, 5, 11, 10, 6, 9, 18, 22, 4, 24, 16, 8, 26, 21, 15, 17, 20, 13, 12, 1, 2, 14, 27, 28, 25]"
+22,Mathematics for Computer Science,Combinatorics,How many different solutions over the natural numbers are there to the following equation? x^1 + x^2 + x^3 + . . . + x^8 = 100 A solution is a specification of the value of each variable x_i. Two solutions are different if different values are specified for some variable x_i.,Write a program to find the number of positive integer solutions to the equation x_1**1+x_2**2+x_3**3+x_4**4+x_5**5+x_6**6+x_7**7+x_8**8 = 100. 100 is the highest number to consider for each variable.,107!/100!7!,"def count_solutions(n):
+    count = 0
+    for x1 in range(1, n+1):
+        for x2 in range(1, n+1):
+            for x3 in range(1, n+1):
+                for x4 in range(1, n+1):
+                    for x5 in range(1, n+1):
+                        for x6 in range(1, n+1):
+                            for x7 in range(1, n+1):
+                                for x8 in range(1, n+1):
+                                    if x1**1 + x2**2 + x3**3 + x4**4 + x5**5 + x6**6 + x7**7 + x8**8 == n:
+                                        count += 1
+    return count
+
+print(count_solutions(100))","1. It's creating a variable called count and setting it to 0.
+2. It's creating a for loop that iterates through the range of 1 to n+1.
+3. It's creating a second for loop that iterates through the range of 1 to n+1.
+4. It's creating a third for loop that iterates through the range of 1 to n+1.
+5. It's creating a fourth for loop that iterates through the range of 1 to n+1.
+6. It's creating a fifth for loop that iterates through the range of 1 to n+1.
+7. It's creating a sixth for loop that iterates through the range of 1 to n+1.
+8. It's creating a seventh for loop that iterates through the range of 1 to n+1.
+9. It's creating an eighth for loop that iterates through the range of 1 to n+1.
+10. It's creating an if statement that checks if the sum of the variables to the power of their respective numbers is equal to n.
+11. If the if statement is true, it adds 1 to the count variable.
+12. It returns the count variable.",Correct,Manual,"def count_solutions(target, powers):
+    """"""
+    >>> count_solutions(100, [1, 2, 3, 4, 5, 6, 7, 8])
+    12
+    """"""
+    if target == 0:
+        return 1
+    elif target < 0 or powers == []:
+        return 0
+    else:
+        return count_solutions(target, powers[1:]) + count_solutions(target - powers[0], powers)
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()",Incorrect,"[15, 20, 10, 8, 4, 11, 2, 9, 27, 14, 1, 22, 16, 5, 17, 28, 6, 3, 7, 13, 25, 26, 23, 19, 18, 21, 12]"
+23,Mathematics for Computer Science,Probability,"Outside of their hum­drum duties as 6.042 TAs, Sayan is trying to learn to levitate using only intense concentration and Jelani is launching a “Nelson 2008” presidential campaign. Suppose that Sayan’s probability of levitating is 1/6, Jelani’s chance of becoming president is 1/4, and the success of one does not alter the other’s chances. If at most one of them succeeds, what is the probability that Jelani becomes the president of the United States?","Suppose that Sayan’s probability Sayan succeeding is 1/6, and Jelani's probability of succeeding is 1/4. Use numpy to find the probability at most one of Jelani and Sayan succeed.
+Use numpy to find the probability Jelani succeeds but Sayan does not succeed.
+Divide the former by the latter probability.",23-May,"import numpy as np
+
+# Probability of Sayan succeeding
+p_sayan = 1/6
+
+# Probability of Jelani succeeding
+p_jelani = 1/4
+
+# Probability of at most one of Jelani and Sayan succeeding
+p_at_most_one = 1 - (p_sayan * p_jelani)
+
+# Probability of Jelani succeeding but Sayan not succeeding
+p_jelani_succeed_sayan_not = p_jelani * (1 - p_sayan)
+
+# Probability of Jelani succeeding but Sayan not succeeding divided by probability of at most one of Jelani and Sayan succeeding
+p_jelani_succeed_sayan_not / p_at_most_one
+
+# Probability of at least one of Jelani and Sayan succeeding
+p_at_least_one = 1 - p_at_most_one
+","1. We're calculating the probability of Sayan succeeding.
+2. We're calculating the probability of Jelani succeeding.
+3. We're calculating the probability of at most one of Jelani and Sayan succeeding.
+4. We're calculating the probability of Jelani succeeding but Sayan not succeeding.
+5. We're calculating the probability of Jelani succeeding but Sayan not succeeding divided by probability of at most one of Jelani and Sayan succeeding.
+6. We're calculating the probability of at least one of Jelani and Sayan succeeding.",Correct,Manual,"# Sayan's probability of levitating is 1/6, Jelani's chance of becoming president is 1/4
+# If at most one of them succeeds, what is the probability that Jelani becomes the president of the United States?
+
+# P(Jelani) = P(Jelani and not Sayan) + P(Jelani and Sayan)
+#           = P(Jelani)P(not Sayan) + P(Jelani)P(Sayan)
+#           = P(Jelani)(1 - P(Sayan)) + P(Jelani)P(Sayan)
+#           = P(Jelani) - P(Jelani)P(Sayan) + P(Jelani)P(Sayan)
+#           = P(Jelani) - P(Jelani)P(Sayan) + P(Jelani)P(Sayan)
+#           = P(Jelani) - P(Jelani)P(Sayan) + P(Jelani)P(Sayan)
+#           = P(Jelani) - P(Jelani)P(Sayan) + P(Jelani)P(Sayan)
+#           = P(Jelani) - P(Jelani)P(Sayan) + P(Jelani)P(Sayan)
+#           = P(Jelani) - P(Jelani)P(Sayan) + P(Jelani)P(Sayan)
+#           = P(Jelani) - P(Jelani)P(Sayan) + P(Jelani)P(Sayan)
+#           = P(Jelani) - P(Jelani)P(Sayan)",Incorrect,"[5, 21, 7, 11, 6, 10, 3, 18, 16, 12, 4, 9, 8, 24, 19, 22, 15, 20, 23, 14, 2, 1, 27, 13, 17, 28, 25]"
+24,Mathematics for Computer Science,Combinatorics,Find the coefficients of x^10 in (x + (1/x))^100,"Using sympy, find the coefficients of x^10 in (x + (1/x))^100",6.14485E+28,"from sympy import symbols, expand
+
+x = symbols('x')
+
+print(expand((x + (1/x))**100).coeff(x, 10))","1. The code is using the expand function to expand the expression (x + (1/x))**100
+2. The expand function is then used to find the coefficient of x**10",Correct,Automatic Zero-shot,"There are 100 terms in the binomial expansion of (x + (1/x))^100, and the tenth term is x^10. The coefficient of x^10 is therefore 1.",Incorrect,"[2, 1, 28, 24, 15, 4, 10, 20, 11, 8, 14, 25, 9, 16, 22, 3, 5, 13, 7, 6, 17, 26, 19, 23, 18, 21, 12]"
+25,Mathematics for Computer Science,Set Theory,Define a bijection between the natural numbers and the integers.,"To define a bijection between natural number and integers, map the even and odd natural numbers to positive and negative integers. Divide by 2 and rounding down.","To define a bijection between natural number and integers, map the even and odd natural numbers to positive and negative integers. Divide by 2 and rounding down.","def even_odd_to_int(n):
+    if n % 2 == 0:
+        return n // 2
+    else:
+        return -(n + 1) // 2","1. If n is even, then n // 2 is the integer division of n by 2.
+2. If n is odd, then -(n + 1) // 2 is the integer division of -(n + 1) by 2.
+3. The integer division of -(n + 1) by 2 is the same as the integer division of -n by 2, because -(n + 1) = -n - 1.
+4. The integer division of -n by 2 is the same as the integer division of n by 2, because -n = -1 * n.
+5. So, if n is odd, then -(n + 1) // 2 is the same as n // 2.",Correct,Manual,The bijection is given by the mapping n ? n ? 1.,Incorrect,"[2, 27, 15, 1, 25, 20, 4, 24, 8, 10, 14, 11, 22, 9, 16, 13, 5, 17, 7, 6, 3, 26, 19, 23, 18, 21, 12]"
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,Generated Questions,Closest question,,,,,,,,,,
+,A fair coin is tossed until the first head appears. What is the expected number of tosses? ,"MIT students sometimes delay laundry for a few days. Assume all random values described below are mutually independent. A relaxed student rolls a fair, 6-sided die in the morning. If he rolls a 1, then he does his laundry immediately (with zero days of delay). Otherwise, he delays for one day and repeats the experiment the following morning. Let R be the number of days a relaxed student delays laundry. What is Ex (R)?",,,,,,,,,,
+,Suppose that a graph G is a tree. Prove that G is a DAG.,"Give a minimal example of a graph in which every vertex is adjacent to at least one other vertex, but the graph is not connected.",,,,,,,,,,
+,"A student is taking a test consisting of n multiple-choice questions. Each question has five possible answers, and only one of them is correct. The student knows that the probability that any particular question is answered correctly is 1/5. Let X be the number of questions answered correctly by the student. What is E(X)? ",MIT students sometimes delay laundry for a few days. Assume all random values described below are mutually independent. A busy student must complete 3 problem sets before doing laundry. Each problem set requires 1 day with probability 2/3 and 2 days with probability 1/3. Let B be the number of days a busy student delays laundry. What is Ex (B)?,,,,,,,,,,
+,Suppose that you roll five 6-sided dice that are fair and mutually independent. What is the probability that all five dice show the same value?,Suppose that you roll five 6-sided dice that are fair and mutually independent. What is the probability that all five dice show different values?,,,,,,,,,,
+,"Find a number x ∈ {0, 1, . . . , 101} such that 11x ≡ 1 (mod 102).","Find the multiplicative inverse of 17 modulo 72 in the range {0, 1, . . . , 71}.",,,,,,,,,,
+,"Define a bijection between N and N × N × N (the ordered triples (0,0,0),(0,0,1),(0,1,2),. . . of natural numbers).","Define a bijection between N and N × N (the ordered pairs (0,0),(0,1),(1,2),. . . of natural numbers).",,,,,,,,,,
+,"Outside of their hum­drum duties as 6.042 TAs, Sayan is trying to learn to levitate using only intense concentration and Jelani is launching a “Nelson 2008” presidential campaign. Suppose that Sayan’s probability of levitating is 1/6, Jelani’s chance of becoming president is 1/4, and the success of one does not alter the other’s chances. If neither of them succeeds, what is the probability that both of them learn to levitate?","Outside of their hum­drum duties as 6.042 TAs, Sayan is trying to learn to levitate using only intense concentration and Jelani is launching a “Nelson 2008” presidential campaign. Suppose that Sayan’s probability of levitating is 1/6, Jelani’s chance of becoming president is 1/4, and the success of one does not alter the other’s chances. If at least one of them succeeds, what is the probability that Sayan learns to levitate?",,,,,,,,,,
+,Give a small example of a DAG with more than one maximum flow.,Give a small example of a DAG with more than one minimum time schedule.,,,,,,,,,,
+,"Two identical complete decks of cards, each with 52 cards, have been mixed together. A hand of 5 cards is picked uniformly at random from amongst all subsets of exactly 5 cards. What is the probability that the hand has exactly two pairs of identical cards? ","Two identical complete decks of cards, each with 52 cards, have been mixed together. A hand of 5 cards is picked uniformly at random from amongst all subsets of exactly 5 cards. What is the probability that the hand has exactly one pair of identical cards?",,,,,,,,,,
+,How many ways are there to place n queens on an n × n chessboard so that no two queens are on the same row?,"An electronic toy displays a 4 × 4 grid of colored squares. At all times, four are red, four are green, four are blue, and four are yellow. How many such configurations are possible?",,,,,,,,,,
+,,,,,,,,,,,,
+,numeric:,20,,,,,,,,,,
+,equation:,0,,,,,,,,,,
+,plot:,0,,,,,,,,,,
+,total:,20,,,,,,,,,,

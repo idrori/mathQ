@@ -1,0 +1,440 @@
+Id,Course,Topic,Original Problem,Codex Input,Solution,Codex Code,Codex Code Explanation,Output Evaluation,Solution Type,GPT-3 Response,GPT-3 Evaluation,Nearest Questions
+1,Multivariable Calculus,Polar Coordinates,Sketch the graph of the polar equation. Indicate any symmetries around either coordinate axis or the origin. r = (2 + 7*sin(theta))*(cos(5*theta)),Write a function using matplotlib to plot the graph of the polar equation r = (2 + 7*sin(theta))*(cos(5*theta)),"import numpy as np
+import matplotlib.pyplot as plt
+
+def polar_eq(theta):
+    return (2 + 7*np.sin(theta))*(np.cos(5*theta))
+
+theta = np.linspace(0, 2*np.pi, 100)
+
+plt.polar(theta, polar_eq(theta))
+plt.show()","import numpy as np
+import matplotlib.pyplot as plt
+
+def polar_eq(theta):
+    return (2 + 7*np.sin(theta))*(np.cos(5*theta))
+
+theta = np.linspace(0, 2*np.pi, 100)
+
+plt.polar(theta, polar_eq(theta))
+plt.show()","1. Importing numpy and matplotlib.pyplot
+2. Defining a function that takes theta as an argument
+3. Creating a list of 100 evenly spaced values between 0 and 2pi
+4. Plotting the polar equation",Correct,Automatic Zero Shot,The graph has symmetry around the origin and the y-axis.,Incorrect,"[3, 7, 23, 18, 2, 21, 6, 24, 12, 16, 8, 4, 11, 10, 9, 19, 14, 15, 22, 25, 5, 13, 20, 17]"
+2,Multivariable Calculus,Analytical Geometry & Polar Coordinates,Find the center and radius of the circle described in the given equation. x^2 + 2x + y^2 = 4,Using Sympy Find the center and radius of the circle described in the given equation. x^2 + 2x + y^2 = 4,"Center (-1,0), radius sqrt(5)","import sympy as sp
+
+x, y = sp.symbols('x y')
+
+# Equation of the circle
+eq = x**2 + 2*x + y**2 - 4
+
+# Solving the equation
+sol = sp.solve(eq, y)
+
+# Printing the solution
+print(sol)
+
+# Finding the center
+center = sp.solve(eq, x)
+print(center)
+
+# Finding the radius
+radius = sp.sqrt(center[0]**2 + sol[0]**2)
+print(radius)","1. We import the sympy library and the symbols function.
+2. We define the equation we want to find the radius and center of.
+3. We create a Circle object from the equation.
+4. We print the radius and center of the circle.",Correct,Automatic Zero Shot,"The center of the circle is at (1, 0) and the radius is √3.",Incorrect,"[8, 24, 4, 7, 12, 6, 11, 21, 23, 16, 22, 19, 20, 5, 10, 14, 1, 15, 3, 9, 13, 25, 18, 17]"
+3,Multivariable Calculus,Polar Coordinates,Sketch the graph of the polar equation. Indicate any symmetries around either coordinate axis or the origin. r = 3*theta (spiral of Archimedes),Write a function using matplotlib to plot the graph of the polar equation r = 3*theta (spiral of Archimedes).,Spiral of Archimedes Graph,"import numpy as np
+import matplotlib.pyplot as plt
+
+theta = np.arange(0, 2*np.pi, 0.01)
+r = 3*theta
+
+plt.polar(theta, r)
+plt.show()","1. Importing the numpy and matplotlib.pyplot modules.
+2. Creating a range of values for theta from 0 to 2π with an increment of 0.01.
+3. Creating a range of values for r from 0 to 30 with an increment of 0.01.
+4. Creating a polar plot using the polar() function.
+5. Showing the plot using the show() function.",Correct,Automatic Zero Shot,The graph of the polar equation is a spiral of Archimedes. There is no symmetry around either coordinate axis or the origin.,Incorrect,"[1, 7, 8, 23, 18, 2, 19, 21, 6, 16, 24, 11, 12, 10, 14, 4, 9, 25, 22, 5, 13, 15, 20, 17]"
+4,Multivariable Calculus,Area Computations in Polar Coordinates,Find the area bounded by the given curve. r = 2*cos(theta),"f(theta)=2*cos(theta)
+Using Sympy, starting from 0, find the first two points that f(theta)=0 and set teh solutions to a and b.
+Use the solution to Integrate f(theta)**2/2 from a to b.",pi,"from sympy import *
+
+theta = Symbol('theta')
+f = 2*cos(theta)
+
+a = solve(f, theta)
+print(a)
+
+b = integrate(f**2/2, (theta, a[0], a[1]))
+print(b)","1. The first line imports the sympy library.
+2. The second line defines the function f(theta) as 2*cos(theta).
+3. The third line defines the symbol theta.
+4. The fourth line uses the solve() function to find the two values of theta that make f(theta)=0.
+5. The fifth line uses the integrate() function to find the area under the curve from a to b.",Correct,Manual,The area is 8π.,Incorrect,"[6, 12, 2, 20, 8, 21, 22, 5, 24, 19, 13, 16, 7, 14, 1, 9, 17, 11, 10, 15, 3, 23, 25, 18]"
+5,Multivariable Calculus,Parametric Curves,"Eliminate the parameter and then sketch the curve. x = e^t, y = 4e^2t","Plot the parametric curve. x = e^t, y = 4e^2t",Graph,"import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.linspace(-2, 2, 100)
+x = np.exp(t)
+y = 4 * np.exp(2 * t)
+
+plt.plot(x, y)
+plt.show()","1. Importing the numpy and matplotlib.pyplot modules.
+2. Defining the t array.
+3. Defining the x and y arrays.
+4. Plotting the curve.",Correct,Manual,y = 4e^2t,Incorrect,"[2, 20, 22, 8, 4, 24, 6, 12, 7, 11, 19, 16, 13, 23, 21, 14, 17, 9, 3, 15, 10, 1, 25, 18]"
+6,Multivariable Calculus,Integral Computations with Parametric Curves,"Find the arc length of the given curve. x = 2t, y = 2/3*t^(3/2), 5<=t<=12","Find the arc length of the given curve. x = 2t, y = 2/3*t^(3/2), 5<=t<=12",74/3,"import sympy as sp
+
+t = sp.Symbol('t')
+x = 2*t
+y = 2/3*t**(3/2)
+
+dx = sp.diff(x, t)
+dy = sp.diff(y, t)
+
+ds = sp.sqrt(dx**2 + dy**2)
+
+print(sp.integrate(ds, (t, 5, 12)))","1. Define x and y as functions of t
+2. Define dx and dy as the derivatives of x and y with respect to t
+3. Define ds as the magnitude of dx and dy
+4. Integrate ds from 5 to 12",Correct,Automatic Zero Shot,The arc length of the given curve is approximately 33.4.,Incorrect,"[8, 4, 21, 2, 19, 7, 12, 24, 22, 11, 17, 16, 10, 23, 5, 20, 14, 25, 13, 1, 3, 15, 9, 18]"
+7,Multivariable Calculus,Parabola,"Sketch the parabola with the given equation. Show and label its vertex, focus, axis, and directrix. y^2 = 12x","Use least squares to find a second order polynomial passing through points (2. 3), (4, 3), and (6,-5).
+Use polynomial matrix.
+Then use python to print(f'{c[0]}+{c[1]}x+{c[2]}x**2')",-x**2+6*x-5,"import numpy as np
+
+x = np.array([2, 4, 6])
+y = np.array([3, 3, -5])
+
+A = np.array([[1, x[0], x[0]**2],
+              [1, x[1], x[1]**2],
+              [1, x[2], x[2]**2]])
+
+b = np.array([y[0], y[1], y[2]])
+
+c = np.linalg.solve(A, b)
+
+print(f'{c[0]}+{c[1]}x+{c[2]}x**2')","1. Create a numpy array of x values
+2. Create a numpy array of y values
+3. Create a numpy array of ones with the same length as x and y
+4. Create a numpy array of x values squared
+5. Create a numpy array of x values cubed
+6. Create a numpy array of the values of the matrix A
+7. Create a numpy array of the values of the vector b
+8. Solve the system of equations
+9. Print the values of the coefficients",Correct,Manual,"The parabola has a vertex at (0,0), a focus at (0,6), an axis at y=0, and a directrix at y=-6.",Incorrect,"[2, 24, 1, 6, 8, 12, 3, 23, 18, 9, 16, 5, 4, 11, 21, 22, 14, 19, 10, 20, 13, 15, 25, 17]"
+8,Multivariable Calculus,Ellipse,"Find an equation of the ellipse specified. Foci (-2, 2) and (4, 2), eccentricity 1/3","Write a program that Find an equation of the ellipse specified. Foci (-2, 2) and (4, 2), eccentricity 1/3",(x-1)^2/81 + (y-2)^2/72 = 1,"import math
+
+def find_equation_of_ellipse(foci1, foci2, eccentricity):
+    """"""
+    Find an equation of the ellipse specified. Foci (-2, 2) and (4, 2), eccentricity 1/3
+    """"""
+    # Find the center of the ellipse
+    center_x = (foci1[0] + foci2[0]) / 2
+    center_y = (foci1[1] + foci2[1]) / 2
+
+    # Find the distance between the foci
+    distance_between_foci = math.sqrt((foci1[0] - foci2[0])**2 + (foci1[1] - foci2[1])**2)
+
+    # Find the length of the major axis
+    length_of_major_axis = distance_between_foci / (2 * eccentricity)
+
+    # Find the length of the minor axis
+    length_of_minor_axis = math.sqrt(length_of_major_axis**2 - distance_between_foci**2)
+
+    # Find the equation of the ellipse
+    equation_of_ellipse = (
+        ""(x - "" + str(center_x) + "")^2 / "" + str(length_of_major_axis**2) +
+        "" + (y - "" + str(center_y) + "")^2 / "" + str(length_of_minor_axis**2) +
+        "" = 1""
+    )
+
+    return equation_of_ellipse
+
+print(find_equation_of_ellipse((-2, 2), (4, 2), 1/3))","1. Find the center of the ellipse
+2. Find the distance between the foci
+3. Find the length of the major axis
+4. Find the length of the minor axis
+5. Find the equation of the ellipse",Correct,Automatic Zero Shot,(x - 2)^2/9 + (y - 2)^2/4 = 1,Incorrect,"[2, 6, 23, 4, 21, 11, 22, 17, 12, 7, 24, 16, 19, 14, 25, 3, 10, 20, 5, 9, 13, 15, 1, 18]"
+9,Multivariable Calculus,Functions of Several Variables,"Describe the graph of the function f. f(x,y) = $10 - \sqrt[2]{x^2+y^2}$","Describe the graph of the function f. f(x,y) = $10 - \sqrt[2]{x^2+y^2}$",Graph,"import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+
+X, Y = np.meshgrid(x, y)
+Z = 10 - np.sqrt(X**2 + Y**2)
+
+ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='hot')
+
+plt.show()","1. Create a figure object
+2. Add a subplot to the figure object
+3. Create a meshgrid of x and y values
+4. Calculate the z values for the meshgrid
+5. Plot the graph",Correct,Automatic Zero Shot,The graph of the function f is a parabola.,Incorrect,"[19, 24, 8, 7, 12, 2, 22, 23, 6, 14, 4, 1, 21, 16, 11, 20, 17, 13, 15, 25, 3, 5, 10, 18]"
+10,Multivariable Calculus,Infinite Series and Convergence,"Determine whether the given infinite series converges or diverges. If it converges, find its sum. 1 + 3 + 5 + 7 + ... + (2n-1) + ....","Using sympy, determine if the sequence s_n = 2n-1 diverges by showing the value of the limit as n goes to infinity. If the limit is infinity, then print diverges. Otherwise print converges.",diverges,"from sympy import limit, oo
+
+def sequence_diverges(sequence):
+    """"""
+    Determine if the sequence s_n = 2n-1 diverges by showing the value of the limit as n goes to infinity.
+    If the limit is infinity, then print diverges. Otherwise print converges.
+    """"""
+    limit_value = limit(sequence, n, oo)
+    if limit_value == oo:
+        print(""diverges"")
+    else:
+        print(""converges"")
+
+sequence_diverges(2*n-1)","1. The limit function takes a sequence and a value of n and returns the value of the limit as n goes to infinity.
+2. The limit function returns oo if the sequence diverges.
+3. If the limit is oo, then the sequence diverges.
+4. If the limit is not oo, then the sequence converges.",Correct,Manual,The series diverges.,Incorrect,"[21, 15, 14, 22, 13, 16, 11, 12, 19, 2, 23, 8, 6, 24, 1, 7, 4, 3, 18, 9, 25, 20, 5, 17]"
+11,Multivariable Calculus,Taylor Series and Taylor Polynomials,"Find the Taylor polynomial with remainder by using the given values of a and n. f(x) = e^x; a=1, n=4","Find the Taylor polynomial with remainder by using the given values of a and n. f(x) = e^x; a=1, n=4","E + E*(x - 1) + E*(x - 1)**2/2 + E*(x - 1)**3/6 + O((x - 1)**4, (x, 1))
+","import sympy as sp
+
+x = sp.Symbol('x')
+
+def f(x):
+    return sp.exp(x)
+
+def taylor(function, a, n):
+    i = 0
+    p = 0
+    while i <= n:
+        p = p + (function.diff(x, i).subs(x, a))/(sp.factorial(i))*(x-a)**i
+        i += 1
+    return p
+
+print(taylor(f(x), 1, 4))","1. We define the function f(x) = e^x
+2. We define the function taylor(function, a, n) which takes in a function, a value a, and a value n.
+3. We define a variable i and set it to 0.
+4. We define a variable p and set it to 0.
+5. We create a while loop that runs while i is less than or equal to n.
+6. We set p equal to p plus the derivative of the function with respect to x, evaluated at x=a, divided by the factorial of i, times (x-a)^i.
+7. We increment i by 1.
+8. We return p.
+9. We print the value of taylor(f(x), 1, 4).",Correct,Automatic Zero Shot,T4(x) = 1 + x + x^2/2! + x^3/3! + x^4/4! + R4(x),Incorrect,"[24, 16, 12, 2, 8, 22, 21, 10, 6, 23, 19, 14, 13, 7, 5, 15, 1, 25, 3, 4, 9, 18, 20, 17]"
+12,Multivariable Calculus,Taylor Series and Taylor Polynomials,Find the Maclaurin series of the given function f by substitution. f(x) = sin2x,Find the Maclaurin series of the given function f by substitution. f(x) = sin2x,2x - 4x^3/3 + 4x^5/15 + 8x^7/315 + ...,"from sympy import *
+
+x = Symbol('x')
+
+f = sin(2*x)
+
+series(f, x, 0, 10)","1. Define the variable x as a symbol
+2. Define the function f(x) = sin(2x)
+3. Print the expression f(x)
+4. Print the series expansion of f(x) about x=0 up to 10 terms",Correct,Automatic Zero Shot,"sin2x = 2sinxcosx
+
+sin2x = 2(x - x^3/3! + x^5/5! - ...)(cosx + x^2/2! - x^4/4! + ...)
+
+sin2x = 2xcosx - 2x^3/3!cosx + 2x^5/5!cosx - ... + 2x^3/3! - 2x^5/5! + ...
+
+sin2x = 2xcosx - 2x^3/3!(cosx + x^2/2!) + 2x^5/5!(cosx + x^2/2! - x^4/4!) - ...",Incorrect,"[16, 4, 22, 2, 24, 11, 21, 13, 6, 8, 14, 7, 10, 19, 20, 15, 5, 23, 1, 9, 3, 25, 18, 17]"
+13,Multivariable Calculus,Integral Test,Use the integral test to test the given series for convergence. $\sum_{1}^{\infty} 1/(2^n).,Write a program using sympy Use the integral test to test the given series for convergence. $\sum_{1}^{\infty} 1/(2^n).,Converges,"import sympy as sp
+
+n = sp.symbols('n')
+
+sp.integrate(1/(2**n), (n, 1, sp.oo))","1. We import sympy as sp.
+2. We create a symbol n.
+3. We integrate 1/(2**n) from n=1 to infinity.",Correct,Automatic Zero Shot,$\sum_{1}^{\infty} 1/(2^n)$ converges because $\int_1^{\infty} 1/(2^x) dx$ converges.,Correct,"[14, 22, 15, 16, 10, 21, 19, 12, 11, 8, 4, 6, 24, 5, 2, 20, 9, 23, 7, 3, 25, 17, 1, 18]"
+14,Multivariable Calculus,Comparison Tests for Positive-Term Series,Use comparison tests to determine whether the infinite series converge or diverge. $\sum_{1}^{\infty} 1/(n^2 + n + 1).,Use comparison tests to determine whether the infinite series converge or diverge. $\sum_{1}^{\infty} 1/(n^2 + n + 1).,Converges,"from sympy import Sum, Symbol, oo, limit, init_printing
+
+init_printing()
+
+n = Symbol('n')
+
+s = Sum(1/(n**2 + n + 1), (n, 1, oo))
+
+limit(s, n, oo)
+
+""""""
+The series converges.
+""""""","1. We create a symbol n to represent the variable in the summation.
+2. We create a summation of 1/(n^2 + n + 1) from n = 1 to infinity.
+3. We use the limit function to determine if the summation converges.",Correct,Automatic Zero Shot,$\sum_{1}^{\infty} 1/(n^2 + n + 1)$ diverges.,Incorrect,"[13, 15, 22, 10, 21, 16, 19, 12, 8, 24, 2, 11, 23, 6, 4, 20, 7, 9, 5, 3, 1, 18, 17, 25]"
+15,Multivariable Calculus,Alternating Series and Absolute Convergence,Determine whether the alternating series converge or diverge. $\sum_{1}^{\infty} ((-1)^(n+1))/n^2,"Write a program using sympy to determine if the alternating series \sum_{1}^{\infty} ((-1)^(n+1))/n^2 converges or diverges.
+",Converges,"from sympy import Sum, Symbol, oo, limit, init_printing
+
+init_printing()
+
+n = Symbol('n')
+
+s = Sum(((-1)**(n+1))/n**2, (n, 1, oo))
+
+limit(s, n, oo)
+
+""""""""""""
+The series converges.
+""""""""""""","1. The first line imports the Sum function from the sympy module.
+2. The second line imports the Symbol function from the sympy module.
+3. The third line imports the oo function from the sympy module.
+4. The fourth line imports the limit function from the sympy module.
+5. The fifth line imports the init_printing function from the sympy module.
+6. The sixth line creates a variable called n and assigns it the value of the Symbol function.
+7. The seventh line creates a variable called s and assigns it the value of the Sum function.
+8. The eighth line prints the limit of the variable s as n approaches infinity.",Correct,Automatic Few Shot (1),The series converges.,Incorrect,"[14, 10, 21, 22, 13, 16, 19, 24, 12, 2, 8, 11, 6, 23, 4, 9, 1, 20, 17, 7, 3, 5, 18, 25]"
+16,Multivariable Calculus,Power Series Computations,Use power series to approximate the values of the given integrals accurate to four decimal places. $\int_{0}^{1} sin(x)/x dx.,"Write a program using scipy to compute the values of the given integral $\int_{0}^{1} sin(x)/x dx.
+",0.9461,"from scipy import integrate
+
+def f(x):
+    return np.sin(x)/x
+
+integrate.quad(f, 0, 1)","1. Importing the integrate module from scipy
+2. Defining a function f(x)
+3. Calling the integrate.quad function, which performs the integral
+4. Printing the result",Correct,Automatic Zero Shot,"$\int_{0}^{1} sin(x)/x dx \approx \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!}$
+
+$\int_{0}^{1} sin(x)/x dx \approx \sum_{n=0}^{3} (-1)^n \frac{x^{2n+1}}{(2n+1)!}$
+
+$\int_{0}^{1} sin(x)/x dx \approx \frac{x}{1!} - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!}$
+
+$\int_{0}^{1} sin(x)/x dx \approx \frac{1}{1} - \frac{1}{6} + \frac{1}{120} - \frac{1}{5040}$
+
+$\int_{0}^{1} sin(x)/x dx \approx 0.8415$",Incorrect,"[14, 22, 13, 19, 12, 10, 11, 21, 15, 24, 2, 8, 6, 23, 7, 4, 1, 18, 5, 3, 9, 25, 20, 17]"
+17,Multivariable Calculus,Cross Product of Two Vectors,"Find a x b. a = <5,-1,-2>, b = <-3,2,4>","Find the vector product of a x b. a = <5,-1,-2>, b = <-3,2,4>","<0,-14,7>","a = [5,-1,-2]
+b = [-3,2,4]
+
+def vector_product(a,b):
+    return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]
+
+print(vector_product(a,b))","1. The first line creates a list called a.
+2. The second line creates a list called b.
+3. The third line creates a list called c and stores the result of the vector product of a and b in c.
+4. The fourth line prints the result of the vector product of a and b.",Correct,Automatic Zero Shot,"<5,-1,-2> * <-3,2,4> = -14",Incorrect,"[8, 6, 20, 22, 21, 19, 4, 24, 9, 5, 2, 23, 25, 14, 15, 11, 13, 12, 10, 16, 7, 1, 3, 18]"
+18,Multivariable Calculus,Curves and Motion in Space,"Show that the graph of the curve with parametric equations x = t*(sin6t). y = t*(cos6t), z = t lies on the cone z = $\sqrt[2]{x^2 + y^2}$ with its vertex at the origin and opening upward.","Plot the graph of the curve with parametric equations: x = t*(sin6t). y = t*(cos6t), z = t.
+Then plot the cone z = $\sqrt[2]{x^2 + y^2}$ with its vertex at the origin and opening upward.",Graph,"import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+t = np.linspace(-10, 10, 100)
+x = t*(np.sin(6*t))
+y = t*(np.cos(6*t))
+z = t
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x, y, z)
+
+r = np.sqrt(x**2 + y**2)
+
+ax.plot(x, y, r, 'r')
+
+plt.show()","1. Generate 100 points between -10 and 10 using the linspace function from numpy.
+2. Calculate x, y, and z using the parametric equations.
+3. Plot the graph of the curve with parametric equations.
+4. Plot the cone z = $\sqrt[2]{x^2 + y^2}$ with its vertex at the origin and opening upward.",Correct,Automatic Few Shot (5),"The graph of the curve with parametric equations x = t*(sin6t). y = t*(cos6t), z = t lies on the cone z = $\sqrt[2]{x^2 + y^2}$ with its vertex at the origin and opening upward.",Incorrect,"[1, 7, 3, 16, 23, 24, 2, 6, 19, 14, 11, 8, 10, 12, 21, 22, 9, 4, 15, 13, 5, 25, 20, 17]"
+19,Multivariable Calculus,Double Integrals,Evaluate the iterated integral. $\int_{0}^{2} \int_{0}^{4} (3x+4y) dx dy$,"Using Scipy, Evaluate the iterated integral. $\int_{0}^{2} \int_{0}^{4} (3x+4y) dx dy$",80,"from scipy.integrate import dblquad
+
+def double_integral(x, y):
+    return 3*x + 4*y
+
+def double_integral_answer():
+    return dblquad(double_integral, 0, 2, lambda x: 0, lambda x: 4)
+
+print(double_integral_answer())","1. double_integral is the function that we want to integrate.
+2. The first lambda function is the lower bound of the first integral.
+3. The second lambda function is the upper bound of the second integral.
+4. The dblquad function takes in the function we want to integrate, the lower bound of the first integral, the upper bound of the first integral, the lower bound of the second integral, and the upper bound of the second integral.
+5. The dblquad function returns the value of the double integral and the error associated with the double integral.
+",Correct,Automatic Zero Shot,$\int_{0}^{2} \int_{0}^{4} (3x+4y) dx dy = \int_{0}^{2} (12y+3x^2) dy = \int_{0}^{2} (12y+3x^2) dy = [12y^2+x^3]_0^2 = 288$,Incorrect,"[22, 16, 24, 13, 14, 21, 6, 8, 15, 2, 9, 11, 10, 12, 4, 23, 25, 3, 5, 7, 17, 20, 1, 18]"
+20,Multivariable Calculus,Increments and Differentials,Find the differential dw. w = ln(x^2 + y^2 + z^2),Find the differential dw. w = ln(x^2 + y^2 + z^2),(2*x + 2*y + 2*z)/(x**2 + y**2 + z**2),"from sympy import *
+
+x, y, z = symbols('x y z')
+w = log(x**2 + y**2 + z**2)
+
+dw = diff(w, x)
+print(dw)
+
+dw = diff(w, y)
+print(dw)
+
+dw = diff(w, z)
+print(dw)","1. Importing sympy as sp
+2. Creating symbols x, y, and z
+3. Creating a function w = ln(x^2 + y^2 + z^2)
+4. Printing the differential of w with respect to x
+5. Printing the differential of w with respect to y
+6. Printing the differential of w with respect to z",Correct,Automatic Zero Shot,dw = (2x dx + 2y dy + 2z dz)/(x^2 + y^2 + z^2),Correct,"[4, 24, 22, 2, 5, 8, 12, 17, 6, 14, 21, 19, 13, 9, 7, 15, 16, 10, 11, 25, 23, 1, 3, 18]"
+21,Multivariable Calculus,Infinite Series,"Determine whether the sequence a_n converges, and find its limit if it does converge. a_n = 2n/(5n-3)","Using Sympy Determine whether the sequence a_n converges, and find its limit if it does converge. a_n = 2n/(5n-3)",5-Feb,"from sympy import limit, oo, symbols
+
+n = symbols('n')
+
+limit(2*n/(5*n-3), n, oo)","1. We define a variable n as a symbol
+2. We define the limit of 2n/(5n-3) as n approaches infinity
+3. We print the result",Correct,Automatic Zero Shot,The sequence a_n converges to 2/5.,Correct,"[10, 15, 14, 22, 13, 6, 16, 12, 19, 8, 2, 11, 23, 24, 4, 1, 17, 3, 20, 7, 25, 9, 5, 18]"
+22,Multivariable Calculus,Power Series,Find the interval of convergence of each power series. $\sum_{1}^{\infty} n*(x^n)$,"Using sympy, compute the interval of convergence in the power series $\sum_{1}^{\infty} n*(x^n)$
+","(-1,1)","from sympy import *
+
+x = Symbol('x')
+
+# The interval of convergence is [-1, 1]","1. We define a symbol x and a symbol n.
+2. We define the function f(x) = x^n.
+3. We define the series S(x) = sum(n * (x^n), (n, 1, oo)).
+4. We use the limit function to find the limit of the series S(x) as x approaches 0.
+5. We print the result.",Correct,Manual,"The interval of convergence is $(-1,1)$.",Correct,"[14, 15, 13, 21, 19, 16, 10, 12, 24, 11, 8, 2, 6, 20, 4, 23, 5, 17, 9, 7, 25, 3, 1, 18]"
+23,Multivariable Calculus,Lines and Planes in Space,"Write parametric equations of the straight line that passes through the points P_1 and P_2. P_1(0,0,0), P_2(-6,3,5)","Using sympy write parametric equations of the straight line that passes through the points P_1 and P_2. P_1(0,0,0), P_2(-6,3,5)","x=-6t, y=3t, z=5t","from sympy import *
+
+x, y, z = symbols('x y z')
+
+P1 = Matrix([0, 0, 0])
+P2 = Matrix([-6, 3, 5])
+
+# Parametric equations of the line
+x = P1[0] + t*(P2[0] - P1[0])
+y = P1[1] + t*(P2[1] - P1[1])
+z = P1[2] + t*(P2[2] - P1[2])
+
+print(x)
+print(y)
+print(z)","1. We are using the parametric equations of a line to find the coordinates of a point on the line.
+2. The parametric equations of a line are:
+    x = x_1 + t*(x_2 - x_1)
+    y = y_1 + t*(y_2 - y_1)
+    z = z_1 + t*(z_2 - z_1)
+3. We are using the points P_1 and P_2 to find the coordinates of a point on the line.
+4. We are using the symbols x, y, z to represent the coordinates of the point on the line.
+5. We are using the symbol t to represent the parameter.
+6. We are using the Matrix class to represent the coordinates of the points P_1 and P_2.
+7. We are using the Matrix class to represent the coordinates of the point on the line.
+8. We are using the Matrix class to represent the parametric equations of the line.",Correct,Automatic Zero Shot,x = 0 + t(-6) y = 0 + t(3) z = 0 + t(5),Correct,"[8, 2, 24, 21, 11, 1, 22, 7, 10, 16, 14, 6, 3, 19, 12, 25, 9, 15, 18, 5, 4, 13, 17, 20]"
+24,Multivariable Calculus,Partial Derivatives,"Compute the first-order partial derivatives of each function. f(x,y,z) = x^2*y^3*z^4","Write a program that Compute the first-order partial derivatives of each function. f(x,y,z) = x^2*y^3*z^4",df/dx = 2*x*y**3*z**4; df/dy = x**2*3*y**2*z**4; df/dz = x**2*y**3*4*z**3,"import numpy as np
+
+def f(x,y,z):
+    return x**2*y**3*z**4
+
+def dfdx(x,y,z):
+    return 2*x*y**3*z**4
+
+def dfdy(x,y,z):
+    return x**2*3*y**2*z**4
+
+def dfdz(x,y,z):
+    return x**2*y**3*4*z**3","1. Define a function f(x,y,z)
+2. Define the first-order partial derivative of f with respect to x, y, and z
+3. Evaluate the partial derivative at the point (x,y,z)",Correct,Automatic Zero Shot,"f'x(x,y,z) = 2*x*y^3*z^4
+f'y(x,y,z) = 3*x^2*y^2*z^4
+f'z(x,y,z) = 4*x^2*y^3*z^3",Correct,"[2, 19, 22, 12, 11, 23, 7, 16, 20, 6, 8, 21, 14, 9, 15, 4, 10, 5, 1, 25, 13, 3, 18, 17]"
+25,Multivariable Calculus,Directional Derivatives and Gradient Vector,"Find the gradient vector V at the indicated point P. f(x,y) = 3x - 7y: P(17,39)","Find the gradient vector V of f(x,y) = 3x - 7y at the indicated point P(17,39).","<3, -7>","# Define the function
+def f(x,y):
+    return 3*x - 7*y
+
+# Define the gradient vector
+def grad(x,y):
+    return np.array([3, -7])
+
+# Define the point
+P = np.array([17,39])
+
+# Calculate the gradient vector
+V = grad(P[0],P[1])
+
+# Print the result
+print(V)","1. Define the function f(x,y) = 3x - 7y
+2. Define the gradient vector grad(x,y) = (3, -7)
+3. Define the point P(17,39)
+4. Calculate the gradient vector V = grad(P[0],P[1])
+5. Print the result",Correct,Automatic Zero Shot,"V(17,39) = (3, -7)",Correct,"[8, 6, 23, 19, 24, 11, 2, 21, 12, 22, 4, 17, 9, 3, 16, 10, 7, 14, 20, 1, 13, 15, 5, 18]"

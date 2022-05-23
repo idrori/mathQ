@@ -1,0 +1,478 @@
+Id,Course,Section/Question#,Topic,Subtopic,Original Problem,Codex Input,Solution,Codex Code,Codex Code Explanation,Output Evaluation,Solution Type,GPT-3 Response,GPT-3 Evaluation,Nearest Questions
+1,Single Variable Calculus,1.1 Question 45,Functions and Models ,Four Ways to Represent a Function,Sketch the graph of the function. f(x) = x + |x|,Sketch the graph of the function. f(x) = x + |x|,Graph,"import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-10, 10, 100)
+y = x + np.abs(x)
+
+plt.plot(x, y)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid()
+plt.show()","1. We import the numpy and matplotlib.pyplot libraries.
+2. We create an array of 100 evenly spaced numbers from -10 to 10.
+3. We create an array of the same size as x, where each element is the absolute value of the corresponding element in x.
+4. We plot the graph of y against x.
+5. We label the x-axis and y-axis.
+6. We display the grid.
+7. We display the graph.",Correct,Automatic Zero-Shot,The graph of the function is a line with a slope of 1 and a y-intercept of 0.,Incorrect,"[14, 20, 28, 6, 19, 3, 4, 13, 30, 7, 18, 2, 24, 16, 22, 26, 5, 12, 23, 21, 27, 29, 15, 25, 9, 11, 17, 8, 10]"
+2,Single Variable Calculus,1.3 Question 39,Functions and Models ,New Functions from Old Functions,"Find f◦g◦h. f(x)=3*x-2, g(x)=sin(x), h(x)=x**2","Find f◦g◦h. f(x)=3*x-2, g(x)=sin(x), h(x)=x**2",3sin(x**2) - 2,"import math
+
+def f(x):
+    return 3*x-2
+
+def g(x):
+    return math.sin(x)
+
+def h(x):
+    return x**2
+
+def fgh(x):
+    return f(g(h(x)))
+
+print(fgh(2))","1. fgh(2)
+2. h(2)
+3. g(4)
+4. f(sin(4))
+5. 3*sin(4)-2",Correct,Automatic Zero-Shot,f◦g◦h = f(g(h(x))) = f(g(x**2)) = f(sin(x**2)) = 3*sin(x**2)-2,Correct,"[3, 7, 19, 6, 28, 24, 4, 14, 18, 22, 12, 13, 1, 30, 20, 16, 26, 5, 23, 27, 29, 11, 25, 21, 8, 9, 15, 17, 10]"
+3,Single Variable Calculus,1.5 Question 52,Functions and Models ,Inverse Functions and Logarithms,Solve each equation for x. ln(x**2-1)=3,Solve each equation for x. ln(x**2-1)=3,"-sqrt(e**3 +1), sqrt(e**3 +1)","import sympy
+
+x = sympy.Symbol('x')
+
+eq = sympy.log(x**2-1) - 3
+
+print(sympy.solve(eq, x))","1. We import the sympy module.
+2. We create a symbol x.
+3. We create an equation.
+4. We solve the equation for x.",Correct,Automatic Zero-Shot,"x**2-1=e**3
+
+x**2=e**3+1
+
+x=sqrt(e**3+1)",Correct,"[20, 2, 4, 7, 6, 24, 28, 1, 19, 13, 30, 18, 14, 22, 12, 16, 26, 23, 21, 5, 27, 29, 8, 11, 25, 15, 9, 17, 10]"
+4,Single Variable Calculus,2.2 Question 31,Limits and Derivatives,The Limit of a Function,Determine the infinite limit. lim_x_5+ (x+1)/(x-5),Using sympy determine the infinite limit. lim_x_5+ (x+1)/(x-5),inf,"from sympy import limit, Symbol, S
+
+x = Symbol('x')
+
+limit((x+1)/(x-5), x, 5)","1. We import the limit function from the sympy module.
+2. We create a Symbol object called x.
+3. We call the limit function and pass in the expression (x+1)/(x-5) and the variable x.
+4. We pass in the point 5 as the third argument.",Correct,Automatic Zero-Shot,The limit does not exist because the function is not defined when x = 5.,Incorrect,"[7, 24, 20, 13, 3, 6, 28, 19, 2, 18, 1, 30, 23, 22, 14, 16, 12, 26, 27, 5, 21, 29, 11, 8, 9, 25, 15, 17, 10]"
+5,Single Variable Calculus,2.6 Question 64,Limits and Derivatives,Limits at Infinity; Horizontal Asymptotes,"Find the limits as x -> infinity and as x -> - infinity. Use this information, together with intercepts, to give a rough sketch of the graph as in Example 12. y=x^2 (x^2-1)^2 (x+2)","Find the limits as x -> infinity and as x -> - infinity. Use this information, together with intercepts, to give a rough sketch of the graph as in Example 12. y=x^2 (x^2-1)^2 (x+2)",Graph,"import sympy as sym
+from sympy import Symbol
+from sympy import pprint
+
+sigma = Symbol('sigma')
+x = Symbol('x')
+mu = Symbol('mu')
+
+pprint(2*sym.pi*sigma)
+
+pprint(sym.sqrt(2*sym.pi*sigma))
+
+part_1 = 1/(sym.sqrt(2*sym.pi*sigma))
+part_2 = sym.exp(-1*((x-mu)**2)/(2*sigma))
+my_gauss_function = part_1*part_2
+pprint(my_gauss_function)
+
+sym.plot(my_gauss_function.subs({mu:10,sigma:30}),(x,0,100),title='gauss distribution')
+
+x_values = []
+y_values = []
+for value in range(-5,5):
+    y = my_gauss_function.subs({mu:10,sigma:30,x:value}).evalf()
+    y_values.append(y)
+    x_values.append(value)
+    print(value,y)
+
+import matplotlib.pyplot as plt
+
+plt.plot(x_values,y_values)
+plt.show()","1. We create a list of x values from -5 to 5.
+2. We create an empty list to store the y values.
+3. We loop through the x values.
+4. For each x value, we calculate the y value.
+5. We append the y value to the list of y values.
+6. We plot the x values against the y values.",Correct,Automatic Zero Shot,"As x -> infinity, y -> infinity. As x -> - infinity, y -> infinity.
+
+The graph will look like a parabola that opens up.",Incorrect,"[12, 19, 16, 14, 6, 27, 28, 2, 22, 26, 24, 1, 11, 23, 29, 13, 18, 25, 30, 4, 7, 17, 15, 10, 20, 3, 9, 8, 21]"
+6,Single Variable Calculus,2.8 Question 28,Limits and Derivatives,The Derivative as a Function,Find the derivative of the function using the definition of a derivative. f(x)=(x**2-1)/(2*x-3),Using Sympy find the derivative of the function using the definition of a derivative. f(x)=(x**2-1)/(2*x-3),2*(x**2 - 3*x+1)/(2*x-3)**2,"import sympy as sp
+
+x = sp.Symbol('x')
+
+f = (x**2-1)/(2*x-3)
+
+print(sp.diff(f,x))","1. We import sympy as sp
+2. We create a symbol x
+3. We create a function f
+4. We print the derivative of f with respect to x",Correct,Automatic Zero Shot,(2*x**2-1)/(2*x-3)**2,Correct,"[19, 28, 13, 24, 2, 18, 30, 20, 4, 14, 3, 7, 16, 22, 1, 12, 5, 26, 23, 27, 29, 25, 11, 15, 8, 9, 17, 21, 10]"
+7,Single Variable Calculus,3.3 Question 46,Differentiation Rules,Derivatives of Trigonometric Functions ,Find the limit. limit_x_0 csc(x)*sin(sin(x)),Find the limit. limit_x_0 csc(x)*sin(sin(x)),1,"from sympy import limit, csc, sin, Symbol
+
+x = Symbol('x')
+
+print(limit(csc(x)*sin(sin(x)), x, 0))","1. We are finding the limit of csc(x)*sin(sin(x)) as x approaches 0.
+2. We are using the limit function from the sympy library.
+3. We are passing in the function csc(x)*sin(sin(x)) as the first argument.
+4. We are passing in the variable x as the second argument.
+5. We are passing in the number 0 as the third argument.",Correct,Automatic Zero Shot,The limit does not exist.,Incorrect,"[4, 2, 20, 24, 3, 6, 28, 18, 13, 19, 1, 30, 14, 22, 16, 23, 26, 12, 5, 21, 27, 29, 11, 8, 9, 15, 25, 17, 10]"
+8,Single Variable Calculus,3.8 Question 9,Differentiation Rules,Exponential Growth and Decay,The half-life of cesium-137 is 30 years. Suppose we have a 100-mg sample. How much of the sample remains after 100 years?,Write a program. The half-life of cesium-137 is 30 years. Suppose we have a 100-mg sample. How much of the sample remains after 100 years?,9.92 mg,"import math
+
+def half_life(t, h):
+    return 100 * math.pow(0.5, t/h)
+
+print(half_life(100, 30))","1. We import the math module.
+2. We define a function called half_life that takes two arguments: t and h.
+3. We return the value of 100 * 0.5^(t/h).
+4. We print the result of half_life(100, 30).",Correct,Automatic Zero Shot,"After 100 years, 50 mg of the sample would remain.",Incorrect,"[15, 9, 29, 25, 17, 11, 18, 22, 19, 13, 6, 24, 27, 14, 12, 28, 2, 30, 10, 4, 23, 26, 16, 5, 3, 20, 7, 1, 21]"
+9,Single Variable Calculus,3.9 Question 6,Differentiation Rules,Related Rates,The radius of a sphere is increasing at a rate of 4 mm/s. How fast is the volume increasing when the diameter is 80 mm?,The radius of a sphere is increasing at a rate of 4 mm/s. How fast is the volume increasing when the diameter is 80 mm?,25600*pi,"import sympy as sp
+
+r = sp.symbols('r')
+
+d = 4*r
+
+v = 4/3*sp.pi*r**3
+
+dv_dr = sp.diff(v,r)
+
+print(dv_dr.subs(r,80))","1. We define the radius as a symbol.
+2. We define the diameter as a function of the radius.
+3. We define the volume as a function of the radius.
+4. We take the derivative of the volume with respect to the radius.
+5. We substitute the radius with 80 and print the result.",Correct,Manual,The volume of a sphere is increasing at a rate of approximately 201.06 mm3/s.,Incorrect,"[15, 22, 8, 17, 25, 29, 19, 13, 14, 18, 27, 11, 6, 30, 28, 16, 12, 24, 26, 2, 5, 4, 10, 23, 1, 20, 7, 3, 21]"
+10,Single Variable Calculus,4.1 Question 73,Applications of Differentiation,Maximum and Minimum Values,"The water level, measured in feet above mean sea level, of Lake Lanier in Georgia, USA, during 2012 can be modeled by the function L(t)=0.01441*t**3-0.4177*t**2+2.703*t+1060.1. Find the time t between 0 and 12 when the water level was maximum.","The water level, measured in feet above mean sea level, of Lake Lanier in Georgia, USA, during 2012 can be modeled by the function L(t)=0.01441*t**3-0.4177*t**2+2.703*t+1060.1. Find the time t between 0 and 12 when the water level was maximum.",4.1,"import math
+
+def L(t):
+    return 0.01441*t**3-0.4177*t**2+2.703*t+1060.1
+
+def dL(t):
+    return 0.04323*t**2-0.8354*t+2.703
+
+def ddL(t):
+    return 0.08646*t-0.8354
+
+def newton(f, df, x0, epsilon):
+    x = x0
+    while True:
+        x1 = x - f(x)/df(x)
+        if abs(x1 - x) < epsilon:
+            return x1
+        x = x1
+
+print(newton(dL, ddL, 0, 0.00001))","1. We define the function L(t)
+2. We define the derivative of L(t)
+3. We define the second derivative of L(t)
+4. We define a function that uses Newton's method to find the root of a function f(x)
+5. We print the result of using Newton's method to find the root of the derivative of L(t)
+",Correct,Automatic Zero Shot,The water level was maximum at t=2.,Incorrect,"[25, 29, 11, 15, 5, 12, 17, 19, 27, 8, 22, 9, 2, 16, 24, 14, 18, 6, 26, 13, 28, 30, 23, 4, 1, 7, 3, 20, 21]"
+11,Single Variable Calculus,4.7 Question 45,Applications of Differentiation,Optimization Problems,"If a resistor of R ohms is connected across a battery of E volts with internal resistance r ohms, then the power (in watts) in the external resistor is P = E^2R/(R+r)^2. If E and r are fixed but R varies, what is the maximum value of the power?","If a resistor of R ohms is connected across a battery of E volts with internal resistance r ohms, then the power (in watts) in the external resistor is P = E^2R/(R+r)^2. If E and r are fixed but R varies, what is the maximum value of the power?",E^2/(4r),"import sympy as sym
+from sympy import Symbol
+from sympy import pprint
+
+R = Symbol('R')
+E = Symbol('E')
+r = Symbol('r')
+
+P = E**2*R/(R+r)**2
+
+print(P)
+
+dP = P.diff(R)
+
+print(dP)
+
+R_sol = sym.solve(dP,R)
+
+print(R_sol)
+
+R_max = R_sol[0].evalf()
+
+print(R_max)
+
+P_max = P.subs({R:R_max})
+
+print(P_max)","1. Define the variables
+2. Define the function
+3. Take the derivative of the function
+4. Solve the derivative for R
+5. Evaluate the solution
+6. Substitute the solution into the original function",Correct,Automatic Few Shot (5),The maximum value of the power is P = E^2R/(R+r)^2 when R = r.,Incorrect,"[25, 17, 15, 5, 29, 19, 8, 12, 27, 22, 16, 6, 9, 10, 24, 14, 28, 13, 2, 23, 18, 30, 4, 26, 7, 20, 3, 1, 21]"
+12,Single Variable Calculus,4.8 Question 24,Applications of Differentiation,Newton's Method,Use Newton’s method to find all the solutions of the equation correct to eight decimal places. Start by drawing a graph to find initial approximations.  x**5-3*x**4+x**3-x**2-x+6=0,Use Newton’s method to find all the solutions between -1000 and 1000 with integer initial values. x**5-3*x**4+x**3-x**2-x+6=0. Use initial points between -1000 and 1000. Round to 8 decimal places.,"-1.04450307, 1.33258315, 2.70551209","import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x):
+    return x**5-3*x**4+x**3-x**2-x+6
+
+def df(x):
+    return 5*x**4-12*x**3+3*x**2-2*x-1
+
+def newton(x, f, df, epsilon=1e-8, max_iter=1000):
+    for i in range(max_iter):
+        x_new = x - f(x)/df(x)
+        if abs(x_new - x) < epsilon:
+            return x_new
+        x = x_new
+    return x_new
+
+def main():
+    x = np.linspace(-100, 100, 1000)
+    y = f(x)
+    plt.plot(x, y)
+    plt.grid()
+    plt.show()
+    x_sols = []
+    for i in range(-100, 100):
+        x_sols.append(newton(i, f, df))
+    print(x_sols)
+    print(np.round(x_sols, 8))
+
+if __name__ == '__main__':
+    main()","1. Plotting the function f(x) = x**5-3*x**4+x**3-x**2-x+6
+2. Finding the derivative of f(x)
+3. Using Newton's method to find the roots of f(x)
+4. Plotting the roots of f(x)",Correct,Manual,"There are five solutions.
+
+-1.46557123
+-0.53728871
+0.36082474
+1.12403607
+2.09132432",Incorrect,"[16, 5, 19, 6, 27, 14, 2, 26, 24, 28, 29, 30, 22, 4, 13, 18, 1, 23, 7, 25, 3, 11, 17, 15, 20, 10, 9, 8, 21]"
+13,Single Variable Calculus,5.2 Question 41,Integrals,The Definite Integral,Evaluate the integral from 1 to 1 of sqrt(1 + x^4) dx.,Evaluate the integral from 1 to 1 of sqrt(1 + x^4) dx.,0,"from sympy import Symbol, sqrt, Integral, pprint
+
+x = Symbol('x')
+k = Symbol('k')
+
+p = sqrt(1 + x**4)
+
+pprint(Integral(p, (x, 1, 1)).doit())","1. We create a Symbol object called x.
+2. We create a Symbol object called k.
+3. We create a symbolic expression called p.
+4. We create an Integral object called p_integral.
+5. We call the doit() method on the Integral object.",Correct,Automatic Zero Shot,The integral from 1 to 1 of sqrt(1 + x^4) dx is equal to 2.,Incorrect,"[18, 20, 19, 6, 14, 4, 30, 28, 22, 24, 7, 1, 3, 23, 2, 16, 26, 27, 12, 5, 29, 9, 25, 8, 15, 17, 11, 21, 10]"
+14,Single Variable Calculus,5.3 Question 47,Integrals,The Fundamental Theorem of Calculus,"Sketch the region enclosed by the given curves and calculate its area. y = 4-x^2, y=0","Using numpy, graph the lines y=0 and y=4-x**2. Use fill_betweeen().
+Then using Sympy, find the points of intersection between and y=0 and y=4-x**2.
+Integrate between lines y1=4-x**2 and y2=0*x, over the points of intersection to calculate the area of the region. x should go from -5 to 5.",Graph,"import numpy as np
+import matplotlib.pyplot as plt
+import sympy as sp
+
+x = np.linspace(-5, 5, 100)
+y1 = 0*x
+y2 = 4-x**2
+
+plt.plot(x, y1, '-b', label='y=0')
+plt.plot(x, y2, '-r', label='y=4-x**2')
+plt.fill_between(x, y1, y2, color='grey', alpha=0.5)
+plt.legend(loc='best')
+plt.show()
+
+x, y = sp.symbols('x y')
+f = 4-x**2
+g = 0*x
+
+sols = sp.solve([f, g], [x, y])
+
+x1 = sols[0][0]
+y1 = sols[0][1]
+x2 = sols[1][0]
+y2 = sols[1][1]
+
+area = sp.integrate(f, (x, x1, x2)) + sp.integrate(g, (x, x1, x2))","1. We are using numpy to graph the lines y=0 and y=4-x**2. We are using fill_between() to fill in the area between the two lines.
+2. We are using Sympy to find the points of intersection between the two lines.
+3. We are using Sympy to integrate between the two lines, over the points of intersection, to calculate the area of the region.
+",Correct,Manual,"The region is enclosed by the curves y=4-x^2, y=0, and x=2. Its area is 16.",Incorrect,"[19, 28, 18, 1, 16, 13, 22, 6, 30, 5, 2, 24, 26, 12, 27, 7, 20, 4, 3, 23, 29, 9, 25, 15, 17, 11, 8, 21, 10]"
+15,Single Variable Calculus,5.4 Question 71,Integrals,Indefinite Integrals and the Net Change Theorem,A bacteria population is 4000 at time t = 0 and its rate of growth is 1000 * 2^t bacteria per hour after t hours. What is the population after one hour?,A bacteria population is 4000 at time t = 0 and its rate of growth is y = 1000 * 2^x bacteria per hour after t hours. Write a function to calculate the population after one hour. Use sympy to integrate the symbol x from 0 to 1. Then add the initial population to the result.,4000 + 1000/log(2),"import sympy as sp
+
+x = sp.Symbol('x')
+
+def bacteria_population(x):
+    return 1000 * 2**x
+
+print(sp.integrate(bacteria_population(x), (x, 0, 1)) + 4000)","1. We import sympy as sp.
+2. We define x as a symbol.
+3. We define a function bacteria_population(x) that returns the population of bacteria after x hours.
+4. We print the result of integrating the function bacteria_population(x) from 0 to 1 and adding the initial population of 4000.",Correct,Manual,5000,Incorrect,"[29, 25, 8, 9, 11, 17, 19, 22, 13, 27, 6, 14, 12, 5, 18, 10, 30, 24, 16, 28, 26, 2, 23, 4, 1, 7, 20, 3, 21]"
+16,Single Variable Calculus,6.1 Question 43,Applications of Integration,Areas Between Curves,"Graph the region between the curves and use your calculator to compute the area correct to five decimal places. y = \tan^2(x), y = \sqrt{x}","Graph the region between the curves y = tan^2(x) and y = sqrt(x) to find the two points where they intersect. Then, write a program to compute the area between the curves where they cross. Use sympy.",0.25142,"import sympy
+import math
+
+x = sympy.symbols('x')
+
+y1 = sympy.tan(x)**2
+y2 = sympy.sqrt(x)
+
+# find the intersection points
+intersection_points = sympy.solve(y1 - y2)
+
+# find the area between the two curves
+area = sympy.integrate(y1 - y2, (x, intersection_points[0], intersection_points[1]))
+
+print(area)","1. We import sympy and math.
+2. We create a variable x and set it equal to sympy.symbols('x'). This is how we tell sympy that we want to use x as a variable.
+3. We create two variables, y1 and y2, and set them equal to sympy.tan(x)**2 and sympy.sqrt(x), respectively.
+4. We create a variable called intersection_points and set it equal to sympy.solve(y1 - y2). This is how we tell sympy to find the intersection points of the two curves.
+5. We create a variable called area and set it equal to sympy.integrate(y1 - y2, (x, intersection_points[0], intersection_points[1])). This is how we tell sympy to find the area between the two curves.
+6. We print the area.",Correct,Manual,"The region between the curves is shaded in the graph.
+
+The area is 1.04719.",Incorrect,"[19, 12, 14, 28, 27, 6, 5, 22, 26, 2, 30, 13, 24, 18, 4, 1, 7, 23, 29, 20, 11, 3, 25, 17, 9, 15, 8, 10, 21]"
+17,Single Variable Calculus,6.4 Question 7,Applications of Integration,Work,A force of 10 lb is required to hold a spring stretched 4 in. beyond its natural length. How much work is done in stretching it from its natural length to 6 in. beyond its natural length?,A force of 10 lb is required to hold a spring stretched delta_x = 1/3 foot. Write a function to calculate the work done in stretching it to delta_x = 1/2 foot. Use Hooke's Law F = k*delta_x where delta_x is a sympy.symbols to find the spring constant k = 10/(1/3) and integrate F with respect to delta_x from 0 to the stretched ratio 1/2. Use sympy for the integral. Then plug in for delta_x = 1/2.,15/4,"import sympy
+
+def work_done(delta_x):
+    k = 10/(1/3)
+    F = k*delta_x
+    return sympy.integrate(F, (delta_x, 0, 1/2))
+
+print(work_done(sympy.symbols('delta_x')))","1. We define a function called work_done that takes a variable delta_x as an argument.
+2. We define the spring constant k = 10/(1/3)
+3. We define the force F = k*delta_x
+4. We return the integral of F with respect to delta_x from 0 to 1/2.
+5. We print the result of calling work_done with sympy.symbols('delta_x') as the argument.",Correct,Manual,The work done in stretching the spring from its natural length to 6 in. beyond its natural length is 60 lb-in.,Incorrect,"[11, 9, 22, 29, 15, 25, 8, 19, 12, 5, 27, 26, 14, 16, 13, 6, 18, 10, 30, 24, 28, 2, 23, 4, 1, 20, 7, 3, 21]"
+18,Single Variable Calculus,7.3 Question 11,Techniques of Integration,Trigonometric Substitution,Evaluate the integral. 0 to 0.5 of x*sqrt(1-4x^2) dx.,Using sympy evaluate the integral. 0 to 0.5 of x*sqrt(1-4x^2) dx.,12-Jan,"from sympy import *
+
+x = Symbol('x')
+
+integral = integrate(x*sqrt(1-4*x**2), (x, 0, 0.5))
+
+print(integral)","1. We import the sympy module.
+2. We create a symbol x.
+3. We create an integral object.
+4. We print the integral object.",Correct,Automatic Zero Shot,The integral is 0.,Incorrect,"[13, 20, 19, 14, 6, 28, 4, 24, 7, 22, 30, 2, 3, 1, 26, 23, 16, 27, 12, 29, 5, 8, 9, 25, 15, 17, 11, 21, 10]"
+19,Single Variable Calculus,7.4 Question 65,Techniques of Integration,Integration of Rational Functions by Partial Fractions,Find the area of the region under the given curve from 1 to 2. y = (x^2+1)/(3x-x^2),Find the area of the region under the given curve from 1 to 2. y = (x^2+1)/(3x-x^2),(11/3)*ln(2) - 1,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x):
+    return (x**2+1)/(3*x-x**2)
+
+def trapezoidal(f, a, b, n):
+    h = (b-a)/n
+    s = 0.5*(f(a) + f(b))
+    for i in range(1, n):
+        s = s + f(a + i*h)
+    return h*s
+
+def simpson(f, a, b, n):
+    h = (b-a)/n
+    s = f(a) + f(b)
+    for i in range(1, n, 2):
+        s = s + 4*f(a + i*h)
+    for i in range(2, n-1, 2):
+        s = s + 2*f(a + i*h)
+    return h*s/3
+
+def gauss(f, a, b, n):
+    x, A = np.polynomial.legendre.leggauss(n)
+    return 0.5*(b-a)*np.dot(A, f(0.5*(b-a)*x + 0.5*(b+a)))
+
+a = 1
+b = 2
+n = 10
+
+print(""Trapezoidal:"", trapezoidal(f, a, b, n))
+print(""Simpson:"", simpson(f, a, b, n))
+print(""Gauss:"", gauss(f, a, b, n))
+
+x = np.linspace(a, b, 100)
+y = f(x)
+plt.plot(x, y)
+plt.show()","1. Define the function f(x) = (x^2+1)/(3x-x^2)
+2. Define the trapezoidal rule for numerical integration
+3. Define the Simpson's rule for numerical integration
+4. Define the Gauss-Legendre quadrature rule for numerical integration
+5. Define the limits of integration
+6. Define the number of intervals
+7. Print the results of the three methods
+8. Plot the function",Correct,Automatic Zero Shot,The area of the region under the given curve from 1 to 2 is approximately 1.4.,Incorrect,"[6, 28, 14, 13, 24, 22, 18, 16, 2, 27, 5, 4, 12, 20, 30, 1, 26, 7, 3, 23, 29, 25, 15, 11, 9, 17, 8, 10, 21]"
+20,Single Variable Calculus,7.5 Question 81,Techniques of Integration,Strategy for Integration,Evaluate the integral. ln(1+x**2),"Evaluate the integral of ln(1+x**2). Cast to a string and add "" +C"".",x\log (x^2+1) - 2x + 2\arctan{x} + C,"from sympy import *
+
+x = Symbol('x')
+
+integral = integrate(log(1+x**2), x)
+
+print(integral)","1. We import the sympy module.
+2. We create a symbol x.
+3. We create a variable integral and assign it the value of the integral of ln(1+x**2) with respect to x.
+4. We print the value of the integral.",Correct,Automatic Zero Shot,The integral of ln(1+x**2) is x*ln(1+x**2)-x,Incorrect,"[13, 3, 18, 4, 7, 1, 6, 19, 28, 24, 30, 2, 14, 23, 22, 26, 16, 21, 12, 5, 27, 29, 25, 11, 8, 9, 15, 17, 10]"
+21,Single Variable Calculus,10.1 Question 29,Parametric Equations and Polar Coordinates,Curves Defined by Parametric Equations,Graph the curve x = y - 2sin(pi*y).,"Graph the curve x = y - 2sin(pi*y) by sampling points and swapping the (x, y) pair locations.",Graph,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(y):
+    return y - 2*np.sin(np.pi*y)
+
+y = np.linspace(-2, 2, 100)
+x = f(y)
+
+plt.plot(x, y)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('x = y - 2sin(pi*y)')
+plt.show()","1. Define the function f(y) = y - 2sin(pi*y).
+2. Create an array of 100 evenly spaced numbers between -2 and 2.
+3. Create an array of the values of f(y) for each y in the array.
+4. Plot the curve x = f(y).",Correct,Automatic Zero Shot,"A curve is defined by a set of parametric equations if the coordinates of each point on the curve are given by specific functions of a variable. The variable is called a parameter.
+
+The parametric equations for a curve are usually written as x = f(t) and y = g(t). The parameter t is usually restricted to a certain interval, such as 0 ≤ t ≤ 1.
+
+The graph of the parametric equations x = f(t) and y = g(t) is the set of points (f(t), g(t)) for all values of t in the interval.
+
+Example 1: Find the graph of the parametric equations x = t2 and y = t3.
+
+Solution: The graph of the parametric equations x = t2 and y = t3 is the set of points (t2, t3) for all values of t.",Incorrect,"[1, 20, 7, 28, 3, 4, 30, 19, 2, 22, 13, 14, 6, 24, 18, 16, 26, 12, 23, 29, 5, 27, 11, 9, 25, 15, 8, 17, 10]"
+22,Single Variable Calculus,10.3 Question 13,Parametric Equations and Polar Coordinates,Polar Coordinates,"Find the distance between the points with polar coordinates (4, 4pi/3) and (6, 5pi/3).","Using sympy find the distance between the points with polar coordinates (4, 4pi/3) and (6, 5pi/3).",2*sqrt(7),"from sympy import *
+
+r1, r2, theta1, theta2 = symbols('r1 r2 theta1 theta2')
+
+x1 = r1 * cos(theta1)
+y1 = r1 * sin(theta1)
+
+x2 = r2 * cos(theta2)
+y2 = r2 * sin(theta2)
+
+d = sqrt((x2 - x1)**2 + (y2 - y1)**2)
+
+print(d.subs({r1: 4, theta1: 4*pi/3, r2: 6, theta2: 5*pi/3}))","1. We define the variables r1, r2, theta1, theta2 as symbols.
+2. We define x1, y1, x2, y2 as the cartesian coordinates of the points.
+3. We define d as the distance between the points.
+4. We substitute the values of r1, theta1, r2, theta2 and print the result.",Correct,Automatic Zero Shot,The distance between the points is 2.,Incorrect,"[19, 28, 14, 13, 6, 24, 18, 16, 2, 30, 4, 27, 3, 7, 26, 12, 1, 9, 5, 20, 29, 23, 17, 25, 15, 11, 8, 21, 10]"
+23,Single Variable Calculus,11.3 Question 9,Infinite Sequences and Series,The Integral Test and Estimates of Sums,Determine whether the series is convergent or divergent. sum_{n=1}^{inf} 1/n^{sqrt(2)},"Using Sympy, calculate the value sum_{n=1}^{inf} 1/n^{sqrt(2)} if it converges. Check if it converges.",Converges,"from sympy import Sum, Symbol, oo, pprint, init_printing
+
+def test_convergence(n):
+    x = Symbol('x')
+    s = Sum(1/x**(2**0.5), (x, 1, n))
+    pprint(s)
+    pprint(s.doit())
+
+if __name__ == '__main__':
+    init_printing(order='rev-lex')
+    test_convergence(10)
+    test_convergence(oo)","1. We import the Sum function from sympy.
+2. We create a function that takes in a number n and creates a Sum object.
+3. We print the Sum object and the result of the summation.
+4. We call the function with n = 10 and n = oo.",Correct,Automatic Zero Shot,The series is divergent.,Incorrect,"[24, 13, 19, 4, 18, 6, 28, 20, 14, 7, 5, 16, 22, 12, 2, 1, 27, 26, 30, 3, 11, 25, 29, 8, 15, 9, 17, 10, 21]"
+24,Single Variable Calculus,11.10 Question 75,Infinite Sequences and Series,Taylor and Maclaurin Series,Find the sum of the series. sum n to infinity  (-1)^{n-1}*(3^n/(n*5^n)),Find the sum of the series by running a large number of iterations. sum_{n=1}^{inf} (-1)^{n-1}*(3^n/(n*5^n)). Return 0 if n < 1.,ln(8/5),"def sum_series(n):
+    """"""
+    Find the sum of the series. sum n to infinity (-1)^{n-1}*(3^n/(n*5^n))
+    """"""
+    sum = 0
+    for i in range(1, n+1):
+        sum += ((-1)**(i-1))*(3**i)/(i*(5**i))
+    return sum
+
+def main():
+    """"""
+    Find the sum of the series. sum n to infinity (-1)^{n-1}*(3^n/(n*5^n))
+    """"""
+    n = int(input())
+    print(sum_series(n))
+
+if __name__ == '__main__':
+    main()","1. We are taking input from the user.
+2. We are calling the function sum_series() with the input as the argument.
+3. The function sum_series() is returning the sum of the series.
+4. We are printing the sum of the series.",Correct,Automatic Zero Shot,The sum of the series is -1/4.,Incorrect,"[19, 4, 6, 7, 2, 23, 3, 18, 13, 22, 28, 20, 14, 12, 16, 1, 30, 5, 26, 27, 29, 25, 11, 8, 15, 9, 17, 21, 10]"
+25,Single Variable Calculus,8.4 Question 3,Further Applications of Integration,Applications to Economics and Biology,"If revenue flows into a company at a rate of f(t) = 9000*sqrt(1+2t), where t is measured in years and f(t) is measured in dollars per year, find the total revenue obtained in the first four years.","Using sympy if revenue flows into a company at a rate of f(t) = 9000*sqrt(1+2t), where t is measured in years and f(t) is measured in dollars per year, find the total revenue obtained in the first four years.",78000,"from sympy import *
+
+t = symbols('t')
+
+f = 9000*sqrt(1+2*t)
+
+print(integrate(f, (t, 0, 4)))","1. We import the sympy library.
+2. We define the variable t as a symbol.
+3. We define the function f(t) = 9000*sqrt(1+2t).
+4. We integrate f(t) from t=0 to t=4.
+5. We print the result.",Correct,Automatic Zero Shot,The total revenue obtained in the first four years is f(4) = 9000*sqrt(1+2*4) = 9000*sqrt(9) = 9000*3 = 27000.,Incorrect,"[15, 29, 11, 19, 9, 8, 27, 22, 17, 5, 10, 12, 13, 6, 14, 24, 16, 30, 18, 2, 23, 28, 26, 4, 20, 1, 7, 3, 21]"
