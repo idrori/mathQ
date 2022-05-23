@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Probability",
+       "Original question": "MIT students sometimes delay laundry for a few days. Assume all random values described below are mutually independent. A relaxed student rolls a fair, 6-sided die in the morning. If he rolls a 1, then he does his laundry immediately (with zero days of delay). Otherwise, he delays for one day and repeats the experiment the following morning. Let R be the number of days a relaxed student delays laundry. What is Ex (R)? ",
+       "Codex input": "Roll the 6 sided dice infinitely if you don't get a 1. Don't count the first dice roll toward days, so remember to subtract the right value from return days. return days-1. Roll infinitely until you encounter a 1. Write a program to compute the expected value for number of rolls until 1 is encountered?",
+       "Codex code": "import random\n\ndef dice_roll():\n    return random.randint(1,6)\n\ndef roll_until_one():\n    days = 0\n    while True:\n        days += 1\n        if dice_roll() == 1:\n            return days-1\n\ndef expected_rolls():\n    total_days = 0\n    for i in range(1000000):\n        total_days += roll_until_one()\n    return total_days/1000000\n\nprint(expected_rolls())",
+       "Codex code explanation": "1. We define a function that rolls a dice and returns a random number between 1 and 6.\n2. We define a function that rolls a dice until it gets a 1. It returns the number of days it took to get a 1.\n3. We define a function that rolls a dice until it gets a 1, 1,000,000 times. It returns the average number of days it took to get a 1.",
+       "Program solution": "5",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "#Expected value of R is 6.",
+       "GPT-3 evaluation": "Incorrect"
+}

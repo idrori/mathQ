@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Graph Theory",
+       "Original question": "What is the diameter of the following graph? graph = {'A': ['B'], B': ['A', 'C', 'H'], C': ['B', 'D', 'E'], D': ['C', 'E'], E': ['C', 'D', 'F', 'H'], F': ['E', 'G'], G': ['F'], H': ['B', 'E']}",
+       "Codex input": "What is the diameter of the following graph? The starting node doesn't count towards length so subtract 1 from the final answer. graph = {'A': ['B'], B': ['A', 'C', 'H'], C': ['B', 'D', 'E'], D': ['C', 'E'], E': ['C', 'D', 'F', 'H'], F': ['E', 'G'], G': ['F'], H': ['B', 'E']}. Remember to define the shortest path function. Use python3.",
+       "Codex code": "def shortest_path(graph, start, end, path=[]):\n    path = path + [start]\n    if start == end:\n        return path\n    if not start in graph:\n        return None\n    shortest = None\n    for node in graph[start]:\n        if node not in path:\n            newpath = shortest_path(graph, node, end, path)\n            if newpath:\n                if not shortest or len(newpath) < len(shortest):\n                    shortest = newpath\n    return shortest\n\ndef diameter(graph):\n    diameter = 0\n    for node in graph:\n        for node2 in graph:\n            if node != node2:\n                path = shortest_path(graph, node, node2)\n                if path:\n                    if len(path) > diameter:\n                        diameter = len(path) - 1\n    return diameter\n\ngraph = {'A': ['B'], 'B': ['A', 'C', 'H'], 'C': ['B', 'D', 'E'], 'D': ['C', 'E'], 'E': ['C', 'D', 'F', 'H'], 'F': ['E', 'G'], 'G': ['F'], 'H': ['B', 'E']}\nprint(diameter(graph))",
+       "Codex code explanation": "1. It's creating a graph with 8 nodes and 9 edges.\n2. It's finding the shortest path between each pair of nodes.\n3. It's finding the longest shortest path.\n\nThe longest shortest path is the diameter of the graph.",
+       "Program solution": "5",
+       "Solution type": "Automatic Few-shot",
+       "GPT-3 response": "4",
+       "GPT-3 evaluation": "Incorrect"
+}

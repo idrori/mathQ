@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Probability",
+       "Original question": "You shuffle a deck of cards and deal your friend a 5 \u00adcard hand. Suppose your friend says, \u201cI have the ace of spades.\u201d What is the probablity that she has another ace?",
+       "Codex input": "Create a 52-card deck. Remove the spade ace. Simulate 4 card hands and compute the probability a hand has an ace.",
+       "Codex code": "import random\n\ndef create_deck():\n    \"\"\"\n    Create a 52-card deck.\n    \"\"\"\n    deck = []\n    for suit in ['hearts', 'clubs', 'diamonds', 'spades']:\n        for value in ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king']:\n            deck.append((suit, value))\n    return deck\n\ndef remove_ace(deck):\n    \"\"\"\n    Remove the spade ace.\n    \"\"\"\n    for i in range(len(deck)):\n        if deck[i][1] == 'ace' and deck[i][0] == 'spades':\n            deck.pop(i)\n            break\n    return deck\n\ndef draw_hand(deck):\n    \"\"\"\n    Simulate 4 card hands and compute the probability a hand has an ace.\n    \"\"\"\n    ace_count = 0\n    for i in range(10000):\n        hand = random.sample(deck, 4)\n        for card in hand:\n            if card[1] == 'ace':\n                ace_count += 1\n                break\n    return ace_count / 10000\n\nif __name__ == '__main__':\n    deck = create_deck()\n    deck = remove_ace(deck)\n    print(draw_hand(deck))",
+       "Codex code explanation": "1. Create a deck of 52 cards.\n2. Remove the spade ace.\n3. Draw 4 cards from the deck 10000 times.\n4. Count the number of times an ace is drawn.\n5. Divide the number of times an ace is drawn by the number of hands drawn.\n\nThe probability of drawing an ace is 0.49.",
+       "Program solution": "0.2214",
+       "Solution type": "Manual",
+       "GPT-3 response": "#There are 4 aces in a deck of 52 cards.\n#The probability of drawing another ace is 4/52.",
+       "GPT-3 evaluation": "Incorrect"
+}

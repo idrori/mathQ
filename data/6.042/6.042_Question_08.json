@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Probability",
+       "Original question": "I have twelve cards: 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6. I shuffle them and deal them in a row. What is the expected number of adjacent pairs with the same value?",
+       "Codex input": "I have twelve cards: 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6. \nI shuffle them and deal them in a row. Write a program that computes the average number of adjacent pairs with the same value over 10000 runs",
+       "Codex code": "import random\n\ndef run_simulation():\n    cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]\n    random.shuffle(cards)\n    count = 0\n    for i in range(len(cards) - 1):\n        if cards[i] == cards[i + 1]:\n            count += 1\n    return count\n\ndef main():\n    total = 0\n    for i in range(10000):\n        total += run_simulation()\n    print(total / 10000)\n\nif __name__ == \"__main__\":\n    main()",
+       "Codex code explanation": "1. We create a list of cards.\n2. We shuffle the cards.\n3. We count the number of adjacent pairs with the same value.\n4. We repeat steps 2 and 3 10000 times.\n5. We divide the total number of adjacent pairs by 10000 to get the expected value.",
+       "Program solution": "1",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "# The expected number of adjacent pairs with the same value is 3.",
+       "GPT-3 evaluation": "Incorrect"
+}

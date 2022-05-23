@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Probability",
+       "Original question": "MIT students sometimes delay laundry for a few days. Assume all random values described below are mutually independent. Before doing laundry, an unlucky student must recover from illness for a number of days equal to the product of the numbers rolled on two fair, 6-sided dice. Let U be the expected number of days an unlucky student delays laundry. What is Ex (U)? ",
+       "Codex input": "Roll the 2 x 6-sided dice. The product of the two dice is number of days. What is the expected value for number of days?",
+       "Codex code": "import random\n\ndef roll_dice():\n    return random.randint(1,6), random.randint(1,6)\n\ndef expected_value(n):\n    total = 0\n    for i in range(n):\n        total += roll_dice()[0] * roll_dice()[1]\n    return total / n\n\nprint(expected_value(1000000))",
+       "Codex code explanation": "1. It's rolling two dice and multiplying the results.\n2. It's doing this a million times.\n3. It's adding up all the results.\n4. It's dividing by a million to get the average.",
+       "Program solution": "49/4",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "#Expected value of the product of two dice is 7.",
+       "GPT-3 evaluation": "Incorrect"
+}
