@@ -1,1 +1,2 @@
 # A Neural Network Solves, Explains, and Generates University Math Problems by Program Synthesis and Few-Shot Learning at Human Level
+This is the repository for A Neural Network Solves, Explains, and Generates University Math Problems by Program Synthesis and Few-Shot Learning at Human Level by Iddo Drori et al. It contains the paper and its supplementary materials (`paper`), jsons files for every question evaluated (`data`), and evaluation code used for generating figures and performing few-shot learning (`code`).
