@@ -1,0 +1,12 @@
+{
+       "Course": "Differential Equations",
+       "Topic": "Periodic and Piecewise Continuous Input Functions",
+       "Original question": "Find the inverse Laplace transform f (t) of each function given. Then sketch the graph of f . F(s) =  e^(-3s)/s^2.",
+       "Codex input": "Use the inverse_laplace_transform to find original function from e**(-3*s)/s**2.\nGraph the solution.",
+       "Codex code": "from sympy import *\nfrom sympy.abc import s, t\nfrom sympy.integrals import inverse_laplace_transform\nfrom sympy.plotting import plot\n\nf = inverse_laplace_transform(exp(-3*s)/s**2, s, t)\nprint(f)\n\nplot(f, (t, 0, 5))",
+       "Codex code explanation": "1. We import the inverse_laplace_transform function from sympy.integrals.\n2. We define the function f as the inverse_laplace_transform of e**(-3*s)/s**2.\n3. We print the function f.\n4. We plot the function f.",
+       "Program solution": "data/images/18.03-q12-codex-output-plot.png",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "f(t) = t^2*e^(-3t)",
+       "GPT-3 evaluation": "Incorrect"
+}

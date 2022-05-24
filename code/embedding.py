@@ -19,10 +19,15 @@ def make_embeddings(questions_per_course=20):
     for course in courses:
         print("Currently embedding: " + course)
         for num in [i for i in range(1, questions_per_course+1)]:
-            with open(f'./Data/{course}/{course}_Question_{num}.json', 'r') as f:
+            # with open(f'./Data/{course}/{course}_Question_{num}.json', 'r') as f:
+            if num<10:
+                number='0'+str(num)
+            else:
+                number=str(num)
+            with open('./Data/'+course+'/'+course+'_Question_'+number+'.json', 'r') as f:
                 data = json.load(f)
             raw_question = data['Original question']
-            output = openai.Embedding.create(input = raw_question, engine = f'text-similarity-babbage-001')
+            output = openai.Embedding.create(input = raw_question, engine = 'text-similarity-babbage-001')
             embedding = output['data'][0]['embedding']
             list_of_embeddings.append(embedding)
     embeddings = {'list_of_embeddings':list_of_embeddings}
@@ -44,7 +49,7 @@ def reduce_via_umap(embeddings, num_dims=2):
     reduces the dimensionality of points via UMAP.
     """
     reducer = umap.UMAP(n_components=num_dims)
-    reduced = reducer.fit_transform(embeddings) #500x2
+    reduced = reducer.fit_transform(embeddings) #140x2
     return reduced
 
 def plot_clusters(points, questions_per_course=20, question_labels=False):

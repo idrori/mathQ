@@ -1,0 +1,12 @@
+{
+       "Course": "Differential Equations",
+       "Topic": "Linear Systems",
+       "Original question": "The problem has a single critical point (x0, y0). Classify this critical point as to type and stability. Verify your conclusion by using a computer system or graphing calculator to construct a phase portrait for the given system.  x'(x,y)=x\u22122y and y'(x,y)=3x\u22124y-2",
+       "Codex input": "Find the jacobian of x'(x,y)=x\u22122y and y'(x,y)=3x\u22124y-2 with sp.diff(f, x), sp.diff(f, y), sp.diff(g, x), sp.diff(g, y).\nUse all([sp.re(eigenvalue)<0 for eigenvalue in eigenvalues.keys()]).\nUse streamplot to plot x'(x,y)=x\u22122y and y'(x,y)=3x\u22124y-2.",
+       "Codex code": "import sympy as sp\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx, y = sp.symbols('x y')\n\nf = x - 2*y\ng = 3*x - 4*y - 2\n\ndfdx = sp.diff(f, x)\ndfdy = sp.diff(f, y)\ndgdx = sp.diff(g, x)\ndgdy = sp.diff(g, y)\n\njacobian = sp.Matrix([[dfdx, dfdy], [dgdx, dgdy]])\n\neigenvalues = jacobian.eigenvals()\n\nprint(all([sp.re(eigenvalue) < 0 for eigenvalue in eigenvalues.keys()]))\n\nx_range = np.arange(-5, 5, 0.1)\ny_range = np.arange(-5, 5, 0.1)\n\nx_mesh, y_mesh = np.meshgrid(x_range, y_range)\n\nx_dot = x_mesh - 2*y_mesh\ny_dot = 3*x_mesh - 4*y_mesh - 2\n\nplt.streamplot(x_mesh, y_mesh, x_dot, y_dot)\nplt.show()",
+       "Codex code explanation": "1. Define the function f(x,y) = x\u22122y and g(x,y) = 3x\u22124y\u22122.\n2. Find the jacobian of f(x,y) and g(x,y) with respect to x and y.\n3. Find the eigenvalues of the jacobian.\n4. Use all([sp.re(eigenvalue)<0 for eigenvalue in eigenvalues.keys()]).\n5. Use streamplot to plot x'(x,y)=x\u22122y and y'(x,y)=3x\u22124y\u22122.",
+       "Program solution": "data/images/18.03-q19-codex-output-plot.png",
+       "Solution type": "manual",
+       "GPT-3 response": "The critical point is (0,0). By Theorem 2, this critical point is a saddle point. This can be verified by constructing a phase portrait for the given system, which is shown below.",
+       "GPT-3 evaluation": "Incorrect"
+}

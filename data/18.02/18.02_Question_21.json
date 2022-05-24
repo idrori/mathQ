@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Infinite Series",
+       "Original question": "Determine whether the sequence a_n converges, and find its limit if it does converge. a_n = 2n/(5n-3)",
+       "Codex input": "Using Sympy Determine whether the sequence a_n converges, and find its limit if it does converge. a_n = 2n/(5n-3)",
+       "Codex code": "from sympy import limit, oo, symbols\n\nn = symbols('n')\n\nlimit(2*n/(5*n-3), n, oo)",
+       "Codex code explanation": "1. We define a variable n as a symbol\n2. We define the limit of 2n/(5n-3) as n approaches infinity\n3. We print the result",
+       "Program solution": "data/images/18.02-q21-codex-output-plot.png",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The sequence a_n converges to 2/5.",
+       "GPT-3 evaluation": "Correct"
+}

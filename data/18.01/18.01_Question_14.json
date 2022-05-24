@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Integrals",
+       "Original question": "Sketch the region enclosed by the given curves and calculate its area. y = 4-x^2, y=0",
+       "Codex input": "Using numpy, graph the lines y=0 and y=4-x**2. Use fill_betweeen().\nThen using Sympy, find the points of intersection between and y=0 and y=4-x**2.\nIntegrate between lines y1=4-x**2 and y2=0*x, over the points of intersection to calculate the area of the region. x should go from -5 to 5.",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\nimport sympy as sp\n\nx = np.linspace(-5, 5, 100)\ny1 = 0*x\ny2 = 4-x**2\n\nplt.plot(x, y1, '-b', label='y=0')\nplt.plot(x, y2, '-r', label='y=4-x**2')\nplt.fill_between(x, y1, y2, color='grey', alpha=0.5)\nplt.legend(loc='best')\nplt.show()\n\nx, y = sp.symbols('x y')\nf = 4-x**2\ng = 0*x\n\nsols = sp.solve([f, g], [x, y])\n\nx1 = sols[0][0]\ny1 = sols[0][1]\nx2 = sols[1][0]\ny2 = sols[1][1]\n\narea = sp.integrate(f, (x, x1, x2)) + sp.integrate(g, (x, x1, x2))",
+       "Codex code explanation": "1. We are using numpy to graph the lines y=0 and y=4-x**2. We are using fill_between() to fill in the area between the two lines.\n2. We are using Sympy to find the points of intersection between the two lines.\n3. We are using Sympy to integrate between the two lines, over the points of intersection, to calculate the area of the region.\n",
+       "Program solution": "data/images/18.01-q14-codex-output-plot.png",
+       "Solution type": "Manual",
+       "GPT-3 response": "The region is enclosed by the curves y=4-x^2, y=0, and x=2. Its area is 16.",
+       "GPT-3 evaluation": "Incorrect"
+}
