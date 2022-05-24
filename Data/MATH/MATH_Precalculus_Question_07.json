@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Precalculus",
+       "Original question": "If the six solutions of x^6=-64 are written in the form a+bi, where a and b are real, find the product of those solutions with a>0.",
+       "Codex input": "Write a program to find the six solutions of $x^6+64=0$ using sympy. Then, find the product of those solutions where the real component of the complex number is positive.",
+       "Codex code": "import sympy\n\nx = sympy.symbols('x')\n\nsolutions = sympy.solve(x**6 + 64, x)\n\nprint(solutions)\n\npositive_solutions = [s for s in solutions if s.as_real_imag()[0] > 0]\n\nprint(positive_solutions)\n\nproduct = 1\nfor s in positive_solutions:\n    product *= s\n\nprint(product)",
+       "Codex code explanation": "1. We create a variable x that is a symbol.\n2. We solve the equation x**6 + 64 = 0 for x.\n3. We print the solutions.\n4. We create a list of the solutions that are positive.\n5. We print the positive solutions.\n6. We multiply the positive solutions together.\n7. We print the product.",
+       "Program solution": 4.0,
+       "Solution type": "Manual",
+       "GPT-3 response": "-4096",
+       "GPT-3 evaluation": "Incorrect"
+}

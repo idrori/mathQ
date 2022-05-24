@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Prealgebra",
+       "Original question": "How many four-digit positive integers are there with thousands digit 2?",
+       "Codex input": "Write a program that determines how many four-digit positive integers there are with thousands digit 2.",
+       "Codex code": "def main():\n    count = 0\n    for i in range(1000, 10000):\n        if str(i)[0] == '2':\n            count += 1\n    print(count)\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We create a variable called count and set it to 0.\n2. We create a for loop that iterates through the range of 1000 to 10000.\n3. We check if the first digit of the number is 2.\n4. If it is, we add 1 to the count variable.\n5. We print the count variable.",
+       "Program solution": 1000.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There are 1,000 four-digit positive integers with thousands digit 2.",
+       "GPT-3 evaluation": "Correct"
+}

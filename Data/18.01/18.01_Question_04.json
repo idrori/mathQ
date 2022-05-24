@@ -1,0 +1,12 @@
+{
+       "Course": "Single Variable Calculus",
+       "Topic": "Limits and Derivatives",
+       "Original question": "Determine the infinite limit. lim_x_5+ (x+1)/(x-5)",
+       "Codex input": "Using sympy determine the infinite limit. lim_x_5+ (x+1)/(x-5)",
+       "Codex code": "from sympy import limit, Symbol, S\n\nx = Symbol('x')\n\nlimit((x+1)/(x-5), x, 5)",
+       "Codex code explanation": "1. We import the limit function from the sympy module.\n2. We create a Symbol object called x.\n3. We call the limit function and pass in the expression (x+1)/(x-5) and the variable x.\n4. We pass in the point 5 as the third argument.",
+       "Program solution": "inf",
+       "Solution type": "Automatic Zero-Shot",
+       "GPT-3 response": "The limit does not exist because the function is not defined when x = 5.",
+       "GPT-3 evaluation": "Incorrect"
+}

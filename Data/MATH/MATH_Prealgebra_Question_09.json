@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Prealgebra",
+       "Original question": "What is 5/6 of 30?",
+       "Codex input": "Same as original question",
+       "Codex code": "print(5/6*30)",
+       "Codex code explanation": "1. The first line is a comment. Comments are ignored by the computer.\n2. The second line is a print statement. It prints the string \"What is 5/6 of 30?\" to the screen.",
+       "Program solution": 25.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "5/6 of 30 is 25.",
+       "GPT-3 evaluation": "Correct"
+}

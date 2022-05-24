@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Probability",
+       "Original question": "Suppose that you roll five 6-sided dice that are fair and mutually independent. What is the probability that all five dice show different values?",
+       "Codex input": "You roll five 6-sided fair dice and mutually independent. Write a program to compute the probability that all five dice show different values.",
+       "Codex code": "import random\n\ndef roll_dice():\n    return random.randint(1, 6)\n\ndef roll_all_dice():\n    return [roll_dice() for _ in range(5)]\n\ndef all_different(dice):\n    return len(set(dice)) == 5\n\ndef main():\n    n_trials = 100000\n    n_success = 0\n    for _ in range(n_trials):\n        if all_different(roll_all_dice()):\n            n_success += 1\n    print(n_success / n_trials)\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We define a function roll_dice() that returns a random integer between 1 and 6.\n2. We define a function roll_all_dice() that returns a list of five random integers between 1 and 6.\n3. We define a function all_different() that takes a list of integers and returns True if all the integers are different and False otherwise.\n4. We define a function main() that does the following:\n    a. It sets n_trials to 100000.\n    b. It sets n_success to 0.\n    c. It loops n_trials times, each time doing the following:\n        i. It rolls all five dice.\n        ii. If all five dice show different values, it increments n_success by 1.\n    d. It prints the fraction of trials that were successful.\n5. We call main().",
+       "Program solution": "120/1296",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "# The probability of all five dice showing different values is 1/6^5.",
+       "GPT-3 evaluation": "Incorrect"
+}

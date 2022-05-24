@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Conditional Probability",
+       "Original question": "Mr. Jones has two children. The older child is a girl. What is the probability that both children are girls?",
+       "Codex input": "Mr. Jones has two children. At least one of them is a girl. Using simulations, what is the probability that both children are girls?",
+       "Codex code": "import random\n\ndef random_kid():\n    return random.choice([\"boy\", \"girl\"])\n\nboth_girls = 0\nolder_girl = 0\neither_girl = 0\n\nrandom.seed(0)\nfor _ in range(10000):\n    younger = random_kid()\n    older = random_kid()\n    if older == \"girl\":\n        older_girl += 1\n    if older == \"girl\" and younger == \"girl\":\n        both_girls += 1\n    if older == \"girl\" or younger == \"girl\":\n        either_girl += 1\n\nprint(\"P(both | older):\", both_girls / older_girl)\nprint(\"P(both | either): \", both_girls / either_girl)",
+       "Codex code explanation": "1. We start by initializing the variables both_girls, older_girl, and either_girl to 0.\n2. We then loop 10000 times, each time randomly choosing a kid to be older and another to be younger.\n3. If the older kid is a girl, we increment older_girl.\n4. If both kids are girls, we increment both_girls.\n5. If at least one of the kids is a girl, we increment either_girl.\n6. Finally, we print the probabilities of both kids being girls given that the older kid is a girl, and given that at least one kid is a girl.",
+       "Program solution": 0.5,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There is a 1/4 chance that both children are girls.",
+       "GPT-3 evaluation": "Incorrect"
+}

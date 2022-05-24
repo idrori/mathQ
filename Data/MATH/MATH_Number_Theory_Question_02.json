@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Number Theory",
+       "Original question": "How many four-digit numbers whose digits add up to 9 are divisible by 11?",
+       "Codex input": "Same as original question",
+       "Codex code": "def main():\n    ans = 0\n    for i in range(1, 10):\n        for j in range(0, 10):\n            for k in range(0, 10):\n                for l in range(0, 10):\n                    if i + j + k + l == 9:\n                        if (i + k) % 11 == 0:\n                            ans += 1\n    return ans\n\nif __name__ == \"__main__\":\n    print(main())",
+       "Codex code explanation": "1. We start with a variable called ans, which we set to 0. This will be the variable that we increment every time we find a number that satisfies the conditions.\n2. We have a for loop that iterates through the first digit of the number.\n3. We have a for loop that iterates through the second digit of the number.\n4. We have a for loop that iterates through the third digit of the number.\n5. We have a for loop that iterates through the fourth digit of the number.\n6. We check if the sum of the digits is equal to 9.\n7. We check if the sum of the first and third digits is divisible by 11.\n8. If the number satisfies both conditions, we increment ans by 1.\n9. We return ans.",
+       "Program solution": 0.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There are 36 four-digit numbers whose digits add up to 9. Of these, 11 are divisible by 11.",
+       "GPT-3 evaluation": "Incorrect"
+}

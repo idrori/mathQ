@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Precalculus",
+       "Original question": "If ||a|| = 3 and ||b|| = 6, then find (a + b) * (a - b).",
+       "Codex input": "If ||a|| = 3 and ||b|| = 6, write a program that finds (a + b) * (a - b).\n",
+       "Codex code": "import math\n\ndef main():\n    a = 3\n    b = 6\n    print(\"(a + b) * (a - b) =\", (a + b) * (a - b))\n\nmain()",
+       "Codex code explanation": "1. We import the math module.\r\n2. We define a function called main().\r\n3. We define two variables, a and b.\r\n4. We print the result of (a + b) * (a - b).\r\n5. We call the main() function.",
+       "Program solution": -27.0,
+       "Solution type": "Automatic Few-shot (5)",
+       "GPT-3 response": "(a + b) * (a - b) = 9",
+       "GPT-3 evaluation": "Incorrect"
+}

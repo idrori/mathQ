@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Number Theory",
+       "Original question": "Express the product of 1001 in base 2 and 121 in base 3 in base 10.",
+       "Codex input": "Same as original question",
+       "Codex code": "def base_convert(n, b):\n    \"\"\"\n    Convert a number n in base b to base 10.\n    \"\"\"\n    if n == 0:\n        return 0\n    else:\n        return n % 10 + b * base_convert(n // 10, b)\n\nprint(base_convert(1001, 2) * base_convert(121, 3))",
+       "Codex code explanation": "1. base_convert(1001, 2)\n    1. base_convert(100, 2)\n        1. base_convert(10, 2)\n            1. base_convert(1, 2)\n                1. return 0\n            2. return 1 + 2 * 0\n        2. return 0 + 2 * 1\n    2. return 1 + 2 * 0\n2. base_convert(121, 3)\n    1. base_convert(12, 3)\n        1. base_convert(1, 3)\n            1. return 0\n        2. return 2 + 3 * 0\n    2. return 1 + 3 * 2\n3. return 9 * 9",
+       "Program solution": 144.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "1001100101 in base 10",
+       "GPT-3 evaluation": "Incorrect"
+}

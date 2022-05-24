@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Prealgebra",
+       "Original question": "What is the greatest common factor of 84, 112 and 210?",
+       "Codex input": "Same as original question",
+       "Codex code": "def gcd(a, b):\n    if b == 0:\n        return a\n    return gcd(b, a % b)\n\ndef main():\n    print(gcd(84, gcd(112, 210)))\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. The function gcd(a, b) is a recursive function that returns the greatest common divisor of a and b.\n2. The function gcd(a, b) is called with the arguments 84 and gcd(112, 210).\n3. The function gcd(a, b) is called with the arguments 112 and gcd(210, 112).\n4. The function gcd(a, b) is called with the arguments 210 and gcd(112, 98).\n5. The function gcd(a, b) is called with the arguments 112 and gcd(98, 14).\n6. The function gcd(a, b) is called with the arguments 98 and gcd(14, 0).",
+       "Program solution": 14.0,
+       "Solution type": "Automatic Few-shot",
+       "GPT-3 response": "The greatest common factor of 84, 112 and 210 is 84.",
+       "GPT-3 evaluation": "Incorrect"
+}

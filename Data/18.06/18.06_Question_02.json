@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Vectors and Linear Algebra (1.2 Q28)",
+       "Original question": "If v = (1,2) draw all vectors w = (x,y) in the xy plane with dot(v,w) = x+ 2*y = 5.\nWhy do those w's lie along a line?\nWhich is the shortest w?",
+       "Codex input": "In Linear Algebra and Vectors and Linear Algebra, if v = (1,2), write a program that draw all vectors w = (x,y) in the xy plane with dot(v,w) = x+ 2*y = 5.\nWhy do those w's lie along a line?\nWhich is the shortest w?",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\n\nv = np.array([1,2])\n\n# w = (x,y)\n# x + 2y = 5\n# y = 5 - x\n\nx = np.linspace(-5,5,100)\ny = 5 - x\n\nplt.plot(x,y)\nplt.show()",
+       "Codex code explanation": "1. We create a vector v = (1,2)\n2. We create a vector w = (x,y)\n3. We create a vector x = (-5,5)\n4. We create a vector y = (5-x)\n5. We plot the vectors x and y\n6. We show the plot",
+       "Program solution": "The vectors w = (x, y) with (1, 2)\u00b7 w = x + 2y = 5 lie on a line in the xy plane. The shortest w on that line is (1, 2). (The Schwarz inequality kwk \u2265 v \u00b7 w/kvk = \u221a5 is an equality when cos \u03b8 = 0 and w = (1, 2) and kwk =\u221a5.)",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The vectors w lie along a line because they are all perpendicular to v. The shortest w is the one that is closest to the origin.",
+       "GPT-3 evaluation": "Incorrect"
+}

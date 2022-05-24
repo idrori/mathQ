@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Intermediate Algebra",
+       "Original question": "What is the value of the following expression: 1 - 4 + 7 - 10 + 13 - \\cdots - 46 + 49 - 52 + 55 ?",
+       "Codex input": "Write a program using sympy to find the value of the following expression: 1 - 4 + 7 - 10 + 13 - ... - 46 + 49 - 52 + 55?",
+       "Codex code": "def main():\n    \"\"\"Solve problem.\"\"\"\n    # Define variables.\n    n = 55\n    sum_val = 0.0\n\n    # Find sum.\n    for i in range(1, n + 1):\n        sum_val += (-1)**(i + 1) * i\n\n    # Print result.\n    print(sum_val)\n\nif __name__ == \"__main__\":\n    main()",
+       "Codex code explanation": "1. Define variables.\n2. Find sum.\n3. Print result.",
+       "Program solution": 28.0,
+       "Solution type": "Automatic Few-shot (2)",
+       "GPT-3 response": "The value of the expression is -60.",
+       "GPT-3 evaluation": "Incorrect"
+}

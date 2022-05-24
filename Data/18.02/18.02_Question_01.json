@@ -1,0 +1,12 @@
+{
+       "Course": "Multivariable Calculus",
+       "Topic": "Polar Coordinates",
+       "Original question": "Sketch the graph of the polar equation. Indicate any symmetries around either coordinate axis or the origin. r = (2 + 7*sin(theta))*(cos(5*theta))",
+       "Codex input": "Write a function using matplotlib to plot the graph of the polar equation r = (2 + 7*sin(theta))*(cos(5*theta))",
+       "Codex code": "import numpy as np\nimport matplotlib.pyplot as plt\n\ndef polar_eq(theta):\n    return (2 + 7*np.sin(theta))*(np.cos(5*theta))\n\ntheta = np.linspace(0, 2*np.pi, 100)\n\nplt.polar(theta, polar_eq(theta))\nplt.show()",
+       "Codex code explanation": "1. Importing numpy and matplotlib.pyplot\n2. Defining a function that takes theta as an argument\n3. Creating a list of 100 evenly spaced values between 0 and 2pi\n4. Plotting the polar equation",
+       "Program solution": "data/images/18.02-q1-codex-output-plot.png",
+       "Solution type": "Automatic Zero Shot",
+       "GPT-3 response": "The graph has symmetry around the origin and the y-axis.",
+       "GPT-3 evaluation": "Incorrect"
+}

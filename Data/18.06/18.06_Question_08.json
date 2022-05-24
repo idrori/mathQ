@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Rules for Matrix Operations (2.5, Q1)",
+       "Original question": "Find the inverses (directly or from the 2 by 2 formula) of A, B, C : A = [0,4;3,0], B = [2,0;4,2], and C = [3,4;5,7].",
+       "Codex input": "Find the inverses of the matrices A, B, C : A = [0,4;3,0], B = [2,0;4,2], and C = [3,4;5,7].",
+       "Codex code": "A = np.array([[0,4],[3,0]])\nB = np.array([[2,0],[4,2]])\nC = np.array([[3,4],[5,7]])\n\nprint(\"A inverse:\")\nprint(np.linalg.inv(A))\nprint(\"B inverse:\")\nprint(np.linalg.inv(B))\nprint(\"C inverse:\")\nprint(np.linalg.inv(C))",
+       "Codex code explanation": "1. We import the numpy library.\n2. We define the matrices A, B, and C.\n3. We print the inverse of each matrix.",
+       "Program solution": "A^\u22121 =[0, 1/4;1/3,0]\nand B\u22121 =\n[1/2,0;\u22121,1/2]\nand C^\u22121 =\n[7, \u22124;\u22125, 3].",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "A = [-1/4, 1/3; -3/4, 0]\nB = [-1/2, 1/4; -1/2, 0]\nC = [-7/12, 4/12; -5/12, 3/12]",
+       "GPT-3 evaluation": "Incorrect"
+}

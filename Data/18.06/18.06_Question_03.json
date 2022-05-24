@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Vectors and Linear Algebra (1.3 Q1)",
+       "Original question": "Find the linear combination 3s1 + 4s2 + 5s3 = b. Then write b as a matrix-vector multiplication Sx, with 3, 4, 5 in x. Compute the three dot products (row of S)\u00b7 x:\ns_1 = [1;1;1], s_2 = [0;1;1], s_3 = [0;0;1]",
+       "Codex input": "Write a function to calculate the linear combination 3*s1 + 4*s2 + 5*s3. Let s_1 = [1;1;1], s_2 = [0;1;1], s_3 = [0;0;1]",
+       "Codex code": "import numpy as np\n\nS = np.array([[1,0,0],[1,1,0],[1,1,1]])\nx = np.array([3,4,5])\n\nb = S.dot(x)\nprint(b)\n\nprint(S[0].dot(x))\nprint(S[1].dot(x))\nprint(S[2].dot(x))",
+       "Codex code explanation": "1. Create a matrix S with three rows and three columns.\n2. Create a vector x with three elements.\n3. Compute the matrix-vector product Sx.\n4. Compute the dot product of each row of S with x.\n2. We return the linear combination of the three arguments.\n3. We create three numpy arrays: s1, s2, and s3.\n4. We print the result of calling linear_combination with s1, s2, and s3 as arguments.",
+       "Program solution": "data/images/18.06-q3-codex-output-plot.png",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "3s_1 + 4s_2 + 5s_3 = b\n\nb = [3;7;5]\n\nSx = [3,4,5]\n\n[1,1,1]\u00b7[3,4,5] = 3\n\n[0,1,1]\u00b7[3,4,5] = 7\n\n[0,0,1]\u00b7[3,4,5] = 5",
+       "GPT-3 evaluation": "Incorrect"
+}

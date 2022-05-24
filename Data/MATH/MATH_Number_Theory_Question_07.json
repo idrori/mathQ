@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Number Theory",
+       "Original question": "Find the terminating decimal expansion of 11/125.",
+       "Codex input": "Find the terminating decimal expansion of $\\frac{11}{125}$.",
+       "Codex code": "def main():\n    \"\"\"\n    >>> main()\n    0.088\n    \"\"\"\n    numerator = 11\n    denominator = 125\n    remainder = numerator % denominator\n    quotient = numerator // denominator\n    print(quotient, end='')\n    print('.', end='')\n    while remainder != 0:\n        numerator = remainder * 10\n        remainder = numerator % denominator\n        quotient = numerator // denominator\n        print(quotient, end='')\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+       "Codex code explanation": "1. We start with 11/125.\n2. We divide 11 by 125 and get 0 as the quotient and 11 as the remainder.\n3. We multiply the remainder by 10 and get 110.\n4. We divide 110 by 125 and get 0 as the quotient and 110 as the remainder.\n5. We multiply the remainder by 10 and get 1100.\n6. We divide 1100 by 125 and get 8 as the quotient and 100 as the remainder.\n7. We multiply the remainder by 10 and get 1000.\n8. We divide 1000 by 125 and get 8 as the quotient and 0 as the remainder.\n9. We stop because the remainder is 0.",
+       "Program solution": 0.088,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "0.088",
+       "GPT-3 evaluation": "Correct"
+}

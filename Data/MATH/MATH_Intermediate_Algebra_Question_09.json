@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Intermediate Algebra",
+       "Original question": "Find the remainder when r^13 + 1 is divided by r - 1.",
+       "Codex input": "Same as original question",
+       "Codex code": "def main():\n    r = 2\n    while True:\n        if (r**13 + 1) % (r - 1) == 0:\n            print(r)\n            break\n        r += 1\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. r = 2\n2. (2**13 + 1) % (2 - 1) = 0\n3. print(2)\n4. break",
+       "Program solution": 2.0,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The remainder is 2.",
+       "GPT-3 evaluation": "Correct"
+}

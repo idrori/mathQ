@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Intermediate Algebra",
+       "Original question": "Find the value of k so that 3 + (3 + k)/4 + (3 + 2k)/4^2 + (3 + 3k)/4^3 + ... = 8.",
+       "Codex input": "Write a program to find the value of k so that 3 + (3 + k)/4 + (3 + 2k)/4^2 + (3 + 3k)/4^3 + ... = 8.",
+       "Codex code": "def main():\n    k = 0\n    while True:\n        sum_val = 3.0\n        for n in range(1, 100):\n            sum_val += (3.0 + k * n) / 4**n\n        if abs(sum_val - 8.0) < 0.00001:\n            print(k)\n            break\n        k += 0.1\n\nif __name__ == '__main__':\n    main()",
+       "Codex code explanation": "1. We start with k = 0.\n2. We calculate the sum of the series with k = 0.\n3. We check if the sum is equal to 8. If it is, we print k and break out of the loop.\n4. If the sum is not equal to 8, we increment k by 0.1 and go back to step 2.",
+       "Program solution": 9.0,
+       "Solution type": "Automatic Few-shot (6)",
+       "GPT-3 response": "k = 4",
+       "GPT-3 evaluation": "Incorrect"
+}

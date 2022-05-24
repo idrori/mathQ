@@ -1,0 +1,12 @@
+{
+       "Course": "Differential Equations",
+       "Topic": "Population Models",
+       "Original question": "Separate variables and use partial fractions to solve the initial value problems. Use either the exact solution or a computer-generated slope field to sketch the graphs of several solutions of the given differential equation, and highlight the indicated particular solution. f'(x)=3*f(x)(5-f(x)), f(0)=8",
+       "Codex input": "Using Sympy dsolve, solve f'(x)=3*f(x)(5-f(x)).\nFind the particular solution by substituting initial condition f(0)=8 into f'(x) and solve for C1.",
+       "Codex code": "from sympy import *\n\nx = symbols('x')\nf = Function('f')\n\n# f'(x)=3*f(x)(5-f(x))\neq = Eq(f(x).diff(x), 3*f(x)*(5-f(x)))\n\n# f(0)=8\nics = {f(0): 8}\n\n# solve for C1\nsol = dsolve(eq, f(x), ics=ics)\n\n# particular solution\npart_sol = sol.subs({C1: symbols('C1')})\n\n# general solution\ngen_sol = sol.rhs\n\nprint(f'particular solution: {part_sol}')\nprint(f'general solution: {gen_sol}')",
+       "Codex code explanation": "1. Solve f'(x)=3*f(x)(5-f(x)) for f(x)\n2. Find the particular solution by substituting initial condition f(0)=8 into f'(x) and solve for C1\n3. Substitute C1 into f(x) to get the particular solution\n4. Substitute C1 into f(x) to get the general solution",
+       "Program solution": "x(t) = 40/(8-3e^-15t)",
+       "Solution type": "manual",
+       "GPT-3 response": "f'(x)=3*f(x)(5-f(x)), f(0)=8\n\nf(x)=8\n\nThe particular solution is f(x)=8.",
+       "GPT-3 evaluation": "Incorrect"
+}

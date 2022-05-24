@@ -1,0 +1,12 @@
+{
+       "Course": "Introduction to Probability and Statistics",
+       "Topic": "Probability",
+       "Original question": "In class we worked with non-transitive dice: Red: 3 3 3 3 3 6; Green: 1 4 4 4 4 4; White: 2 2 2 5 5 5. Find the probability that green beats red.",
+       "Codex input": "In class we worked with non-transitive dice: Red: 3 3 3 3 3 6; Green: 1 4 4 4 4 4; White: 2 2 2 5 5 5. Simulate the probability that green beats red.",
+       "Codex code": "import random\n\ndef roll_dice(dice):\n    return random.choice(dice)\n\ndef simulate_dice(dice1, dice2, trials):\n    dice1_wins = 0\n    for i in range(trials):\n        if roll_dice(dice1) > roll_dice(dice2):\n            dice1_wins += 1\n    return dice1_wins / trials\n\nred = [3, 3, 3, 3, 3, 6]\ngreen = [1, 4, 4, 4, 4, 4]\nwhite = [2, 2, 2, 5, 5, 5]\n\nprint(simulate_dice(green, red, 100000))",
+       "Codex code explanation": "1. Define a function that takes a list of dice and returns a random value from that list.\n2. Define a function that takes two lists of dice and a number of trials.\n3. Run the simulation a number of times and return the probability that the first dice wins.\n",
+       "Program solution": 0.694444444,
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "The probability that green beats red is 3/5.",
+       "GPT-3 evaluation": "Incorrect"
+}

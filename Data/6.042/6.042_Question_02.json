@@ -1,0 +1,12 @@
+{
+       "Course": "Mathematics for Computer Science",
+       "Topic": "Number Theory",
+       "Original question": "Find a number x \u2208 {0, 1, . . . , 112} such that 11x \u2261 1 (mod 113).",
+       "Codex input": "Same as original question",
+       "Codex code": "def find_x(n):\n    for x in range(n):\n        if (11*x) % n == 1:\n            return x\n    return None\n\nprint(find_x(113))",
+       "Codex code explanation": "1. It's iterating through all the numbers from 0 to 112.\n2. For each number, it's checking if 11x \u2261 1 (mod 113).\n3. If it finds a number that satisfies the equation, it returns that number.\n4. If it doesn't find a number that satisfies the equation, it returns None.",
+       "Program solution": "72",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "for i in range(113):\n    if 11 * i % 113 == 1:\n        print(i)\n        break",
+       "GPT-3 evaluation": "Correct"
+}

@@ -1,0 +1,12 @@
+{
+       "Course": "MATH",
+       "Topic": "Precalculus",
+       "Original question": "If the determinant of A is 2 and the determinant of B is 12, then find the determinant of A*B.",
+       "Codex input": "Given two determinants 2 and 12 from two matrices, find the determinant resulting from taking the product.",
+       "Codex code": "import numpy as np\n\ndef det_product(det1, det2):\n    \"\"\"\n    Given two determinants 2 and 12 from two matrices, find the determinant resulting from taking the product. \n    \"\"\"\n    return det1 * det2\n\ndef main():\n    det1 = 2\n    det2 = 12\n    print(det_product(det1, det2))\n\nif __name__ == \"__main__\":\n    main()",
+       "Codex code explanation": "1. We import the numpy library.\n2. We define a function called det_product that takes two arguments, det_a and det_b.\n3. We return the product of det_a and det_b.\n4. We define a function called main that doesn't take any arguments.\n5. We define det_a and det_b.\n6. We print the result of det_product(det_a, det_b).\n7. We call the main function.",
+       "Program solution": 24.0,
+       "Solution type": "Automatic Few-shot (6)",
+       "GPT-3 response": "The determinant of A*B is 24.",
+       "GPT-3 evaluation": "Correct"
+}

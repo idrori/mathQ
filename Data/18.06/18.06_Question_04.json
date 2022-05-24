@@ -1,0 +1,12 @@
+{
+       "Course": "Linear Algebra",
+       "Topic": "Vectors and Linear Algebra (1.3, Q4)",
+       "Original question": "Find a combination x_1*w_1+x_2*w_2+x_3*w_3 that gives the zero vector with x_1 = 1\nw_1 is the vector (1;2;3)\nw_2 is the vector (4;5;6)\nw_3 is the vector (7;8;9)",
+       "Codex input": "Write a program to find a combination y and z such that multiplying np.array([1, y, z]).T with np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) = 0. Use sympy and numpy.",
+       "Codex code": "def find_combination(w1, w2, w3):\n    \"\"\"Find a combination x_1*w_1+x_2*w_2+x_3*w_3 that gives the zero vector with x_1 = 1\"\"\"\n    for x2 in range(-10, 10):\n        for x3 in range(-10, 10):\n            if w1[0] + w2[0] * x2 + w3[0] * x3 == 0 and w1[1] + w2[1] * x2 + w3[1] * x3 == 0 and w1[2] + w2[2] * x2 + w3[2] * x3 == 0:\n                return [1, x2, x3]\n    return None",
+       "Codex code explanation": "1. It's iterating over all possible values of x2 and x3.\n2. For each possible value of x2 and x3, it's checking if the combination of x1, x2, and x3 gives the zero vector.\n3. If it does, it returns the combination.\n4. If it doesn't, it returns None.",
+       "Program solution": "The combination 0w1 + 0w2 + 0w3 always gives the zero vector, but this problem\nlooks for other zero combinations (then the vectors are dependent, they lie in a plane):\nw2 = (w1 + w3)/2 so one combination that gives zero is w1 \u2212 2w2 + w3 = 0.",
+       "Solution type": "Automatic Zero-shot",
+       "GPT-3 response": "There is no combination of w_1, w_2, and w_3 that will give the zero vector when x_1 is 1.",
+       "GPT-3 evaluation": "Incorrect"
+}
