@@ -7,7 +7,7 @@ from embedding import get_embeddings
 
 openai.api_key = "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" #given by OpenAI
 courses = ['18.01']#, '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
-questions_per_course = 10
+questions_per_course = 3
 
 def get_most_similar(embeddings, i):
     """returns most similar questions to the target, index i, via cosine similarity"""
@@ -25,7 +25,7 @@ def get_most_similar(embeddings, i):
     # print("Here are the next closest questions to "+str(i+1)+" :"+str(closest_qs[1:]))
     return closest_qs[1:]
 
-all_embeddings = get_embeddings("embeddings.json")
+all_embeddings = get_embeddings("code/embeddings.json")
 
 #makes input for each prompt
 front_piece = '''"""\n''' #these two lines add triple quotes to the prompt like a doc string
@@ -37,7 +37,11 @@ for course_index, course in enumerate(courses):
     course_embeddings = all_embeddings[course_index*questions_per_course:(course_index+1)*questions_per_course]
     questions = []
     for num in [i for i in range(1, questions_per_course+1)]:
-        with open(f'./Data/{course}/{course}_Question_{num}.json', 'r') as f:
+        if num<10:
+                number='0'+str(num)
+        else:
+            number=str(num)
+        with open('./Data/'+course+'/'+course+'_Question_'+number+'.json', 'r') as f:
             data = json.load(f)
         raw_question = data['Original question']
         questions.append(raw_question)
@@ -52,6 +56,6 @@ for course_index, course in enumerate(courses):
         entries[i].append('')  #actual solution, will do this later
         entries[i].append('')  #this column is filled in by the person
         entries[i].append(get_most_similar(course_embeddings,i))
-        print(f'time:{time.time()-start}')
+        print(f'API call time: '+str(time.time()-start))
     info = pd.DataFrame(entries, columns=['Question', 'Original Question', 'Codex Input', 'Codex Output', 'Codex Explanation Input', 'Codex Explanation', 'GPT-3 Output', 'Actual Solution', 'Codex: Correct or Incorrect?', "Most Similar Questions"])
     info.to_csv(course+'.csv', index=False)

@@ -19,7 +19,6 @@ def make_embeddings(questions_per_course=20):
     for course in courses:
         print("Currently embedding: " + course)
         for num in [i for i in range(1, questions_per_course+1)]:
-            # with open(f'./Data/{course}/{course}_Question_{num}.json', 'r') as f:
             if num<10:
                 number='0'+str(num)
             else:
@@ -31,14 +30,14 @@ def make_embeddings(questions_per_course=20):
             embedding = output['data'][0]['embedding']
             list_of_embeddings.append(embedding)
     embeddings = {'list_of_embeddings':list_of_embeddings}
-    location = 'embeddings.json'
+    location = 'code/embeddings.json'
     with open(location, 'w') as f:
         f.write(json.dumps(embeddings))
     return location
 
 def get_embeddings(embeddings_file):
     """
-    Retrieves embeddings from embeddings.json 
+    Retrieves embeddings from code/embeddings.json 
     """
     with open(embeddings_file, 'r') as f:
         points = json.load(f)['list_of_embeddings']  #140x2048
@@ -55,6 +54,7 @@ def reduce_via_umap(embeddings, num_dims=2):
 def plot_clusters(points, questions_per_course=20, question_labels=False):
     """
     plots clusters of points.
+    Set question_labels to True if you want to see each point labeled with its question number.
     """
     vis_dims = points
     x = [x for x,y in vis_dims]
@@ -70,11 +70,11 @@ def plot_clusters(points, questions_per_course=20, question_labels=False):
                 plt.annotate(j+1, (x[questions_per_course*i+j],y[questions_per_course*i+j]), fontsize='xx-small')
     plt.legend(bbox_to_anchor=(1, 1.01))
     plt.savefig("UMAP.png", dpi=100)
-    plt.show()
+    # plt.show()
 
 if __name__ == "__main__":
-    if not os.path.exists('embeddings.json'):
+    if not os.path.exists('code/embeddings.json'):
         make_embeddings()
-    embeddings = get_embeddings('embeddings.json')
+    embeddings = get_embeddings('code/embeddings.json')
     reduced_points = reduce_via_umap(embeddings)
     plot_clusters(reduced_points, question_labels=True)
