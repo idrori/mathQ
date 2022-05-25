@@ -22,9 +22,6 @@ gpt3_max_tokens = 200
 courses_embeddings_location = 'code/course_embeddings.json'
 MATH_embeddings_location = 'code/MATH_embeddings.json'
 
-assert questions_per_course <= 25
-assert questions_per_MATH_section <= 15
-
 # for prompt formatting:
 docstring_front = '''"""\n''' 
 docstring_back = '''\n"""\n'''
@@ -35,7 +32,7 @@ explanation_suffix = "\n\n'''\nHere's what the above code is doing:\n1."
 def execute_zero_shot(courses, questions_per, embeddings_location):
     """
     runs zero-shot on questions_per questions for each course in courses. 
-    The embeddings for all of the questions for all of the courses in courses are located in embeddings_location
+    The embeddings for all of the questions for all of the courses in courses are located in embeddings_location.
     """
     all_embeddings = get_embeddings(embeddings_location)
     for course_index, course in enumerate(courses):
@@ -44,7 +41,7 @@ def execute_zero_shot(courses, questions_per, embeddings_location):
         answers = []
         for num in range(1, questions_per+1):
             if num < 10:
-                    q_num = '0' + str(num)
+                q_num = '0' + str(num)
             else:
                 q_num = str(num)
             json_location = './Data/' + course.split('_')[0] + '/' + course + '_Question_' + q_num + '.json'
