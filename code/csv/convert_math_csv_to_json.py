@@ -7,8 +7,8 @@ from os.path import join, dirname, abspath, isdir
 
 # relevant paths
 home_path = dirname(dirname(dirname(abspath(__file__))))
-json_dirs_path = join(home_path, "code", "csv")
-math_file = join(home_path, "code", "csv", "MATH.csv")
+math_file = join(home_path, "code", "csv", "MATH.csv") # data source
+out_dir_path = join(home_path, "data", "MATH") # output directory
 
 # json fields
 question  =  {
@@ -47,8 +47,6 @@ if __name__ == "__main__":
     # read in sheet
     sheet = pd.read_csv(math_file)
 
-    # set up file output directory
-    out_dir_path = join(home_path, "data", "MATH")
     if not isdir(out_dir_path): # make course directory if DNE
         os.makedirs(out_dir_path)
     else:
@@ -57,23 +55,18 @@ if __name__ == "__main__":
 
     # write jsons for all questions
     for i in range(1,91):
-        try:
-            evaluation = str(sheet['Output Evaluation'][i-1]).lower()
-            if 'correct' in evaluation and 'incorrect' not in evaluation:
-                question['Course'] = sheet['Course'][i-1]
-                question['Topic'] = sheet['Topic'][i-1]
-                question['Original question'] = sheet['Original Problem'][i-1]
-                question['Program solution'] = sheet['Solution'][i-1]
-                question['Codex input'] = get_codex_input(sheet, i-1)
-                question['Codex code'] = sheet['Codex Code'][i-1]
-                question['Codex code explanation'] = sheet['Codex Code Explanation'][i-1]
-                question['Solution type'] = sheet['Solution Type'][i-1]
-                question['GPT-3 response'] = sheet['GPT-3 Response'][i-1]
-                question['GPT-3 evaluation'] = sheet['GPT-3 Evaluation'][i-1]
-            
-                json_object = json.dumps(question, indent = 7)
-                with open(join(out_dir_path, 'MATH_'+sheet['Topic'][i-1].strip().replace(" ","_")+'_Question_'+get_file_q_num(int(sheet['Id'][i-1]))+'.json'), "w") as outfile:
-                    outfile.write(json_object)
-        except Exception as e:
-            print('\terror','question', i, e)
-            pass
+        question['Course'] = sheet['Course'][i-1]
+        question['Topic'] = sheet['Topic'][i-1]
+        question['Original question'] = sheet['Original Problem'][i-1]
+        question['Program solution'] = sheet['Solution'][i-1]
+        question['Codex input'] = get_codex_input(sheet, i-1)
+        question['Codex code'] = sheet['Codex Code'][i-1]
+        question['Codex code explanation'] = sheet['Codex Code Explanation'][i-1]
+        question['Solution type'] = sheet['Solution Type'][i-1]
+        question['GPT-3 response'] = sheet['GPT-3 Response'][i-1]
+        question['GPT-3 evaluation'] = sheet['GPT-3 Evaluation'][i-1]
+    
+        json_object = json.dumps(question, indent = 7)
+        fname = join(out_dir_path, 'MATH_'+sheet['Topic'][i-1].strip().replace(" ","_")+'_Question_'+get_file_q_num(int(sheet['Id'][i-1]))+'.json')
+        with open(fname, "w") as outfile:
+            outfile.write(json_object)
