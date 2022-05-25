@@ -9,13 +9,20 @@ from sentence_transformers import util
 openai.api_key = "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" #given by OpenAI
 
 courses = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
+MATH_sections = ['MATH_Algebra', 'MATH_Counting_&_Probability', 'MATH_Intermediate_Algebra', 
+                 'MATH_Number_Theory', 'MATH_Prealgebra', 'MATH_Precalculus']
 image_labels = {'18.01':'r.', '18.02':'g.', '18.03':'b.', '18.05':'mx', '18.06':'k+', '6.042':'cx', 'COMS3251':'y+'}
-embeddings_location = 'code/embeddings.json'
+courses_embeddings_location = 'code/course_embeddings.json'
+MATH_embeddings_location = 'code/MATH_embeddings.json'
 image_location = "UMAP.png"
 embedding_engine = 'text-similarity-babbage-001'
 questions_per_course = 25
+questions_per_MATH_section = 15
 
-def make_embeddings(embedding_engine, embeddings_location, questions_per_course=25):
+assert questions_per_course <= 25
+assert questions_per_MATH_section <= 15
+
+def make_embeddings(embedding_engine, embeddings_location, courses, questions_per_course):
     """
     Takes json files of questions using our json file formatting, 
         embeds them using OpenAI's embedding_engine,
@@ -30,7 +37,7 @@ def make_embeddings(embedding_engine, embeddings_location, questions_per_course=
                 q_num = '0' + str(num)
             else:
                 q_num = str(num)
-            json_location = './Data/' + course + '/' + course + '_Question_' + q_num + '.json'
+            json_location = './Data/' + course.split('_')[0] + '/' + course + '_Question_' + q_num + '.json'
             with open(json_location, 'r') as f:
                 data = json.load(f)
             raw_question = data['Original question']
@@ -77,7 +84,8 @@ def reduce_via_umap(embeddings, num_dims=2):
     reduced = reducer.fit_transform(embeddings)
     return reduced
 
-def plot_clusters(points, image_loc, questions_per_course=25, show=False, question_labels=False, label_font='xx-small', dpi=200, width=9.5, height=6.5, legend_loc=(1, 1.01), right_shift=0.72):
+def plot_clusters(points, image_loc, questions_per_course=25, show=False, question_labels=False, 
+                  label_font='xx-small', dpi=200, width=9.5, height=6.5, legend_loc=(1, 1.01), right_shift=0.72):
     """
     plots clusters of points. points is assumed to be a n by 2 numpy array.
     Set question_labels to True if you want to see each point labeled with its question number.
@@ -106,9 +114,13 @@ def plot_clusters(points, image_loc, questions_per_course=25, show=False, questi
         plt.show()
 
 if __name__ == "__main__":
-    if not os.path.exists(embeddings_location):
-        make_embeddings(embedding_engine, embeddings_location)
-    embeddings = get_embeddings(embeddings_location)
+    #for courses:
+    if not os.path.exists(courses_embeddings_location):
+        make_embeddings(embedding_engine, courses_embeddings_location, courses, questions_per_course)
+    embeddings = get_embeddings(courses_embeddings_location)
     reduced_points = reduce_via_umap(embeddings)
     plot_clusters(reduced_points, image_location, questions_per_course=questions_per_course, question_labels=True)
     
+    #for MATH:
+    if not os.path.exists(MATH_embeddings_location):
+        make_embeddings(embedding_engine, MATH_embeddings_location, MATH_sections, questions_per_MATH_section)
