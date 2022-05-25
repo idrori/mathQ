@@ -9,9 +9,14 @@ This folder contains json files representing every question evaluated in this pa
 | "Codex code" | The code output that Codex generates when the Codex input is run |
 | "Codex code explanation" | Step-by-step text explanation of the Codex code |
 | "Program solution" | The solution to the question (equivalently, the output to the Codex code). If the question requires a graph output, this field will be the path to the image produced by the Codex code |
-| "Solution type" | Either "Automatic Zero-shot", "Automatic Few-shot", or "Manual". A parentheses with a number following an "Automatic Few-shot" entry represents the number of question-code pairs used as examples (e.g. "Automatic Few-shot (2)")
+| "Solution type" | Either "Automatic Zero-shot", "Automatic Few-shot", or "Manual". A parentheses with a number following an "Automatic Few-shot" entry represents the number of question-code pairs used as examples (e.g. "Automatic Few-shot (2)"). The image below illustrates the process used to solve each question (by the end, every question is successfully solved).
 | "GPT-3 response" | The output of evaluating the original question using the GPT-3 text-davinci-002 engine |
 | "GPT-3 evaluation" | "Correct" if the GPT-3 response matches the program solution, "Incorrect" elsewise |
+
+
+Diagram illustrating the zero-shot, then few-shot if unsuccessful, and if still unsuccessful, manual modification steps taken to solve each question.
+![image](https://user-images.githubusercontent.com/51934413/170346165-98313e1c-f169-465a-abee-fd2b867b3a7f.png)
+
 
 Seven university courses and six topics from the MATH dataset were considered. The courses and MATH topics included and their descriptions are as follows:
 
