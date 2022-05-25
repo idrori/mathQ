@@ -32,7 +32,6 @@ def make_embeddings(embedding_engine, questions_per_course=25):
             raw_question = data['Original question']
             embedding = openai.Embedding.create(input = raw_question, 
                                                 engine = embedding_engine)['data'][0]['embedding']
-            # embedding = output['data'][0]['embedding']
             list_of_embeddings.append(embedding)
     embeddings = {'list_of_embeddings':list_of_embeddings}
     with open(embeddings_location, 'w') as f:
@@ -41,10 +40,10 @@ def make_embeddings(embedding_engine, questions_per_course=25):
 
 def get_embeddings(embeddings_file):
     """
-    Retrieves embeddings from embeddings_file.
+    Retrieves embeddings from embeddings_file. Embeddings are (n x d).
     """
     with open(embeddings_file, 'r') as f:
-        points = json.load(f)['list_of_embeddings']  #140x2048
+        points = json.load(f)['list_of_embeddings']
     return np.array(points)
 
 def get_most_similar(embeddings, i):
@@ -64,10 +63,10 @@ def get_most_similar(embeddings, i):
 def reduce_via_umap(embeddings, num_dims=2):
     """
     reduces the dimensionality of the provided embeddings to num_dims via UMAP.
-    if embeddings was an n by d numpy array, it will be reduced to a n by num_dims numpy array.
+    if embeddings was an (n x d) numpy array, it will be reduced to a (n x num_dims) numpy array.
     """
     reducer = umap.UMAP(n_components=num_dims)
-    reduced = reducer.fit_transform(embeddings) #140x2
+    reduced = reducer.fit_transform(embeddings)
     return reduced
 
 def plot_clusters(points, questions_per_course=25, question_labels=False, show=False, dpi=200):
@@ -78,7 +77,6 @@ def plot_clusters(points, questions_per_course=25, question_labels=False, show=F
     """
     x = [x for x,y in points]
     y = [y for x,y in points]
-    # print(f'points to graph:{len(x)}')
     plt.subplots_adjust(right=0.72)
     figure = plt.gcf()
     figure.set_size_inches(9.5,6.5)
