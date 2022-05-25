@@ -9,6 +9,7 @@ few_shot_examples_desired = 2 #AT MOST number of few shot examples to include to
 codex_engine = "code-davinci-002"
 engine_temperature = 0
 engine_topP = 0
+few_shot_max_tokens = 256  #******get value in paper********
 
 
 for course in courses_to_few_shot:
@@ -41,7 +42,7 @@ for course in courses_to_few_shot:
             start = time.time()
             few_shot_output = openai.Completion.create(engine = codex_engine, 
                                                        prompt = few_shot_input, 
-                                                       max_tokens = 256, 
+                                                       max_tokens = few_shot_max_tokens, 
                                                        temperature = engine_temperature, 
                                                        top_p = engine_topP)['choices'][0]['text']
             print(f'API call time: ' + str(time.time()-start))
