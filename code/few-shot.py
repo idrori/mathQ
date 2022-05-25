@@ -7,10 +7,10 @@ courses_to_few_shot = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'CO
 MATH_sections_to_few_shot = ['MATH_Algebra', 'MATH_Counting_&_Probability', 'MATH_Intermediate_Algebra', 
                              'MATH_Number_Theory', 'MATH_Prealgebra', 'MATH_Precalculus']
 questions_per_course = 25
-questions_per_MATH_section = 3
+questions_per_MATH_section = 15
 
 #Will use this many few-shot examples if possible: (if fewer are solved, use as many as possible)
-few_shot_examples_desired = 2 
+few_shot_examples_desired = 5
 codex_engine = "code-davinci-002"
 engine_temperature = 0
 engine_topP = 0
