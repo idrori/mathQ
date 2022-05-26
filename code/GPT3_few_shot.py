@@ -53,7 +53,7 @@ def execute_GPT3_few_shot(courses, questions_per, embeddings_location):
             original_question = questions[i]
             question_answer = answers[i]
             most_sim_q_index = get_most_similar(course_embeddings,i)[0]
-            print("GPT-3 few-shot CoT on " + course + " question " + question + "...\n")
+            print("GPT-3 few-shot CoT on " + course + " question " + str(question) + "...\n")
             gpt3_input = 'Q: ' + questions[most_sim_q_index] + '\nA: ' + answers[most_sim_q_index] + '\n\nQ: ' + questions[i] + "\nA: " + CoT
             gpt3_output = openai.Completion.create(engine = gpt3_engine,
                                                 prompt = gpt3_input,
