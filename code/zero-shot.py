@@ -85,7 +85,7 @@ def execute_zero_shot(courses, questions_per, embeddings_location):
             rows.append([question, original_question, codex_input, codex_output, explanation_input, 
                         explanation_output, gpt3_output, question_answer, '', most_similar_questions])
         info = pd.DataFrame(rows, columns=['Question', 'Original Question', 'Codex Input', 'Codex Output', 'Codex Explanation Input', 
-                                        'Codex Explanation', 'GPT-3 Output', 'Actual Solution', 'Zero-Shot: Correct/Incorrect', "Most Similar Questions"])
+                                        'Codex Explanation', 'GPT-3 Output', 'Actual Solution', 'Zero-Shot Evaluation', 'Most Similar Questions'])
         course_results_location = course + ' results.csv'
         info.to_csv(course_results_location, index=False)
 

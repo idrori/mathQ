@@ -18,7 +18,7 @@ few_shot_max_tokens = 256
 
 def execute_few_shot(courses, questions_per):
     """
-    runs few-shot on questions_per questions for each course in courses.
+    Runs few-shot on questions_per questions for each course in courses.
     """
     for course in courses:
         #initializing new columns in csv
@@ -33,18 +33,18 @@ def execute_few_shot(courses, questions_per):
             k = few_shot_examples_desired
 
             #correct via zero-shot:
-            if results.iloc[i]['Zero-Shot: Correct/Incorrect'] == 1:
+            if results.iloc[i]['Zero-Shot Evaluation'] == 1:
                 print('no few shot needed for ' + course + ' question ' + str(i+1))
                 few_shot_input = 'n/a'
                 few_shot_output = 'n/a'
 
             #incorrect via zero-shot:
-            elif results.iloc[i]['Zero-Shot: Correct/Incorrect'] == 0:
+            elif results.iloc[i]['Zero-Shot Evaluation'] == 0:
                 few_shot_input = ''
                 print('doing few-shot for ' + course + ' question ' + str(i+1) + '...')
                 for closest in results.iloc[i]["Most Similar Questions"].strip('][').split(', '):
                     closest_index = int(closest) - 1
-                    if results.iloc[closest_index]['Zero-Shot: Correct/Incorrect'] == 1 and k > 0:
+                    if results.iloc[closest_index]['Zero-Shot Evaluation'] == 1 and k > 0:
                         few_shot_input += results.iloc[closest_index]['Codex Input']
                         few_shot_input += results.iloc[closest_index]['Codex Output']+'\n\n'
                         k -= 1
