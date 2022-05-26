@@ -10,7 +10,6 @@ MATH_sections_to_zero_shot = ['MATH_Algebra', 'MATH_Counting_&_Probability', 'MA
                               'MATH_Number_Theory', 'MATH_Prealgebra', 'MATH_Precalculus']
 questions_per_course = 25
 questions_per_MATH_section = 15
-
 codex_engine = "code-davinci-002"
 gpt3_engine = "text-davinci-002"
 engine_temperature = 0
@@ -31,7 +30,8 @@ explanation_suffix = "\n\n'''\nHere's what the above code is doing:\n1."
 
 def execute_zero_shot(courses, questions_per, embeddings_location):
     """
-    runs zero-shot on questions_per questions for each course in courses. 
+    Runs zero-shot on questions_per questions for each course in courses. 
+    An individual CSV file of the results is made for each course in courses.
     The embeddings for all of the questions for all of the courses in courses are located in embeddings_location.
     """
     all_embeddings = get_embeddings(embeddings_location)
@@ -58,7 +58,7 @@ def execute_zero_shot(courses, questions_per, embeddings_location):
             original_question = questions[i]
             codex_input = docstring_front + context_array[0] + ' ' + prompt_prefix + ' ' + questions[i] + docstring_back
             start = time.time()
-            time.sleep(1) #to avoid an openai.error.RateLimitError
+            time.sleep(1.5) #to avoid an openai.error.RateLimitError
             print("Running Codex on " + course + " question " + str(i+1) + "...")
             codex_output = openai.Completion.create(engine = codex_engine, 
                                                     prompt = codex_input, 
@@ -66,13 +66,13 @@ def execute_zero_shot(courses, questions_per, embeddings_location):
                                                     temperature = engine_temperature, 
                                                     top_p = engine_topP)['choices'][0]['text']
             explanation_input = codex_input + codex_output + explanation_suffix
-            time.sleep(1) #to avoid an openai.error.RateLimitError
+            time.sleep(1.5) #to avoid an openai.error.RateLimitError
             explanation_output = openai.Completion.create(engine = codex_engine, 
                                                         prompt = explanation_input, 
                                                         max_tokens = explanation_max_tokens, 
                                                         temperature = engine_temperature, 
                                                         top_p = engine_topP)['choices'][0]['text']
-            time.sleep(1) #to avoid an openai.error.RateLimitError
+            time.sleep(1.5) #to avoid an openai.error.RateLimitError
             gpt3_output = openai.Completion.create(engine = gpt3_engine, 
                                                 prompt = original_question, 
                                                 max_tokens = gpt3_max_tokens, 

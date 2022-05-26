@@ -50,7 +50,7 @@ def execute_few_shot(courses, questions_per):
                         k -= 1
                 few_shot_input += results.iloc[i]['Codex Input']
                 start = time.time()
-                time.sleep(1) #to avoid an openai.error.RateLimitError
+                time.sleep(1.5) #to avoid an openai.error.RateLimitError
                 few_shot_output = openai.Completion.create(engine = codex_engine, 
                                                         prompt = few_shot_input, 
                                                         max_tokens = few_shot_max_tokens, 

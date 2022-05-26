@@ -57,7 +57,7 @@ def get_embeddings(embeddings_file):
 
 def get_most_similar(embeddings, i):
     """
-    returns most similar questions, while they are in their embedded form, 
+    Returns most similar questions, while they are in their embedded form, 
         to the target, index i, via cosine similarity.
     """
     cos_sims = []
@@ -74,8 +74,8 @@ def get_most_similar(embeddings, i):
 
 def reduce_via_umap(embeddings, num_dims=2):
     """
-    reduces the dimensionality of the provided embeddings(which are vectors) to num_dims via UMAP.
-    if embeddings was an (n x d) numpy array, it will be reduced to a (n x num_dims) numpy array.
+    Reduces the dimensionality of the provided embeddings(which are vectors) to num_dims via UMAP.
+    If embeddings was an (n x d) numpy array, it will be reduced to a (n x num_dims) numpy array.
     """
     reducer = umap.UMAP(n_components=num_dims)
     reduced = reducer.fit_transform(embeddings)
