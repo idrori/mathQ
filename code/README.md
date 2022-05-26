@@ -6,11 +6,11 @@ This will embed and save all of the question embeddings from each course(embeddi
 
 2. In your terminal, run `python3 code/zero-shot.py`.
 
-This step creates a csv file for each course, automatically adds context to the prompts, and generates a program for each prompt. Also, each generated program is explained and GPT-3's solution for the original problem is included. 
+This step creates a csv file for each course, automatically adds context to the prompts, and generates a program for each prompt. Also, each generated program is explained and GPT-3's solution for the original problem is generated. 
 
-3. In each of the created CSV's, evaluate each generated program by doing the following: Run each program. Then, under the column "Zero-Shot: Correct/Incorrect", put a 1 if the program is correct, and 0 if the program is incorrect.
+3. In each of the created CSV's, do the following: Run each program. Then, under the column "Zero-Shot Evaluation", put a 1 if the program is correct, and 0 if the program is incorrect(see column "Actual Solution"). Then, label the GPT-3 responses in the same manner under the column "GPT-3 Evaluation". Make sure all entries are labelled before doing step 4.
 
-This step labels each generated program(1 for correct and 0 for incorrect) to evaluate Codex's performance.
+This step evaluates each generated program and corresponding GPT-3 response by labeling each generated program(1 for correct and 0 for incorrect) and each GPT-3 response to evaluate Codex's and GPT-3's performance.
 
 4. In your terminal, run `python3 code/few-shot.py`.
 
