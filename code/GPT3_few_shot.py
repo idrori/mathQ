@@ -16,7 +16,7 @@ engine_temperature = 0
 engine_topP = 0
 zero_shot_max_tokens = 256 
 explanation_max_tokens = 150
-gpt3_max_tokens = 200
+gpt3_max_tokens = 1000
 CoT = "Let's think step by step."
 
 courses_embeddings_location = 'code/course_embeddings.json'
@@ -34,7 +34,7 @@ def execute_GPT3_few_shot(courses, questions_per, embeddings_location):
         course_embeddings = all_embeddings[course_index*questions_per:(course_index+1)*questions_per]
         questions = []
         answers = []
-        for num in range(1, questions_per+1):
+        for num in range(1, questions_per + 1):
             if num < 10:
                 q_num = '0' + str(num)
             else:
@@ -49,12 +49,14 @@ def execute_GPT3_few_shot(courses, questions_per, embeddings_location):
 
         rows = []
         for i in range(questions_per):
-            question = i+1
+            question = i + 1
             original_question = questions[i]
             question_answer = answers[i]
-            most_sim_q_index = get_most_similar(course_embeddings,i)[0]
+            most_sim_q_index = get_most_similar(course_embeddings,i)[0] - 1  #minus 1 since index is one less than question number
+            similar_question = questions[most_sim_q_index]
+            similar_answer = answers[most_sim_q_index]
             print("GPT-3 few-shot CoT on " + course + " question " + str(question) + "...\n")
-            gpt3_input = 'Q: ' + questions[most_sim_q_index] + '\nA: ' + str(answers[most_sim_q_index]) + '\n\nQ: ' + questions[i] + "\nA: " + CoT
+            gpt3_input = 'Q: ' + similar_question + '\nA: ' + str(similar_answer) + '\n\nQ: ' + original_question + "\nA: " + CoT
             gpt3_output = openai.Completion.create(engine = gpt3_engine,
                                                 prompt = gpt3_input,
                                                 max_tokens = gpt3_max_tokens,
