@@ -6,7 +6,8 @@ import numpy as np
 import os.path
 from sentence_transformers import util
 
-openai.api_key = "" #given by OpenAI
+OpenAI_API_Key = "" #given by OpenAI
+openai.api_key = OpenAI_API_Key 
 
 courses = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 MATH_sections = ['MATH_Algebra', 'MATH_Counting_&_Probability', 'MATH_Intermediate_Algebra', 

@@ -2,9 +2,9 @@ import openai
 import json
 import pandas as pd
 import time
-from embedding import get_embeddings, get_most_similar
+from embedding import get_embeddings, get_most_similar, OpenAI_API_Key
 
-openai.api_key = "" #given by OpenAI
+openai.api_key = OpenAI_API_Key 
 courses_to_zero_shot = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 MATH_sections_to_zero_shot = ['MATH_Algebra', 'MATH_Counting_&_Probability', 'MATH_Intermediate_Algebra', 
                               'MATH_Number_Theory', 'MATH_Prealgebra', 'MATH_Precalculus']
