@@ -39,7 +39,7 @@ def execute_zero_shot(courses, questions_per, embeddings_location):
         course_embeddings = all_embeddings[course_index*questions_per:(course_index+1)*questions_per]
         questions = []
         answers = []
-        for num in range(1, questions_per+1):
+        for num in range(1, questions_per + 1):
             if num < 10:
                 q_num = '0' + str(num)
             else:

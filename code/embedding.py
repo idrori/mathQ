@@ -19,6 +19,7 @@ embedding_engine = 'text-similarity-babbage-001'
 questions_per_course = 25
 questions_per_MATH_section = 15
 
+
 def make_embeddings(embedding_engine, embeddings_location, courses, questions_per_course):
     """
     Takes json files of questions using our json file formatting, 
@@ -84,7 +85,7 @@ def reduce_via_umap(embeddings, num_dims=2):
 def plot_clusters(points, image_loc, questions_per_course=25, show=False, question_labels=False, 
                   label_font='xx-small', dpi=200, width=9.5, height=6.5, legend_loc=(1, 1.01), right_shift=0.72):
     """
-    plots clusters of points. points is assumed to be a n by 2 numpy array.
+    Plots clusters of points. points is assumed to be a n by 2 numpy array.
     Set question_labels to True if you want to see each point labeled with its question number.
     Set show to True if you want the created plot to pop up.
     The other parameters are defaulted to values that we have found to work well for the visual itself.
