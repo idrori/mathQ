@@ -1,4 +1,4 @@
-Code for generating Figures 4, 5, and 7:
+Data and code for generating Figures 4, 5, and 7 in the paper:
 
 Figure 4: Comparison of the automatic solve rates on MIT math courses and a Columbia University course (A), and a MATH benchmark dataset (B). The latest OpenAI GPT-3 (text-davinci-002), a transformer pre-trained on text, achieves $18\%$ with zero-shot and $x\%$ with CoT (A) and $25.5\%$ with zero-shot and $y\%$ with CoT (B) automatic solve rates. In contrast, program synthesis with zero-shot and few-shot learning using the latest OpenAI Codex (code-davinci-002), a transformer pre-trained on text and fine tuned on code, achieves an automatic solve rate of $80\%$ (A) and $81.1\%$ (B).
 
