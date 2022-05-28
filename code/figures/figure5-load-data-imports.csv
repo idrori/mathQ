@@ -1,0 +1,2515 @@
+18.01,"import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-10, 10, 100)
+y = x + np.abs(x)
+
+plt.plot(x, y)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid()
+plt.show()"
+18.01,"import math
+
+def f(x):
+    return 3*x-2
+
+def g(x):
+    return math.sin(x)
+
+def h(x):
+    return x**2
+
+def fgh(x):
+    return f(g(h(x)))
+
+print(fgh(2))"
+18.01,"import sympy
+
+x = sympy.Symbol('x')
+
+eq = sympy.log(x**2-1) - 3
+
+print(sympy.solve(eq, x))"
+18.01,"from sympy import limit, Symbol, S
+
+x = Symbol('x')
+
+limit((x+1)/(x-5), x, 5)"
+18.01,"import sympy as sym
+from sympy import Symbol
+from sympy import pprint
+
+sigma = Symbol('sigma')
+x = Symbol('x')
+mu = Symbol('mu')
+
+pprint(2*sym.pi*sigma)
+
+pprint(sym.sqrt(2*sym.pi*sigma))
+
+part_1 = 1/(sym.sqrt(2*sym.pi*sigma))
+part_2 = sym.exp(-1*((x-mu)**2)/(2*sigma))
+my_gauss_function = part_1*part_2
+pprint(my_gauss_function)
+
+sym.plot(my_gauss_function.subs({mu:10,sigma:30}),(x,0,100),title='gauss distribution')
+
+x_values = []
+y_values = []
+for value in range(-5,5):
+    y = my_gauss_function.subs({mu:10,sigma:30,x:value}).evalf()
+    y_values.append(y)
+    x_values.append(value)
+    print(value,y)
+
+import matplotlib.pyplot as plt
+
+plt.plot(x_values,y_values)
+plt.show()"
+18.01,"import sympy as sp
+
+x = sp.Symbol('x')
+
+f = (x**2-1)/(2*x-3)
+
+print(sp.diff(f,x))"
+18.01,"from sympy import limit, csc, sin, Symbol
+
+x = Symbol('x')
+
+print(limit(csc(x)*sin(sin(x)), x, 0))"
+18.01,"import math
+
+def half_life(t, h):
+    return 100 * math.pow(0.5, t/h)
+
+print(half_life(100, 30))"
+18.01,"import sympy as sp
+
+r = sp.symbols('r')
+
+d = 4*r
+
+v = 4/3*sp.pi*r**3
+
+dv_dr = sp.diff(v,r)
+
+print(dv_dr.subs(r,80))"
+18.01,"import math
+
+def L(t):
+    return 0.01441*t**3-0.4177*t**2+2.703*t+1060.1
+
+def dL(t):
+    return 0.04323*t**2-0.8354*t+2.703
+
+def ddL(t):
+    return 0.08646*t-0.8354
+
+def newton(f, df, x0, epsilon):
+    x = x0
+    while True:
+        x1 = x - f(x)/df(x)
+        if abs(x1 - x) < epsilon:
+            return x1
+        x = x1
+
+print(newton(dL, ddL, 0, 0.00001))"
+18.01,"import sympy as sym
+from sympy import Symbol
+from sympy import pprint
+
+R = Symbol('R')
+E = Symbol('E')
+r = Symbol('r')
+
+P = E**2*R/(R+r)**2
+
+print(P)
+
+dP = P.diff(R)
+
+print(dP)
+
+R_sol = sym.solve(dP,R)
+
+print(R_sol)
+
+R_max = R_sol[0].evalf()
+
+print(R_max)
+
+P_max = P.subs({R:R_max})
+
+print(P_max)"
+18.01,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x):
+    return x**5-3*x**4+x**3-x**2-x+6
+
+def df(x):
+    return 5*x**4-12*x**3+3*x**2-2*x-1
+
+def newton(x, f, df, epsilon=1e-8, max_iter=1000):
+    for i in range(max_iter):
+        x_new = x - f(x)/df(x)
+        if abs(x_new - x) < epsilon:
+            return x_new
+        x = x_new
+    return x_new
+
+def main():
+    x = np.linspace(-100, 100, 1000)
+    y = f(x)
+    plt.plot(x, y)
+    plt.grid()
+    plt.show()
+    x_sols = []
+    for i in range(-100, 100):
+        x_sols.append(newton(i, f, df))
+    print(x_sols)
+    print(np.round(x_sols, 8))
+
+if __name__ == '__main__':
+    main()"
+18.01,"from sympy import Symbol, sqrt, Integral, pprint
+
+x = Symbol('x')
+k = Symbol('k')
+
+p = sqrt(1 + x**4)
+
+pprint(Integral(p, (x, 1, 1)).doit())"
+18.01,"import numpy as np
+import matplotlib.pyplot as plt
+import sympy as sp
+
+x = np.linspace(-5,5,100)
+y1 = 4-x**2
+y2 = 0*x
+
+plt.plot(x,y1,x,y2)
+plt.fill_between(x,y1,y2)
+plt.show()
+
+x = sp.Symbol('x')
+y1 = 4-x**2
+y2 = 0*x
+
+print(sp.solve(y1-y2))
+
+x1 = sp.Symbol('x1')
+x2 = sp.Symbol('x2')
+
+print(sp.integrate(y1,(x,x1,x2)))"
+18.01,"import sympy as sp
+
+x = sp.Symbol('x')
+
+def bacteria_population(x):
+    return 1000 * 2**x
+
+print(sp.integrate(bacteria_population(x), (x, 0, 1)) + 4000)"
+18.01,"import sympy
+import math
+
+x = sympy.symbols('x')
+
+y1 = sympy.tan(x)**2
+y2 = sympy.sqrt(x)
+
+# find the intersection points
+intersection_points = sympy.solve(y1 - y2)
+
+# find the area between the two curves
+area = sympy.integrate(y1 - y2, (x, intersection_points[0], intersection_points[1]))
+
+print(area)"
+18.01,"import sympy
+
+def work_done(delta_x):
+    k = 10/(1/3)
+    F = k*delta_x
+    return sympy.integrate(F, (delta_x, 0, 1/2))
+
+print(work_done(sympy.symbols('delta_x')))"
+18.01,"from sympy import *
+
+x = Symbol('x')
+
+integral = integrate(x*sqrt(1-4*x**2), (x, 0, 0.5))
+
+print(integral)"
+18.01,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x):
+    return (x**2+1)/(3*x-x**2)
+
+def trapezoidal(f, a, b, n):
+    h = (b-a)/n
+    s = 0.5*(f(a) + f(b))
+    for i in range(1, n):
+        s = s + f(a + i*h)
+    return h*s
+
+def simpson(f, a, b, n):
+    h = (b-a)/n
+    s = f(a) + f(b)
+    for i in range(1, n, 2):
+        s = s + 4*f(a + i*h)
+    for i in range(2, n-1, 2):
+        s = s + 2*f(a + i*h)
+    return h*s/3
+
+def gauss(f, a, b, n):
+    x, A = np.polynomial.legendre.leggauss(n)
+    return 0.5*(b-a)*np.dot(A, f(0.5*(b-a)*x + 0.5*(b+a)))
+
+a = 1
+b = 2
+n = 10
+
+print(""Trapezoidal:"", trapezoidal(f, a, b, n))
+print(""Simpson:"", simpson(f, a, b, n))
+print(""Gauss:"", gauss(f, a, b, n))
+
+x = np.linspace(a, b, 100)
+y = f(x)
+plt.plot(x, y)
+plt.show()"
+18.01,"from sympy import *
+
+x = Symbol('x')
+
+integral = integrate(log(1+x**2), x)
+
+print(integral)"
+18.01,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(y):
+    return y - 2*np.sin(np.pi*y)
+
+y = np.linspace(-2, 2, 100)
+x = f(y)
+
+plt.plot(x, y)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('x = y - 2sin(pi*y)')
+plt.show()"
+18.01,"from sympy import *
+
+r1, r2, theta1, theta2 = symbols('r1 r2 theta1 theta2')
+
+x1 = r1 * cos(theta1)
+y1 = r1 * sin(theta1)
+
+x2 = r2 * cos(theta2)
+y2 = r2 * sin(theta2)
+
+d = sqrt((x2 - x1)**2 + (y2 - y1)**2)
+
+print(d.subs({r1: 4, theta1: 4*pi/3, r2: 6, theta2: 5*pi/3}))"
+18.01,"from sympy import Sum, Symbol, oo, pprint, init_printing
+
+def test_convergence(n):
+    x = Symbol('x')
+    s = Sum(1/x**(2**0.5), (x, 1, n))
+    pprint(s)
+    pprint(s.doit())
+
+if __name__ == '__main__':
+    init_printing(order='rev-lex')
+    test_convergence(10)
+    test_convergence(oo)"
+18.01,"def sum_series(n):
+    """"""
+    Find the sum of the series. sum n to infinity (-1)^{n-1}*(3^n/(n*5^n))
+    """"""
+    sum = 0
+    for i in range(1, n+1):
+        sum += ((-1)**(i-1))*(3**i)/(i*(5**i))
+    return sum
+
+def main():
+    """"""
+    Find the sum of the series. sum n to infinity (-1)^{n-1}*(3^n/(n*5^n))
+    """"""
+    n = int(input())
+    print(sum_series(n))
+
+if __name__ == '__main__':
+    main()"
+18.01,"from sympy import *
+
+t = symbols('t')
+
+f = 9000*sqrt(1+2*t)
+
+print(integrate(f, (t, 0, 4)))"
+18.02,"import numpy as np
+import matplotlib.pyplot as plt
+
+def polar_eq(theta):
+    return (2 + 7*np.sin(theta))*(np.cos(5*theta))
+
+theta = np.linspace(0, 2*np.pi, 100)
+
+plt.polar(theta, polar_eq(theta))
+plt.show()"
+18.02,"import sympy as sp
+
+x, y = sp.symbols('x y')
+
+# Equation of the circle
+eq = x**2 + 2*x + y**2 - 4
+
+# Solving the equation
+sol = sp.solve(eq, y)
+
+# Printing the solution
+print(sol)
+
+# Finding the center
+center = sp.solve(eq, x)
+print(center)
+
+# Finding the radius
+radius = sp.sqrt(center[0]**2 + sol[0]**2)
+print(radius)"
+18.02,"import numpy as np
+import matplotlib.pyplot as plt
+
+theta = np.arange(0, 2*np.pi, 0.01)
+r = 3*theta
+
+plt.polar(theta, r)
+plt.show()"
+18.02,"from sympy import *
+
+theta = Symbol('theta')
+f = 2*cos(theta)
+
+a = solve(f, theta)
+print(a)
+
+b = integrate(f**2/2, (theta, a[0], a[1]))
+print(b)"
+18.02,"import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.linspace(-2, 2, 100)
+x = np.exp(t)
+y = 4 * np.exp(2 * t)
+
+plt.plot(x, y)
+plt.show()"
+18.02,"import sympy as sp
+
+t = sp.Symbol('t')
+x = 2*t
+y = 2/3*t**(3/2)
+
+dx = sp.diff(x, t)
+dy = sp.diff(y, t)
+
+ds = sp.sqrt(dx**2 + dy**2)
+
+print(sp.integrate(ds, (t, 5, 12)))"
+18.02,"import numpy as np
+
+x = np.array([2, 4, 6])
+y = np.array([3, 3, -5])
+
+A = np.array([[1, x[0], x[0]**2],
+              [1, x[1], x[1]**2],
+              [1, x[2], x[2]**2]])
+
+b = np.array([y[0], y[1], y[2]])
+
+c = np.linalg.solve(A, b)
+
+print(f'{c[0]}+{c[1]}x+{c[2]}x**2')"
+18.02,"import math
+
+def find_equation_of_ellipse(foci1, foci2, eccentricity):
+    """"""
+    Find an equation of the ellipse specified. Foci (-2, 2) and (4, 2), eccentricity 1/3
+    """"""
+    # Find the center of the ellipse
+    center_x = (foci1[0] + foci2[0]) / 2
+    center_y = (foci1[1] + foci2[1]) / 2
+
+    # Find the distance between the foci
+    distance_between_foci = math.sqrt((foci1[0] - foci2[0])**2 + (foci1[1] - foci2[1])**2)
+
+    # Find the length of the major axis
+    length_of_major_axis = distance_between_foci / (2 * eccentricity)
+
+    # Find the length of the minor axis
+    length_of_minor_axis = math.sqrt(length_of_major_axis**2 - distance_between_foci**2)
+
+    # Find the equation of the ellipse
+    equation_of_ellipse = (
+        ""(x - "" + str(center_x) + "")^2 / "" + str(length_of_major_axis**2) +
+        "" + (y - "" + str(center_y) + "")^2 / "" + str(length_of_minor_axis**2) +
+        "" = 1""
+    )
+
+    return equation_of_ellipse
+
+print(find_equation_of_ellipse((-2, 2), (4, 2), 1/3))"
+18.02,"import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+
+X, Y = np.meshgrid(x, y)
+Z = 10 - np.sqrt(X**2 + Y**2)
+
+ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='hot')
+
+plt.show()"
+18.02,"from sympy import limit, oo
+
+def sequence_diverges(sequence):
+    """"""
+    Determine if the sequence s_n = 2n-1 diverges by showing the value of the limit as n goes to infinity.
+    If the limit is infinity, then print diverges. Otherwise print converges.
+    """"""
+    limit_value = limit(sequence, n, oo)
+    if limit_value == oo:
+        print(""diverges"")
+    else:
+        print(""converges"")
+
+sequence_diverges(2*n-1)"
+18.02,"import sympy as sp
+
+x = sp.Symbol('x')
+
+def f(x):
+    return sp.exp(x)
+
+def taylor(function, a, n):
+    i = 0
+    p = 0
+    while i <= n:
+        p = p + (function.diff(x, i).subs(x, a))/(sp.factorial(i))*(x-a)**i
+        i += 1
+    return p
+
+print(taylor(f(x), 1, 4))"
+18.02,"from sympy import *
+
+x = Symbol('x')
+
+f = sin(2*x)
+
+series(f, x, 0, 10)"
+18.02,"import sympy as sp
+
+n = sp.symbols('n')
+
+sp.integrate(1/(2**n), (n, 1, sp.oo))"
+18.02,"from sympy import Sum, Symbol, oo, limit, init_printing
+
+init_printing()
+
+n = Symbol('n')
+
+s = Sum(1/(n**2 + n + 1), (n, 1, oo))
+
+limit(s, n, oo)
+
+""""""
+The series converges.
+"""""""
+18.02,"from sympy import Sum, Symbol, oo, limit, init_printing
+
+init_printing()
+
+n = Symbol('n')
+
+s = Sum(((-1)**(n+1))/n**2, (n, 1, oo))
+
+limit(s, n, oo)
+
+""""""""""""
+The series converges.
+"""""""""""""
+18.02,"from scipy import integrate
+
+def f(x):
+    return np.sin(x)/x
+
+integrate.quad(f, 0, 1)"
+18.02,"a = [5,-1,-2]
+b = [-3,2,4]
+
+def vector_product(a,b):
+    return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]
+
+print(vector_product(a,b))"
+18.02,"import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+t = np.linspace(-10, 10, 100)
+x = t*(np.sin(6*t))
+y = t*(np.cos(6*t))
+z = t
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x, y, z)
+
+r = np.sqrt(x**2 + y**2)
+
+ax.plot(x, y, r, 'r')
+
+plt.show()"
+18.02,"from scipy.integrate import dblquad
+
+def double_integral(x, y):
+    return 3*x + 4*y
+
+def double_integral_answer():
+    return dblquad(double_integral, 0, 2, lambda x: 0, lambda x: 4)
+
+print(double_integral_answer())"
+18.02,"from sympy import *
+
+x, y, z = symbols('x y z')
+w = log(x**2 + y**2 + z**2)
+
+dw = diff(w, x)
+print(dw)
+
+dw = diff(w, y)
+print(dw)
+
+dw = diff(w, z)
+print(dw)"
+18.02,"from sympy import limit, oo, symbols
+
+n = symbols('n')
+
+limit(2*n/(5*n-3), n, oo)"
+18.02,"from sympy import *
+
+x = Symbol('x')
+
+# The interval of convergence is [-1, 1]"
+18.02,"from sympy import *
+
+x, y, z = symbols('x y z')
+
+P1 = Matrix([0, 0, 0])
+P2 = Matrix([-6, 3, 5])
+
+# Parametric equations of the line
+x = P1[0] + t*(P2[0] - P1[0])
+y = P1[1] + t*(P2[1] - P1[1])
+z = P1[2] + t*(P2[2] - P1[2])
+
+print(x)
+print(y)
+print(z)"
+18.02,"import numpy as np
+
+def f(x,y,z):
+    return x**2*y**3*z**4
+
+def dfdx(x,y,z):
+    return 2*x*y**3*z**4
+
+def dfdy(x,y,z):
+    return x**2*3*y**2*z**4
+
+def dfdz(x,y,z):
+    return x**2*y**3*4*z**3"
+18.02,"# Define the function
+def f(x,y):
+    return 3*x - 7*y
+
+# Define the gradient vector
+def grad(x,y):
+    return np.array([3, -7])
+
+# Define the point
+P = np.array([17,39])
+
+# Calculate the gradient vector
+V = grad(P[0],P[1])
+
+# Print the result
+print(V)"
+18.03,"import sympy as sp
+
+x = sp.Symbol('x')
+y = sp.Function('y')
+
+# dy/dx=2x+1
+eq = sp.Eq(y(x).diff(x), 2*x+1)
+
+# y(0)=3
+ics = {y(0): 3}
+
+# Solve the differential equation
+sol = sp.dsolve(eq, ics=ics)
+
+# Print the solution
+print(sol)"
+18.03,"from sympy import Function, dsolve, Eq, Derivative, sin, cos, symbols
+from sympy.abc import x
+f = Function('f')
+dsolve(Eq(Derivative(f(x), x) + 2*x*f(x), 0), f(x))"
+18.03,"from sympy import Function, dsolve, Eq, Derivative, sin, cos, symbols
+from sympy.abc import x
+
+f = Function('f')
+
+eq = Eq(f(x).diff(x) + f(x), 2)
+
+sol = dsolve(eq)
+
+print(sol)
+
+eq1 = Eq(f(x).diff(x) + f(x), 2)
+
+sol1 = dsolve(eq1, f(x), ics={f(0): 0})
+
+print(sol1)"
+18.03,"from sympy import *
+
+x = symbols('x')
+f = Function('f')
+
+# f'(x)=3*f(x)(5-f(x))
+eq = Eq(f(x).diff(x), 3*f(x)*(5-f(x)))
+
+# f(0)=8
+ics = {f(0): 8}
+
+# solve for C1
+sol = dsolve(eq, f(x), ics=ics)
+
+# particular solution
+part_sol = sol.subs({C1: symbols('C1')})
+
+# general solution
+gen_sol = sol.rhs
+
+print(f'particular solution: {part_sol}')
+print(f'general solution: {gen_sol}')"
+18.03,"import sympy as sp
+
+x = sp.Symbol('x')
+y1 = sp.cos(2*x)
+y2 = sp.sin(2*x)
+
+f = sp.Function('f')
+
+eq = sp.Eq(f(x).diff(x, 2) + 4*f(x), 0)
+
+sol = sp.dsolve(eq, f(x))
+
+print(sol)
+
+ics = {f(0): 3, f(x).diff(x).subs(x, 0): 8}
+
+print(sp.dsolve(eq, f(x), ics=ics))
+"
+18.03,"from sympy import *
+
+x = symbols('x')
+
+f = Function('f')
+
+eq = Eq(f(x).diff(x, x) - 2*I*f(x).diff(x) + 3*f(x), 0)
+
+sol = dsolve(eq)
+
+pprint(sol)"
+18.03,"import sympy as sp
+
+x = sp.symbols('x')
+f = sp.Function('f')
+
+# Solve the differential equation
+sol = sp.dsolve(sp.diff(f(x), x, 2) + 4*f(x) - sp.cos(3*x))
+
+# Find the particular solution by substituting random values of C1 and C2
+C1, C2 = sp.symbols('C1 C2')
+part_sol = sol.subs([(C1, sp.randprime(1, 10)), (C2, sp.randprime(1, 10))])
+
+# Print the solution
+print(part_sol)"
+18.03,"import sympy as sp
+
+x = sp.Symbol('x')
+f = sp.Function('f')
+
+eq = sp.Eq(f(x).diff(x)-f(x),0)
+
+sol = sp.dsolve(eq,f(x))
+
+print(sol)
+
+# Power series solution
+
+print(sol.rhs.series(x,0,10))"
+18.03,"from sympy import *
+from sympy.abc import s, t
+from sympy.integrals import inverse_laplace_transform
+from sympy.plotting import plot
+
+f = inverse_laplace_transform(3/(s-4), s, t)
+print(f)
+
+plot(f, (t, 0, 5))"
+18.03,"import sympy as sp
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = sp.Symbol('x')
+f = sp.Function('f')
+
+m = 1
+k = 9
+c = 0
+
+# external force
+w = 6*sp.cos(3*x)
+
+# differential equation
+eq = sp.Eq(f(x).diff(x, x) + c*f(x).diff(x) + k*f(x), w)
+
+# solve differential equation
+sol = sp.dsolve(eq, f(x), ics={f(0):0, f(x).diff(x).subs(x,0):0})
+
+# convert sympy expression to numpy function
+f = sp.lambdify(x, sol.rhs, 'numpy')
+
+# plot
+x = np.linspace(0, 10, 100)
+plt.plot(x, f(x))
+plt.show()"
+18.03,"from sympy import *
+from sympy.integrals import laplace_transform
+from sympy.abc import t,s,a
+
+y = laplace_transform(t**2*cos(2*t),t,s)
+print(y)"
+18.03,"from sympy import *
+from sympy.abc import s, t
+from sympy.integrals import inverse_laplace_transform
+from sympy.plotting import plot
+
+f = inverse_laplace_transform(exp(-3*s)/s**2, s, t)
+print(f)
+
+plot(f, (t, 0, 5))"
+18.03,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x,y):
+    return y+1
+
+def euler(x0,y0,x,h):
+    n = int((x-x0)/h)
+    x = x0
+    y = y0
+    for i in range(1,n+1):
+        y = y + h*f(x,y)
+        x = x0 + i*h
+    return y
+
+def exact(x):
+    return 2*np.exp(x)-1
+
+x0 = 0
+y0 = 1
+x = 0.5
+h1 = 0.25
+h2 = 0.1
+
+y1 = euler(x0,y0,x,h1)
+y2 = euler(x0,y0,x,h2)
+y = exact(x)
+
+print(""y1 = "",y1)
+print(""y2 = "",y2)
+print(""y = "",y)"
+18.03,"import numpy as np
+import matplotlib.pyplot as plt
+
+def improved_euler(f, x0, y0, h, xn):
+    x = np.arange(x0, xn+h, h)
+    y = np.zeros(len(x))
+    y[0] = y0
+    for i in range(1, len(x)):
+        y[i] = y[i-1] + h*f(x[i-1], y[i-1])
+        y[i] = y[i-1] + h*(f(x[i-1], y[i-1]) + f(x[i], y[i]))/2
+    return x, y
+
+def f(x, y):
+    return -y
+
+x0 = 0
+y0 = 2
+h = 0.1
+xn = 0.5
+
+x, y = improved_euler(f, x0, y0, h, xn)
+
+plt.plot(x, y, label='Improved Euler')
+plt.plot(x, 2*np.exp(-x), label='Actual')
+plt.legend()
+plt.show()"
+18.03,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x,y):
+    return y-x-1
+
+def exact(x):
+    return 2+x-np.exp(x)
+
+def rk4(x,y,h):
+    k1 = h*f(x,y)
+    k2 = h*f(x+h/2,y+k1/2)
+    k3 = h*f(x+h/2,y+k2/2)
+    k4 = h*f(x+h,y+k3)
+    return y+(k1+2*k2+2*k3+k4)/6
+
+def main():
+    x = 0
+    y = 1
+    h = 0.25
+    x_list = [x]
+    y_list = [y]
+    while x<0.5:
+        y = rk4(x,y,h)
+        x = x+h
+        x_list.append(x)
+        y_list.append(y)
+    print(""Exact solution at x=0.25 is:"",exact(0.25))
+    print(""Exact solution at x=0.5 is:"",exact(0.5))
+    print(""Approximate solution at x=0.25 is:"",y_list[1])
+    print(""Approximate solution at x=0.5 is:"",y_list[2])
+
+if __name__ == ""__main__"":
+    main()"
+18.03,"import numpy as np
+import matplotlib.pyplot as plt
+
+def f(t, y):
+    return np.array([y[1], -32 - 0.04*y[1]])
+
+def rk4(f, t0, y0, t1, n):
+    h = (t1 - t0)/n
+    t = np.zeros(n+1)
+    y = np.zeros((n+1, 2))
+    t[0] = t0
+    y[0] = y0
+    for i in range(1, n+1):
+        k1 = h*f(t[i-1], y[i-1])
+        k2 = h*f(t[i-1] + h/2, y[i-1] + k1/2)
+        k3 = h*f(t[i-1] + h/2, y[i-1] + k2/2)
+        k4 = h*f(t[i-1] + h, y[i-1] + k3)
+        t[i] = t[i-1] + h
+        y[i] = y[i-1] + (k1 + 2*k2 + 2*k3 + k4)/6
+    return t, y
+
+t0 = 0
+y0 = np.array([0, 288])
+t1 = 10
+n = 1000
+
+t, y = rk4(f, t0, y0, t1, n)
+
+plt.plot(t, y[:,0])
+plt.show()
+
+print(""Maximum height:"", max(y[:,0]))
+print(""Time to reach maximum height:"", t[np.argmax(y[:,0])])"
+18.03,"import numpy as np
+import matplotlib.pyplot as plt
+import sympy as sp
+
+x, y = sp.symbols('x y')
+
+k = sp.symbols('k')
+
+f = (k**2-4)**2
+
+roots = sp.solve(f, k)
+
+print(roots)
+
+X, Y = np.meshgrid(np.linspace(-5, 5, 100), np.linspace(-5, 5, 100))
+
+Z = (X**2-4)**2
+
+plt.streamplot(X, Y, Z, np.ones(X.shape))
+
+plt.show()"
+18.03,"import sympy as sp
+import matplotlib.pyplot as plt
+import numpy as np
+
+x, y = sp.symbols('x y')
+
+f1 = 2*x - y
+f2 = x - 3*y
+
+critical_points = sp.solve([f1, f2], [x, y])
+print(critical_points)
+
+x_range = np.linspace(-5, 5, 100)
+y_range = np.linspace(-5, 5, 100)
+
+x_mesh, y_mesh = np.meshgrid(x_range, y_range)
+
+dx = 2*x_mesh - y_mesh
+dy = x_mesh - 3*y_mesh
+
+plt.streamplot(x_mesh, y_mesh, dx, dy)
+plt.show()"
+18.03,"import sympy as sp
+import numpy as np
+import matplotlib.pyplot as plt
+
+x, y = sp.symbols('x y')
+
+f = x - 2*y
+g = 3*x - 4*y - 2
+
+dfdx = sp.diff(f, x)
+dfdy = sp.diff(f, y)
+dgdx = sp.diff(g, x)
+dgdy = sp.diff(g, y)
+
+jacobian = sp.Matrix([[dfdx, dfdy], [dgdx, dgdy]])
+
+eigenvalues = jacobian.eigenvals()
+
+print(all([sp.re(eigenvalue) < 0 for eigenvalue in eigenvalues.keys()]))
+
+x_range = np.arange(-5, 5, 0.1)
+y_range = np.arange(-5, 5, 0.1)
+
+x_mesh, y_mesh = np.meshgrid(x_range, y_range)
+
+x_dot = x_mesh - 2*y_mesh
+y_dot = 3*x_mesh - 4*y_mesh - 2
+
+plt.streamplot(x_mesh, y_mesh, x_dot, y_dot)
+plt.show()"
+18.03,"import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.linspace(0, 2*np.pi, 1000)
+f = np.sin(3*t)
+
+plt.plot(t, f)
+plt.show()
+
+# Calculate the period
+period = 2*np.pi/3
+print('The period is', period)"
+18.03,"from sympy import inverse_laplace_transform, symbols, simplify
+from sympy.abc import s, t
+
+F = inverse_laplace_transform(1/(s*(s-3)), s, t)
+print(F)"
+18.03,"from sympy import inverse_laplace_transform, symbols, simplify
+from sympy.abc import s, t
+
+F = inverse_laplace_transform((2*s**3-s**2)/(4*s**2-4*s+5)**2, s, t)
+print(F)"
+18.03,"from sympy import laplace_transform, cos, exp, symbols
+from sympy.abc import s, t
+
+f = t**2*cos(2*t)
+F = laplace_transform(f, t, s)
+print(F)"
+18.03,"import sympy
+from sympy import I
+
+x = sympy.Symbol('x')
+y = sympy.Function('y')
+
+eq = y(x).diff(x, 2) - 2*I*y(x).diff(x) + 3*y(x)
+
+sol = sympy.dsolve(eq, y(x))
+
+print(sol)"
+18.03,"from sympy import *
+
+x = Symbol('x')
+
+f = x**3 + 7
+
+f_prime = diff(f, x)
+
+print(f_prime)"
+18.05,"import random
+
+def create_deck():
+    """"""
+    Create a deck of cards.
+    """"""
+    deck = []
+    for suit in range(4):
+        for rank in range(1, 14):
+            deck.append((suit, rank))
+    return deck
+
+def deal_hand(deck):
+    """"""
+    Deal a hand of 5 cards from the deck.
+    """"""
+    hand = []
+    for i in range(5):
+        hand.append(deck.pop(random.randrange(len(deck))))
+    return hand
+
+def get_rank_counts(hand):
+    """"""
+    Get the number of cards of each rank in the hand.
+    """"""
+    rank_counts = {}
+    for card in hand:
+        rank = card[1]
+        if rank in rank_counts:
+            rank_counts[rank] += 1
+        else:
+            rank_counts[rank] = 1
+    return rank_counts
+
+def has_three_of_a_kind(hand):
+    """"""
+    Check if the hand has 3 cards of the same rank.
+    """"""
+    rank_counts = get_rank_counts(hand)
+    for rank in rank_counts:
+        if rank_counts[rank] == 3:
+            return True
+    return False
+
+def main():
+    """"""
+    Main program.
+    """"""
+    num_iterations = 10000
+    num_three_of_a_kind = 0
+    for i in range(num_iterations):
+        deck = create_deck()
+        hand = deal_hand(deck)
+        if has_three_of_a_kind(hand):
+            num_three_of_a_kind += 1
+    print(""Probability of getting 3 of a kind in a 5 card poker hand:"", num_three_of_a_kind / num_iterations)
+
+if __name__ == ""__main__"":
+    main()"
+18.05,"import random
+
+def create_deck():
+    """"""
+    Create a deck of cards.
+    """"""
+    deck = []
+    for suit in range(4):
+        for rank in range(1, 14):
+            deck.append((suit, rank))
+    return deck
+
+def deal_hand(deck):
+    """"""
+    Deal a hand of 5 cards from the deck.
+    """"""
+    hand = []
+    for i in range(5):
+        hand.append(deck.pop(random.randrange(len(deck))))
+    return hand
+
+def get_rank_counts(hand):
+    """"""
+    Get the number of cards of each rank in the hand.
+    """"""
+    rank_counts = {}
+    for card in hand:
+        rank = card[1]
+        if rank in rank_counts:
+            rank_counts[rank] += 1
+        else:
+            rank_counts[rank] = 1
+    return rank_counts
+
+def has_three_of_a_kind(hand):
+    """"""
+    Check if the hand has 3 cards of the same rank.
+    """"""
+    rank_counts = get_rank_counts(hand)
+    for rank in rank_counts:
+        if rank_counts[rank] == 3:
+            return True
+    return False
+
+def main():
+    """"""
+    Main program.
+    """"""
+    num_iterations = 10000
+    num_three_of_a_kind = 0
+    for i in range(num_iterations):
+        deck = create_deck()
+        hand = deal_hand(deck)
+        if has_three_of_a_kind(hand):
+            num_three_of_a_kind += 1
+    print(""Probability of getting 3 of a kind in a 5 card poker hand:"", num_three_of_a_kind / num_iterations)
+
+if __name__ == ""__main__"":
+    main()"
+18.05,"import random
+
+def roll(die):
+    return random.choice(die)
+
+def simulate(n):
+    red = [3, 3, 3, 3, 3, 6]
+    green = [1, 4, 4, 4, 4, 4]
+    white = [2, 2, 2, 5, 5, 5]
+    wins = 0
+    for i in range(n):
+        if roll(white) > roll(green):
+            wins += 1
+    return wins / n
+
+print(simulate(10000))"
+18.05,"import random
+
+def roll_dice(dice):
+    return random.choice(dice)
+
+def simulate_dice(dice1, dice2, trials):
+    dice1_wins = 0
+    for i in range(trials):
+        if roll_dice(dice1) > roll_dice(dice2):
+            dice1_wins += 1
+    return dice1_wins / trials
+
+red = [3, 3, 3, 3, 3, 6]
+green = [1, 4, 4, 4, 4, 4]
+white = [2, 2, 2, 5, 5, 5]
+
+print(simulate_dice(green, red, 100000))"
+18.05,"import random
+
+def random_kid():
+    return random.choice([""boy"", ""girl""])
+
+both_girls = 0
+older_girl = 0
+either_girl = 0
+
+random.seed(0)
+for _ in range(10000):
+    younger = random_kid()
+    older = random_kid()
+    if older == ""girl"":
+        older_girl += 1
+    if older == ""girl"" and younger == ""girl"":
+        both_girls += 1
+    if older == ""girl"" or younger == ""girl"":
+        either_girl += 1
+
+print(""P(both | older):"", both_girls / older_girl)
+print(""P(both | either): "", both_girls / either_girl)"
+18.05,"import random
+
+def random_kid():
+    return random.choice([""boy"", ""girl""])
+
+both_girls = 0
+older_girl = 0
+either_girl = 0
+
+random.seed(0)
+for _ in range(10000):
+    younger = random_kid()
+    older = random_kid()
+    if older == ""girl"":
+        older_girl += 1
+    if older == ""girl"" and younger == ""girl"":
+        both_girls += 1
+    if older == ""girl"" or younger == ""girl"":
+        either_girl += 1
+
+print(""P(both | older):"", both_girls / older_girl)      # 0.514 ~ 1/2
+print(""P(both | either): "", both_girls / either_girl)   # 0.342 ~ 1/3"
+18.05,"import numpy as np
+
+def roll_die():
+    return np.random.randint(1, 5)
+
+def roll_die_100000_times():
+    return [roll_die() for _ in range(100000)]
+
+def standard_deviation(numbers):
+    return np.std(numbers)
+
+def main():
+    print(standard_deviation(roll_die_100000_times()))
+
+if __name__ == '__main__':
+    main()"
+18.05,"import numpy as np
+
+def std_dev(n):
+    return np.std(np.random.randint(1,7,n))
+
+print(std_dev(100000))"
+18.05,"import random
+
+def roll_die(sides):
+    return random.randint(1, sides)
+
+def simulate_rolls(sides1, sides2, num_trials):
+    results = []
+    for _ in range(num_trials):
+        results.append((roll_die(sides1) + roll_die(sides2)) / 2)
+    return results
+
+def standard_deviation(nums):
+    mean = sum(nums) / len(nums)
+    squared_diffs = [(num - mean) ** 2 for num in nums]
+    return (sum(squared_diffs) / len(nums)) ** 0.5
+
+print(standard_deviation(simulate_rolls(4, 6, 100000)))"
+18.05,"import random
+
+def roll_die(sides):
+    return random.randint(1, sides)
+
+def play_game(sides1, sides2):
+    x = roll_die(sides1)
+    y = roll_die(sides2)
+    if x > y:
+        return 2 * x
+    else:
+        return -1
+
+def play_game_n_times(sides1, sides2, n):
+    total = 0
+    for i in range(n):
+        total += play_game(sides1, sides2)
+    return total
+
+def play_game_n_times_simulation(sides1, sides2, n, simulations):
+    total = 0
+    for i in range(simulations):
+        total += play_game_n_times(sides1, sides2, n)
+    return total / simulations
+
+print(play_game_n_times_simulation(4, 6, 60, 100000))"
+18.05,"def f(h):
+    return 40 - h
+
+def F(h):
+    return 40*h - h**2/2
+
+print(F(30) - F(0))"
+18.05,"def f(h):
+    return 40 - h
+
+def F(h):
+    return 40*h - h**2/2
+
+print((F(10) - F(0))/(F(30) - F(0)))"
+18.05,"import numpy as np
+
+# Expected time before one of the bulbs fails
+# E[T] = 1/lambda
+# E[T] = 1/lambda1 + 1/lambda2 + 1/lambda3
+# E[T] = 1/0.5 + 1/0.333 + 1/0.2
+# E[T] = 2 + 3 + 5
+# E[T] = 10
+
+# Simulate the time until one of the bulbs fails
+# T = min(T1, T2, T3)
+# T1 ~ Exp(lambda1)
+# T2 ~ Exp(lambda2)
+# T3 ~ Exp(lambda3)
+
+# Simulate T1
+T1 = np.random.exponential(0.5, size=10000)
+# Simulate T2
+T2 = np.random.exponential(1/3, size=10000)
+# Simulate T3
+T3 = np.random.exponential(1/5, size=10000)
+
+# Simulate T
+T = np.minimum(T1, np.minimum(T2, T3))
+
+# Estimate E[T]
+np.mean(T)"
+18.05,"# The population proportion is 0.5
+p = 0.5
+
+# The sample size is 400
+n = 400
+
+# The sample proportion is 0.525
+p_hat = 0.525
+
+# The standard deviation of the sample proportion is
+sigma = np.sqrt(p * (1 - p) / n)
+
+# The z-score is
+z = (p_hat - p) / sigma
+
+# The probability is
+prob = 1 - stats.norm.cdf(z)
+
+print(prob)
+"
+18.05,"# The population proportion is 0.3
+p = 0.3
+
+# The sample size is 400
+n = 400
+
+# The sample proportion is 0.25
+p_hat = 0.25
+
+# The standard deviation of the sample proportion is
+sigma = np.sqrt(p * (1 - p) / n)
+
+# The z-score is
+z = (p_hat - p) / sigma
+
+# The probability is
+prob = stats.norm.cdf(z)
+
+print(prob)"
+18.05,"import numpy as np
+import matplotlib.pyplot as plt
+
+def arrival_time(n):
+    return np.random.uniform(0, 60, n)
+
+def before_1230(n):
+    return np.sum(arrival_time(n) < 30) / n
+
+print(before_1230(100000))"
+18.05,"import numpy as np
+import matplotlib.pyplot as plt
+
+def simulate_lunch(n):
+    A = np.random.uniform(0, 60, n)
+    B = np.random.uniform(0, 60, n)
+    return np.sum(np.abs(A - B) <= 15) / n
+
+print(simulate_lunch(100000))"
+18.05,"import numpy as np
+
+data = np.array([1.2, 2.1, 1.3, 10.5, 5])
+
+print(np.min(data))"
+18.05,"import numpy as np
+
+data = np.array([1.2, 2.1, 1.3, 10.5, 5])
+
+print(np.max(data))"
+18.05,"import numpy as np
+
+def generate_x(theta):
+    return np.random.uniform(0, theta)
+
+def test_hypothesis(x):
+    if x <= 0.1 or x >= 1.9:
+        return True
+    else:
+        return False
+
+def simulate_type_I_error(theta, n):
+    count = 0
+    for i in range(n):
+        x = generate_x(theta)
+        if test_hypothesis(x):
+            count += 1
+    return count / n
+
+print(simulate_type_I_error(2, 10000))"
+18.05,"import numpy as np
+import matplotlib.pyplot as plt
+
+def generate_x(theta):
+    return np.random.uniform(0, theta)
+
+def test_hypothesis(x, theta):
+    if x <= 0.1 or x >= 1.9:
+        return True
+    else:
+        return False
+
+def simulate(theta):
+    x = generate_x(theta)
+    return test_hypothesis(x, theta)
+
+def main():
+    theta = 2.5
+    num_simulations = 10000
+    num_type_II_errors = 0
+    for i in range(num_simulations):
+        if not simulate(theta):
+            num_type_II_errors += 1
+    print(""Probability of type II error: {}"".format(num_type_II_errors / num_simulations))
+
+if __name__ == ""__main__"":
+    main()"
+18.05,"# Probability of choosing a 0.3 coin
+p_0_3 = 10/50"
+18.05,"# Solution
+
+# Probability of choosing a 0.5 coin
+p_0_5 = 30/50"
+18.05,"import math
+
+mean = 69.55
+variance = 14.26
+
+stdev = math.sqrt(variance)
+
+print(stdev)
+
+z = 1.645
+
+n = (z**2 * variance) / (0.5**2)
+
+print(math.ceil(n))"
+18.05,"from sympy import integrate, symbols, simplify
+
+x, y = symbols('x y')
+
+c = 1 / integrate(x**2 + x*y, (x, 0, 1), (y, 0, 1))
+
+print(simplify(c))"
+18.06,"import random
+
+def create_deck():
+    """"""
+    Create a deck of cards.
+    """"""
+    deck = []
+    for suit in range(4):
+        for rank in range(1, 14):
+            deck.append((suit, rank))
+    return deck
+
+def deal_hand(deck):
+    """"""
+    Deal a hand of 5 cards from the deck.
+    """"""
+    hand = []
+    for i in range(5):
+        hand.append(deck.pop(random.randrange(len(deck))))
+    return hand
+
+def get_rank_counts(hand):
+    """"""
+    Get the number of cards of each rank in the hand.
+    """"""
+    rank_counts = {}
+    for card in hand:
+        rank = card[1]
+        if rank in rank_counts:
+            rank_counts[rank] += 1
+        else:
+            rank_counts[rank] = 1
+    return rank_counts
+
+def has_two_pair(hand):
+    """"""
+    Check if the hand has 2 pairs of cards.
+    """"""
+    rank_counts = get_rank_counts(hand)
+    num_pairs = 0
+    for rank in rank_counts:
+        if rank_counts[rank] == 2:
+            num_pairs += 1
+    return num_pairs == 2
+
+def main():
+    """"""
+    Main program.
+    """"""
+    num_iterations = 10000
+    num_two_pair = 0
+    for i in range(num_iterations):
+        deck = create_deck()
+        hand = deal_hand(deck)
+        if has_two_pair(hand):
+            num_two_pair += 1
+    print(""Probability of getting 2 pairs in a 5 card poker hand:"", num_two_pair / num_iterations)
+
+if __name__ == ""__main__"":
+    main()"
+18.06,"import numpy as np
+
+v_plus_w = np.array([5,1])
+v_minus_w = np.array([1,5])
+
+v = (v_plus_w + v_minus_w)/2
+w = (v_plus_w - v_minus_w)/2
+
+print(""v = "", v)
+print(""w = "", w)"
+18.06,"import numpy as np
+import matplotlib.pyplot as plt
+
+v = np.array([1,2])
+
+# Create a grid of points
+x = np.linspace(-10, 10, 100)
+y = np.linspace(-10, 10, 100)
+X, Y = np.meshgrid(x, y)
+
+# Compute the dot product
+Z = X + 2*Y
+
+# Plot the grid of points
+plt.contour(X, Y, Z, [5], colors='black')
+
+# Plot the vector v
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='blue')
+
+# Plot the vector w
+plt.quiver(0, 0, w[0], w[1], angles='xy', scale_units='xy', scale=1, color='red')
+"
+18.06,"import numpy as np
+
+S = np.array([[1,0,0],[1,1,0],[1,1,1]])
+x = np.array([3,4,5])
+
+b = S.dot(x)
+print(b)
+
+print(S[0].dot(x))
+print(S[1].dot(x))
+print(S[2].dot(x))"
+18.06,"def find_combination(w1, w2, w3):
+    """"""Find a combination x_1*w_1+x_2*w_2+x_3*w_3 that gives the zero vector with x_1 = 1""""""
+    for x2 in range(-10, 10):
+        for x3 in range(-10, 10):
+            if w1[0] + w2[0] * x2 + w3[0] * x3 == 0 and w1[1] + w2[1] * x2 + w3[1] * x3 == 0 and w1[2] + w2[2] * x2 + w3[2] * x3 == 0:
+                return [1, x2, x3]
+    return None"
+18.06,"import numpy as np
+
+def rotation_matrix(theta):
+    """"""
+    Returns a 2D rotation matrix which rotates every vector through theta degrees.
+    """"""
+    return np.array([[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]])
+
+def main():
+    theta = np.pi/4
+    print(rotation_matrix(theta))
+
+if __name__ == ""__main__"":
+    main()"
+18.06,"import numpy as np
+
+A = np.array([[1,1,1],[1,2,4],[1,3,9]])
+b = np.array([4,8,14])
+
+x = np.linalg.solve(A,b)
+
+print(x)"
+18.06,"import numpy as np
+
+def find_matrix_A(n):
+    """"""
+    Find matrix A with nxn dimensions.
+    """"""
+    while True:
+        A = np.random.randint(0,10,(n,n))
+        if np.array_equal(A**2, np.zeros((n,n))) == False and np.array_equal(A*3, np.zeros((n,n))) == True:
+            return A
+
+def main():
+    """"""
+    Main function.
+    """"""
+    n = int(input(""Enter n: ""))
+    A = find_matrix_A(n)
+    print(A)
+
+if __name__ == ""__main__"":
+    main()"
+18.06,"A = np.array([[0,4],[3,0]])
+B = np.array([[2,0],[4,2]])
+C = np.array([[3,4],[5,7]])
+
+print(""A inverse:"")
+print(np.linalg.inv(A))
+print(""B inverse:"")
+print(np.linalg.inv(B))
+print(""C inverse:"")
+print(np.linalg.inv(C))"
+18.06,"import numpy as np
+
+A = np.array([[10,20],[20,50]])
+
+b = np.array([1,0])
+
+x = np.linalg.solve(A,b)
+
+print(x)
+
+b = np.array([0,1])
+
+y = np.linalg.solve(A,b)
+
+print(y)"
+18.06,"import numpy as np
+
+A = np.array([[1,2,3],[4,5,6],[7,8,9]])
+B = np.array([[1,2,3],[4,5,6],[7,8,9]])
+
+print(np.linalg.det(A))
+print(np.linalg.det(B))
+print(np.linalg.det(A+B))"
+18.06,"def main():
+    """"""Main function""""""
+    print(""Construct a 2 by 2 matrix whose nullspace equals its column space."")
+    print(""Enter the elements of the matrix:"")
+    a = int(input(""a: ""))
+    b = int(input(""b: ""))
+    c = int(input(""c: ""))
+    d = int(input(""d: ""))
+    print(""The matrix is:"")
+    print(""["", a, b, ""]"")
+    print(""["", c, d, ""]"")
+    print(""The nullspace of the matrix is:"")
+    print(""["", -b, a, ""]"")
+    print(""The column space of the matrix is:"")
+    print(""["", a, b, ""]"")
+    print(""["", c, d, ""]"")
+    print(""The nullspace and column space of the matrix are equal."")
+
+
+if __name__ == ""__main__"":
+    main()"
+18.06,"A = np.array([[1,0,0],[0,1,0],[0,0,1]])
+
+print(A.T@A)"
+18.06,"import numpy as np
+import matplotlib.pyplot as plt
+
+a = np.array([1, -1])
+b = np.array([1, 1])
+
+# Projection of b onto a
+proj = (np.dot(b, a) / np.dot(a, a)) * a
+
+# Plotting
+plt.quiver(0, 0, a[0], a[1], angles='xy', scale_units='xy', scale=1, color='r')
+plt.quiver(0, 0, b[0], b[1], angles='xy', scale_units='xy', scale=1, color='b')
+plt.quiver(0, 0, proj[0], proj[1], angles='xy', scale_units='xy', scale=1, color='g')
+plt.xlim(-2, 2)
+plt.ylim(-2, 2)
+plt.show()"
+18.06,"from scipy.optimize import minimize
+
+def f(x):
+    return np.linalg.norm(x[0]*np.array([1,2,-1]) + x[1]*np.array([1,0,1]) - np.array([2,1,1]))
+
+res = minimize(f, [0,0])
+print(res.x)"
+18.06,"import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.array([-2,-1,0,1,2])
+b = np.array([4,3,-1,0,0])
+
+A = np.vstack([t, np.ones(len(t))]).T
+
+m, c = np.linalg.lstsq(A, b, rcond=None)[0]
+
+print(m,c)
+
+plt.plot(t, b, 'o', label='Original data', markersize=10)
+plt.plot(t, m*t + c, 'r', label='Fitted line')
+plt.legend()
+plt.show()"
+18.06,"v = (3,2)
+w = (1,4)
+
+def area(v,w):
+    return abs(v[0]*w[1]-v[1]*w[0])
+
+print(area(v,w))
+
+v = np.array([3,2])
+w = np.array([1,4])
+
+area = np.cross(v,w)
+
+print(area)"
+18.06,"import numpy as np
+
+A = np.array([[3,0],[1,1]])
+B = np.array([[1,1],[0,3]])
+
+print(np.linalg.eig(A))
+print(np.linalg.eig(B))
+print(np.linalg.eig(A+B))"
+18.06,"A = Matrix([[.6, .2], [.4, .8]])
+Ainf = Matrix([[1/3, 1/3], [2/3, 2/3]])
+
+A.eigenvals()
+
+A.eigenvects()
+
+Ainf.eigenvals()
+
+Ainf.eigenvects()"
+18.06,"b = -1
+    while True:
+        b += 0.01
+        A = np.array([[1, b], [b, 1]])
+        eigvals = np.linalg.eigvals(A)
+        if np.any(eigvals < 0):
+            return b"
+18.06,"import sympy as sp
+
+A = sp.Matrix([[2,1],[4,2]])
+
+print(""Eigenvalues:"")
+print(A.eigenvals())
+
+print(""Singular values:"")
+print(A.singular_values())
+
+print(""Eigenvectors:"")
+print(A.eigenvects())
+
+print(""Singular vectors:"")
+print(A.S())
+
+print(""Eigenvalues and eigenvectors:"")
+print(A.diagonalize())
+
+print(""Singular values and singular vectors:"")
+print(A.diagonalize())"
+18.06,"import numpy as np
+
+A0 = np.array([[5,4,3,2,1],[-1,1,0,1,-1]])
+
+A = A0 - np.mean(A0, axis=1).reshape(2,1)
+
+S = np.dot(A, A.T)/(A.shape[1]-1)
+
+eigvals, eigvecs = np.linalg.eig(S)
+
+print(eigvals)
+print(eigvecs)
+"
+18.06,"import numpy as np
+import sympy as sp
+
+a, b = sp.symbols('a b')
+
+while True:
+    M = np.random.randint(0, 10, (2, 2))
+    if np.array_equal(M.dot(np.array([1, 1])), np.array([2, 2])) and np.array_equal(M.dot(np.array([2, 0])), np.array([0, 0])):
+        break
+
+print(M)
+print(M.dot(np.array([2, 2])))
+print(M.dot(np.array([3, 1])))
+print(M.dot(np.array([-1, 1])))
+print(M.dot(np.array([a, b])))"
+18.06,"import numpy as np
+
+# Create an array of integers from 1 to 100
+numbers = np.arange(1, 101)
+
+# Find the numbers divisible by 3 or 7
+divisible_by_3_or_7 = numbers[(numbers % 3 == 0) | (numbers % 7 == 0)]
+
+# Print the number of numbers divisible by 3 or 7
+print(divisible_by_3_or_7.size)
+
+# Print the fraction of numbers divisible by 3 or 7
+print(divisible_by_3_or_7.size / numbers.size)"
+18.06,"def last_digit_squared(N):
+    """"""Return the last digit of N squared""""""
+    return (N**2)%10
+
+def last_digit_squared_probabilities(N):
+    """"""Return the probabilities of the last digit of N squared""""""
+    last_digits = [last_digit_squared(i) for i in range(1, N+1)]
+    return {i: last_digits.count(i)/N for i in range(10)}
+
+print(last_digit_squared_probabilities(1000))"
+6.042,"def multiplicative_inverse(a, b):
+    """"""
+    Find the multiplicative inverse of a mod b.
+    """"""
+    for i in range(1, b):
+        if (a * i) % b == 1:
+            return i
+    return None
+
+print(multiplicative_inverse(17, 72))"
+6.042,"def find_x(n):
+    for x in range(n):
+        if (11*x) % n == 1:
+            return x
+    return None
+
+print(find_x(113))"
+6.042,"def find_solution():
+  """"""
+  Finalphobia is a rare disease in which the victim has the delusion that he or she is being subjected to an intense mathematical examination. A person selected uniformly at random has finalphobia with probability 1/100. A person with finalphobia has shaky hands with probability 9/10. A person without finalphobia has shaky hands with probability 1/20. What is the probablility that a person selected uniformly at random has finalphobia, given that he or she has shaky hands?
+  """"""
+  p_f = 1/100
+  p_s = 9/10
+  p_n = 1/20
+  p_f_s = p_f * p_s / (p_f * p_s + p_n * (1 - p_s))
+  return p_f_s"
+6.042,"import random
+
+def roll_dice():
+    return random.randint(1, 6)
+
+def roll_all_dice():
+    return [roll_dice() for _ in range(5)]
+
+def all_different(dice):
+    return len(set(dice)) == 5
+
+def main():
+    n_trials = 100000
+    n_success = 0
+    for _ in range(n_trials):
+        if all_different(roll_all_dice()):
+            n_success += 1
+    print(n_success / n_trials)
+
+if __name__ == '__main__':
+    main()"
+6.042,"import numpy as np
+
+a = np.random.randint(1,7,size=100000)
+b = np.random.randint(1,7,size=100000)
+
+u = a*b
+
+print(np.mean(u))"
+6.042,"import random
+
+def dice_roll():
+    return random.randint(1,6)
+
+def roll_until_one():
+    days = 0
+    while True:
+        days += 1
+        if dice_roll() == 1:
+            return days-1
+
+def expected_rolls():
+    total_days = 0
+    for i in range(1000000):
+        total_days += roll_until_one()
+    return total_days/1000000
+
+print(expected_rolls())"
+6.042,"import random
+
+def roll_dice():
+    return random.randint(1,6), random.randint(1,6)
+
+def expected_value(n):
+    total = 0
+    for i in range(n):
+        total += roll_dice()[0] * roll_dice()[1]
+    return total / n
+
+print(expected_value(1000000))"
+6.042,"import random
+
+def run_simulation():
+    cards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
+    random.shuffle(cards)
+    count = 0
+    for i in range(len(cards) - 1):
+        if cards[i] == cards[i + 1]:
+            count += 1
+    return count
+
+def main():
+    total = 0
+    for i in range(10000):
+        total += run_simulation()
+    print(total / 10000)
+
+if __name__ == ""__main__"":
+    main()"
+6.042,"import random
+
+def mean(n):
+    sum = 0
+    for i in range(n):
+        sum += random.randint(50, 98)
+    return sum/n
+
+print(mean(128))"
+6.042,"import numpy as np
+
+def compute_variance(n):
+    scores = np.random.randint(50, 99, n)
+    return np.var(scores)
+
+print(compute_variance(128))"
+6.042,"def sample_mean(n):
+    return np.mean(np.random.choice(range(50,99), n))
+
+def sample_var(n):
+    return np.var([sample_mean(n) for i in range(100000)])
+
+print(sample_var(128))"
+6.042,"import random
+
+def main():
+    """"""
+    Calculate the probability a 5 card hand has 4 of a kind.
+    """"""
+    deck = create_deck()
+    five_card_hands = create_five_card_hands(deck)
+    four_of_a_kind_hands = get_four_of_a_kind_hands(five_card_hands)
+    probability = get_probability(five_card_hands, four_of_a_kind_hands)
+    print(probability)
+
+def create_deck():
+    """"""
+    Create a deck of 52 cards.
+    """"""
+    deck = []
+    for rank in range(2, 15):
+        for suit in ['C', 'D', 'H', 'S']:
+            deck.append((rank, suit))
+    return deck
+
+def create_five_card_hands(deck):
+    """"""
+    Create a list of all possible 5 card hands from a deck.
+    """"""
+    five_card_hands = []
+    for i in range(len(deck)):
+        for j in range(i + 1, len(deck)):
+            for k in range(j + 1, len(deck)):
+                for l in range(k + 1, len(deck)):
+                    for m in range(l + 1, len(deck)):
+                        five_card_hands.append([deck[i], deck[j], deck[k], deck[l], deck[m]])
+    return five_card_hands
+
+def get_four_of_a_kind_hands(five_card_hands):
+    """"""
+    Get all the hands that have 4 of a kind.
+    """"""
+    four_of_a_kind_hands = []
+    for hand in five_card_hands:
+        if is_four_of_a_kind(hand):
+            four_of_a_kind_hands.append(hand)
+    return four_of_a_kind_hands
+
+def is_four_of_a_kind(hand):
+    """"""
+    Check if a hand has 4 of a kind.
+    """"""
+    ranks = [card[0] for card in hand]
+    for rank in ranks:
+        if ranks.count(rank) == 4:
+            return True
+    return False
+
+def get_probability(five_card_hands, four_of_a_kind_hands):
+    """"""
+    Get the probability a 5 card hand has 4 of a kind.
+    """"""
+    probability = len(four_of_a_kind_hands) / len(five_card_hands)
+    return probability
+
+if __name__ == '__main__':
+    main()"
+6.042,"def shortest_path(graph, start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return path
+    if not start in graph:
+        return None
+    shortest = None
+    for node in graph[start]:
+        if node not in path:
+            newpath = shortest_path(graph, node, end, path)
+            if newpath:
+                if not shortest or len(newpath) < len(shortest):
+                    shortest = newpath
+    return shortest
+
+def diameter(graph):
+    diameter = 0
+    for node in graph:
+        for node2 in graph:
+            if node != node2:
+                path = shortest_path(graph, node, node2)
+                if path:
+                    if len(path) > diameter:
+                        diameter = len(path) - 1
+    return diameter
+
+graph = {'A': ['B'], 'B': ['A', 'C', 'H'], 'C': ['B', 'D', 'E'], 'D': ['C', 'E'], 'E': ['C', 'D', 'F', 'H'], 'F': ['E', 'G'], 'G': ['F'], 'H': ['B', 'E']}
+print(diameter(graph))"
+6.042,"def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+def permutations(word):
+    if len(word) == 1:
+        return [word]
+    else:
+        result = []
+        for i in range(len(word)):
+            for p in permutations(word[:i] + word[i+1:]):
+                result.append(word[i] + p)
+        return result
+
+def arrangements(word):
+    return len(set(permutations(word)))
+
+def main():
+    print(arrangements('BANANARAMA'))
+
+if __name__ == '__main__':
+    main()"
+6.042,"import random
+
+def solve_problem():
+    """"""
+    ""You shuffle a deck of cards and deal your friend a 5­card hand. Suppose your friend says, “I have the ace of spades.” What is the probablity that she
+    has another ace?""
+    """"""
+    deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] * 4
+    deck = shuffle(deck)
+    hand = deck[:5]
+    if hand.count(1) == 2:
+        return 1
+    else:
+        return 0
+
+
+def shuffle(deck):
+    """"""
+    Shuffles a deck of cards.
+    """"""
+    for i in range(len(deck)):
+        j = random.randint(0, len(deck) - 1)
+        deck[i], deck[j] = deck[j], deck[i]
+    return deck
+
+
+def main():
+    """"""
+    Main function.
+    """"""
+    print(solve_problem())
+
+
+if __name__ == ""__main__"":
+    main()"
+6.042,"import numpy as np
+import networkx as nx
+import matplotlib.pyplot as plt
+
+def chromatic_number(adj_matrix):
+    """"""
+    Find the chromatic number of a graph with adjacency matrix
+    :param adj_matrix: adjacency matrix of graph
+    :return: chromatic number of graph
+    """"""
+    # create graph from adjacency matrix
+    G = nx.from_numpy_matrix(adj_matrix)
+    # find chromatic number of graph
+    chromatic_number = nx.algorithms.coloring.greedy_color(G, strategy='largest_first')
+    return chromatic_number
+
+if __name__ == '__main__':
+    # adjacency matrix of graph
+    adj_matrix = np.array([[0, 1, 0, 0, 0, 0, 0, 0],
+                           [1, 0, 1, 0, 0, 0, 0, 1],
+                           [0, 1, 0, 1, 1, 0, 0, 0],
+                           [0, 0, 1, 0, 1, 0, 0, 0],
+                           [0, 0, 1, 1, 0, 1, 0, 1],
+                           [0, 0, 0, 0, 1, 0, 1, 0],
+                           [0, 0, 0, 0, 0, 1, 0, 0],
+                           [0, 1, 0, 0, 1, 0, 0, 0]])
+    # find chromatic number of graph
+    chromatic_number = chromatic_number(adj_matrix)
+    # print chromatic number
+    print(chromatic_number)
+    # create graph from adjacency matrix
+    G = nx.from_numpy_matrix(adj_matrix)
+    # draw graph
+    nx.draw(G, with_labels=True)
+    # show graph
+    plt.show()"
+6.042,"import numpy as np
+
+c = 0.5 * 36
+i = (1/3) * (2/5) * 0 + (1/3) * (3/5) * 15 + (2/3) * np.mean(np.array(list(range(16))))
+g = 49 - np.mean(np.array([i * j for i in range(1, 8) for j in range(1, 8)]))
+
+print(c + i + g)"
+6.042,"import numpy as np
+
+def colonel_mustard():
+    opportunity = np.random.choice(['Plum', 'Green', 'Scarlet'], p=[1/6, 2/6, 3/6])
+    revolver = np.random.choice(['Plum', 'Green', 'Scarlet'], p=[4/8, 3/8, 1/8])
+    if opportunity == revolver:
+        return 1
+    else:
+        return 0
+
+print(np.mean([colonel_mustard() for i in range(100000)]))"
+6.042,"import math
+
+def main():
+    print(math.factorial(12+24+36) // (math.factorial(12) * math.factorial(24) * math.factorial(36)))
+
+if __name__ == '__main__':
+    main()"
+6.042,"# n is the sum of three perfect squares.
+
+# ∃m,n,p. (m^2 + n^2 + p^2 = n)"
+6.042,"def main():
+    p_test_1 = 2/3
+    p_tpr_1 = 3/4
+    p_fpr_1 = 1/4
+    p_test_2 = 1/3
+    p_tpr_2 = 1
+    p_fpr_2 = 1/2
+    p_p = 1/5
+    p_n = 4/5
+    p_tpr_1_2 = p_test_1**2*p_p*p_tpr_1/(p_test_1*p_p*p_tpr_1+p_test_1*p_n*p_fpr_1)
+    p_tpr_2_2 = p_test_2**2*p_p*p_tpr_2/(p_test_2*p_p*p_tpr_2+p_test_2*p_n*p_fpr_2)
+    print(p_tpr_1_2+p_tpr_2_2)
+
+if __name__ == ""__main__"":
+    main()"
+6.042,"def count_solutions(n):
+    count = 0
+    for x1 in range(1, n+1):
+        for x2 in range(1, n+1):
+            for x3 in range(1, n+1):
+                for x4 in range(1, n+1):
+                    for x5 in range(1, n+1):
+                        for x6 in range(1, n+1):
+                            for x7 in range(1, n+1):
+                                for x8 in range(1, n+1):
+                                    if x1**1 + x2**2 + x3**3 + x4**4 + x5**5 + x6**6 + x7**7 + x8**8 == n:
+                                        count += 1
+    return count
+
+print(count_solutions(100))"
+6.042,"import numpy as np
+
+# Probability of Sayan succeeding
+p_sayan = 1/6
+
+# Probability of Jelani succeeding
+p_jelani = 1/4
+
+# Probability of at most one of Jelani and Sayan succeeding
+p_at_most_one = 1 - (p_sayan * p_jelani)
+
+# Probability of Jelani succeeding but Sayan not succeeding
+p_jelani_succeed_sayan_not = p_jelani * (1 - p_sayan)
+
+# Probability of Jelani succeeding but Sayan not succeeding divided by probability of at most one of Jelani and Sayan succeeding
+p_jelani_succeed_sayan_not / p_at_most_one
+
+# Probability of at least one of Jelani and Sayan succeeding
+p_at_least_one = 1 - p_at_most_one
+"
+6.042,"from sympy import symbols, expand
+
+x = symbols('x')
+
+print(expand((x + (1/x))**100).coeff(x, 10))"
+6.042,"def even_odd_to_int(n):
+    if n % 2 == 0:
+        return n // 2
+    else:
+        return -(n + 1) // 2"
+COMS3251,"import numpy as np
+
+a = np.array([[-1,0,2],[0,1,4]])
+b = np.array([[-2],[1]])
+c = np.array([[3,1],[0,0],[-2,-1]])
+d = np.array([[5],[-3]])
+e = np.array([[-4],[2]])
+
+print(np.dot(np.transpose(a),b))
+print(np.dot(c,(d+e)))"
+COMS3251,"import numpy as np
+
+x = np.array([1, -4, 2, 8, -1])
+
+print(np.linalg.norm(x)**2)"
+COMS3251,"import numpy as np
+
+A = np.array([[4, -2, 8, 1], [-8, 10, 0, 3], [3, -1, 10, 5], [2, 2, 9, -2]])
+b = np.array([3, -2, -1, 8])
+
+x = np.linalg.solve(A, b)
+
+print(x)"
+COMS3251,"from sympy import *
+
+x, y = symbols('x y')
+
+a = Matrix([10, 120])
+b = Matrix([6, 140])
+
+c = Matrix([72, 1340])
+
+print(solve([a[0]*x + b[0]*y - c[0], a[1]*x + b[1]*y - c[1]], [x, y]))"
+COMS3251,"def angle(h, m):
+    h_angle = (h * 30) + (m * 0.5)
+    m_angle = m * 6
+    return abs(h_angle - m_angle)
+
+print(angle(1, 15))"
+COMS3251,"import numpy as np
+
+A = np.array([[1,0,0,0,0],[1,1,0,0,0],[1,2,1,0,0],[1,3,3,1,0],[1,4,6,4,1]])
+B = np.array([[1,0,0,0,0],[0,1,0,0,0],[0,1,1,0,0],[0,1,2,1,0],[0,1,3,3,1]])
+
+R = np.linalg.inv(A) @ B
+
+print(R)"
+COMS3251,"import numpy as np
+
+def rank(v):
+    """"""
+    Computes the rank of the matrix v*v'
+    :param v: a d-dimensional non-zero vector
+    :return: the rank of the matrix v*v'
+    """"""
+    return np.linalg.matrix_rank(np.outer(v, v))
+
+if __name__ == ""__main__"":
+    v = np.array([1, 2, 3])
+    print(rank(v))"
+COMS3251,"import numpy as np
+
+A = np.array([[1,2,0,-1],[-2,-3,4,5],[2,4,0,-2]])
+
+print(np.linalg.matrix_rank(A))"
+COMS3251,"from sympy import *
+
+x, y = symbols('x y')
+
+eq1 = Eq(2*x + y, 2)
+eq2 = Eq(-0.5*x + y, 1)
+
+solve([eq1, eq2], [x, y])"
+COMS3251,"import numpy as np
+
+# Define the vector
+v = np.array([-6, 4])
+
+# Define the line
+l = np.array([3, 2])
+
+# Compute the projection
+proj = (np.dot(v, l) / np.dot(l, l)) * l
+
+# Print the result
+print(proj)"
+COMS3251,"import numpy as np
+
+A = np.array([[0,1],[1,1],[2,1]])
+b = np.array([6,0,0])
+
+x = np.linalg.lstsq(A,b)[0]
+
+print(x)"
+COMS3251,"import numpy as np
+
+A = np.array([[-6,3],[4,5]])
+
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+print(eigenvalues)
+print(eigenvectors)"
+COMS3251,"import numpy as np
+
+A = np.array([[-1,-2],[-2,0]])
+
+print(np.linalg.inv(A))"
+COMS3251,"import numpy as np
+
+A = np.array([[3,-4,5],[0,-1,-5],[5,-4,3]])
+
+print(np.linalg.det(A))"
+COMS3251,"from sympy import *
+
+a, b, c = symbols('a b c')
+
+M = Matrix([[0, a+b, c+2], [a, 2, c], [4, a+b, 4]])
+
+print(M)
+
+print(M.is_symmetric())
+
+print(solve([M[0, 1] - M[1, 0], M[0, 2] - M[2, 0], M[1, 2] - M[2, 1]], [a, b, c]))"
+COMS3251,"import numpy as np
+from scipy.linalg import lu
+
+A = np.array([[-1,-1,2],[2,0,3],[-3,2,-1]])
+
+P, L, U = lu(A)
+
+print(""P = \n"", P)
+print(""L = \n"", L)
+print(""U = \n"", U)
+
+print(""P*L*U = \n"", P.dot(L).dot(U))"
+COMS3251,"import numpy as np
+
+A = np.array([[1,0,2],[0,2,0],[0,-1,1]])
+
+Q,R = np.linalg.qr(A)
+
+print(Q)
+print(R)
+
+print(np.dot(Q,R))"
+COMS3251,"import numpy as np
+
+A = np.array([[2,-3,0],[0,-1,0],[1,3,1]])
+
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+print(""Eigenvalues:"")
+print(eigenvalues)
+print(""Eigenvectors:"")
+print(eigenvectors)"
+COMS3251,"import numpy as np
+
+matrix = np.array([[3,8,-2],[1,0,2],[-2,-1,5]])
+
+print(np.trace(matrix))"
+COMS3251,"import numpy as np
+
+A = np.array([[1,2,-3],[-1,-1,0],[-2,-3,3]])
+v = np.array([3,-3,1])
+u = np.array([1,-2,1])
+
+print(np.linalg.matrix_rank(A))
+print(np.linalg.matrix_rank(np.array([A,v])))
+print(np.linalg.matrix_rank(np.array([A,u])))
+
+""""""
+The rank of A is 3, so the nullspace of A is empty.
+The rank of [A,v] is 3, so v is not an element of the nullspace of A.
+The rank of [A,u] is 2, so u is an element of the nullspace of A.
+"""""""
+COMS3251,"import numpy as np
+
+A = np.array([[3,-2,-1,0,2],[1,-2,1,-2,4],[-4,4,0,2,-6]])
+
+print(np.linalg.matrix_rank(A))
+print(A.shape[1] - np.linalg.matrix_rank(A))"
+COMS3251,"def rref(matrix):
+    if not matrix: return
+    num_rows = len(matrix)
+    num_cols = len(matrix[0])
+
+    # Start at the last column and work backwards.
+    for col in range(num_cols - 1, -1, -1):
+
+        # Find the row with the leading non-zero entry in this column.
+        for row in range(num_rows):
+            if matrix[row][col] != 0: break
+
+        # If there is no leading non-zero entry, then all entries are zero.
+        if row == num_rows: continue
+
+        # Swap the current row with the one that has the leading non-zero entry.
+        matrix[row], matrix[num_rows - 1] = matrix[num_rows - 1], matrix[row]
+
+        # Eliminate all other entries in this column.
+        for r in range(num_rows):
+            if r == num_rows - 1: continue  # skip pivot row; already done above
+
+            # Eliminate current row of all other entries in this column.
+            multiplier = matrix[r][col] / matrix[num_rows - 1][col]  # get multiplier to eliminate value at [r][c] from rest of row (except pivot)
+            for c in range(col, num_cols):
+                matrix[r][c] -= multiplier * matrix[num_rows - 1][c]
+
+    return matrix
+
+if __name__ == ""__main__"":
+    print(rref([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+
+""""""
+Compute the rref of the matrix [-1,2,1,0;2,1,0,-1;5,0,-2,6]
+""""""
+
+if __name__ == ""__main__"":
+    print(rref([[-1, 2, 1, 0], [2, 1, 0, -1], [5, 0, -2, 6]]))"
+COMS3251,"import numpy as np
+
+def is_orthogonal(matrix):
+    return np.allclose(np.dot(matrix, matrix.T), np.eye(matrix.shape[0]))
+
+def main():
+    for a in range(-10, 10):
+        matrix = np.array([[0,0,1],[-1,0,0],[0,a,0]])
+        print(f""a = {a}"")
+        print(f""is_orthogonal = {is_orthogonal(matrix)}"")
+
+if __name__ == ""__main__"":
+    main()"
+COMS3251,"import numpy as np
+
+A = np.array([[2,-1/2],[1,1],[4,4]])
+
+print(np.linalg.matrix_rank(A))"
+COMS3251,"import numpy as np
+
+A = np.array([[1, 2], [-2, -3]])
+
+print(np.linalg.matrix_power(A, 4))"
