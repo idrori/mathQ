@@ -30,7 +30,7 @@ openai.api_key = OpenAI_API_Key
 courses_to_zero_shot = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 MATH_sections_to_zero_shot = ['MATH_Algebra', 'MATH_Counting_&_Probability', 'MATH_Intermediate_Algebra', 
                               'MATH_Number_Theory', 'MATH_Prealgebra', 'MATH_Precalculus']
-questions_per_course = 3
+questions_per_course = 25
 questions_per_MATH_section = 15
 codex_engine = "code-davinci-002"
 gpt3_engine = "text-davinci-002"
