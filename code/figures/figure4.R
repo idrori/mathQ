@@ -5,7 +5,7 @@ library(ggsci)
 
 palette = c("darkorange1", "chartreuse4", "blue3", "magenta")
 
-d.mit <- read.csv("figure4-mit-math-sr.csv", check.names=FALSE)
+d.mit <- read.csv("figure4-mit-math-solve-rates.csv", check.names=FALSE)
 se <- function(x) sqrt(var(x) / length(x))
 d.mit_se <- d.mit %>% pivot_longer(names(d.mit)[2:5], names_to = c("Model"), values_to = c("Accuracy")) %>% group_by(Model) %>% summarize(mean = mean(Accuracy), se = se(Accuracy))
 d.mit[1:8,3] <- d.mit[1:8,3] - d.mit[1:8,2]
@@ -28,7 +28,7 @@ plot.mit <- d.mit_long %>% ggplot(aes(Course, Accuracy, fill = Model)) +
   theme_minimal() +
   theme(legend.title = element_blank(), axis.text.x = element_text(angle = 60, hjust = 1))
 
-d.math <- read.csv("figure4-math-sr.csv", check.names=FALSE)
+d.math <- read.csv("figure4-math-solve-rates.csv", check.names=FALSE)
 d.math_se <- d.math %>% pivot_longer(names(d.math)[2:5], names_to = c("Model"), values_to = c("Accuracy")) %>% group_by(Model) %>% summarize(mean = mean(Accuracy), se = se(Accuracy))
 d.math[1:7,3] <- d.math[1:7,3] - d.math[1:7,2]
 d.math[1:7,5] <- d.math[1:7,5] - d.math[1:7,4]
@@ -52,5 +52,5 @@ plot.math <- d.math_long %>% ggplot(aes(Topic, Accuracy, fill = Model)) +
 
 ggarrange(plot.mit, plot.math, labels = c("A", "B"), common.legend = TRUE, widths = c(8, 7), align = "hv")
 
-ggsave("figure4-sr.pdf", width = 10, height = 4)
+ggsave("figure4-solve-rates.pdf", width = 10, height = 4)
 
