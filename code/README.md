@@ -1,3 +1,5 @@
+This directory contains code that reproduces all results and figures in the paper and supplementary information.
+\
 To run this code, make sure to have an OpenAI API key inserted into each of the code files:
 
 1. In a terminal, run `python3 code/embedding.py`.
@@ -21,4 +23,4 @@ This step takes the labels given to each generated program and performs few-shot
 This step labels each program generated via few-shot learning to evaluate Codex's performance.
 
 \
-Figures: directory figures contains code and data that reproduce the figures in the paper.
+Figures: this sub-directory contains code and data that reproduces the figures in the paper.
