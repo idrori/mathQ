@@ -20,5 +20,5 @@ This step takes the labels given to each generated program and performs few-shot
 
 This step labels each program generated via few-shot learning to evaluate Codex's performance.
 
-\n
+\
 Figures: directory figures contains code and data for reproducing Figures 4, 5, and 7.
