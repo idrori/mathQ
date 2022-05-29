@@ -2,7 +2,7 @@ To run this code, make sure to have an OpenAI API key inserted into each of the 
 
 1. In a terminal, run `python3 code/embedding.py`.
 
-This step embeds and saves all question embeddings from the MIT math courses (`course_embeddings.json`) and MATH benchmark (`MATH_embeddings.json`). It also creates an image of the embeddings after reducing dimensionality by UMAP(`UMAP.png`).
+This step embeds and saves all question embeddings from the university math courses (`course_embeddings.json`) and MATH benchmark (`MATH_embeddings.json`). It also creates an image of the embeddings after reducing dimensionality by UMAP(`UMAP.png`).
 
 2. In a terminal, run `python3 code/zero-shot.py`.
 
@@ -19,3 +19,6 @@ This step takes the labels given to each generated program and performs few-shot
 5. Repeat step 3 but for the programs and responses generated via few-shot learning.
 
 This step labels each program generated via few-shot learning to evaluate Codex's performance.
+
+
+Directory figures contains code and data for reproducing Figures 4, 5, and 7.
