@@ -1,6 +1,6 @@
 Data and code for generating Figures 4, 5, and 7 in the paper:
 
-Figure 4: Comparison of the automatic solve rates on (A) MIT math courses and a Columbia University course, and on (B) MATH benchmark dataset. The latest OpenAI GPT-3 (text-davinci-002), a transformer pre-trained on text, achieves on the MIT math courses (A) 18.8% with zero-shot and 30.8% with CoT, and on the MATH benchmark (B) 25.5% with zero-shot and 42.2% with CoT. In contrast, program synthesis with zero-shot and few-shot learning using the latest OpenAI Codex (code-davinci-002), a transformer pre-trained on text and fine tuned on code, achieves automatic solve rates of 80% (A) and 81.1% (B).
+Figure 4: Comparison of the automatic solve rates on (A) MIT math courses and a Columbia University course and on (B) MATH benchmark dataset. The latest OpenAI GPT-3 (text-davinci-002), a transformer pre-trained on text, achieves on the MIT math courses (A) 18.8% with zero-shot, and 30.8% with few-shot and CoT, and on the MATH benchmark (B) 25.5% with zero-shot, and 42.2% with few-shot and CoT. In contrast, program synthesis with zero-shot and few-shot learning using the latest OpenAI Codex (code-davinci-002), a transformer pre-trained on text and fine-tuned on code, achieve automatic solve rates of 80% (A) and 81.1% (B).
 
 Figure 5: Imported Python programming libraries by course: NumPy is used by nearly
 all courses. Matplotlib is used in courses with questions that involve plotting. Sympy
