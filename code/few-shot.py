@@ -27,7 +27,7 @@ engine_temperature = 0
 engine_topP = 0
 few_shot_max_tokens = 256
 gpt3_CoT_max_tokens = 1000
-codex_time_delay = 2
+codex_time_delay = 3
 gpt3_time_delay = 1
 CoT = "Let's think step by step."
 
