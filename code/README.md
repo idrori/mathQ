@@ -16,7 +16,7 @@ This step evaluates each generated program and corresponding GPT-3 response by l
 
 4. In a terminal, run `python3 code/few-shot.py`.
 
-This step takes the labels given to each generated program and performs few-shot learning for each prompt by providing (question, code) examples to Codex. We create the new prompt with the examples and generate a new program. Also, few-shot learning performed with GPT-3 combined with the chain of thought (CoT) string "Let's think step by step.".
+This step takes the labels given to each generated program and performs few-shot learning for each prompt by providing (question, code) examples to Codex. We create the new prompt with the examples and generate a new program. Also, few-shot learning performed with GPT-3 combined prompted by a chain of thought (CoT) string.
 
 5. Repeat step 3 but for the programs and responses generated via few-shot learning.
 
