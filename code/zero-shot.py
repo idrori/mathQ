@@ -1,9 +1,10 @@
+import os
 import openai 
 import json
 import pandas as pd
 import time
 import argparse
-from embedding import get_embeddings, get_most_similar, OpenAI_API_Key
+from embedding import get_embeddings, get_most_similar
 
 parser = argparse.ArgumentParser()
 # if an argument is passed in as True, we do it
@@ -17,7 +18,7 @@ args = parser.parse_args()
 
 column_labels = ['Question', 'Original Question', 'Actual Solution']
 if args.Codex == 'True':
-    column_labels += ['Codex Input', 'Codex Output', 'Codex Evaluation']
+    column_labels += ['Codex Input', 'Codex Output', 'Zero-Shot Evaluation']
 if args.Explain == 'True' and args.Codex == 'True':
     column_labels += ['Codex Explanation Input', 'Codex Explanation']
 if args.GPT3 == 'True':
@@ -26,7 +27,7 @@ if args.GPT3_CoT == 'True':
     column_labels += ['GPT-3 CoT Input', 'GPT-3 CoT Output', 'GPT-3 CoT Evaluation']
 column_labels += ['Most Similar Questions']
 
-openai.api_key = OpenAI_API_Key 
+openai.api_key = os.getenv('OpenAI_API_Key')
 courses_to_zero_shot = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 MATH_sections_to_zero_shot = ['MATH_Algebra', 'MATH_Counting_&_Probability', 'MATH_Intermediate_Algebra', 
                               'MATH_Number_Theory', 'MATH_Prealgebra', 'MATH_Precalculus']
