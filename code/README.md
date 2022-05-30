@@ -10,7 +10,7 @@ This step embeds and saves all question embeddings from the university math cour
 
 This step creates a CSV file for each course(`COURSE results.csv`), automatically adds context to the prompts, and generates a program for each prompt. Each program is automatically explained, and GPT-3's response to the original question is generated. 
 
-3. In each of the created CSVs: Run each program. Then, under the column `Zero-Shot Evaluation,` place a one if the program is correct and 0 otherwise (see column `Actual Solution`). Then, label the GPT-3 responses in the same manner under the column `GPT-3 Evaluation`. Make sure all entries under `Zero-Shot Evaluation` are labeled before step 4. **Note: This step may take over 30 minutes to run due to the length of API calls.**
+3. In each of the created CSVs: Run each program. Then, under the column `Zero-Shot Evaluation,` place a one if the program is correct and 0 otherwise (see column `Actual Solution`). Then, label the GPT-3 responses in the same manner under the column `GPT-3 Evaluation`. Make sure all entries under `Zero-Shot Evaluation` are labeled before step 4. Note: This step may take over 30 minutes to run due to the length of API calls.
 
 This step evaluates each generated program and corresponding GPT-3 response by labeling each generated program(1 for correct and 0 for incorrect) and each GPT-3 response to evaluate Codex's and GPT-3's performance.
 
