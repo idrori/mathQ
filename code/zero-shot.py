@@ -71,10 +71,8 @@ def execute_zero_shot(courses, questions_per,
     The embeddings for all of the questions for all of the courses in courses are located in embeddings_location.
     """
     all_embeddings = get_embeddings(embeddings_location)
-    for course_index, course in enumerate(courses):
-        # course_embeddings = all_embeddings[course_index*questions_per:(course_index+1)*questions_per]
+    for course in courses:
         course_embeddings = all_embeddings[embeddings_indexes[course][0]:embeddings_indexes[course][1]+1]
-        print(f'{len(course_embeddings)}, {embeddings_indexes[course][0]} to {embeddings_indexes[course][1]+1}')
         questions = []
         answers = []
         for num in range(1, questions_per + 1):
