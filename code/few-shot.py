@@ -75,7 +75,8 @@ def execute_few_shot(courses, questions_per):
 
             #columns not properly labelled with 1's and 0's:
             else:
-                print('question not labeled 1 for correct or 0 for incorrect was detected')
+                print('''A Question not labeled 1 for correct or 0 for incorrect was detected. 
+                You must go back and label all Codex Zero-Shot questions as correct or incorrect''')
                 raise ValueError
 
             results.loc[i, 'Few-Shot Input'] = few_shot_input
