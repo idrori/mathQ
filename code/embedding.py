@@ -3,11 +3,10 @@ import umap
 import json
 import matplotlib.pyplot as plt
 import numpy as np
-import os.path
 from sentence_transformers import util
+import os
 
-OpenAI_API_Key = "" #given by OpenAI
-openai.api_key = OpenAI_API_Key 
+openai.api_key = os.getenv('OpenAI_API_Key')
 
 courses = ['18.01', '18.02', '18.03', '6.042', '18.05', '18.06', 'COMS3251']
 MATH_sections = ['MATH_Algebra', 'MATH_Counting_&_Probability', 'MATH_Intermediate_Algebra', 
@@ -47,7 +46,6 @@ def make_embeddings(embedding_engine, embeddings_location, courses, questions_pe
     embeddings = {'list_of_embeddings':list_of_embeddings}
     with open(embeddings_location, 'w') as f:
         f.write(json.dumps(embeddings))
-    return None
 
 def get_embeddings(embeddings_file):
     """
