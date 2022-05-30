@@ -1,4 +1,4 @@
-# User Guide
+# Ablation studies
 
 This directory contains code that reproduces all results and figures in the paper and supplementary information.
 
@@ -65,7 +65,7 @@ python3 code/zero-shot.py --Codex=True --GPT3_CoT=True --GPT3=True --Explain=Tru
  
 Open the CSV for each Course that looks like this: ``_Course_ results.csv``. Run each program and if it outputs the correct answer, put a 1 in the column titled ``Zero-Shot Evaluation``. If the program is incorrect, put a 0.
  
-## 6. Few-shot(Codex, GPT-3 CoT)
+## 6. Few-shot (Codex, GPT-3 CoT)
  
 ### Just Codex Few-Shot:
  
