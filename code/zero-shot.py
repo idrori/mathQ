@@ -41,11 +41,19 @@ zero_shot_max_tokens = 256
 explanation_max_tokens = 150
 gpt3_max_tokens = 200
 gpt3_CoT_max_tokens = 1000
-codex_time_delay = 2
+codex_time_delay = 3
 gpt3_time_delay = 1
 
+#locations of embeddings and which indexes refer to which questions
 courses_embeddings_location = 'code/course_embeddings.json'
+courses_embeddings_indexes = {'18.01':[0, 24], '18.02':[25, 49], 
+                              '18.03':[50, 74], '6.042': [75,99], 
+                              '18.05':[100, 124], '18.06':[125, 149], 
+                              'COMS3251':[150,174]}
 MATH_embeddings_location = 'code/MATH_embeddings.json'
+MATH_embeddings_indexes = {'MATH_Algebra':[0, 14], 'MATH_Counting_&_Probability':[15, 29],
+                           'MATH_Intermediate_Algebra':[30, 44], 'MATH_Number_Theory':[45, 59],
+                           'MATH_Prealgebra':[60, 74], 'MATH_Precalculus':[75, 89]}
 
 # for prompt formatting:
 docstring_front = '''"""\n''' 
@@ -55,7 +63,8 @@ prompt_prefix = 'that answers the following question:'
 explanation_suffix = "\n\n'''\nHere's what the above code is doing:\n1."
 CoT = "Let's think step by step."
 
-def execute_zero_shot(courses, questions_per, embeddings_location):
+def execute_zero_shot(courses, questions_per, 
+                      embeddings_location, embeddings_indexes):
     """
     Runs zero-shot on questions_per questions for each course in courses. 
     An individual CSV file of the results is made for each course in courses.
@@ -63,7 +72,9 @@ def execute_zero_shot(courses, questions_per, embeddings_location):
     """
     all_embeddings = get_embeddings(embeddings_location)
     for course_index, course in enumerate(courses):
-        course_embeddings = all_embeddings[course_index*questions_per:(course_index+1)*questions_per]
+        # course_embeddings = all_embeddings[course_index*questions_per:(course_index+1)*questions_per]
+        course_embeddings = all_embeddings[embeddings_indexes[course][0]:embeddings_indexes[course][1]+1]
+        print(f'{len(course_embeddings)}, {embeddings_indexes[course][0]} to {embeddings_indexes[course][1]+1}')
         questions = []
         answers = []
         for num in range(1, questions_per + 1):
@@ -139,7 +150,9 @@ def execute_zero_shot(courses, questions_per, embeddings_location):
 if __name__ == "__main__":
     #zero-shot step for courses:
     if args.Do_Courses == 'True':
-        execute_zero_shot(courses_to_zero_shot, questions_per_course, courses_embeddings_location)
+        execute_zero_shot(courses_to_zero_shot, questions_per_course, 
+                          courses_embeddings_location, courses_embeddings_indexes)
     #zero-shot step for MATH benchmark:
     if args.Do_MATH == 'True':
-        execute_zero_shot(MATH_sections_to_zero_shot, questions_per_MATH_section, MATH_embeddings_location)
+        execute_zero_shot(MATH_sections_to_zero_shot, questions_per_MATH_section, 
+                          MATH_embeddings_location, MATH_embeddings_indexes)
