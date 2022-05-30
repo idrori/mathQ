@@ -1,26 +1,89 @@
+# User Guide
+
 This directory contains code that reproduces all results and figures in the paper and supplementary information.
-\
-To run this code, make sure to have an OpenAI API key inserted into each of the code files:
 
-1. In a terminal, run `python3 code/embedding.py`.
+## Install required packages
 
-This step embeds and saves all question embeddings from the university math courses (`course_embeddings.json`) and MATH benchmark (`MATH_embeddings.json`). It also creates an image of the embeddings after reducing dimensionality by UMAP(`UMAP.png`).
+**fill in packages here**
+```
+pip install openai
+pip install umap
+pip install sentence_transformers
+```
 
-2. In a terminal, run `python3 code/zero-shot.py`.
+## Set OpenAI API Key
+```
+export OpenAI_API_Key='(YOUR KEY HERE)'
+```
 
-This step creates a CSV file for each course(`COURSE results.csv`), automatically adds context to the prompts, and generates a program for each prompt. Each program is automatically explained, and GPT-3's response to the original question is generated. 
+## Embed questions
+```
+python3 code/embedding.py
+```
+This will embed and save all of the question embeddings from the courses as `course_embeddings.json` and MATH as `MATH_embeddings.json`. It also creates an image of the embeddings after they have had their dimensionality reduced via UMAP as `UMAP.png`.
 
-3. In each of the created CSVs: Run each program. Then, under the column `Zero-Shot Evaluation,` if the program is correct, mark a one and 0 otherwise (see column `Actual Solution`). Then, label the GPT-3 responses in the same manner under the column `GPT-3 Evaluation`. Make sure all entries under `Zero-Shot Evaluation` are labeled before step 4. Note: This step may take over 30 minutes to run due to the length of API calls.
+## Zero-shot (Codex, GPT-3, GPT-3 CoT, Codex Explanation)
 
-This step evaluates each generated program and corresponding GPT-3 response by labeling each generated program(1 for correct and 0 for incorrect) and each GPT-3 response to evaluate Codex's and GPT-3's performance.
+- This step takes a long time due to the API calls(30+ minutes). Make sure to only do operations above that you want!
+- Evaluation Column is for **you** to fill in. If the respective response is correct, put 1. If Incorrect, put 0.
 
-4. In a terminal, run `python3 code/few-shot.py`.
+### Just Codex:
 
-This step takes the labels given to each generated program and performs few-shot learning for each prompt by providing (question, code) examples to Codex. We create the new prompt with the examples and generate a new program. Also, few-shot learning is performed with GPT-3 and a chain of thought (CoT) string.
+On the MIT Courses:
+```
+python3 code/zero-shot.py --Codex=True --Do_Courses=True
+```
+On the MATH Benchmark:
+```
+python3 code/zero-shot.py --Codex=True --Do_MATH=True
+```
 
-5. Repeat step 3 but for the programs and responses generated via few-shot learning.
+### Just GPT-3 CoT:
 
-This step labels each program generated via few-shot learning to evaluate Codex's performance.
+On the MIT Courses:
+```
+python3 code/zero-shot.py --GPT3_CoT=True --Do_Courses=True
+```
+On the MATH Benchmark:
+```
+python3 code/zero-shot.py --GPT3_CoT=True --Do_MATH=True
+```
 
-\
-Figures: this subdirectory contains code and data that reproduces the figures in the paper.
+### Codex, GPT-3, GPT-3 CoT, and Codex Explanation:
+
+On the MIT Courses:
+```
+python3 code/zero-shot.py --Codex=True --GPT3_CoT=True --GPT3=True --Explain=True --Do_Courses=True
+```
+On the MATH Benchmark:
+```
+python3 code/zero-shot.py --Codex=True --GPT3_CoT=True --GPT3=True --Explain=True --Do_MATH=True
+```
+ 
+## Evaluate Codex Responses
+ 
+Open the CSV for each Course that looks like this: ``_Course_ results.csv``. Run each program and if it outputs the correct answer, put a 1 in the column titled ``Zero-Shot Evaluation``. If the program is incorrect, put a 0.
+ 
+## Few-shot(Codex, GPT-3 CoT)
+ 
+### Just Codex Few-Shot:
+ 
+On the MIT Courses:
+```
+python3 code/few-shot.py --Codex_Few_Shot=True --Do_Courses=True
+```
+On the MATH Benchmark:
+```
+python3 code/few-shot.py --Codex_Few_Shot=True --Do_MATH=True
+```
+### Just GPT-3 CoT Few-Shot:
+
+On the MIT Courses:
+```
+python3 code/few-shot.py --GPT3_CoT_One_Shot=True --Do_Courses=True
+```
+On the MATH Benchmark:
+```
+python3 code/few-shot.py --GPT3_CoT_One_Shot=True --Do_MATH=True
+```
+
