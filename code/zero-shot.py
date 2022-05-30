@@ -94,11 +94,11 @@ def execute_zero_shot(courses, questions_per,
             original_question = questions[i]
             question_answer = answers[i]
             row = [question, original_question, question_answer]
+            print('Running Zero-Shot on ' + course + ' question ' + str(i+1) + '...')
             start = time.time()
 
             if args.Codex == 'True':
                 time.sleep(codex_time_delay) #to avoid an openai.error.RateLimitError
-                print('Running Codex on ' + course + ' question ' + str(i+1) + '...')
                 codex_input = docstring_front + context_array[0] + ' ' + prompt_prefix + ' ' + questions[i] + docstring_back
                 codex_output = openai.Completion.create(engine = codex_engine, 
                                                         prompt = codex_input, 
