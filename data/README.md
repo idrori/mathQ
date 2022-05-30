@@ -14,10 +14,6 @@ This folder contains json files representing every question evaluated in this pa
 | "GPT-3 evaluation" | "Correct" if the GPT-3 response matches the program solution, "Incorrect" elsewise |
 
 
-Diagram illustrating the zero-shot, then few-shot if unsuccessful, and if still unsuccessful, manual modification steps taken to solve each question.
-![image](https://user-images.githubusercontent.com/51934413/170346165-98313e1c-f169-465a-abee-fd2b867b3a7f.png)
-
-
 Seven university courses and six topics from the MATH dataset are considered. The courses and MATH topics included and their descriptions are as follows:
 
 | Course Name | Description |
