@@ -19,7 +19,6 @@ embedding_engine = 'text-similarity-babbage-001'
 questions_per_course = 25
 questions_per_MATH_section = 15
 
-
 def make_embeddings(embedding_engine, embeddings_location, courses, questions_per_course):
     """
     Takes json files of questions using our json file formatting, 
