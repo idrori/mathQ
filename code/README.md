@@ -26,6 +26,7 @@ This will embed and save all of the question embeddings from the courses as `cou
 
 - This step takes a long time due to the API calls(30+ minutes). Make sure to only do operations above that you want!
 - Evaluation Column is for **you** to fill in. If the respective response is correct, put 1. If Incorrect, put 0.
+- Rerunning ``code/zero-shot.py`` will override the previous answer file for its respective course. Make sure any previous outputs that you aren't doing locally to avoid this.
 
 ### Just Codex:
 
