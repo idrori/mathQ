@@ -6,7 +6,7 @@ This directory contains code that reproduces all results and figures in the pape
 
 ```
 pip install openai
-pip install umap
+pip install umap-learn
 pip install sentence_transformers
 ```
 
