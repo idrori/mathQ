@@ -7,7 +7,7 @@ This repository for the paper "A Neural Network Solves, Explains, and Generates 
   title = {A neural network solves, explains, and generates university math problems by program synthesis and few-shot learning at human level},
   journal = {Proceedings of the National Academy of Sciences (PNAS)},
   volume = {119},
-  number - {32},
+  number = {32},
   year = {2022}
 }
 ```
